@@ -5,6 +5,8 @@
  */
 package com.abc.customer_one_system;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author test
@@ -67,6 +69,17 @@ public class Login extends javax.swing.JFrame {
 
         txtUserName.setText("user name");
 
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,14 +137,14 @@ public class Login extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //if business condition true
-        String usrName=txtUserName.getText();
-        String password=passwordField.getText();
-        if(usrName.equals("test") && password.equals("t")){
-        MainMenu obj=new MainMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
-        }
-        else{
+        String usrName = txtUserName.getText();
+        String password = passwordField.getText();
+        
+        if (usrName.equals("test") && password.equals("t")) {
+            MainMenu obj = new MainMenu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        } else {
             lblMsg.setText("Incorrect user name or password");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -139,12 +152,31 @@ public class Login extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtUserName.setText("");
         passwordField.setText("");
-        
+
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSubmitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSubmitKeyReleased
-        
+
     }//GEN-LAST:event_btnSubmitKeyReleased
+
+    private void passwordFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String usrName = txtUserName.getText();
+            String password = passwordField.getText();
+            if (usrName.equals("test") && password.equals("t")) {
+                MainMenu obj = new MainMenu();
+                obj.setVisible(true);
+                this.setVisible(false);
+            } else {
+                lblMsg.setText("Incorrect user name or password");
+            }
+        } 
+
+    }//GEN-LAST:event_passwordFieldKeyReleased
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments

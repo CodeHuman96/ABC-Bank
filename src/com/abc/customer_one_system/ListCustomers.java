@@ -34,6 +34,7 @@ public class ListCustomers extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer List");
 
         lblListOfCustomers.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblListOfCustomers.setText("List of Customers");

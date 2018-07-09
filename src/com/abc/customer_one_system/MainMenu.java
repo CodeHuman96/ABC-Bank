@@ -99,7 +99,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void btnDeDuplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeDuplicateActionPerformed
-        
+        DeDuplication obj=new DeDuplication();
+        obj.setVisible(true);
     }//GEN-LAST:event_btnDeDuplicateActionPerformed
 
     private void btnCustomerSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerSearchActionPerformed
