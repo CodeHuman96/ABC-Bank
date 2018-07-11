@@ -46,6 +46,7 @@ public class CustomerSearch extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblCustomerSearch = new javax.swing.JLabel();
         lblDateFormat = new javax.swing.JLabel();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Search");
@@ -91,6 +92,11 @@ public class CustomerSearch extends javax.swing.JFrame {
         });
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -129,12 +135,6 @@ public class CustomerSearch extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCustomerSearch)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnClear)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtMobileNo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPAN, javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +144,15 @@ public class CustomerSearch extends javax.swing.JFrame {
                             .addComponent(txtCustomerID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateFormat)))
+                        .addComponent(lblDateFormat))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnSearch)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnClear)
+                            .addGap(27, 27, 27)
+                            .addComponent(btnBack))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,7 +194,9 @@ public class CustomerSearch extends javax.swing.JFrame {
                     .addComponent(btnSearch)
                     .addComponent(btnClear)
                     .addComponent(btnBack))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,6 +234,19 @@ public class CustomerSearch extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String name=txtName.getText();
+        if(!txtCustomerID.getText().trim().equals("")){
+            int customerID=Integer.parseInt(txtCustomerID.getText());
+        }
+        String dob=txtDOB.getText();//date of bith is in form dd/mm/yyyy
+        String accoutNo=txtAccountNo.getText();
+        String emailID=txtEmailID.getText().toLowerCase();
+        if(!emailID.equals("") && !emailID.matches("^[a-z][a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")){
+            lblMsg.setText("Invalid Email ID");
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,6 +294,7 @@ public class CustomerSearch extends javax.swing.JFrame {
     private javax.swing.JLabel lblDateFormat;
     private javax.swing.JLabel lblEmailID;
     private javax.swing.JLabel lblMobileNo;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPANNo;
     private javax.swing.JTextField txtAccountNo;
