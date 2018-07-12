@@ -57,6 +57,16 @@ public class AddCustomers extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         txtPasswordRe = new javax.swing.JPasswordField();
         txtMsg = new javax.swing.JLabel();
+        lblDateFormat = new javax.swing.JLabel();
+        lblPinFormat = new javax.swing.JLabel();
+        lblEmailFormat = new javax.swing.JLabel();
+        lblPANFormat = new javax.swing.JLabel();
+        lblMobileNoFormat = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Customers");
@@ -128,73 +138,107 @@ public class AddCustomers extends javax.swing.JFrame {
             }
         });
 
+        lblDateFormat.setText("dd/mm/yyyy");
+
+        lblPinFormat.setText(" ");
+
+        lblEmailFormat.setText(" ");
+
+        lblPANFormat.setText(" ");
+
+        lblMobileNoFormat.setText(" ");
+
+        jLabel5.setText(" ");
+
+        jLabel6.setText(" ");
+
+        jLabel7.setText(" ");
+
+        jLabel8.setText(" ");
+
+        lblMsg.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblContactNo)
-                        .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblDOB, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(lblMonIncome)
-                    .addComponent(lblUserID)
-                    .addComponent(lblPassword)
-                    .addComponent(lblPasswordRe)
-                    .addComponent(lblCity)
-                    .addComponent(lblPIN)
-                    .addComponent(lblEmailID)
-                    .addComponent(lblPAN)
-                    .addComponent(lblOccupation))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtUserID)
-                        .addComponent(txtDOB, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPIN, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEmailID, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPAN, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtContactNo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtOccupation, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtMonIncome, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(txtPasswordRe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(200, 200, 200))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(lblAddCustomers))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(txtMsg)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblContactNo)
+                                        .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblDOB, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(lblMonIncome)
+                                    .addComponent(lblUserID)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblPasswordRe)
+                                    .addComponent(lblCity)
+                                    .addComponent(lblPIN)
+                                    .addComponent(lblEmailID)
+                                    .addComponent(lblPAN)
+                                    .addComponent(lblOccupation))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUserID, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtDOB)
+                                    .addComponent(txtName)
+                                    .addComponent(txtAddress)
+                                    .addComponent(txtCity)
+                                    .addComponent(txtPIN)
+                                    .addComponent(txtEmailID)
+                                    .addComponent(txtPAN)
+                                    .addComponent(txtContactNo)
+                                    .addComponent(txtOccupation)
+                                    .addComponent(txtMonIncome)
+                                    .addComponent(txtPassword)
+                                    .addComponent(txtPasswordRe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblAddCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDateFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPinFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmailFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPANFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMobileNoFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAddCustomers)
-                .addGap(41, 41, 41)
+                .addComponent(lblAddCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB)
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddress)
@@ -206,19 +250,23 @@ public class AddCustomers extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPIN)
-                    .addComponent(txtPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPinFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmailID)
-                    .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPAN)
-                    .addComponent(txtPAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPANFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContactNo)
-                    .addComponent(txtContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMobileNoFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOccupation)
@@ -226,26 +274,33 @@ public class AddCustomers extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMonIncome)
-                    .addComponent(txtMonIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMonIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserID)
-                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPasswordRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPasswordRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8))
                     .addComponent(lblPasswordRe))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
-                    .addComponent(btnSubmit))
+                    .addComponent(btnSubmit)
+                    .addComponent(lblMsg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMsg)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,13 +323,26 @@ public class AddCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContactNoActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
+        try {
+            String name = txtName.getText().trim();
+            String dob = txtDOB.getText().trim();
+            String address = txtAddress.getText().trim();
+            String city = txtCity.getText().trim();
+            String pin = txtPIN.getText().trim();
+            String email = txtEmailID.getText().trim();
+            String pan = txtPAN.getText().trim();
+            String contactNo = txtContactNo.getText().trim();
+            String occupation = txtOccupation.getText().trim();
+            Double monthlyIncome = Double.parseDouble(txtMonIncome.getText().trim());
+        } catch (NumberFormatException e) {
+        }
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        MainMenu obj=new MainMenu();
+        MainMenu obj = new MainMenu();
         obj.setVisible(true);
-        
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -315,19 +383,29 @@ public class AddCustomers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblAddCustomers;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblContactNo;
     private javax.swing.JLabel lblDOB;
+    private javax.swing.JLabel lblDateFormat;
+    private javax.swing.JLabel lblEmailFormat;
     private javax.swing.JLabel lblEmailID;
+    private javax.swing.JLabel lblMobileNoFormat;
     private javax.swing.JLabel lblMonIncome;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblOccupation;
     private javax.swing.JLabel lblPAN;
+    private javax.swing.JLabel lblPANFormat;
     private javax.swing.JLabel lblPIN;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPasswordRe;
+    private javax.swing.JLabel lblPinFormat;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCity;
