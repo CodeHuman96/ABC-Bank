@@ -46,6 +46,12 @@ public class CustomerSearch extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblCustomerSearch = new javax.swing.JLabel();
         lblDateFormat = new javax.swing.JLabel();
+        lblCustIDFormat = new javax.swing.JLabel();
+        lblNameFormat = new javax.swing.JLabel();
+        lblAccountNoFormat = new javax.swing.JLabel();
+        lblEmailFormat = new javax.swing.JLabel();
+        lblPANFormat = new javax.swing.JLabel();
+        lblMobileNoFormat = new javax.swing.JLabel();
         lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,20 +123,33 @@ public class CustomerSearch extends javax.swing.JFrame {
 
         lblDateFormat.setText("dd/mm/yyyy");
 
+        lblCustIDFormat.setText(" ");
+
+        lblNameFormat.setText(" ");
+
+        lblAccountNoFormat.setText(" ");
+
+        lblEmailFormat.setText(" ");
+
+        lblPANFormat.setText(" ");
+
+        lblMobileNoFormat.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAccountNo)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblAccountNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCustomerID, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDOB, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEmailID, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPANNo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMobileNo, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lblMobileNo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCustomerSearch)
@@ -144,16 +163,21 @@ public class CustomerSearch extends javax.swing.JFrame {
                             .addComponent(txtCustomerID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateFormat))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnSearch)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnClear)
-                            .addGap(27, 27, 27)
-                            .addComponent(btnBack))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblNameFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCustIDFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAccountNoFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmailFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPANFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMobileNoFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDateFormat, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnClear)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnBack)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +187,13 @@ public class CustomerSearch extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNameFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID)
-                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCustIDFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,27 +202,30 @@ public class CustomerSearch extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAccountNo)
-                    .addComponent(txtAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAccountNoFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmailID)
-                    .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailFormat))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPANNo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPANFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMobileNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMobileNo))
+                    .addComponent(lblMobileNo)
+                    .addComponent(lblMobileNoFormat))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
                     .addComponent(btnClear)
-                    .addComponent(btnBack))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(btnBack)
+                    .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,7 +251,12 @@ public class CustomerSearch extends javax.swing.JFrame {
         txtEmailID.setText("");
         txtPAN.setText("");
         txtMobileNo.setText("");
-        
+        lblDateFormat.setText("dd/mm/yyyy");
+        lblEmailFormat.setText("");
+        lblCustIDFormat.setText("");
+        lblPANFormat.setText("");
+        lblMobileNoFormat.setText("");
+
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -230,22 +264,43 @@ public class CustomerSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        MainMenu obj=new MainMenu();
+        MainMenu obj = new MainMenu();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String name=txtName.getText();
-        if(!txtCustomerID.getText().trim().equals("")){
-            int customerID=Integer.parseInt(txtCustomerID.getText());
+        MatchFormats match=new MatchFormats();
+        try {
+            String name = txtName.getText().trim();
+            if (!txtCustomerID.getText().equals("")) {
+                int customerID = Integer.parseInt(txtCustomerID.getText());
+            }
+            String dob = txtDOB.getText().trim();
+            //date of bith is in form dd/mm/yyyy
+            if (!dob.equals("") && !match.matchDOB(dob)) {
+                lblDateFormat.setText("Invalid");
+            } else {
+                lblDateFormat.setText("dd/mm/yyyy");
+            }
+            String accoutNo = txtAccountNo.getText().trim();
+            String emailID = txtEmailID.getText().toLowerCase();
+            if (!emailID.equals("") && !match.matchEmail(emailID)) {
+                lblEmailFormat.setText("Invalid Email ID");
+            } else {
+                lblEmailFormat.setText("");
+            }
+            String PAN = txtPAN.getText().trim();
+            String mobile = txtMobileNo.getText().trim().replace(" ", "");
+            if (!mobile.equals("") && !match.matchMobileNo(mobile)) {
+                lblMobileNoFormat.setText("Invalid mobile no.");
+            } else {
+                lblMobileNoFormat.setText("");
+            }
+        } catch (NumberFormatException e) {
+            lblMsg.setText("Enter valid data");
         }
-        String dob=txtDOB.getText();//date of bith is in form dd/mm/yyyy
-        String accoutNo=txtAccountNo.getText();
-        String emailID=txtEmailID.getText().toLowerCase();
-        if(!emailID.equals("") && !emailID.matches("^[a-z][a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")){
-            lblMsg.setText("Invalid Email ID");
-        }
+         
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
@@ -288,14 +343,20 @@ public class CustomerSearch extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel lblAccountNo;
+    private javax.swing.JLabel lblAccountNoFormat;
+    private javax.swing.JLabel lblCustIDFormat;
     private javax.swing.JLabel lblCustomerID;
     private javax.swing.JLabel lblCustomerSearch;
     private javax.swing.JLabel lblDOB;
     private javax.swing.JLabel lblDateFormat;
+    private javax.swing.JLabel lblEmailFormat;
     private javax.swing.JLabel lblEmailID;
     private javax.swing.JLabel lblMobileNo;
+    private javax.swing.JLabel lblMobileNoFormat;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNameFormat;
+    private javax.swing.JLabel lblPANFormat;
     private javax.swing.JLabel lblPANNo;
     private javax.swing.JTextField txtAccountNo;
     private javax.swing.JTextField txtCustomerID;
