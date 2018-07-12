@@ -25,15 +25,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lblAccountNo" alignment="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="lblAccountNo" alignment="1" max="32767" attributes="0"/>
                   <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCustomerID" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDOB" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblEmailID" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPANNo" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMobileNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMsg" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -49,20 +50,25 @@
                           <Component id="txtName" alignment="0" pref="168" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblDateFormat" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblMsg" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnClear" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblNameFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblCustIDFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblAccountNoFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEmailFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPANFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblMobileNoFormat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDateFormat" alignment="0" pref="139" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnClear" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,11 +81,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNameFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCustomerID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCustomerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCustIDFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -91,31 +99,34 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblAccountNo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAccountNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAccountNoFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblEmailID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtEmailID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmailFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPANNo" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="txtPAN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPANFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtMobileNo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMobileNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMobileNoFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnClear" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMsg" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblMsg" min="-2" pref="16" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -223,6 +234,36 @@
     <Component class="javax.swing.JLabel" name="lblDateFormat">
       <Properties>
         <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCustIDFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNameFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAccountNoFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmailFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPANFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMobileNoFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMsg">
