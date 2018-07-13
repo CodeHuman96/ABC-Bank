@@ -27,6 +27,9 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="signOutBt" min="-2" max="-2" attributes="0"/>
@@ -39,6 +42,12 @@
                       <Component id="wellbl" min="-2" pref="153" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="chgPassBt" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewStatBt" min="-2" max="-2" attributes="0"/>
+=======
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="chgPassBt" min="-2" max="-2" attributes="0"/>
@@ -47,12 +56,15 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
                           <Component id="vewReqStatusBt" min="-2" max="-2" attributes="0"/>
                           <Component id="mkSerReqBt" min="-2" max="-2" attributes="0"/>
                           <Component id="myprofileBt" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
                   <Group type="102" attributes="0">
@@ -72,6 +84,7 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
               </Group>
           </Group>
       </Group>
@@ -82,13 +95,30 @@
 <<<<<<< HEAD
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
 =======
+<<<<<<< HEAD
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+=======
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="header2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="wellbl" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+<<<<<<< HEAD
+              <Component id="signOutBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="myprofileBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="chgPassBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="viewStatBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="mkSerReqBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="vewReqStatusBt" min="-2" max="-2" attributes="0"/>
+=======
 <<<<<<< HEAD
               <Component id="signOutBt" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -120,6 +150,7 @@
                   </Group>
               </Group>
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
           </Group>
       </Group>
     </DimensionLayout>
@@ -174,7 +205,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vewReqStatusBtActionPerformed"/>
       </Events>
 =======
+<<<<<<< HEAD
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vewReqStatusBtActionPerformed"/>
+      </Events>
+=======
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
     </Component>
     <Component class="javax.swing.JButton" name="viewStatBt">
       <Properties>
@@ -185,6 +222,9 @@
       </Events>
     </Component>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
     <Component class="javax.swing.JButton" name="chgPassBt">
       <Properties>
         <Property name="text" type="java.lang.String" value="Change Password"/>
@@ -193,7 +233,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chgPassBtActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
   </SubComponents>
 </Form>

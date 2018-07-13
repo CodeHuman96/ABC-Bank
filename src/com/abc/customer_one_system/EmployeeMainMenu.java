@@ -5,6 +5,9 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.CreditCardSelfService.ModifyReward;
+import com.abc.CreditCardSelfService.RewardCatalog;
+
 /**
  *
  * @author test
@@ -109,16 +112,11 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
-        BackOfficeMenu backofficemenu = new BackOfficeMenu();
-        backofficemenu.setVisible(true);
         BackOfficeMenu obj=new BackOfficeMenu();
         obj.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
+
+   }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
         // TODO add your handling code here:
@@ -131,8 +129,8 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
-        ModifyReward obj1=new ModifyReward();
-        obj1.setVisibility(true);
+        RewardCatalog obj1=new RewardCatalog();
+        obj1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 

@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/CustomerSelfServiceSystem/ServiceRequest.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ModifyReward.java</file>
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/MainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListCustomers.java</file>
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListOfQueries.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/Login.java</file>
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerSearch.java</file>
+=======
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
+>>>>>>> 7b8b5312292118446a061a59355c70305a4fbcec
         </group>
     </open-files>
 </project-private>
