@@ -111,6 +111,7 @@ public class ServiceRequest extends javax.swing.JFrame {
     private void btnChequeBookRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeBookRequestActionPerformed
         ChequeBookRequest obj=new ChequeBookRequest();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnChequeBookRequestActionPerformed
 
     private void btnLostStolenCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLostStolenCardActionPerformed
@@ -126,6 +127,7 @@ public class ServiceRequest extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         CustomerServiceMenu obj=new CustomerServiceMenu();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
