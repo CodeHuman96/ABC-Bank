@@ -66,6 +66,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         btnSubmitCsr3.setText("Submit");
 
         btnBackCsr3.setText("Back");
+        btnBackCsr3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackCsr3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,6 +145,13 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr3ActionPerformed
+        LostOrStolenCard lostorstolencard = new LostOrStolenCard();
+        lostorstolencard.setVisible(false);
+        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+        listofcustomerrequests.setVisible(true);
+    }//GEN-LAST:event_btnBackCsr3ActionPerformed
 
     /**
      * @param args the command line arguments
