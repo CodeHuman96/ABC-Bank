@@ -255,8 +255,10 @@ public class MyProfile extends javax.swing.JFrame {
 
     private void backBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtActionPerformed
         CustomerServiceMenu obj = new CustomerServiceMenu();
+        
         obj.setVisible(true);
         this.setVisible(false);
+       
     }//GEN-LAST:event_backBtActionPerformed
 
     private void addresstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addresstxtActionPerformed
@@ -269,6 +271,8 @@ public class MyProfile extends javax.swing.JFrame {
             String pinCode=pinCodetxt.getText();
             String country=countrytxt.getText();
             String email=emailtxt.getText();
+            
+           
     }//GEN-LAST:event_submitBtActionPerformed
 
     /**
