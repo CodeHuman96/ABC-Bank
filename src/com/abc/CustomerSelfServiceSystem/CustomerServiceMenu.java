@@ -34,6 +34,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         mkSerReqBt = new javax.swing.JButton();
         vewReqStatusBt = new javax.swing.JButton();
         viewStatBt = new javax.swing.JButton();
+        chgPassBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,11 +66,23 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         });
 
         vewReqStatusBt.setText("View Request Status");
+        vewReqStatusBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vewReqStatusBtActionPerformed(evt);
+            }
+        });
 
         viewStatBt.setText("View Statement");
         viewStatBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewStatBtActionPerformed(evt);
+            }
+        });
+
+        chgPassBt.setText("Change Password");
+        chgPassBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chgPassBtActionPerformed(evt);
             }
         });
 
@@ -85,35 +98,38 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewStatBt)
-                            .addComponent(vewReqStatusBt)
-                            .addComponent(mkSerReqBt)
-                            .addComponent(myprofileBt))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(header2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chgPassBt)
+                            .addComponent(viewStatBt)
+                            .addComponent(vewReqStatusBt)
+                            .addComponent(mkSerReqBt)
+                            .addComponent(myprofileBt))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(26, 26, 26)
                 .addComponent(signOutBt)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(myprofileBt)
-                .addGap(30, 30, 30)
+                .addGap(26, 26, 26)
+                .addComponent(chgPassBt)
+                .addGap(21, 21, 21)
                 .addComponent(viewStatBt)
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(mkSerReqBt)
-                .addGap(42, 42, 42)
+                .addGap(27, 27, 27)
                 .addComponent(vewReqStatusBt))
         );
 
@@ -143,6 +159,19 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 obj.setVisible(true);
                 this.setVisible(false);
     }//GEN-LAST:event_signOutBtActionPerformed
+
+    private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
+        
+                ViewRequestStatus obj = new ViewRequestStatus();
+                obj.setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_vewReqStatusBtActionPerformed
+
+    private void chgPassBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chgPassBtActionPerformed
+            ChangePassword obj = new ChangePassword();
+            obj.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_chgPassBtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,6 +210,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chgPassBt;
     private javax.swing.JLabel header2;
     private javax.swing.JButton mkSerReqBt;
     private javax.swing.JButton myprofileBt;
