@@ -150,7 +150,7 @@ public class CustomerLogin extends javax.swing.JFrame {
         String password = passWordtxt.getText();
         
         
-        if (usrName.equals("root") && password.equals("root")) {
+        if (usrName.equals("sai") && password.equals("sai")) {
             CustomerServiceMenu obj = new CustomerServiceMenu();
             obj.setVisible(true);
             this.setVisible(false);

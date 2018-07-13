@@ -269,6 +269,8 @@ public class MyProfile extends javax.swing.JFrame {
             String pinCode=pinCodetxt.getText();
             String country=countrytxt.getText();
             String email=emailtxt.getText();
+            
+           
     }//GEN-LAST:event_submitBtActionPerformed
 
     /**
