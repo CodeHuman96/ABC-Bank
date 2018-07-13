@@ -23,7 +23,7 @@ public class MatchFormats {
     }
 
     boolean matchDOB(String date) {
-        pattern = "^[0-2][0-9]/[01][0-9]/[12][0-9]{3}$";
+        pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
         return date.matches(pattern);
     }
     boolean matchPIN(String pin){
