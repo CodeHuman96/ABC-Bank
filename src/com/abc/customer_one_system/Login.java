@@ -134,19 +134,21 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void verification(String usrName,String pass){
+        if (usrName.equals("t") && pass.equals("t")) {
+            EmployeeMainMenu obj;
+            obj = new EmployeeMainMenu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+    }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //if business condition true
         String usrName = txtUserName.getText();
         String password = passwordField.getText();
+        verification(usrName,password);
+        lblMsg.setText("Incorrect user name or password");
         
-        if (usrName.equals("test") && password.equals("t")) {
-            MainMenu obj = new MainMenu();
-            obj.setVisible(true);
-            this.setVisible(false);
-        } else {
-            lblMsg.setText("Incorrect user name or password");
-        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -163,13 +165,9 @@ public class Login extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String usrName = txtUserName.getText();
             String password = passwordField.getText();
-            if (usrName.equals("test") && password.equals("t")) {
-                MainMenu obj = new MainMenu();
-                obj.setVisible(true);
-                this.setVisible(false);
-            } else {
-                lblMsg.setText("Incorrect user name or password");
-            }
+            verification(usrName,password);
+            lblMsg.setText("Incorrect user name or password");
+            
         } 
 
     }//GEN-LAST:event_passwordFieldKeyReleased

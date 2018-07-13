@@ -28,21 +28,21 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitleListOfCustReq = new javax.swing.JLabel();
-        lblReqypeListOfCustReq = new javax.swing.JLabel();
+        lblReqTypeListOfCustReq = new javax.swing.JLabel();
         cmbRequestTypeListOfCustReq = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cmbStatusListOfCustReq = new javax.swing.JComboBox<>();
+        lblStatusListOfCustReq = new javax.swing.JLabel();
+        btnSubmitListOfCustReq = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        tblListOfCustReq = new javax.swing.JTable();
+        btnBackListOfCustReq = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitleListOfCustReq.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblTitleListOfCustReq.setText("List of Customer Requests");
 
-        lblReqypeListOfCustReq.setText("Request Type");
+        lblReqTypeListOfCustReq.setText("Request Type");
 
         cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Disputed Transaction", "Lost/Stolen Card", "Redeem" }));
         cmbRequestTypeListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
@@ -51,23 +51,23 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmbStatusListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
+        cmbStatusListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmbStatusListOfCustReqActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Status");
+        lblStatusListOfCustReq.setText("Status");
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmitListOfCustReq.setText("Submit");
+        btnSubmitListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSubmitListOfCustReqActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblListOfCustReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -78,12 +78,12 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 "Request Type", "Account Number", "Account Type", "Customer Name", "Request Date", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblListOfCustReq);
 
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBackListOfCustReq.setText("Back");
+        btnBackListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBackListOfCustReqActionPerformed(evt);
             }
         });
 
@@ -104,21 +104,21 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                                 .addGap(26, 26, 26))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblReqypeListOfCustReq, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblReqTypeListOfCustReq, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(148, 148, 148)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lblStatusListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(109, 109, 109)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbStatusListOfCustReq, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbRequestTypeListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(79, 79, 79)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSubmitListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBackListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(338, 338, 338))
         );
         layout.setVerticalGroup(
@@ -128,38 +128,38 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 .addComponent(lblTitleListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblReqypeListOfCustReq)
+                    .addComponent(lblReqTypeListOfCustReq)
                     .addComponent(cmbRequestTypeListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
+                    .addComponent(cmbStatusListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatusListOfCustReq)
+                    .addComponent(btnSubmitListOfCustReq))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(jButton2)
+                .addComponent(btnBackListOfCustReq)
                 .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSubmitListOfCustReqActionPerformed
 
     private void cmbRequestTypeListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRequestTypeListOfCustReqActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRequestTypeListOfCustReqActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cmbStatusListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusListOfCustReqActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmbStatusListOfCustReqActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBackListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackListOfCustReqActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBackListOfCustReqActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,14 +197,14 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackListOfCustReq;
+    private javax.swing.JButton btnSubmitListOfCustReq;
     private javax.swing.JComboBox<String> cmbRequestTypeListOfCustReq;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> cmbStatusListOfCustReq;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblReqypeListOfCustReq;
+    private javax.swing.JLabel lblReqTypeListOfCustReq;
+    private javax.swing.JLabel lblStatusListOfCustReq;
     private javax.swing.JLabel lblTitleListOfCustReq;
+    private javax.swing.JTable tblListOfCustReq;
     // End of variables declaration//GEN-END:variables
 }
