@@ -33,7 +33,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         lblCardTypeCsr3 = new javax.swing.JLabel();
         lbltxtCardTypeCsr3 = new javax.swing.JLabel();
         lblStatusCsr3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblAsterisk = new javax.swing.JLabel();
         cmbStatusCsr3 = new javax.swing.JComboBox<>();
         lblResponseCsr3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,8 +52,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
         lblStatusCsr3.setText("Status");
 
-        jLabel7.setForeground(new java.awt.Color(229, 30, 30));
-        jLabel7.setText("*");
+        lblAsterisk.setForeground(new java.awt.Color(229, 30, 30));
+        lblAsterisk.setText("*");
 
         cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processing" }));
 
@@ -81,7 +81,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblStatusCsr3)))
                 .addGap(116, 116, 116)
@@ -130,7 +130,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStatusCsr3)
-                    .addComponent(jLabel7)
+                    .addComponent(lblAsterisk)
                     .addComponent(cmbStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,8 +147,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr3ActionPerformed
-        LostOrStolenCard lostorstolencard = new LostOrStolenCard();
-        lostorstolencard.setVisible(false);
+       
+     this.setVisible(false);
         ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
         listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnBackCsr3ActionPerformed
@@ -193,8 +193,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     private javax.swing.JButton btnSubmitCsr3;
     private javax.swing.JComboBox<String> cmbStatusCsr3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAsterisk;
     private javax.swing.JLabel lblCardNoCsr3;
     private javax.swing.JLabel lblCardTypeCsr3;
     private javax.swing.JLabel lblResponseCsr3;
