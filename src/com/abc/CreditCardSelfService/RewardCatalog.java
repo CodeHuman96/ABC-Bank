@@ -5,6 +5,9 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.customer_one_system.EmployeeMainMenu;
+import com.abc.customer_one_system.Login;
+
 /**
  *
  * @author test
@@ -129,8 +132,9 @@ public class RewardCatalog extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
-        
+        Login obj=new Login();
+        obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**

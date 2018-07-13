@@ -43,6 +43,7 @@ public class Accounts extends javax.swing.JFrame {
 
         accountsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {

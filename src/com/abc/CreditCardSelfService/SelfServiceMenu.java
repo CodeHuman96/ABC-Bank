@@ -5,6 +5,7 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.CustomerSelfServiceSystem.CustomerLogin;
 import com.abc.customer_one_system.Login;
 
 /**
@@ -166,7 +167,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
         // TODO add your handling code here:
-        Login l=new Login();
+        CustomerLogin l=new CustomerLogin();
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSignOutActionPerformed

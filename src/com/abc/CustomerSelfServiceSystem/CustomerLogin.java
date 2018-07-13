@@ -10,6 +10,8 @@ package com.abc.CustomerSelfServiceSystem;
  * @author shivasai
  */
 public class CustomerLogin extends javax.swing.JFrame {
+     static String usrName="sai";
+     static String password="sai";
 
     /**
      * Creates new form Login
@@ -146,12 +148,11 @@ public class CustomerLogin extends javax.swing.JFrame {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         
-        String usrName = userNametxt.getText();
-        String password = passWordtxt.getText();
         
         
-        if (usrName.equals("sai") && password.equals("sai")) {
-            CustomerServiceMenu obj = new CustomerServiceMenu();
+        
+        if (usrName.equals(userNametxt.getText()) && password.equals(passWordtxt.getText())) {
+            CustomerLoginTo obj = new CustomerLoginTo();
             obj.setVisible(true);
             this.setVisible(false);
         } else {
