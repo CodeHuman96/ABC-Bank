@@ -117,11 +117,13 @@ public class ServiceRequest extends javax.swing.JFrame {
     private void btnLostStolenCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLostStolenCardActionPerformed
         LostStolenCard obj=new LostStolenCard();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLostStolenCardActionPerformed
 
     private void btnQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQueryActionPerformed
         Query obj=new Query();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnQueryActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
