@@ -39,12 +39,32 @@ public class BackOfficeMenu extends javax.swing.JFrame {
         lblTitleBom.setText("Back Office Menu");
 
         btnCustReqBom.setText("Customer Requests");
+        btnCustReqBom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustReqBomActionPerformed(evt);
+            }
+        });
 
         btnQueriesBom.setText("Queries");
+        btnQueriesBom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQueriesBomActionPerformed(evt);
+            }
+        });
 
         btnBillPaymentBom.setText("Bill Payment");
+        btnBillPaymentBom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBillPaymentBomActionPerformed(evt);
+            }
+        });
 
         btnSignoutBom.setText("Signout");
+        btnSignoutBom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignoutBomActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +102,29 @@ public class BackOfficeMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSignoutBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutBomActionPerformed
+            BackOfficeMenu backofficemenu1 = new BackOfficeMenu();
+            backofficemenu1.setVisible(false);
+            EmployeeMainMenu employeemainmenu =new  EmployeeMainMenu();
+            employeemainmenu.setVisible(true);
+            
+    }//GEN-LAST:event_btnSignoutBomActionPerformed
+
+    private void btnCustReqBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustReqBomActionPerformed
+            ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+            listofcustomerrequests.setVisible(true);
+    }//GEN-LAST:event_btnCustReqBomActionPerformed
+
+    private void btnQueriesBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQueriesBomActionPerformed
+        ListOfQueries listofqueries = new ListOfQueries();
+        listofqueries.setVisible(true);
+    }//GEN-LAST:event_btnQueriesBomActionPerformed
+
+    private void btnBillPaymentBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillPaymentBomActionPerformed
+        ListBillPaymentRequests listbillpaymentrequests = new ListBillPaymentRequests();
+        listbillpaymentrequests.setVisible(true);
+    }//GEN-LAST:event_btnBillPaymentBomActionPerformed
 
     /**
      * @param args the command line arguments
