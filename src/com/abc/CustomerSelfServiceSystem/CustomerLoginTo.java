@@ -5,6 +5,8 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.CreditCardSelfService.SelfServiceMenu;
+
 /**
  *
  * @author shivasai
@@ -40,7 +42,12 @@ public class CustomerLoginTo extends javax.swing.JFrame {
             }
         });
 
-        creditCardServiceMenuBt.setText("Credit Card Service Menu");
+        creditCardServiceMenuBt.setText("Credit Card Self-Service Menu");
+        creditCardServiceMenuBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditCardServiceMenuBtActionPerformed(evt);
+            }
+        });
 
         header.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header.setText("Customer Log to");
@@ -59,7 +66,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,6 +88,14 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_customServiceMenuBtActionPerformed
+
+    private void creditCardServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditCardServiceMenuBtActionPerformed
+       
+        SelfServiceMenu obj=new SelfServiceMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_creditCardServiceMenuBtActionPerformed
 
     /**
      * @param args the command line arguments
