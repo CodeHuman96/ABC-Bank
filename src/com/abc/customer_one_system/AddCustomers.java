@@ -66,18 +66,18 @@ public class AddCustomers extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblMsg = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblManditory1 = new javax.swing.JLabel();
+        lblManditory2 = new javax.swing.JLabel();
+        lblManditory9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblManditory4 = new javax.swing.JLabel();
+        lblManditory5 = new javax.swing.JLabel();
         lblAddressMsg = new javax.swing.JLabel();
         lblCityMsg = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblManditory6 = new javax.swing.JLabel();
+        lblManditory7 = new javax.swing.JLabel();
+        lblManditory8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         lblNameMsg = new javax.swing.JLabel();
@@ -172,37 +172,37 @@ public class AddCustomers extends javax.swing.JFrame {
 
         lblMsg.setText(" ");
 
-        jLabel1.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel1.setText("*");
+        lblManditory1.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory1.setText("*");
 
-        jLabel2.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel2.setText("*");
+        lblManditory2.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory2.setText("*");
 
-        jLabel3.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel3.setText("*");
+        lblManditory9.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory9.setText("*");
 
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         jScrollPane1.setViewportView(txtAddress);
 
-        jLabel4.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel4.setText("*");
+        lblManditory4.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory4.setText("*");
 
-        jLabel9.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel9.setText("*");
+        lblManditory5.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory5.setText("*");
 
         lblAddressMsg.setText(" ");
 
         lblCityMsg.setText(" ");
 
-        jLabel10.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel10.setText("*");
+        lblManditory6.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory6.setText("*");
 
-        jLabel11.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel11.setText("*");
+        lblManditory7.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory7.setText("*");
 
-        jLabel12.setForeground(new java.awt.Color(250, 9, 9));
-        jLabel12.setText("*");
+        lblManditory8.setForeground(new java.awt.Color(250, 9, 9));
+        lblManditory8.setText("*");
 
         jLabel13.setForeground(new java.awt.Color(250, 9, 9));
         jLabel13.setText("*");
@@ -224,14 +224,14 @@ public class AddCustomers extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblManditory2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblManditory1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblManditory9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblManditory4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblManditory5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblManditory6, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManditory7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManditory8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,21 +305,21 @@ public class AddCustomers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblManditory1)
                     .addComponent(lblNameMsg))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB)
                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDateFormat)
-                    .addComponent(jLabel2))
+                    .addComponent(lblManditory2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblAddress)
-                                .addComponent(jLabel3))
+                                .addComponent(lblManditory9))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -328,14 +328,14 @@ public class AddCustomers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblManditory4)
                     .addComponent(lblCityMsg))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPIN)
                     .addComponent(txtPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPinFormat)
-                    .addComponent(jLabel9))
+                    .addComponent(lblManditory5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmailID)
@@ -351,7 +351,7 @@ public class AddCustomers extends javax.swing.JFrame {
                     .addComponent(lblContactNo)
                     .addComponent(txtContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMobileNoFormat)
-                    .addComponent(jLabel10))
+                    .addComponent(lblManditory6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOccupation)
@@ -361,13 +361,13 @@ public class AddCustomers extends javax.swing.JFrame {
                     .addComponent(lblMonIncome)
                     .addComponent(txtMonIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIncomeFormat)
-                    .addComponent(jLabel11))
+                    .addComponent(lblManditory7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserID)
                     .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel12))
+                    .addComponent(lblManditory8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -376,7 +376,7 @@ public class AddCustomers extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPasswordRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,7 +391,7 @@ public class AddCustomers extends javax.swing.JFrame {
                     .addComponent(lblMsg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMsg)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -463,14 +463,19 @@ public class AddCustomers extends javax.swing.JFrame {
                 lblPinFormat.setText("");
             }
             String email = txtEmailID.getText().trim();
-            if (!email.equals("") && !match.matchEmail(email)) {
+            if (email.equals("")) {
+                email = null;
+            } else if (!match.matchEmail(email)) {
                 lblEmailFormat.setText("Invalid Email");
                 flag &= false;
             } else {
                 lblEmailFormat.setText("");
             }
             String pan = txtPAN.getText().trim();
-            if (!pan.equals("") && !match.matchPAN(pan)) {
+            if(pan.equals("")){
+                pan=null;
+            }
+            else if (!match.matchPAN(pan)) {
                 lblPANFormat.setText("Invalid Format");
                 flag &= false;
             } else {
@@ -495,10 +500,11 @@ public class AddCustomers extends javax.swing.JFrame {
             }
             if (flag) {
                 lblMsg.setText("Adding..");
+                
+
             } else {
                 lblMsg.setText("Invalid Entry");
             }
-
         } catch (NumberFormatException e) {
             lblMsg.setText("Invalid input(s)");
         }
@@ -549,19 +555,11 @@ public class AddCustomers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddCustomers;
     private javax.swing.JLabel lblAddress;
@@ -574,6 +572,14 @@ public class AddCustomers extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmailFormat;
     private javax.swing.JLabel lblEmailID;
     private javax.swing.JLabel lblIncomeFormat;
+    private javax.swing.JLabel lblManditory1;
+    private javax.swing.JLabel lblManditory2;
+    private javax.swing.JLabel lblManditory4;
+    private javax.swing.JLabel lblManditory5;
+    private javax.swing.JLabel lblManditory6;
+    private javax.swing.JLabel lblManditory7;
+    private javax.swing.JLabel lblManditory8;
+    private javax.swing.JLabel lblManditory9;
     private javax.swing.JLabel lblMobileNoFormat;
     private javax.swing.JLabel lblMonIncome;
     private javax.swing.JLabel lblMsg;

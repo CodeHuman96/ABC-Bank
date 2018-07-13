@@ -94,6 +94,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
@@ -111,15 +112,39 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                             .addComponent(mkSerReqBt)
                             .addComponent(myprofileBt))
                         .addGap(0, 0, Short.MAX_VALUE))))
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vewReqStatusBt)
+                            .addComponent(mkSerReqBt)
+                            .addComponent(myprofileBt))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(header2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewStatBt)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(signOutBt)))
+                        .addGap(29, 29, 29))))
+>>>>>>> ce206d6749529d9bbdc22bb3f82d18486b73bbe5
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(45, 45, 45)
+=======
+                .addGap(32, 32, 32)
+>>>>>>> ce206d6749529d9bbdc22bb3f82d18486b73bbe5
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
+<<<<<<< HEAD
                 .addComponent(signOutBt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(myprofileBt)
@@ -131,6 +156,22 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addComponent(mkSerReqBt)
                 .addGap(27, 27, 27)
                 .addComponent(vewReqStatusBt))
+=======
+                .addComponent(myprofileBt)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(signOutBt)
+                        .addGap(192, 192, 192))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(viewStatBt)
+                        .addGap(33, 33, 33)
+                        .addComponent(mkSerReqBt)
+                        .addGap(36, 36, 36)
+                        .addComponent(vewReqStatusBt)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+>>>>>>> ce206d6749529d9bbdc22bb3f82d18486b73bbe5
         );
 
         pack();
