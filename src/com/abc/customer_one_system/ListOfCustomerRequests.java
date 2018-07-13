@@ -158,7 +158,10 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbStatusListOfCustReqActionPerformed
 
     private void btnBackListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackListOfCustReqActionPerformed
-        // TODO add your handling code here:
+        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+        listofcustomerrequests.setVisible(false);
+        BackOfficeMenu backofficemenu = new BackOfficeMenu();
+        backofficemenu.setVisible(true);
     }//GEN-LAST:event_btnBackListOfCustReqActionPerformed
 
     /**

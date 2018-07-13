@@ -170,7 +170,11 @@ public class ChequebookRequest extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackCsr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr1ActionPerformed
-        // TODO add your handling code here:
+       // ChequebookRequest chequebookrequest = new ChequebookRequest();
+        //chequebookrequest.setVisible(false);
+        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+        listofcustomerrequests.setVisible(true);
+        //System.exit(0);
     }//GEN-LAST:event_btnBackCsr1ActionPerformed
 
     /**

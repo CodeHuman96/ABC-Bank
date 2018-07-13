@@ -73,21 +73,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Customer Requests"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCustReqBomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnQueriesBom">
       <Properties>
         <Property name="text" type="java.lang.String" value="Queries"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQueriesBomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBillPaymentBom">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bill Payment"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBillPaymentBomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSignoutBom">
       <Properties>
         <Property name="text" type="java.lang.String" value="Signout"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSignoutBomActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
