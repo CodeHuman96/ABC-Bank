@@ -31,6 +31,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         btnCustOneMain = new javax.swing.JButton();
         btnBackOfficeMain = new javax.swing.JButton();
         btnCampainMain = new javax.swing.JButton();
+        btnRewardManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,13 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             }
         });
 
+        btnRewardManagement.setText("Reward Catalog");
+        btnRewardManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRewardManagementActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +83,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                         .addComponent(btnBackOfficeMain))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addComponent(btnCustOneMain)))
+                        .addComponent(btnCustOneMain))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(btnRewardManagement)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,13 +100,16 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 .addComponent(btnBackOfficeMain)
                 .addGap(28, 28, 28)
                 .addComponent(btnCampainMain)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(btnRewardManagement)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
+<<<<<<< HEAD
 
         BackOfficeMenu backofficemenu = new BackOfficeMenu();
         backofficemenu.setVisible(true);
@@ -104,6 +118,17 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2e3cbd174c1e36782f198c4f6ae893a2aa90c485
+        BackOfficeMenu backofficemenu = new BackOfficeMenu();
+        backofficemenu.setVisible(true);
+        BackOfficeMenu obj=new BackOfficeMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+>>>>>>> bc8fc541952f19ca807216f35b334dba09dccdfc
     }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
@@ -115,6 +140,12 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCustOneMainActionPerformed
+
+    private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
+        ModifyReward obj1=new ModifyReward();
+        obj1.setVisibility(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +186,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnBackOfficeMain;
     private javax.swing.JButton btnCampainMain;
     private javax.swing.JButton btnCustOneMain;
+    private javax.swing.JButton btnRewardManagement;
     private javax.swing.JLabel lblEmpMainMenu;
     // End of variables declaration//GEN-END:variables
 }
