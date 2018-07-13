@@ -96,8 +96,14 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
+<<<<<<< HEAD
         BackOfficeMenu backofficemenu = new BackOfficeMenu();
         backofficemenu.setVisible(true);
+=======
+        BackOfficeMenu obj=new BackOfficeMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+>>>>>>> 89524f46f1632b3a68c58033b21ea436efd604cb
     }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
