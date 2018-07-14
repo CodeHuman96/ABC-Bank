@@ -1,5 +1,5 @@
-# ABC-Bank
-# ABC BANK MODULES
+# ABC BANK 
+### MODULES
 ## Customer-One System
 This module enables setting up of a new customer and supports the Know-Your-Customer (KYC)
 process. Customers can be searched based on various criteria, the customer’s details, accounts held and recent transactions can be viewed. This module also supports activity of de-duplication, wherein existing accounts are linked to a customer record. This process, which eliminates duplicate storage of customer information, improves customer service and data maintenance activities.
