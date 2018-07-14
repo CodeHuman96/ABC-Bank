@@ -5,6 +5,8 @@
  */
 package com.abc.valuemobilization;
 
+import com.abc.customer_one_system.Login;
+
 /**
  *
  * @author test
@@ -29,11 +31,10 @@ public class Campaign_Management extends javax.swing.JFrame {
 
         lblTitle = new javax.swing.JLabel();
         btnNewC = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
-        btnReAssign = new javax.swing.JButton();
         btnMonitor = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,23 +48,31 @@ public class Campaign_Management extends javax.swing.JFrame {
             }
         });
 
-        btnUpdate.setText("Update a Campaign");
-
         btnAssign.setText("Assign Prospects to Sales Agents");
-
-        btnReAssign.setText("Re-assign prospects to Sales Agents");
-        btnReAssign.addActionListener(new java.awt.event.ActionListener() {
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReAssignActionPerformed(evt);
+                btnAssignActionPerformed(evt);
             }
         });
 
         btnMonitor.setText("Monitor Campaign Effectiveness");
+        btnMonitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonitorActionPerformed(evt);
+            }
+        });
 
         btnView.setText("View Campaigns");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -79,15 +88,15 @@ public class Campaign_Management extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addGap(73, 73, 73)
-                                .addComponent(btnView))
                             .addComponent(btnNewC)
+                            .addComponent(btnMonitor)
                             .addComponent(btnAssign)
-                            .addComponent(btnReAssign)
-                            .addComponent(btnMonitor))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(btnView))))
+                .addContainerGap(110, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,38 +105,54 @@ public class Campaign_Management extends javax.swing.JFrame {
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
                 .addComponent(btnNewC)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAssign)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReAssign)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMonitor))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(btnView)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnView)
+                .addGap(18, 18, 18)
+                .addComponent(btnAssign)
+                .addGap(27, 27, 27)
+                .addComponent(btnMonitor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogout)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReAssignActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReAssignActionPerformed
-
     private void btnNewCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCActionPerformed
         Create_New_Campaign create= new Create_New_Campaign();
         create.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnNewCActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         View_Campaigns vc= new View_Campaigns();
         vc.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorActionPerformed
+        Campaign_Effectiveness ce= new Campaign_Effectiveness();
+        ce.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMonitorActionPerformed
+
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        Assign_Prospects ap= new Assign_Prospects();
+        ap.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        Login l=new Login();
+        l.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,10 +192,9 @@ public class Campaign_Management extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMonitor;
     private javax.swing.JButton btnNewC;
-    private javax.swing.JButton btnReAssign;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
