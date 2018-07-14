@@ -5,6 +5,8 @@
  */
 package com.abc.customer_one_system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author test
@@ -44,9 +46,8 @@ public class DisputedTransaction extends javax.swing.JFrame {
         cmbStatusCsr5 = new javax.swing.JComboBox<>();
         lblResponseCsr5 = new javax.swing.JLabel();
         MandatoryStatus = new javax.swing.JLabel();
-        lblMandatoryResponse = new javax.swing.JLabel();
         txtResponseCsr5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAreaResponse = new javax.swing.JTextArea();
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -81,16 +82,23 @@ public class DisputedTransaction extends javax.swing.JFrame {
         MandatoryStatus.setForeground(new java.awt.Color(234, 50, 50));
         MandatoryStatus.setText("*");
 
-        lblMandatoryResponse.setForeground(new java.awt.Color(227, 22, 31));
-        lblMandatoryResponse.setText("*");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        txtResponseCsr5.setViewportView(jTextArea1);
+        txtAreaResponse.setColumns(20);
+        txtAreaResponse.setRows(5);
+        txtResponseCsr5.setViewportView(txtAreaResponse);
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,13 +119,12 @@ public class DisputedTransaction extends javax.swing.JFrame {
                     .addComponent(lblReasonDispCsr5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblMandatoryResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MandatoryStatus))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblResponseCsr5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStatusCsr5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(MandatoryStatus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblStatusCsr5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -180,9 +187,7 @@ public class DisputedTransaction extends javax.swing.JFrame {
                         .addComponent(cmbStatusCsr5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblResponseCsr5)
-                        .addComponent(lblMandatoryResponse))
+                    .addComponent(lblResponseCsr5)
                     .addComponent(txtResponseCsr5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,6 +201,22 @@ public class DisputedTransaction extends javax.swing.JFrame {
     private void cmbStatusCsr5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusCsr5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbStatusCsr5ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        ListOfCustomerRequests obj=new ListOfCustomerRequests();
+        obj.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        if (cmbStatusCsr5.getSelectedItem()=="Rejected" )
+        {if ( txtAreaResponse.getText().equals("") )
+        { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
+        }
+            
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,12 +259,10 @@ public class DisputedTransaction extends javax.swing.JFrame {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbStatusCsr5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAmtDisputCsr5;
     private javax.swing.JLabel lblCreditNoCsr5;
     private javax.swing.JLabel lblCustNameCsr5;
     private javax.swing.JLabel lblDateTransCsr5;
-    private javax.swing.JLabel lblMandatoryResponse;
     private javax.swing.JLabel lblMerchNameCsr5;
     private javax.swing.JLabel lblReasonDispCsr5;
     private javax.swing.JLabel lblResponseCsr5;
@@ -254,6 +273,7 @@ public class DisputedTransaction extends javax.swing.JFrame {
     private javax.swing.JLabel lbltxtDateTransactionCsr5;
     private javax.swing.JLabel lbltxtMerchNameCsr5;
     private javax.swing.JLabel lbltxtReasonDispCsr5;
+    private javax.swing.JTextArea txtAreaResponse;
     private javax.swing.JScrollPane txtResponseCsr5;
     // End of variables declaration//GEN-END:variables
 }
