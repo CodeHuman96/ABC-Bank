@@ -46,8 +46,18 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         });
 
         btnMakePayment.setText("Make Payment");
+        btnMakePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakePaymentActionPerformed(evt);
+            }
+        });
 
         btnViewPayment.setText("View Payment History");
+        btnViewPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewPaymentActionPerformed(evt);
+            }
+        });
 
         btnLogOff.setText("Log Off");
 
@@ -59,11 +69,10 @@ public class BillPaymentMenu extends javax.swing.JFrame {
                 .addContainerGap(165, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnLogOff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnManageBillers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMakePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnViewPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                    .addComponent(btnManageBillers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMakePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
                 .addGap(162, 162, 162))
         );
         layout.setVerticalGroup(
@@ -90,6 +99,18 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         listOfBillers.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnManageBillersActionPerformed
+
+    private void btnMakePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakePaymentActionPerformed
+        MakePayment payment=new MakePayment();
+        this.setVisible(false);
+        payment.setVisible(true);
+    }//GEN-LAST:event_btnMakePaymentActionPerformed
+
+    private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed
+        ViewPaymentHistory history=new ViewPaymentHistory();
+        this.setVisible(false);
+        history.setVisible(true);
+    }//GEN-LAST:event_btnViewPaymentActionPerformed
 
     /**
      * @param args the command line arguments

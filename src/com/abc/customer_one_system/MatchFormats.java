@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package com.abc.customer_one_system;
-
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author test
@@ -12,30 +14,39 @@ package com.abc.customer_one_system;
 public class MatchFormats {
     
     String pattern="";
-    boolean matchEmail(String email) {
+    public boolean matchEmail(String email) {
         pattern = "^[a-z][a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$";
         return email.matches(pattern);
     }
 
-    boolean matchMobileNo(String num) {
+    public boolean matchMobileNo(String num) {
         pattern = "^(\\+[0-9][0-9])?[0-9]{10}$";
         return num.matches(pattern);
     }
 
-    boolean matchDOB(String date) {
+    public boolean matchDOB(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
         return date.matches(pattern);
     }
-    boolean matchPIN(String pin){
+    public boolean matchPIN(String pin){
         pattern = "^[0-9]{6}$";
         return pin.matches(pattern);
     }
-    boolean matchPAN(String pan){
+    public boolean matchPAN(String pan){
         pattern ="[A-Z]{5}[0-9]{4}[A-Z]{1}";
         return pan.matches(pattern);
     }
-     
-            
-    
-
+    public boolean matchName(String name){
+        pattern = "[a-zA-Z ,.'-]";
+        return name.matches(pattern);
+    } 
+    public boolean verifyDuration(String from,String to)
+    {
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        LocalDate fromdate=LocalDate.parse(from,f);
+        LocalDate todate=LocalDate.parse(to,f);
+        Duration duration = Duration.between(fromdate, todate);
+        return duration.getSeconds() < 0;
+    }
+   
 }
