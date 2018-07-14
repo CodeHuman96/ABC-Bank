@@ -147,8 +147,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr3ActionPerformed
-        LostOrStolenCard lostorstolencard = new LostOrStolenCard();
-        lostorstolencard.setVisible(false);
+       this.setVisible(false);
         ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
         listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnBackCsr3ActionPerformed
