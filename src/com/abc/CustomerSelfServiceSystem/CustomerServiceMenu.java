@@ -28,54 +28,61 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         header2 = new javax.swing.JLabel();
-        wel2lbl = new javax.swing.JLabel();
-        logOutBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        wellbl = new javax.swing.JLabel();
+        signOutBt = new javax.swing.JButton();
+        myprofileBt = new javax.swing.JButton();
+        mkSerReqBt = new javax.swing.JButton();
+        vewReqStatusBt = new javax.swing.JButton();
+        viewStatBt = new javax.swing.JButton();
+        chgPassBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        header2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header2.setText("Customer Service Menu");
 
-        wel2lbl.setText("Welcome");
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        wellbl.setText("Welcome");
 
-        logOutBtn.setText("Signout");
-        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+        signOutBt.setText("Signout");
+        signOutBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOutBtnActionPerformed(evt);
+                signOutBtActionPerformed(evt);
             }
         });
 
-        jButton2.setText("MyProfile");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        myprofileBt.setText("MyProfile");
+        myprofileBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                myprofileBtActionPerformed(evt);
             }
         });
 
-        jButton3.setText("View Accounts");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        mkSerReqBt.setText("Make a Service Request");
+        mkSerReqBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                mkSerReqBtActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Make a Service Request");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        vewReqStatusBt.setText("View Request Status");
+        vewReqStatusBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                vewReqStatusBtActionPerformed(evt);
             }
         });
 
-        jButton5.setText("View Request Status");
-
-        jButton1.setText("View Statement");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewStatBt.setText("View Statement");
+        viewStatBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewStatBtActionPerformed(evt);
+            }
+        });
+
+        chgPassBt.setText("Change Password");
+        chgPassBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chgPassBtActionPerformed(evt);
             }
         });
 
@@ -88,73 +95,83 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(logOutBtn)
-                                .addGap(29, 29, 29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(wel2lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                        .addComponent(signOutBt)
+                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
                         .addComponent(header2)
-                        .addContainerGap(443, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton5)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(chgPassBt)
+                            .addComponent(viewStatBt)
+                            .addComponent(vewReqStatusBt)
+                            .addComponent(mkSerReqBt)
+                            .addComponent(myprofileBt))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(wel2lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logOutBtn)
-                .addGap(1, 1, 1)
-                .addComponent(jButton2)
-                .addGap(28, 28, 28)
-                .addComponent(jButton3)
-                .addGap(29, 29, 29)
-                .addComponent(jButton4)
-                .addGap(42, 42, 42)
-                .addComponent(jButton5)
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(signOutBt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(myprofileBt)
+                .addGap(26, 26, 26)
+                .addComponent(chgPassBt)
+                .addGap(21, 21, 21)
+                .addComponent(viewStatBt)
+                .addGap(33, 33, 33)
+                .addComponent(mkSerReqBt)
+                .addGap(27, 27, 27)
+                .addComponent(vewReqStatusBt))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void myprofileBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myprofileBtActionPerformed
                 MyProfile obj = new MyProfile();
                 obj.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+                this.setVisible(false);
+    }//GEN-LAST:event_myprofileBtActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Accounts obj=new Accounts();
-        obj.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                AccountStatement obj = new AccountStatement();
+    private void mkSerReqBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mkSerReqBtActionPerformed
+                ServiceRequest obj = new ServiceRequest();
                 obj.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+                this.setVisible(false);
+    }//GEN-LAST:event_mkSerReqBtActionPerformed
 
-    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+    private void viewStatBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStatBtActionPerformed
+                Accounts obj = new Accounts();
+                obj.setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_viewStatBtActionPerformed
+
+    private void signOutBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBtActionPerformed
                 CustomerLogin obj = new CustomerLogin();
                 obj.setVisible(true);
-    }//GEN-LAST:event_logOutBtnActionPerformed
+                this.setVisible(false);
+    }//GEN-LAST:event_signOutBtActionPerformed
+
+    private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
+        
+                ViewRequestStatus obj = new ViewRequestStatus();
+                obj.setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_vewReqStatusBtActionPerformed
+
+    private void chgPassBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chgPassBtActionPerformed
+            ChangePassword obj = new ChangePassword();
+            obj.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_chgPassBtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,13 +210,13 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chgPassBt;
     private javax.swing.JLabel header2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton logOutBtn;
-    private javax.swing.JLabel wel2lbl;
+    private javax.swing.JButton mkSerReqBt;
+    private javax.swing.JButton myprofileBt;
+    private javax.swing.JButton signOutBt;
+    private javax.swing.JButton vewReqStatusBt;
+    private javax.swing.JButton viewStatBt;
+    private javax.swing.JLabel wellbl;
     // End of variables declaration//GEN-END:variables
 }

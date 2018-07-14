@@ -31,6 +31,7 @@ public class ServiceRequest extends javax.swing.JFrame {
         btnChequeBookRequest = new javax.swing.JButton();
         btnLostStolenCard = new javax.swing.JButton();
         btnQuery = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Service Request");
@@ -60,6 +61,13 @@ public class ServiceRequest extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,6 +84,10 @@ public class ServiceRequest extends javax.swing.JFrame {
                             .addComponent(btnLostStolenCard, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnQuery, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(122, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +100,9 @@ public class ServiceRequest extends javax.swing.JFrame {
                 .addComponent(btnLostStolenCard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnQuery)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,17 +111,26 @@ public class ServiceRequest extends javax.swing.JFrame {
     private void btnChequeBookRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeBookRequestActionPerformed
         ChequeBookRequest obj=new ChequeBookRequest();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnChequeBookRequestActionPerformed
 
     private void btnLostStolenCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLostStolenCardActionPerformed
         LostStolenCard obj=new LostStolenCard();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLostStolenCardActionPerformed
 
     private void btnQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQueryActionPerformed
         Query obj=new Query();
         obj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnQueryActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        CustomerServiceMenu obj=new CustomerServiceMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +171,7 @@ public class ServiceRequest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnChequeBookRequest;
     private javax.swing.JButton btnLostStolenCard;
     private javax.swing.JButton btnQuery;

@@ -273,12 +273,12 @@ public class CustomerSearch extends javax.swing.JFrame {
         MatchFormats match=new MatchFormats();
         try {
             String name = txtName.getText().trim();
-            if (!txtCustomerID.getText().trim().equals("")) {
+            if (!txtCustomerID.getText().equals("")) {
                 int customerID = Integer.parseInt(txtCustomerID.getText());
             }
             String dob = txtDOB.getText().trim();
             //date of bith is in form dd/mm/yyyy
-            if (!dob.equals("") && !dob.matches("^[0-2][0-9]/[01][0-9]/[12][0-9]{3}$")) {
+            if (!dob.equals("") && !match.matchDOB(dob)) {
                 lblDateFormat.setText("Invalid");
             } else {
                 lblDateFormat.setText("dd/mm/yyyy");
@@ -287,7 +287,6 @@ public class CustomerSearch extends javax.swing.JFrame {
             String emailID = txtEmailID.getText().toLowerCase();
             if (!emailID.equals("") && !match.matchEmail(emailID)) {
                 lblEmailFormat.setText("Invalid Email ID");
-                emailID="";
             } else {
                 lblEmailFormat.setText("");
             }
@@ -295,7 +294,6 @@ public class CustomerSearch extends javax.swing.JFrame {
             String mobile = txtMobileNo.getText().trim().replace(" ", "");
             if (!mobile.equals("") && !match.matchMobileNo(mobile)) {
                 lblMobileNoFormat.setText("Invalid mobile no.");
-                mobile = "";
             } else {
                 lblMobileNoFormat.setText("");
             }
