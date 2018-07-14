@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerDetails.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListCustomers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/DeDuplication.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerSearch.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AddNewBiller.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/DeDuplication.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ChequebookRequest.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
         </group>
     </open-files>
 </project-private>
