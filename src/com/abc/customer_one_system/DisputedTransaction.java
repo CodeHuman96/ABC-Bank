@@ -212,10 +212,9 @@ public class DisputedTransaction extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         if (cmbStatusCsr5.getSelectedItem()=="Rejected" )
-        {if ( txtAreaResponse.getText()==null )
+        {if ( txtAreaResponse.getText().equals("") )
         { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
-        else
-             { JOptionPane.showMessageDialog(null,"dummy!");}}
+        }
             
     }//GEN-LAST:event_btnSubmitActionPerformed
 
