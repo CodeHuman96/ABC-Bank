@@ -5,7 +5,6 @@
  */
 package com.abc.customer_one_system;
 
-import com.abc.CreditCardSelfService.ModifyReward;
 import com.abc.CreditCardSelfService.RewardCatalog;
 
 /**
@@ -19,7 +18,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,21 +114,16 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
-<<<<<<< HEAD
 
-        
-
-=======
->>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
         BackOfficeMenu obj=new BackOfficeMenu();
         obj.setVisible(true);
         this.setVisible(false);
 
-<<<<<<< HEAD
-    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
-=======
+   {                                                 
+
+   }                                                 
+                                                
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
->>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
         // TODO add your handling code here:
@@ -177,7 +174,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 new EmployeeMainMenu().setVisible(true);
             }
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackOfficeMain;
