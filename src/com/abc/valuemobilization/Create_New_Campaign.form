@@ -25,9 +25,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblNewC" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblNewC" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblDesc" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCTitle" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -50,7 +53,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                       <Component id="btnReset" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                                      <EmptySpace pref="159" max="32767" attributes="0"/>
                                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="lblDescMsg" alignment="0" max="32767" attributes="0"/>
@@ -76,14 +79,16 @@
                                   <Component id="txtAgeRel" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtAvgBal" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblDateMsg" min="-2" pref="144" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDateMsg" max="32767" attributes="0"/>
+                                  <Component id="lblCriteria" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,16 +98,18 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="lblNewC" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCid" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCid" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblIdMsg" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCid" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCid" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTitleMsg" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                  <Component id="lblTitleMsg" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -128,6 +135,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblAgeRel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAgeRel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCriteria" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -296,6 +304,8 @@
     <Component class="javax.swing.JLabel" name="lblDescMsg">
     </Component>
     <Component class="javax.swing.JLabel" name="lblDateMsg">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCriteria">
     </Component>
   </SubComponents>
 </Form>

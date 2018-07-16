@@ -26,7 +26,9 @@ public class MatchFormats {
 
     public boolean matchDOB(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
-        return date.matches(pattern);
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        LocalDate birthDay=LocalDate.parse(date,f);
+        return LocalDate.now().compareTo(birthDay) > 0;
     }
     public boolean matchPIN(String pin){
         pattern = "^[0-9]{6}$";
@@ -37,16 +39,15 @@ public class MatchFormats {
         return pan.matches(pattern);
     }
     public boolean matchName(String name){
-        pattern = "[a-zA-Z ,.'-]";
+        pattern = "[a-zA-Z .'-]";
         return name.matches(pattern);
     } 
     public boolean verifyDuration(String from,String to)
     {
-        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fromdate=LocalDate.parse(from,f);
         LocalDate todate=LocalDate.parse(to,f);
-        Duration duration = Duration.between(fromdate, todate);
-        return duration.getSeconds() < 0;
-    }
-   
+        int c=fromdate.compareTo(todate);
+        return c > 0;
+    }  
 }

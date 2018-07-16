@@ -5,6 +5,8 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author test
@@ -110,6 +112,8 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         ViewPaymentHistory history=new ViewPaymentHistory();
         this.setVisible(false);
         history.setVisible(true);
+        LocalDate todaydate = LocalDate.now();
+        //history.txtTo.setText(String.valueOf(todaydate));
     }//GEN-LAST:event_btnViewPaymentActionPerformed
 
     /**

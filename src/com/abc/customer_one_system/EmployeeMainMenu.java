@@ -5,8 +5,8 @@
  */
 package com.abc.customer_one_system;
 
-import com.abc.CreditCardSelfService.ModifyReward;
 import com.abc.CreditCardSelfService.RewardCatalog;
+import com.abc.valuemobilization.Campaign_Management;
 
 /**
  *
@@ -19,11 +19,16 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
+<<<<<<< HEAD
     }
 
-    EmployeeMainMenu() {
+    /*EmployeeMainMenu() {
+=======
+>>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,21 +126,15 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }                                                 
-=======
-=======
-
-        {                                                 
+   {                                                 
 
    }                                                 
                                                 
->>>>>>> 71efa0d37d9bf70ca8f619f1eafc7033f05b6cfc
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
-        // TODO add your handling code here:
+        Campaign_Management cm=new Campaign_Management();
+        cm.setVisible(true);
     }//GEN-LAST:event_btnCampainMainActionPerformed
 
     private void btnCustOneMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustOneMainActionPerformed
