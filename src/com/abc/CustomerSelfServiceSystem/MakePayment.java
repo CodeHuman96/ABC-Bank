@@ -70,6 +70,10 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(252, 11, 11));
         jLabel6.setText("*");
 
+        cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+
+        cbmBiller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+
         jLabel7.setForeground(new java.awt.Color(249, 6, 6));
         jLabel7.setText("*");
 
@@ -262,7 +266,15 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgBiller.setText("");
                 flag &=true;
             }
-           
+            if(!radNo.isSelected() && !radYes.isSelected())
+            {
+                MsgPay.setText("cannot be empty");
+                flag &=false;
+            }
+            else
+            {
+                flag &=true;
+            }
             String amount=txtAmount.getText().trim();
             if(amount.equals(""))
             {
@@ -272,6 +284,16 @@ public class MakePayment extends javax.swing.JFrame {
             else
             {
                 double am=Double.parseDouble(txtAmount.getText());
+            }
+            String date=txtPayDueDate.getText().trim();
+            if(date.equals(""))
+            {
+                MsgDate.setText("cannot be empty");
+                flag &=false;
+            }
+            else
+            {
+                flag &=true;
             }
             if(flag)
             {

@@ -38,16 +38,15 @@ public class MatchFormats {
         return pan.matches(pattern);
     }
     public boolean matchName(String name){
-        pattern = "[a-zA-Z ,.'-]";
+        pattern = "[a-zA-Z .'-]";
         return name.matches(pattern);
     } 
     public boolean verifyDuration(String from,String to)
     {
-        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fromdate=LocalDate.parse(from,f);
         LocalDate todate=LocalDate.parse(to,f);
         Duration duration = Duration.between(fromdate, todate);
         return todate.compareTo(fromdate) < 0;
-    }
-   
+    }  
 }

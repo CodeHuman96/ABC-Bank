@@ -6,6 +6,10 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
@@ -15,10 +19,16 @@
 =======
 <<<<<<< HEAD
 >>>>>>> 7321c92806a4d18442a7c5ab2c651c136cf9e2a3
+>>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/AddCustomers.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Create_New_Campaign.java</file>
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/RewardCatalog.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
+=======
 <<<<<<< HEAD
 =======
 =======
@@ -41,12 +51,17 @@
 <<<<<<< HEAD
             <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
 =======
+>>>>>>> dff77cca79534fa5f981f5240da6edfd283220aa
             <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AddNewBiller.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/AddCustomers.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
             <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/DeDuplication.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
             <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
-<<<<<<< HEAD
             <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
 >>>>>>> 19b476e03859be6b27caec7ba42677e7147bb2e6
@@ -54,6 +69,8 @@
 >>>>>>> 7dfa7035eacba3bdcf3d4f4cdf8c1d57062474d3
 >>>>>>> 71efa0d37d9bf70ca8f619f1eafc7033f05b6cfc
 >>>>>>> 7321c92806a4d18442a7c5ab2c651c136cf9e2a3
+>>>>>>> dff77cca79534fa5f981f5240da6edfd283220aa
+>>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
         </group>
     </open-files>
 </project-private>

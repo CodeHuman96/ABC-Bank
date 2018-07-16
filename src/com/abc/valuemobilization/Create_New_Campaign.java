@@ -54,6 +54,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
         lblTitleMsg = new javax.swing.JLabel();
         lblDescMsg = new javax.swing.JLabel();
         lblDateMsg = new javax.swing.JLabel();
+        lblCriteria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,8 +141,10 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNewC)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNewC)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDesc)
@@ -163,7 +166,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(13, 13, 13)
                                         .addComponent(btnReset)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                                         .addComponent(btnBack))
                                     .addComponent(lblDescMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44))
@@ -182,10 +185,11 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                                     .addComponent(txtProf, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtAgeRel, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtAvgBal, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDateMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDateMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblCriteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,15 +197,16 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblNewC)
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCid)
-                    .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIdMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCid)
+                        .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCTitle)
                     .addComponent(txtCTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitleMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTitleMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -221,7 +226,8 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAgeRel)
-                    .addComponent(txtAgeRel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAgeRel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCriteria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProf)
@@ -294,31 +300,36 @@ public class Create_New_Campaign extends javax.swing.JFrame {
         MatchFormats match=new MatchFormats();
         boolean flag=true;
         
-        if(txtCid.getText()=="")
+        if(txtCid.getText().equals(""))
         {
             lblIdMsg.setText("Required Field");
             flag &=false;
         }
         
-        if(txtCTitle.getText()=="")
+        if(txtCTitle.getText().equals(""))
         {
             lblTitleMsg.setText("Required Field");
             flag &=false;
         }
         
-        if(txtDesc.getText()=="")
+        if(txtDesc.getText().equals(""))
         {
             lblDescMsg.setText("Required Field");
             flag &=false;
         }
         
-        if(txtFrom.getText()=="" || txtTo.getText()=="")
+        if(txtAvgBal.getText().equals("") && txtAgeRel.getText().equals("") && txtProf.getText().equals(""))
+        {
+            lblCriteria.setText("Enter atleast one criteria");
+        }
+        
+        if(txtFrom.getText().equals("") || txtTo.getText().equals(""))
         {
             lblDateMsg.setText("Please Enter Both Dates");
             flag &=false;
         }
         
-        if(!match.matchDOB(txtFrom.getText()) || !match.matchDOB(txtFrom.getText())) {
+        else if(!match.matchDOB(txtFrom.getText()) || !match.matchDOB(txtFrom.getText())) {
                 lblDateMsg.setText("Invalid date format");
                 flag &=false;
                 }
@@ -375,6 +386,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
     private javax.swing.JLabel lblAvgBal;
     private javax.swing.JLabel lblCTitle;
     private javax.swing.JLabel lblCid;
+    private javax.swing.JLabel lblCriteria;
     private javax.swing.JLabel lblDateMsg;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblDescMsg;
