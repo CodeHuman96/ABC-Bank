@@ -21,6 +21,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         initComponents();
     }
 
+    EmployeeMainMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,25 +116,23 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
+
+        BackOfficeMenu obj=new BackOfficeMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+
 <<<<<<< HEAD
-
-        BackOfficeMenu obj=new BackOfficeMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
-
-
+<<<<<<< HEAD
     }                                                 
-
-   }//GEN-LAST:event_btnBackOfficeMainActionPerformed
-
 =======
-        BackOfficeMenu obj=new BackOfficeMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
-        {
-    }                                                 
+=======
+
+        {                                                 
+
+   }                                                 
+                                                
+>>>>>>> 71efa0d37d9bf70ca8f619f1eafc7033f05b6cfc
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
->>>>>>> 7dfa7035eacba3bdcf3d4f4cdf8c1d57062474d3
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
         // TODO add your handling code here:

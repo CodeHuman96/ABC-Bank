@@ -105,7 +105,7 @@ public class BackOfficeMenu extends javax.swing.JFrame {
 
     private void btnSignoutBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutBomActionPerformed
             this.setVisible(false);
-            EmployeeMainMenu employeemainmenu =new  EmployeeMainMenu();
+            EmployeeMainMenu employeemainmenu =new EmployeeMainMenu();
             employeemainmenu.setVisible(true);
             
     }//GEN-LAST:event_btnSignoutBomActionPerformed
