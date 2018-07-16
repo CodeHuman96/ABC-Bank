@@ -209,7 +209,13 @@
     <Component class="javax.swing.JComboBox" name="cbmAcNo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="5">
+            <StringItem index="0" value="item1"/>
+            <StringItem index="1" value="item2"/>
+            <StringItem index="2" value="item3"/>
+            <StringItem index="3" value="item4"/>
+            <StringItem index="4" value=" "/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -219,7 +225,13 @@
     <Component class="javax.swing.JComboBox" name="cbmBiller">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="5">
+            <StringItem index="0" value="item1"/>
+            <StringItem index="1" value="item2"/>
+            <StringItem index="2" value="item3"/>
+            <StringItem index="3" value="item4"/>
+            <StringItem index="4" value=" "/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>

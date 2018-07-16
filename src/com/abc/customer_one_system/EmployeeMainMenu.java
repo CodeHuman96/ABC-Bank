@@ -19,11 +19,16 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
+<<<<<<< HEAD
     }
 
     /*EmployeeMainMenu() {
+=======
+>>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
