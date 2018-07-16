@@ -121,17 +121,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }                                                 
-=======
-=======
-
-        {                                                 
+   {                                                 
 
    }                                                 
                                                 
->>>>>>> 71efa0d37d9bf70ca8f619f1eafc7033f05b6cfc
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
