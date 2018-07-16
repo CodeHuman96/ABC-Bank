@@ -116,21 +116,23 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
-<<<<<<< HEAD
 
-        
-
-=======
->>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
         BackOfficeMenu obj=new BackOfficeMenu();
         obj.setVisible(true);
         this.setVisible(false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     }                                                 
 =======
+=======
+
+        {                                                 
+
+   }                                                 
+                                                
+>>>>>>> 71efa0d37d9bf70ca8f619f1eafc7033f05b6cfc
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
->>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
         // TODO add your handling code here:
@@ -181,7 +183,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 new EmployeeMainMenu().setVisible(true);
             }
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackOfficeMain;
