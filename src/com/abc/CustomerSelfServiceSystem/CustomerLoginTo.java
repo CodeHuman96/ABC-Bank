@@ -82,9 +82,9 @@ public class CustomerLoginTo extends javax.swing.JFrame {
                 .addComponent(customServiceMenuBt)
                 .addGap(38, 38, 38)
                 .addComponent(creditCardServiceMenuBt)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(billPaymentBt)
-                .addContainerGap())
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();

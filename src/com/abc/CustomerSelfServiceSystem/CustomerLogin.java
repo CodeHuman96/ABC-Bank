@@ -10,8 +10,8 @@ package com.abc.CustomerSelfServiceSystem;
  * @author shivasai
  */
 public class CustomerLogin extends javax.swing.JFrame {
-     static String usrName="";
-     static String password="";
+     static String usrName="cst";
+     static String password="cst";
 
     /**
      * Creates new form Login
