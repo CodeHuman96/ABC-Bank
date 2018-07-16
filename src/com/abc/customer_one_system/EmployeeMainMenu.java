@@ -5,7 +5,6 @@
  */
 package com.abc.customer_one_system;
 
-import com.abc.CreditCardSelfService.ModifyReward;
 import com.abc.CreditCardSelfService.RewardCatalog;
 
 /**
