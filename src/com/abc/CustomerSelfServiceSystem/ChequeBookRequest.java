@@ -118,9 +118,9 @@ public class ChequeBookRequest extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblChequeBookRequest)
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNameField)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNameField))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAccountNo)
@@ -148,6 +148,7 @@ public class ChequeBookRequest extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
        ServiceRequest obj=new ServiceRequest();
        obj.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

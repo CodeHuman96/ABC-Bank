@@ -5,6 +5,8 @@
  */
 package com.abc.customer_one_system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author test
@@ -64,6 +66,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtResponseCsr3);
 
         btnSubmitCsr3.setText("Submit");
+        btnSubmitCsr3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitCsr3ActionPerformed(evt);
+            }
+        });
 
         btnBackCsr3.setText("Back");
         btnBackCsr3.addActionListener(new java.awt.event.ActionListener() {
@@ -147,11 +154,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr3ActionPerformed
-       
-     this.setVisible(false);
+        this.setVisible(false);
         ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
         listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnBackCsr3ActionPerformed
+
+    private void btnSubmitCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr3ActionPerformed
+        // TODO add your handling code here:
+         if (cmbStatusCsr3.getSelectedItem()=="Rejected" )
+        {if ( txtResponseCsr3.getText().equals("") )
+        { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
+        }
+            
+    }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
 
     /**
      * @param args the command line arguments

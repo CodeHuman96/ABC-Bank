@@ -104,24 +104,26 @@ public class BackOfficeMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignoutBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutBomActionPerformed
-            BackOfficeMenu backofficemenu1 = new BackOfficeMenu();
-            backofficemenu1.setVisible(false);
-            EmployeeMainMenu employeemainmenu =new  EmployeeMainMenu();
+            this.setVisible(false);
+            EmployeeMainMenu employeemainmenu =new EmployeeMainMenu();
             employeemainmenu.setVisible(true);
             
     }//GEN-LAST:event_btnSignoutBomActionPerformed
 
     private void btnCustReqBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustReqBomActionPerformed
-            ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
-            listofcustomerrequests.setVisible(true);
+        this.setVisible(false);   
+        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+        listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnCustReqBomActionPerformed
 
     private void btnQueriesBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQueriesBomActionPerformed
+       this.setVisible(false);
         ListOfQueries listofqueries = new ListOfQueries();
         listofqueries.setVisible(true);
     }//GEN-LAST:event_btnQueriesBomActionPerformed
 
     private void btnBillPaymentBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillPaymentBomActionPerformed
+        this.setVisible(false);
         ListBillPaymentRequests listbillpaymentrequests = new ListBillPaymentRequests();
         listbillpaymentrequests.setVisible(true);
     }//GEN-LAST:event_btnBillPaymentBomActionPerformed

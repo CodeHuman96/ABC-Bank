@@ -5,6 +5,8 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author test
@@ -39,10 +41,25 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         jLabel1.setText("Bill Payment Menu");
 
         btnManageBillers.setText("Manage Billers");
+        btnManageBillers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageBillersActionPerformed(evt);
+            }
+        });
 
         btnMakePayment.setText("Make Payment");
+        btnMakePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakePaymentActionPerformed(evt);
+            }
+        });
 
         btnViewPayment.setText("View Payment History");
+        btnViewPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewPaymentActionPerformed(evt);
+            }
+        });
 
         btnLogOff.setText("Log Off");
 
@@ -50,21 +67,13 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMakePayment)
-                            .addComponent(btnManageBillers)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(btnLogOff)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(165, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnViewPayment)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnLogOff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageBillers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMakePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1))
                 .addGap(162, 162, 162))
         );
@@ -86,6 +95,26 @@ public class BillPaymentMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageBillersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBillersActionPerformed
+        ListOfBillers listOfBillers=new ListOfBillers();
+        listOfBillers.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnManageBillersActionPerformed
+
+    private void btnMakePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakePaymentActionPerformed
+        MakePayment payment=new MakePayment();
+        this.setVisible(false);
+        payment.setVisible(true);
+    }//GEN-LAST:event_btnMakePaymentActionPerformed
+
+    private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed
+        ViewPaymentHistory history=new ViewPaymentHistory();
+        this.setVisible(false);
+        history.setVisible(true);
+        LocalDate todaydate = LocalDate.now();
+        //history.txtTo.setText(String.valueOf(todaydate));
+    }//GEN-LAST:event_btnViewPaymentActionPerformed
 
     /**
      * @param args the command line arguments

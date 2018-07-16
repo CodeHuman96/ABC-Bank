@@ -66,6 +66,11 @@ public class ListOfQueries extends javax.swing.JFrame {
         }
 
         btnBackListCq.setText("Back");
+        btnBackListCq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackListCqActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblTitle.setText("List of Customer Queries");
@@ -120,6 +125,12 @@ public class ListOfQueries extends javax.swing.JFrame {
     private void cmbStatusListCqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusListCqActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbStatusListCqActionPerformed
+
+    private void btnBackListCqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackListCqActionPerformed
+        this.setVisible(false);
+        BackOfficeMenu backofficemenu = new BackOfficeMenu();
+        backofficemenu.setVisible(true);
+    }//GEN-LAST:event_btnBackListCqActionPerformed
 
     /**
      * @param args the command line arguments
