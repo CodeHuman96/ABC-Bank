@@ -26,7 +26,9 @@ public class MatchFormats {
 
     public boolean matchDOB(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
-        return date.matches(pattern);
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        LocalDate birthDay=LocalDate.parse(date,f);
+        return LocalDate.now().compareTo(birthDay) > 0;
     }
     public boolean matchPIN(String pin){
         pattern = "^[0-9]{6}$";
