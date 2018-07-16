@@ -21,6 +21,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         initComponents();
     }
 
+    EmployeeMainMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,7 +127,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         this.setVisible(false);
 
 <<<<<<< HEAD
-    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
+    }                                                 
 =======
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 >>>>>>> c5a4e85db2caa31391b25b984a1005a043baf06f
