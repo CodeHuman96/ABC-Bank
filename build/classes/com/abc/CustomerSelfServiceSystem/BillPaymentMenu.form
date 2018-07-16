@@ -23,26 +23,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnMakePayment" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnManageBillers" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
-                      <Component id="btnLogOff" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="165" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnViewPayment" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="btnLogOff" max="32767" attributes="0"/>
+                  <Component id="btnManageBillers" max="32767" attributes="0"/>
+                  <Component id="btnMakePayment" max="32767" attributes="0"/>
+                  <Component id="btnViewPayment" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
@@ -80,16 +67,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Billers"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageBillersActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMakePayment">
       <Properties>
         <Property name="text" type="java.lang.String" value="Make Payment"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMakePaymentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewPayment">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Payment History"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewPaymentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogOff">
       <Properties>
