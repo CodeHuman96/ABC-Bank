@@ -2,29 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CreditCardSelfService/SelfServiceMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ServiceRequest.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
-=======
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
->>>>>>> 4e759d290e44560b451a1e0517bb7691406819c4
-        </group>
+        <group/>
     </open-files>
 </project-private>
