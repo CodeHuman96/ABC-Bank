@@ -62,6 +62,11 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         });
 
         btnLogOff.setText("Log Off");
+        btnLogOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOffActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,6 +120,12 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         LocalDate todaydate = LocalDate.now();
         //history.txtTo.setText(String.valueOf(todaydate));
     }//GEN-LAST:event_btnViewPaymentActionPerformed
+
+    private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
+        CustomerLogin obj=new CustomerLogin();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogOffActionPerformed
 
     /**
      * @param args the command line arguments
