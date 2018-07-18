@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
+<<<<<<< HEAD
             <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
+=======
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ViewRequestStatus.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/QueryResponse.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListOfQueries.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/RedeemRewardPoints.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/MatchFormats.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerSearch.java</file>
+=======
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
+>>>>>>> c9ffffaf115352bf2b1398d8028f547947014edb
+>>>>>>> caa212f539cbbe0337435767ed948504b0c25d9c
         </group>
+>>>>>>> d363f11b62d936ac8e9aa2f51450c8c4f4518180
     </open-files>
 </project-private>

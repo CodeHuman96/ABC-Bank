@@ -27,12 +27,10 @@
               <EmptySpace pref="165" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="btnLogOff" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btnManageBillers" max="32767" attributes="0"/>
-                      <Component id="btnMakePayment" max="32767" attributes="0"/>
-                      <Component id="btnViewPayment" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnManageBillers" max="32767" attributes="0"/>
+                  <Component id="btnMakePayment" max="32767" attributes="0"/>
+                  <Component id="btnViewPayment" max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
           </Group>
@@ -77,16 +75,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Make Payment"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMakePaymentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewPayment">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Payment History"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewPaymentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogOff">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Off"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogOffActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
