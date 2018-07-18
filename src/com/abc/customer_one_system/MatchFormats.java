@@ -7,7 +7,10 @@ package com.abc.customer_one_system;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+/**
+ *
+ * @author test
+ */
 public class MatchFormats {
     
     String pattern="";
@@ -26,8 +29,6 @@ public class MatchFormats {
         DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/mm/yyyy");
         LocalDate birthDay=LocalDate.parse(date,f);
         return LocalDate.now().compareTo(birthDay) > 0;
-        
-        
     }
     public boolean matchPIN(String pin){
         pattern = "^[0-9]{6}$";
@@ -46,7 +47,7 @@ public class MatchFormats {
         DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fromdate=LocalDate.parse(from,f);
         LocalDate todate=LocalDate.parse(to,f);
-        Duration duration = Duration.between(fromdate, todate);
-        return todate.compareTo(fromdate) < 0;
+        int c=fromdate.compareTo(todate);
+        return c > 0;
     }  
 }

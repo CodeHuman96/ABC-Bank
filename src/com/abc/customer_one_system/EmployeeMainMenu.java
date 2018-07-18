@@ -19,10 +19,6 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c26957dd4919a5101bddd3dc5868ea216d985e24
     }
 
     /*EmployeeMainMenu() {
