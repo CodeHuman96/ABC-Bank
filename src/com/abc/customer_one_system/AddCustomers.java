@@ -416,7 +416,9 @@ public class AddCustomers extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         MatchFormats match = new MatchFormats();
         boolean flag = true;
+        
         try {
+            
             lblMsg.setText("");
             String name = txtName.getText().trim();
             if (name.equals("")) {
@@ -431,10 +433,10 @@ public class AddCustomers extends javax.swing.JFrame {
                 lblDateFormat.setText("Cannot be empty");
                 flag &= false;
             } else if (!match.matchDOB(dob)) {
-                lblDateFormat.setText("Invalid date format");
+                lblDateFormat.setText("Invalid date");
                 flag &= false;
             } else {
-                lblDateFormat.setText("dd/mm/yy");
+                lblDateFormat.setText("dd/mm/yyyy");
                 flag &= true;
             }
             String address = txtAddress.getText().trim();
@@ -497,10 +499,18 @@ public class AddCustomers extends javax.swing.JFrame {
                 flag &= false;
             } else {
                 Double monthlyIncome = Double.parseDouble(txtMonIncome.getText().trim());
+                lblMsg.setText("");
             }
             if (flag) {
                 lblMsg.setText("Adding..");
-                
+                //ckeck if data is already in the db name dob conatact number
+                if(!isPresent(name,dob,contactNo)) {
+                                  
+                    
+                }
+                else{
+                    lblMsg.setText("Data Already Exists");
+                }
 
             } else {
                 lblMsg.setText("Invalid Entry");
@@ -508,9 +518,16 @@ public class AddCustomers extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             lblMsg.setText("Invalid input(s)");
         }
+        
 
     }//GEN-LAST:event_btnSubmitActionPerformed
-
+    private boolean isPresent(String name,String dob,String contactNo){
+        return false;
+    }
+    
+    
+    
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         MainMenu obj = new MainMenu();
         obj.setVisible(true);
