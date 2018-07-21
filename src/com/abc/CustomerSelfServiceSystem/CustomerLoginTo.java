@@ -103,7 +103,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     }//GEN-LAST:event_creditCardServiceMenuBtActionPerformed
 
     private void billPaymentBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billPaymentBtActionPerformed
-        BillPaymentMenu obj=new BillPaymentMenu();
+        BillPaymentLogin obj=new BillPaymentLogin();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_billPaymentBtActionPerformed
