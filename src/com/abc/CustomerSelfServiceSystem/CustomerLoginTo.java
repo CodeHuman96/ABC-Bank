@@ -91,14 +91,12 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void customServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customServiceMenuBtActionPerformed
-        CustomerServiceMenu obj = new CustomerServiceMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_customServiceMenuBtActionPerformed
 
     private void creditCardServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditCardServiceMenuBtActionPerformed
        
-        SelfServiceMenu obj=new SelfServiceMenu();
+       CreditCardLogin obj=new CreditCardLogin();
         obj.setVisible(true);
         this.setVisible(false);
         
