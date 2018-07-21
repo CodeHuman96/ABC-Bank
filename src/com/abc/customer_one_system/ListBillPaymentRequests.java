@@ -5,6 +5,19 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
@@ -14,10 +27,65 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
     /**
      * Creates new form ListBillPaymentRequests
      */
-    public ListBillPaymentRequests() {
+    public ListBillPaymentRequests() throws ClassNotFoundException, SQLException {
         initComponents();
+        Connection con=ConnectionClass.getConnected();
+        Statement st=con.createStatement();
+        String query="select * from make_payment";
+        ResultSet rs=st.executeQuery(query);
+        
+        LocalDate today=LocalDate.now();
+       
+        
+        while(rs.next())
+            
+        {  
+           
+            
+           
+            LocalDate deadline=rs.getDate("payment_due_date").toLocalDate();
+           
+           
+             if (Period.between(deadline,today).getDays()<=1 && rs.getString("payment_status").equals("pending"))//&& rs.getString("payment_status").equals("pending")
+            { 
+            
+             
+                
+                String query2="select * from account where account_number="+rs.getString("account_number");
+               
+                
+                Statement st2=con.createStatement();
+                ResultSet rs2=st2.executeQuery(query2);
+                
+                
+                DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+               
+               
+                
+                while (rs2.next()){
+                
+               
+                String query3="select * from customer where customer_id='"+rs2.getString("customer_id")+"'";
+                Statement st3=con.createStatement();
+                ResultSet rs3=st3.executeQuery(query3);//Balance
+                
+                while (rs3.next()){
+                
+                
+               
+                
+                model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount")});
+                  
+                }
+                
+        
+            }
+        
+        }
+        
+       
     }
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,10 +107,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
 
         tblCustBillPayment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "", null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Biller ID", "Customer Name", "Customer Request", "Account Number", "Account Balance", "Bill Amount", "Pay", "Force Pay", "Reject"
@@ -143,7 +208,11 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListBillPaymentRequests().setVisible(true);
+                try {
+                    new ListBillPaymentRequests().setVisible(true);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ListBillPaymentRequests.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

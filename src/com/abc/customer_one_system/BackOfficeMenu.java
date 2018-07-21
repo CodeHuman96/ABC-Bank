@@ -5,6 +5,10 @@
  */
 package com.abc.customer_one_system;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author test
@@ -124,7 +128,14 @@ public class BackOfficeMenu extends javax.swing.JFrame {
 
     private void btnBillPaymentBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillPaymentBomActionPerformed
         this.setVisible(false);
-        ListBillPaymentRequests listbillpaymentrequests = new ListBillPaymentRequests();
+        ListBillPaymentRequests listbillpaymentrequests = null;
+        try {
+            listbillpaymentrequests = new ListBillPaymentRequests();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BackOfficeMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(BackOfficeMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         listbillpaymentrequests.setVisible(true);
     }//GEN-LAST:event_btnBillPaymentBomActionPerformed
 

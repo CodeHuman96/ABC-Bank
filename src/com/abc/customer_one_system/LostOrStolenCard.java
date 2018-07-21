@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +29,14 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         Connection con=ConnectionClass.getConnected();
         Statement st=con.createStatement();
         
+        
+        ListBillPaymentRequests billpay=new ListBillPaymentRequests();
+        
+        //DefaultTableModel model = (DefaultTableModel) tableTrainee.getModel();
+        //txtName.setText(model.getValueAt(tableTrainee.getSelectedRow(), 0).toString());
+        //DefaultTableModel model = (DefaultTableModel) billpay.tblListOfCustReq.getModel();
+       // String x=model.getValueat(ListBillPaymentRequests.tblListOfCustReq.getSelectedRow(),1).toString();
+       
         String query="";
         query="select * from credit_card_detail";
         ResultSet rs=st.executeQuery(query);

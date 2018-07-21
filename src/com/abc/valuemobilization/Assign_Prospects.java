@@ -5,6 +5,17 @@
  */
 package com.abc.valuemobilization;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
@@ -36,7 +47,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
         txtEmployee = new javax.swing.JTextField();
         txtcampaign = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCustomers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +73,11 @@ public class Assign_Prospects extends javax.swing.JFrame {
         });
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         txtEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,12 +85,9 @@ public class Assign_Prospects extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Check", "Campaign Name", "Customer Name", "Phone Number"
@@ -95,7 +108,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCustomers);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,16 +156,12 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEName)
-                            .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancel)
-                            .addComponent(btnAssign))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lblEName)
+                    .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancel)
+                        .addComponent(btnAssign)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +183,65 @@ public class Assign_Prospects extends javax.swing.JFrame {
         
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String CTitle=txtcampaign.getText();
+        
+        try 
+        {
+            int age=0;
+            double balance=0.0;
+            String profession="";
+            LocalDate ldate=LocalDate.now();
+            
+            Connection con = ConnectionClass.getConnected();
+            Statement s = con.createStatement();
+            String q="Select * from CAMPAIGN_CRITERIA c1 join CAMPAIGN c2 on c1.CAMPAIGN_ID=c2.CAMPAIGN_ID where c2.CAMPAIGN_TITLE='"+CTitle+"'";
+            ResultSet rs= s.executeQuery(q);
+            while(rs.next())
+            {
+                age=rs.getInt("AGE_OF_RELATIONSHIP");
+                balance=rs.getDouble("MIN_BALANCE");
+                profession=rs.getString("PROFESSION");
+            }
+            
+            String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
+            rs= s.executeQuery(q2);
+            
+            DefaultTableModel model;
+            model = (DefaultTableModel) tblCustomers.getModel();
+            while(rs.next())
+            {
+                LocalDate date=rs.getDate("OPENING_DATE").toLocalDate();
+                int age_rel=Period.between(date, ldate).getYears();
+                
+                if(age_rel>age)
+                {
+                    
+                    model.addRow(new Object[]{CTitle,rs.getString("NAME"), rs.getString("MOBILE_NUM")});
+                }
+                    
+            }
+            
+            for(int i=0; i<tblCustomers.getRowCount(); i++)
+            {
+                if ((Boolean) tblCustomers.getModel().getValueAt(i, 0))
+                {
+                    String q3="insert into PROSPECTIVE_CUSTOMERS values('nil',"+model.getValueAt(tblCustomers.getSelectedRow(), 1).toString()+"'camp',"+txtEmployee.getText()+")"; 
+                }
+            }
+            
+             
+            
+            
+        } 
+        catch (SQLException|ClassNotFoundException ex) 
+        {
+            ex.printStackTrace();
+        } 
+        
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,9 +285,9 @@ public class Assign_Prospects extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCampaign;
     private javax.swing.JLabel lblEName;
+    private javax.swing.JTable tblCustomers;
     private javax.swing.JTextField txtEmployee;
     private javax.swing.JTextField txtcampaign;
     // End of variables declaration//GEN-END:variables

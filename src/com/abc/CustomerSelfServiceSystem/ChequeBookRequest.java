@@ -5,10 +5,12 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
 import java.util.Enumeration;
 import java.util.Iterator;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import java.sql.*;
 
 /**
  *
@@ -192,7 +194,31 @@ public class ChequeBookRequest extends javax.swing.JFrame {
       String str=getSelectedButtonText(buttonGroup1);
         if(cmbAccountNo.getSelectedIndex()==-1 || str==null)
         {
-            lblMsg.setText("Enter all the fields");
+            
+        }
+        else
+        {
+            try{
+                Connection connect=ConnectionClass.getConnected();
+                String query1="select CSR_ID_SEQ.nextval from dual";
+                PreparedStatement stmt1=connect.prepareStatement(query1);
+                ResultSet rs=stmt1.executeQuery(query1);
+                rs.next();
+                int r1=rs.getInt(1);
+                String query="insert into customer_service_request (csr_id,csr_type,csr_date,account_number)values ("+r1+",1,CURRENT_TIMESTAMP,'"+cmbAccountNo.getSelectedItem()+"')";
+                PreparedStatement stmt=connect.prepareStatement(query);
+                int r=stmt.executeUpdate(query);
+                if(r>0)
+                    lblMsg.setText("Request Successfully Added");
+               
+                String query2="insert into cheque_book_request(no_of_leaves,csr_id) values("+str+","+r1+")";
+                PreparedStatement stmt2=connect.prepareStatement(query);
+                int r2=stmt.executeUpdate(query);
+            }
+            catch(ClassNotFoundException|SQLException e)
+            {
+                e.printStackTrace();
+            }
         }
       
     }//GEN-LAST:event_btnSubmitActionPerformed
