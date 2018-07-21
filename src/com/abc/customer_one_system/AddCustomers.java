@@ -5,6 +5,14 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author test
@@ -111,21 +119,34 @@ public class AddCustomers extends javax.swing.JFrame {
 
         lblPasswordRe.setText("Re-enter Password");
 
+        txtName.setText("a");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
             }
         });
 
+        txtDOB.setText("29/10/1996");
         txtDOB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDOBActionPerformed(evt);
             }
         });
 
+        txtCity.setText("a");
+
+        txtPIN.setText("123321");
+
+        txtContactNo.setText("1233211233");
         txtContactNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContactNoActionPerformed(evt);
+            }
+        });
+
+        txtMonIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMonIncomeActionPerformed(evt);
             }
         });
 
@@ -183,6 +204,7 @@ public class AddCustomers extends javax.swing.JFrame {
 
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
+        txtAddress.setText("a");
         jScrollPane1.setViewportView(txtAddress);
 
         lblManditory4.setForeground(new java.awt.Color(250, 9, 9));
@@ -416,7 +438,9 @@ public class AddCustomers extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         MatchFormats match = new MatchFormats();
         boolean flag = true;
+
         try {
+
             lblMsg.setText("");
             String name = txtName.getText().trim();
             if (name.equals("")) {
@@ -431,10 +455,10 @@ public class AddCustomers extends javax.swing.JFrame {
                 lblDateFormat.setText("Cannot be empty");
                 flag &= false;
             } else if (!match.matchDOB(dob)) {
-                lblDateFormat.setText("Invalid date format");
+                lblDateFormat.setText("Invalid date");
                 flag &= false;
             } else {
-                lblDateFormat.setText("dd/mm/yy");
+                lblDateFormat.setText("dd/mm/yyyy");
                 flag &= true;
             }
             String address = txtAddress.getText().trim();
@@ -472,10 +496,9 @@ public class AddCustomers extends javax.swing.JFrame {
                 lblEmailFormat.setText("");
             }
             String pan = txtPAN.getText().trim();
-            if(pan.equals("")){
-                pan=null;
-            }
-            else if (!match.matchPAN(pan)) {
+            if (pan.equals("")) {
+                pan = null;
+            } else if (!match.matchPAN(pan)) {
                 lblPANFormat.setText("Invalid Format");
                 flag &= false;
             } else {
@@ -497,10 +520,28 @@ public class AddCustomers extends javax.swing.JFrame {
                 flag &= false;
             } else {
                 Double monthlyIncome = Double.parseDouble(txtMonIncome.getText().trim());
+                lblMsg.setText("");
             }
             if (flag) {
-                lblMsg.setText("Adding..");
-                
+                lblMsg.setText("Loading..");
+                try {
+                    //ckeck if data is already in the db name dob conatact number
+                    Connection connect = ConnectionClass.getConnected();
+                    if (!isPresent(name, contactNo, connect)) {
+                        lblMsg.setText("Adding Data");
+                        /*synchronized (this)*/ {
+                            String statement="";
+                            PreparedStatement stmt = connect.prepareStatement(statement);
+                            lblDateFormat.setText("connection made");
+                            
+                        }
+                    } else {
+                        lblMsg.setText("Data Already Exists");
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    lblMsg.setText("DBConnection Error");
+
+                }
 
             } else {
                 lblMsg.setText("Invalid Entry");
@@ -509,13 +550,28 @@ public class AddCustomers extends javax.swing.JFrame {
             lblMsg.setText("Invalid input(s)");
         }
 
+
     }//GEN-LAST:event_btnSubmitActionPerformed
+    private boolean isPresent(String name, String contactNo, Connection connect) throws SQLException {
+
+        String statement = "select (customer_id) from customer where name=? and mobile_num=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1, name);
+        stmt.setString(2, contactNo);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
+
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         MainMenu obj = new MainMenu();
         obj.setVisible(true);
 
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtMonIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonIncomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMonIncomeActionPerformed
 
     /**
      * @param args the command line arguments

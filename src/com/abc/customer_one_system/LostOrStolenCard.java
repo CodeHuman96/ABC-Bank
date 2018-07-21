@@ -5,6 +5,13 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author test
@@ -14,8 +21,9 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     /**
      * Creates new form LostOrStolenCard
      */
-    public LostOrStolenCard() {
+    public LostOrStolenCard() throws ClassNotFoundException, SQLException{
         initComponents();
+        Connection con=ConnectionClass.getConnected();
     }
 
     /**
@@ -64,6 +72,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtResponseCsr3);
 
         btnSubmitCsr3.setText("Submit");
+        btnSubmitCsr3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitCsr3ActionPerformed(evt);
+            }
+        });
 
         btnBackCsr3.setText("Back");
         btnBackCsr3.addActionListener(new java.awt.event.ActionListener() {
@@ -147,10 +160,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr3ActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
         ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
         listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnBackCsr3ActionPerformed
+
+    private void btnSubmitCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr3ActionPerformed
+        // TODO add your handling code here:
+         if (cmbStatusCsr3.getSelectedItem()=="Rejected" )
+        {if ( txtResponseCsr3.getText().equals("") )
+        { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
+        }
+            
+    }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +204,13 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LostOrStolenCard().setVisible(true);
+                try {
+                    new LostOrStolenCard().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

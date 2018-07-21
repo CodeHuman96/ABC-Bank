@@ -32,6 +32,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         customServiceMenuBt = new javax.swing.JButton();
         creditCardServiceMenuBt = new javax.swing.JButton();
         header = new javax.swing.JLabel();
+        billPaymentBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,23 +51,27 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         });
 
         header.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        header.setText("Customer Log to");
+        header.setText("Choose The Service");
+
+        billPaymentBt.setText("BillPayment Service Menu");
+        billPaymentBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billPaymentBtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customServiceMenuBt)
-                            .addComponent(creditCardServiceMenuBt)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(customServiceMenuBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(creditCardServiceMenuBt, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(billPaymentBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +82,9 @@ public class CustomerLoginTo extends javax.swing.JFrame {
                 .addComponent(customServiceMenuBt)
                 .addGap(38, 38, 38)
                 .addComponent(creditCardServiceMenuBt)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(billPaymentBt)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,6 +103,12 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_creditCardServiceMenuBtActionPerformed
+
+    private void billPaymentBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billPaymentBtActionPerformed
+        BillPaymentMenu obj=new BillPaymentMenu();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_billPaymentBtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,6 +146,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton billPaymentBt;
     private javax.swing.JButton creditCardServiceMenuBt;
     private javax.swing.JButton customServiceMenuBt;
     private javax.swing.JLabel header;

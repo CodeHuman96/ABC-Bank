@@ -308,24 +308,39 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="a"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDOB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="29/10/1996"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDOBActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCity">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="a"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPIN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="123321"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmailID">
     </Component>
     <Component class="javax.swing.JTextField" name="txtPAN">
     </Component>
     <Component class="javax.swing.JTextField" name="txtContactNo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1233211233"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContactNoActionPerformed"/>
       </Events>
@@ -333,6 +348,9 @@
     <Component class="javax.swing.JTextField" name="txtOccupation">
     </Component>
     <Component class="javax.swing.JTextField" name="txtMonIncome">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMonIncomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUserID">
     </Component>
@@ -454,6 +472,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="a"/>
           </Properties>
         </Component>
       </SubComponents>
