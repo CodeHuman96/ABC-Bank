@@ -91,6 +91,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Off"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogOffActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

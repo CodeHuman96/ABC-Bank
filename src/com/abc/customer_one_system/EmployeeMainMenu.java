@@ -6,6 +6,7 @@
 package com.abc.customer_one_system;
 
 import com.abc.CreditCardSelfService.RewardCatalog;
+import com.abc.valuemobilization.Campaign_Management;
 
 /**
  *
@@ -18,8 +19,13 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    /*EmployeeMainMenu() {
+=======
+>>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 
     
 
@@ -126,7 +132,8 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
-        // TODO add your handling code here:
+        Campaign_Management cm=new Campaign_Management();
+        cm.setVisible(true);
     }//GEN-LAST:event_btnCampainMainActionPerformed
 
     private void btnCustOneMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustOneMainActionPerformed

@@ -5,6 +5,9 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import java.util.Date;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author test
@@ -16,6 +19,7 @@ public class LostStolenCard extends javax.swing.JFrame {
      */
     public LostStolenCard() {
         initComponents();
+        spinDate.setEditor(new JSpinner.DateEditor(spinDate,"dd.MM.yyyy"));
     }
 
     /**
@@ -33,9 +37,13 @@ public class LostStolenCard extends javax.swing.JFrame {
         lblAccountNo = new javax.swing.JLabel();
         cmbAccountNo = new javax.swing.JComboBox<>();
         lblDate = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+<<<<<<< HEAD
+=======
+        lblMsg = new javax.swing.JLabel();
+        spinDate = new javax.swing.JSpinner();
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +63,11 @@ public class LostStolenCard extends javax.swing.JFrame {
         lblDate.setText("Date:");
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -63,30 +76,33 @@ public class LostStolenCard extends javax.swing.JFrame {
             }
         });
 
+        spinDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(lblReportStolenCard)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblReportStolenCard))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(lblAccountNo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblAccountNo)
-                                .addComponent(lblNamefield, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(lblNamefield)
                             .addComponent(lblDate))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 31, Short.MAX_VALUE)))))
+<<<<<<< HEAD
+                                .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 76, Short.MAX_VALUE)))))
                 .addGap(67, 67, 67))
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
@@ -94,29 +110,56 @@ public class LostStolenCard extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(112, 112, 112))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(spinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(btnSubmit)
+                                .addGap(58, 58, 58)
+                                .addComponent(btnBack)
+                                .addContainerGap())))))
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addComponent(lblReportStolenCard)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNamefield, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNamefield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAccountNo)
                     .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDate)
+                .addGap(26, 26, 26)
+=======
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(spinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnBack))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(lblMsg)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,6 +174,14 @@ public class LostStolenCard extends javax.swing.JFrame {
     obj.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+
+        if(cmbAccountNo.getSelectedIndex()==-1)
+        {
+            lblMsg.setText("Enter all the fields");
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,9 +225,10 @@ public class LostStolenCard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbAccountNo;
     private javax.swing.JLabel lblAccountNo;
     private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNamefield;
     private javax.swing.JLabel lblReportStolenCard;
-    private javax.swing.JTextField txtDate;
+    private javax.swing.JSpinner spinDate;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/home/test/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/QueryResponse.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
+        </group>
+>>>>>>> 6e992e081b57c409224af60a5747164477456eef
     </open-files>
 </project-private>

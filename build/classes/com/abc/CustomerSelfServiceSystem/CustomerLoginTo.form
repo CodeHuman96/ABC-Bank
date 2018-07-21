@@ -23,21 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customServiceMenuBt" min="-2" max="-2" attributes="0"/>
-                          <Component id="creditCardServiceMenuBt" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="header" min="-2" pref="220" max="-2" attributes="0"/>
-                  </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="customServiceMenuBt" alignment="0" max="32767" attributes="0"/>
+                  <Component id="creditCardServiceMenuBt" alignment="0" pref="258" max="32767" attributes="0"/>
+                  <Component id="header" alignment="0" max="32767" attributes="0"/>
+                  <Component id="billPaymentBt" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,7 +44,9 @@
               <Component id="customServiceMenuBt" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="creditCardServiceMenuBt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="billPaymentBt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,8 +73,16 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Sans" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Customer Log to"/>
+        <Property name="text" type="java.lang.String" value="Choose The Service"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="billPaymentBt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BillPayment Service Menu"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="billPaymentBtActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
