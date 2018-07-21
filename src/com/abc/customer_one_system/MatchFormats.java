@@ -48,7 +48,7 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-        pattern = "[a-zA-Z .'-]";
+        pattern = "[a-z A-Z .'-]";
         return name.matches(pattern);
     }
 
