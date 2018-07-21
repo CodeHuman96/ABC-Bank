@@ -297,6 +297,7 @@ public class CustomerSearch extends javax.swing.JFrame {
             } else {
                 lblMobileNoFormat.setText("");
             }
+            
         } catch (NumberFormatException e) {
             lblMsg.setText("Enter valid data");
         }
