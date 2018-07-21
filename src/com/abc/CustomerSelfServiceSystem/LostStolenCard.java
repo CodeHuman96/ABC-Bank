@@ -39,8 +39,11 @@ public class LostStolenCard extends javax.swing.JFrame {
         lblDate = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+<<<<<<< HEAD
+=======
         lblMsg = new javax.swing.JLabel();
         spinDate = new javax.swing.JSpinner();
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +100,17 @@ public class LostStolenCard extends javax.swing.JFrame {
                             .addComponent(lblDate))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+                                .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 76, Short.MAX_VALUE)))))
+                .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(btnSubmit)
+                .addGap(30, 30, 30)
+                .addComponent(btnBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,6 +128,7 @@ public class LostStolenCard extends javax.swing.JFrame {
                                 .addGap(58, 58, 58)
                                 .addComponent(btnBack)
                                 .addContainerGap())))))
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +143,17 @@ public class LostStolenCard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAccountNo)
                     .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDate)
+                .addGap(26, 26, 26)
+=======
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
                     .addComponent(spinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnBack))
