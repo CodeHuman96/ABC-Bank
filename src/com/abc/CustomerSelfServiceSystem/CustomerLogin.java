@@ -7,25 +7,24 @@ package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author shivasai
  */
 public class CustomerLogin extends javax.swing.JFrame {
-      static String usrName;
-      static String password;
-      static int flag=0;
+
+    public static  int customerid;
+
     /**
      * Creates new form Login
      */
     public CustomerLogin() {
         initComponents();
-        usrName=userNametxt.getText();
-        password=passWordtxt.getText();
+        clearBtn.setToolTipText("Clear fields");
     }
 
     /**
@@ -101,53 +100,72 @@ public class CustomerLogin extends javax.swing.JFrame {
                     .addComponent(userNamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passWordlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userNametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(passWordtxt)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(submitBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addGap(18, 18, 18)
-                .addComponent(errlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(62, 62, 62))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(userNametxt, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(passWordtxt))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(errlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(userNametxt)
                                 .addComponent(userNamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(passWordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passWordlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(submitBtn)
-                            .addComponent(clearBtn))
-                        .addContainerGap(81, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(errlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(101, 101, 101))))
+                        .addGap(166, 166, 166)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(passWordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passWordlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBtn)
+                    .addComponent(clearBtn))
+                .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean validation(String userName,String passWord)throws SQLException,ClassNotFoundException
+    {
+    
+        try
+        {
+            Connection con=ConnectionClass.getConnected();
+            String query="select custpassword from customer where cust_user_name=?";
+            PreparedStatement stmt=con.prepareStatement(query);
+            stmt.setString(1,userName);
+            ResultSet res=stmt.executeQuery();
+           
+            return res.next() && res.getString(1).equals(passWord);
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    return false;
+                }
+    }
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         userNametxt.setText("");
         passWordtxt.setText("");
@@ -155,27 +173,50 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        
-        if(flag==1)
-        {
-            CustomerLoginTo obj = new CustomerLoginTo();
-            obj.setVisible(true);
-            this.setVisible(false);
-        }
-        else {
-            errlbl.setText("Incorrect user name or password");
-        }
-        
-        
-      /* if (usrName.equals(userNametxt.getText()) && password.equals(passWordtxt.getText())) {
-            CustomerLoginTo obj = new CustomerLoginTo();
-            obj.setVisible(true);
-            this.setVisible(false);
+
+       String usrName = userNametxt.getText();
+        String password = passWordtxt.getText();
+        if (usrName.equals("") || password.equals("")) {
+            errlbl.setText("Fields cannot be empty");
         } else {
-            errlbl.setText("Incorrect user name or password");
-        }*/
+            try {
+                if (validation(usrName, password)) {
+                    CustomerServiceMenu obj;
+                    customerid=getCustomerid(usrName);
+                    System.out.println(customerid);
+                    obj = new CustomerServiceMenu();
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    errlbl.setText("Incorrect user name or password");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                errlbl.setText("DataBase Not Connected");
+            }
+        }
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    private int getCustomerid(String userName)throws SQLException,ClassNotFoundException
+    {
+        int r=0;
+        try
+        {
+            Connection con=ConnectionClass.getConnected();
+            String query="select customer_id from customer where cust_user_name=?";
+            PreparedStatement stmt=con.prepareStatement(query);
+            stmt.setString(1,userName);
+            ResultSet res=stmt.executeQuery();
+            res.next();
+            r=res.getInt(1);
+            
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    e.printStackTrace();
+                }
+        return r;
+    }
+    
     private void userNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNametxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNametxtActionPerformed
@@ -183,64 +224,19 @@ public class CustomerLogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws SQLException,ClassNotFoundException{
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold
-        
-        ConnectionClass cobj=new ConnectionClass();
-        Connection con=cobj.getConnected();
-        Statement stmt=con.createStatement();
-        String q1="select cust_user_name from customer";
-        ResultSet res1=stmt.executeQuery(q1);
-        while(res1.next())
-        {
-            if(usrName.equals(res1.getString(1)))
-            {
-                flag=1;
-                break;
-            }
-        }
-        if(flag==1)
-        {
-            flag=0;
-            String q2="select password from customer where cust_user_name='"+usrName+"'";
-            ResultSet res2=stmt.executeQuery(q2);
-            while(res2.next())
-            {
-                if(password.equals(res1.getString(1)))
-                {
-                    flag=1;
-                    break;
-                }
-            }
-            
-        }
-        
-        
+   
 
+       
+    
+
+   
+
+       
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

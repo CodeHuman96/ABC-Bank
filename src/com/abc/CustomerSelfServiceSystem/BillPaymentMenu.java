@@ -5,6 +5,8 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -18,6 +20,9 @@ public class BillPaymentMenu extends javax.swing.JFrame {
      */
     public BillPaymentMenu() {
         initComponents();
+        BillPaymentLogin login=new BillPaymentLogin();
+        String str=login.cust_name; 
+        lblMsg.setText("WELCOME "+str);
     }
 
     /**
@@ -34,6 +39,7 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         btnMakePayment = new javax.swing.JButton();
         btnViewPayment = new javax.swing.JButton();
         btnLogOff = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +78,7 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(165, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnLogOff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -80,40 +86,55 @@ public class BillPaymentMenu extends javax.swing.JFrame {
                     .addComponent(btnMakePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnViewPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1))
-                .addGap(162, 162, 162))
+                .addGap(3, 3, 3)
+                .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(btnManageBillers)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnManageBillers)
+                    .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnMakePayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewPayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOff)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageBillersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBillersActionPerformed
+        try
+        {
         ListOfBillers listOfBillers=new ListOfBillers();
         listOfBillers.setVisible(true);
         this.setVisible(false);
+        }
+        catch(ClassNotFoundException | SQLException e){}
     }//GEN-LAST:event_btnManageBillersActionPerformed
 
     private void btnMakePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakePaymentActionPerformed
+        try
+        {
         MakePayment payment=new MakePayment();
-        this.setVisible(false);
         payment.setVisible(true);
+<<<<<<< HEAD
         
+=======
+        this.setVisible(false);
+        }
+        catch(ClassNotFoundException | SQLException e){}
+>>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
     }//GEN-LAST:event_btnMakePaymentActionPerformed
-
+    
     private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed
         ViewPaymentHistory history=new ViewPaymentHistory();
         this.setVisible(false);
@@ -169,5 +190,6 @@ public class BillPaymentMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnManageBillers;
     private javax.swing.JButton btnViewPayment;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblMsg;
     // End of variables declaration//GEN-END:variables
 }

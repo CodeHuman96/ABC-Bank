@@ -4,7 +4,17 @@
  * and open the template in the editor.
  */
 package com.abc.valuemobilization;
+
+import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -55,6 +65,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
         lblDescMsg = new javax.swing.JLabel();
         lblDateMsg = new javax.swing.JLabel();
         lblCriteria = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,27 +158,30 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDesc)
-                            .addComponent(lblCTitle)
-                            .addComponent(lblProf)
-                            .addComponent(lblAvgBal)
-                            .addComponent(lblAgeRel)
-                            .addComponent(lblTo)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDesc)
+                                    .addComponent(lblCTitle)
+                                    .addComponent(lblProf)
+                                    .addComponent(lblAvgBal)
+                                    .addComponent(lblAgeRel)
+                                    .addComponent(lblTo)
+                                    .addComponent(lblSubTitle)
+                                    .addComponent(lblCid))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnSubmit)
-                                .addComponent(lblFrom))
-                            .addComponent(lblSubTitle)
-                            .addComponent(lblCid))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(89, 89, 89)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
+                                        .addGap(9, 9, 9)
                                         .addComponent(btnReset)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                                        .addComponent(btnBack))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnBack)
+                                        .addGap(33, 33, 33))
                                     .addComponent(lblDescMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44))
                             .addGroup(layout.createSequentialGroup()
@@ -189,7 +203,14 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDateMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblCriteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFrom)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,17 +224,18 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                         .addComponent(lblCid)
                         .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCTitle)
-                    .addComponent(txtCTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitleMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitleMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCTitle)
+                        .addComponent(txtCTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDescMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDesc)
@@ -234,6 +256,10 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                     .addComponent(txtProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(lblDateMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFrom)
@@ -241,17 +267,14 @@ public class Create_New_Campaign extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTo)
-                            .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)))
+                            .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmit)
                     .addComponent(btnReset)
+                    .addComponent(btnSubmit)
                     .addComponent(btnBack))
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
 
         pack();
@@ -278,9 +301,9 @@ public class Create_New_Campaign extends javax.swing.JFrame {
     }//GEN-LAST:event_txtToActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Campaign_Management cm= new Campaign_Management();
+        Campaign_Management cm = new Campaign_Management();
         cm.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -293,52 +316,76 @@ public class Create_New_Campaign extends javax.swing.JFrame {
         txtProf.setText("");
         txtFrom.setText("");
         txtTo.setText("");
-                
+
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        MatchFormats match=new MatchFormats();
-        boolean flag=true;
-        
-        if(txtCid.getText().equals(""))
-        {
+        MatchFormats match = new MatchFormats();
+        boolean flag = true;
+
+        if (txtCid.getText().equals("")) {
             lblIdMsg.setText("Required Field");
-            flag &=false;
+            flag &= false;
         }
-        
-        if(txtCTitle.getText().equals(""))
-        {
+
+        if (txtCTitle.getText().equals("")) {
             lblTitleMsg.setText("Required Field");
-            flag &=false;
+            flag &= false;
         }
-        
-        if(txtDesc.getText().equals(""))
-        {
+
+        if (txtDesc.getText().equals("")) {
             lblDescMsg.setText("Required Field");
-            flag &=false;
+            flag &= false;
         }
-        
-        if(txtAvgBal.getText().equals("") && txtAgeRel.getText().equals("") && txtProf.getText().equals(""))
-        {
+
+        if (txtAvgBal.getText().equals("") && txtAgeRel.getText().equals("") && txtProf.getText().equals("")) {
             lblCriteria.setText("Enter atleast one criteria");
         }
-        
-        if(txtFrom.getText().equals("") || txtTo.getText().equals(""))
-        {
+
+        if (txtFrom.getText().equals("") || txtTo.getText().equals("")) {
             lblDateMsg.setText("Please Enter Both Dates");
-            flag &=false;
+            flag &= false;
+        } else if (!match.matchDOB(txtFrom.getText()) || !match.matchDOB(txtFrom.getText())) {
+            lblDateMsg.setText("Invalid date format");
+            flag &= false;
         }
-        
-        else if(!match.matchDOB(txtFrom.getText()) || !match.matchDOB(txtFrom.getText())) {
-                lblDateMsg.setText("Invalid date format");
-                flag &=false;
-                }
-        
-        if(flag)
-        {
+        try {
             
+            String Cid = txtCid.getText();
+            String CTitle = txtCTitle.getText();
+            String Desc = txtDesc.getText();
+            String fDate = txtFrom.getText();
+            String tDate = txtTo.getText();
+            int EmpId=Login.EmpId;
+            EmpId=11000000;
+            int age = Integer.parseInt(txtAgeRel.getText());
+            double balance = Double.parseDouble(txtAvgBal.getText());
+            String profession = txtProf.getText();
+            /*Date fromDate = null, toDate = null;
+            fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(fDate);
+            toDate = new SimpleDateFormat("dd/MM/yyyy").parse(tDate);*/
+            if (flag) {
+                Connection con = ConnectionClass.getConnected();
+                Statement s = con.createStatement();
+                String q1 = "insert into CAMPAIGN values('" + Cid + "','" + CTitle + "','" + Desc + "','" +fDate+ "','"+tDate+" ',"+EmpId+")";
+                String q2 = "insert into CAMPAIGN_CRITERIA values(" + age + "," + balance + ",'" + profession + "','"+ Cid+"')";
+                int result1 = s.executeUpdate(q1);
+                int result2 = s.executeUpdate(q2);
+
+                if (result1 > 0 && result2 > 0) {
+                    lblStatus.setText("Campaign Created");
+                } else {
+                    lblStatus.setText("Creation failed! Please try again!!");
+                }
+
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(Create_New_Campaign.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**
@@ -394,6 +441,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
     private javax.swing.JLabel lblIdMsg;
     private javax.swing.JLabel lblNewC;
     private javax.swing.JLabel lblProf;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblSubTitle;
     private javax.swing.JLabel lblTitleMsg;
     private javax.swing.JLabel lblTo;

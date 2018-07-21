@@ -5,7 +5,12 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,7 +25,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         btnClear.setToolTipText("Clear fields");
     }
-
+    public static int EmpId;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,13 +75,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txtUserName.setText("user name");
+        txtUserName.setText("EPB0001");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUserNameMouseClicked(evt);
             }
         });
+        txtUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserNameActionPerformed(evt);
+            }
+        });
 
+        passwordField.setText("pass");
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
@@ -156,13 +167,18 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void verification(String usrName, String pass) {
-        if (usrName.equals("t") && pass.equals("t")) {
-            EmployeeMainMenu obj;
-            obj = new EmployeeMainMenu();
-            obj.setVisible(true);
-            this.setVisible(false);
+    private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
+        try {
+            Connection connect = ConnectionClass.getConnected();
+            String query = "select emp_id,pass from employee where username=?";
+            PreparedStatement stmt = connect.prepareStatement(query);
+            stmt.setString(1, usrName);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() && rs.getString("pass").equals(pass) && ((EmpId=rs.getInt("emp_id"))>=0);
+        } catch (ClassNotFoundException | SQLException e) {
+            return false;
         }
+
     }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //if business condition true
@@ -171,14 +187,25 @@ public class Login extends javax.swing.JFrame {
         if (usrName.equals("") || password.equals("")) {
             lblMsg.setText("Fields cannot be empty");
         } else {
-            verification(usrName, password);
-            lblMsg.setText("Incorrect user name or password");
+            try {
+                if (verification(usrName, password)) {
+                    EmployeeMainMenu obj;
+                    obj = new EmployeeMainMenu();
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    lblMsg.setText("Incorrect user name or password");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                lblMsg.setText("DataBase Not Connected");
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtUserName.setText("");
         passwordField.setText("");
+        lblMsg.setText("");
 
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -193,8 +220,19 @@ public class Login extends javax.swing.JFrame {
             if (usrName.equals("") || password.equals("")) {
                 lblMsg.setText("Fields cannot be empty");
             } else {
-                verification(usrName, password);
-                lblMsg.setText("Incorrect user name or password");
+                try {
+                    if (verification(usrName, password)) {
+                        lblMsg.setText("Loging in..");
+                        EmployeeMainMenu obj;
+                        obj = new EmployeeMainMenu();
+                        obj.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        lblMsg.setText("Incorrect user name or password");
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    lblMsg.setText("DataBase Not Connected");
+                }
             }
 
         }
@@ -204,10 +242,19 @@ public class Login extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
-
+    boolean only_once = true;
     private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
-        txtUserName.setText("");
+        if (only_once) {
+            txtUserName.setText("");
+            only_once = false;
+        }
+
+
     }//GEN-LAST:event_txtUserNameMouseClicked
+
+    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package com.abc.customer_one_system;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author test
@@ -230,7 +232,7 @@ public class CustomerSearch extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    ResultSet rs = null;
     private void txtAccountNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAccountNoActionPerformed
@@ -270,7 +272,7 @@ public class CustomerSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        MatchFormats match=new MatchFormats();
+        MatchFormats match = new MatchFormats();
         try {
             String name = txtName.getText().trim();
             if (!txtCustomerID.getText().equals("")) {
@@ -283,7 +285,12 @@ public class CustomerSearch extends javax.swing.JFrame {
             } else {
                 lblDateFormat.setText("dd/mm/yyyy");
             }
-            String accoutNo = txtAccountNo.getText().trim();
+            String accountNo = txtAccountNo.getText().trim();
+            if (!accountNo.equals("") && !match.matchAccountNumber(accountNo)) {
+                lblAccountNoFormat.setText("Invalid format");
+            } else {
+                lblAccountNoFormat.setText("");
+            }
             String emailID = txtEmailID.getText().toLowerCase();
             if (!emailID.equals("") && !match.matchEmail(emailID)) {
                 lblEmailFormat.setText("Invalid Email ID");
@@ -291,16 +298,22 @@ public class CustomerSearch extends javax.swing.JFrame {
                 lblEmailFormat.setText("");
             }
             String PAN = txtPAN.getText().trim();
+            if (!PAN.equals("") && !match.matchPAN(PAN)) {
+                lblPANFormat.setText("Invalid pan");
+            } else {
+                lblPANFormat.setText("");
+            }
             String mobile = txtMobileNo.getText().trim().replace(" ", "");
             if (!mobile.equals("") && !match.matchMobileNo(mobile)) {
                 lblMobileNoFormat.setText("Invalid mobile no.");
             } else {
                 lblMobileNoFormat.setText("");
             }
+
         } catch (NumberFormatException e) {
             lblMsg.setText("Enter valid data");
         }
-         
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**

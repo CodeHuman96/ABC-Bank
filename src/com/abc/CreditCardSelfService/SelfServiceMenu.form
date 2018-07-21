@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitle2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
               <Component id="lblWelcome" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
           </Group>
@@ -34,19 +34,21 @@
               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btnRedeem" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnRedeem" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCardAccounts" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnSignOut" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnReward" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDispTrans" min="-2" max="-2" attributes="0"/>
                           <Component id="btnAddon" min="-2" max="-2" attributes="0"/>
                           <Component id="btnIncreaseLimit" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="btnViewStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="137" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -61,22 +63,27 @@
                   <Component id="lblTitle2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblWelcome" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnRedeem" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSignOut" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="btnSignOut" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRedeem" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnCardAccounts" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="btnAddon" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnDispTrans" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIncreaseLimit" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnViewStatus" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnReward" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,11 +117,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Disputed transaction"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDispTransActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIncreaseLimit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Request increase in credit limit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIncreaseLimitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewStatus">
       <Properties>
@@ -134,15 +147,15 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblWelcome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Welcome xxx"/>
+        <Property name="text" type="java.lang.String" value="                               "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnReward">
+    <Component class="javax.swing.JButton" name="btnCardAccounts">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Reward Catalog"/>
+        <Property name="text" type="java.lang.String" value="List of Credit Card Accounts"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRewardActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCardAccountsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

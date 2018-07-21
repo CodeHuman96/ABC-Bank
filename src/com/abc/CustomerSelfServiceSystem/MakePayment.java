@@ -4,7 +4,19 @@
  * and open the template in the editor.
  */
 package com.abc.CustomerSelfServiceSystem;
-import com.abc.customer_one_system.MatchFormats;
+
+//import com.abc.customer_one_system.MatchFormats;
+
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+
 /**
  *
  * @author test
@@ -14,8 +26,27 @@ public class MakePayment extends javax.swing.JFrame {
     /**
      * Creates new form MakePayment
      */
-    public MakePayment() {
+    public MakePayment() throws ClassNotFoundException, SQLException {
         initComponents();
+        BillPaymentLogin login=new BillPaymentLogin(); 
+        Connection connect = ConnectionClass.getConnected();
+        String customer_id=login.cust_id;
+        String statement = "select b.biller_name from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        ResultSet rs = stmt.executeQuery();
+        while(rs.next())
+        {
+            cbmBiller.addItem(rs.getString(1));
+        }
+        statement="select a.account_number from account a join customer c on a.customer_id=c.customer_id where c.customer_id=?";
+        stmt=connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        rs=stmt.executeQuery();
+        while(rs.next())
+        {
+                cbmAcNo.addItem(rs.getString(1));
+        }
     }
 
     /**
@@ -70,14 +101,18 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(252, 11, 11));
         jLabel6.setText("*");
 
+<<<<<<< HEAD
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+=======
+        cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "add account" }));
+>>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
         cbmAcNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmAcNoActionPerformed(evt);
             }
         });
 
-        cbmBiller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+        cbmBiller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select biller" }));
 
         jLabel7.setForeground(new java.awt.Color(249, 6, 6));
         jLabel7.setText("*");
@@ -157,7 +192,7 @@ public class MakePayment extends javax.swing.JFrame {
                         .addComponent(radYes)
                         .addGap(34, 34, 34)
                         .addComponent(radNo))
-                    .addComponent(cbmAcNo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbmAcNo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MsgDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -243,7 +278,7 @@ public class MakePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        MatchFormats match=new MatchFormats();
+        //MatchFormats match=new MatchFormats();
         boolean flag = true;
         try
         {
@@ -283,7 +318,7 @@ public class MakePayment extends javax.swing.JFrame {
             String amount=txtAmount.getText().trim();
             if(amount.equals(""))
             {
-                MsgAmount.setText("cannot be empty");
+                MsgAmount.setText("Cannot be empty");
                 flag &=false;
             }
             else
@@ -293,7 +328,7 @@ public class MakePayment extends javax.swing.JFrame {
             String date=txtPayDueDate.getText().trim();
             if(date.equals(""))
             {
-                MsgDate.setText("cannot be empty");
+                MsgDate.setText("Cannot be empty");
                 flag &=false;
             }
             else
@@ -316,7 +351,11 @@ public class MakePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
+=======
+        
+>>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
     }//GEN-LAST:event_cbmAcNoActionPerformed
 
     /**
@@ -347,11 +386,21 @@ public class MakePayment extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            @Override
             public void run() {
-                new MakePayment().setVisible(true);
+                try {
+                    new MakePayment().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
+       
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
