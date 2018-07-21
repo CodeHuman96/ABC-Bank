@@ -7,25 +7,24 @@ package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author shivasai
  */
 public class CustomerLogin extends javax.swing.JFrame {
-      static String usrName;
-      static String password;
-      static int flag=0;
+
+    
+
     /**
      * Creates new form Login
      */
     public CustomerLogin() {
         initComponents();
-        usrName=userNametxt.getText();
-        password=passWordtxt.getText();
+       
     }
 
     /**
@@ -149,6 +148,23 @@ public class CustomerLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean validation(String usrName,String password)throws SQLException,ClassNotFoundException
+    {
+    
+        try
+        {
+            Connection con=ConnectionClass.getConnected();
+            String query="select custpassword from customer where cust_user_name=?";
+            PreparedStatement stmt=con.prepareStatement(query);
+            stmt.setString(1,usrName);
+            ResultSet rs=stmt.executeQuery();
+            return rs.next() && rs.getString(1).equals(password);
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    return false;
+                }
+    }
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         userNametxt.setText("");
         passWordtxt.setText("");
@@ -156,26 +172,24 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        
-        if(flag==1)
-        {
-            
-            CustomerServiceMenu obj = new CustomerServiceMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
-        }
-        else {
-            errlbl.setText("Incorrect user name or password");
-        }
-        
-        
-      /* if (usrName.equals(userNametxt.getText()) && password.equals(passWordtxt.getText())) {
-            CustomerLoginTo obj = new CustomerLoginTo();
-            obj.setVisible(true);
-            this.setVisible(false);
+
+       String usrName = userNametxt.getText();
+        String password = passWordtxt.getText();
+        if (usrName.equals("") || password.equals("")) {
+            errlbl.setText("Fields cannot be empty");
         } else {
-            errlbl.setText("Incorrect user name or password");
-        }*/
+            try {
+                if (validation(usrName, password)) {
+                    CustomerServiceMenu obj= new CustomerServiceMenu();
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    errlbl.setText("Incorrect user name or password");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                errlbl.setText("DataBase Not Connected");
+            }
+        }
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void userNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNametxtActionPerformed
@@ -185,65 +199,19 @@ public class CustomerLogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws SQLException,ClassNotFoundException,NullPointerException{
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold
-        
-        ConnectionClass cobj=new ConnectionClass();
-        Connection con=cobj.getConnected();
-        Statement stmt=con.createStatement();
-        String q1="select cust_user_name from customer";
-        ResultSet res1=stmt.executeQuery(q1);
-        /*while(res1.next())
-        {
-            String r=res1.getString(1);
-            if(usrName.equals(r))
-            {
-                flag=1;
-                break;
-            }
-        }*/
-        if(flag==1)
-        {
-            flag=0;
-            String q2="select password from customer where cust_user_name='"+usrName+"'";
-            ResultSet res2=stmt.executeQuery(q2);
-            while(res2.next())
-            {
-                if(password.equals(res1.getString(1)))
-                {
-                    flag=1;
-                    break;
-                }
-            }
-            
-        }
-        
-        
+   
 
+       
+    
+
+   
+
+       
+
+    public static void main(String args[]) throws SQLException, ClassNotFoundException, NullPointerException {
+        /* Set the Nimbus look and feel */
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
