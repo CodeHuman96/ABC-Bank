@@ -17,14 +17,14 @@ import java.sql.SQLException;
  */
 public class CustomerLogin extends javax.swing.JFrame {
 
-    
+    public static  int customerid;
 
     /**
      * Creates new form Login
      */
     public CustomerLogin() {
         initComponents();
-       
+        clearBtn.setToolTipText("Clear fields");
     }
 
     /**
@@ -148,7 +148,7 @@ public class CustomerLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean validation(String usrName,String password)throws SQLException,ClassNotFoundException
+    private boolean validation(String userName,String passWord)throws SQLException,ClassNotFoundException
     {
     
         try
@@ -156,9 +156,10 @@ public class CustomerLogin extends javax.swing.JFrame {
             Connection con=ConnectionClass.getConnected();
             String query="select custpassword from customer where cust_user_name=?";
             PreparedStatement stmt=con.prepareStatement(query);
-            stmt.setString(1,usrName);
-            ResultSet rs=stmt.executeQuery();
-            return rs.next() && rs.getString(1).equals(password);
+            stmt.setString(1,userName);
+            ResultSet res=stmt.executeQuery();
+           
+            return res.next() && res.getString(1).equals(passWord);
         }
         catch(ClassNotFoundException | SQLException e)
                 {
@@ -180,7 +181,10 @@ public class CustomerLogin extends javax.swing.JFrame {
         } else {
             try {
                 if (validation(usrName, password)) {
-                    CustomerServiceMenu obj= new CustomerServiceMenu();
+                    CustomerServiceMenu obj;
+                    customerid=getCustomerid(usrName);
+                    System.out.println(customerid);
+                    obj = new CustomerServiceMenu();
                     obj.setVisible(true);
                     this.setVisible(false);
                 } else {
@@ -192,6 +196,27 @@ public class CustomerLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    private int getCustomerid(String userName)throws SQLException,ClassNotFoundException
+    {
+        int r=0;
+        try
+        {
+            Connection con=ConnectionClass.getConnected();
+            String query="select customer_id from customer where cust_user_name=?";
+            PreparedStatement stmt=con.prepareStatement(query);
+            stmt.setString(1,userName);
+            ResultSet res=stmt.executeQuery();
+            res.next();
+            r=res.getInt(1);
+            
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    e.printStackTrace();
+                }
+        return r;
+    }
+    
     private void userNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNametxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNametxtActionPerformed
@@ -208,7 +233,7 @@ public class CustomerLogin extends javax.swing.JFrame {
 
        
 
-    public static void main(String args[]) throws SQLException, ClassNotFoundException, NullPointerException {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         
         
