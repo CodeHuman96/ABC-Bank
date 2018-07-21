@@ -76,21 +76,14 @@
               <Component id="jScrollPane1" min="-2" pref="101" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblEName" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmployee" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="53" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAssign" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lblEName" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEmployee" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAssign" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,6 +127,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmployee">
       <Events>
@@ -149,10 +145,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblCustomers">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="Check" type="java.lang.Boolean"/>
                 <Column editable="false" title="Campaign Name" type="java.lang.Object"/>
                 <Column editable="false" title="Customer Name" type="java.lang.Object"/>

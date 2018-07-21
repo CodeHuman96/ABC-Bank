@@ -32,29 +32,34 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDesc" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblProf" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAvgBal" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAgeRel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblFrom" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDesc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblProf" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAvgBal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAgeRel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSubTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCid" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblSubTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCid" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" pref="269" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                       <Component id="btnReset" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="159" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="lblDescMsg" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -88,7 +93,16 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblFrom" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+              <Component id="lblStatus" min="-2" pref="249" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,10 +120,12 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblTitleMsg" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -117,7 +133,7 @@
                       <Component id="jScrollPane1" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblDescMsg" min="-2" pref="19" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -144,6 +160,11 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <Component id="lblDateMsg" min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblFrom" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -154,20 +175,16 @@
                           <Component id="lblTo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblDateMsg" min="-2" pref="27" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <Component id="lblStatus" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -306,6 +323,8 @@
     <Component class="javax.swing.JLabel" name="lblDateMsg">
     </Component>
     <Component class="javax.swing.JLabel" name="lblCriteria">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStatus">
     </Component>
   </SubComponents>
 </Form>

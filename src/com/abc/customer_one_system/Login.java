@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         btnClear.setToolTipText("Clear fields");
     }
-
+    public static int EmpId;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,11 +170,11 @@ public class Login extends javax.swing.JFrame {
     private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
         try {
             Connection connect = ConnectionClass.getConnected();
-            String query = "select pass from employee where username=?";
+            String query = "select emp_id,pass from employee where username=?";
             PreparedStatement stmt = connect.prepareStatement(query);
             stmt.setString(1, usrName);
             ResultSet rs = stmt.executeQuery();
-            return rs.next() && rs.getString(1).equals(pass);
+            return rs.next() && rs.getString("pass").equals(pass) && ((EmpId=rs.getInt("emp_id"))>=0);
         } catch (ClassNotFoundException | SQLException e) {
             return false;
         }

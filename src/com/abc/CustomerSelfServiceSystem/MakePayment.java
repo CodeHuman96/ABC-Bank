@@ -4,7 +4,16 @@
  * and open the template in the editor.
  */
 package com.abc.CustomerSelfServiceSystem;
-import com.abc.customer_one_system.MatchFormats;
+
+//import com.abc.customer_one_system.MatchFormats;
+
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author test
@@ -71,6 +80,11 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setText("*");
 
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+        cbmAcNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmAcNoActionPerformed(evt);
+            }
+        });
 
         cbmBiller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
 
@@ -238,7 +252,7 @@ public class MakePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        MatchFormats match=new MatchFormats();
+        //MatchFormats match=new MatchFormats();
         boolean flag = true;
         try
         {
@@ -310,6 +324,10 @@ public class MakePayment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
+        
+    }//GEN-LAST:event_cbmAcNoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,11 +356,32 @@ public class MakePayment extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            @Override
             public void run() {
                 new MakePayment().setVisible(true);
             }
         });
+        try
+        {
+            MakePayment mp=new MakePayment();
+            Connection connect = ConnectionClass.getConnected();
+            String customer_id="";
+            String statement = "select biller_name from biller b join customer c on b.customer_id=c.customer_id where customer_id=?";
+            PreparedStatement stmt = connect.prepareStatement(statement);
+            stmt.setString(1,customer_id);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next())
+            {
+                mp.cbmBiller.addItem(rs.getString("biller_name"));
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex)
+        {
+            //lblMsg.setText("Connection Error"); 
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
