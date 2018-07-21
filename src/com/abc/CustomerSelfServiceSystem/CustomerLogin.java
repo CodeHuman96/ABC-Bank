@@ -5,19 +5,27 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author shivasai
  */
 public class CustomerLogin extends javax.swing.JFrame {
-     static String usrName="cst";
-     static String password="cst";
-
+      static String usrName;
+      static String password;
+      static int flag=0;
     /**
      * Creates new form Login
      */
     public CustomerLogin() {
         initComponents();
+        usrName=userNametxt.getText();
+        password=passWordtxt.getText();
     }
 
     /**
@@ -148,16 +156,24 @@ public class CustomerLogin extends javax.swing.JFrame {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         
+        if(flag==1)
+        {
+            CustomerLoginTo obj = new CustomerLoginTo();
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+        else {
+            errlbl.setText("Incorrect user name or password");
+        }
         
         
-        
-       if (usrName.equals(userNametxt.getText()) && password.equals(passWordtxt.getText())) {
+      /* if (usrName.equals(userNametxt.getText()) && password.equals(passWordtxt.getText())) {
             CustomerLoginTo obj = new CustomerLoginTo();
             obj.setVisible(true);
             this.setVisible(false);
         } else {
             errlbl.setText("Incorrect user name or password");
-        }
+        }*/
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void userNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNametxtActionPerformed
@@ -167,7 +183,7 @@ public class CustomerLogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException,ClassNotFoundException{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -192,7 +208,38 @@ public class CustomerLogin extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
+        //</editor-fold
+        
+        ConnectionClass cobj=new ConnectionClass();
+        Connection con=cobj.getConnected();
+        Statement stmt=con.createStatement();
+        String q1="select cust_user_name from customer";
+        ResultSet res1=stmt.executeQuery(q1);
+        while(res1.next())
+        {
+            if(usrName.equals(res1.getString(1)))
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+        {
+            flag=0;
+            String q2="select password from customer where cust_user_name='"+usrName+"'";
+            ResultSet res2=stmt.executeQuery(q2);
+            while(res2.next())
+            {
+                if(password.equals(res1.getString(1)))
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            
+        }
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
