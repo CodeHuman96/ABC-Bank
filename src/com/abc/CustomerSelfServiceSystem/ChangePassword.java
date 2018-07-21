@@ -192,7 +192,7 @@ public class ChangePassword extends javax.swing.JFrame {
 
     private void submitBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtActionPerformed
         
-        if((oldPasstxt.getText()).equals(CustomerLogin.password))
+      /*  if((oldPasstxt.getText()).equals(CustomerLogin.password))
         {
             if(newPasstxt.getText().equals(reTypePasstxt.getText()))
             {
@@ -207,7 +207,7 @@ public class ChangePassword extends javax.swing.JFrame {
         else
         {
             errlbl.setText("InValid credentials");
-        }
+        }*/
     }//GEN-LAST:event_submitBtActionPerformed
 
     private void backBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtActionPerformed

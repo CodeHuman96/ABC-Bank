@@ -96,7 +96,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
 
     private void creditCardServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditCardServiceMenuBtActionPerformed
        
-        SelfServiceMenu obj=new SelfServiceMenu();
+       CreditCardLogin obj=new CreditCardLogin();
         obj.setVisible(true);
         this.setVisible(false);
         
