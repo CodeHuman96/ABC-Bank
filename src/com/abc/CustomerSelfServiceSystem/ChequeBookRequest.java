@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 
@@ -20,6 +21,13 @@ public class ChequeBookRequest extends javax.swing.JFrame {
      */
     public ChequeBookRequest() {
         initComponents();
+        lblName.setText(CustomerServiceMenu.name);
+        Iterator itr=CustomerServiceMenu.acc.iterator();
+        while(itr.hasNext())
+        {
+            String s=(String)itr.next();
+            cmbAccountNo.addItem(s);
+        }
     }
 
     /**

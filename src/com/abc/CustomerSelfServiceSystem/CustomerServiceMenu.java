@@ -5,11 +5,18 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author shivasai
  */
 public class CustomerServiceMenu extends javax.swing.JFrame {
+    static String name=new String();
+    static List<String> acc=new ArrayList<>();
 
     /**
      * Creates new form CustomerServiceMenu
@@ -145,6 +152,27 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     private void mkSerReqBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mkSerReqBtActionPerformed
                 ServiceRequest obj = new ServiceRequest();
                 obj.setVisible(true);
+                try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where cust_user_name=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setString(1,"cust123");
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setString(1,"10000");
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                }
+                catch(ClassNotFoundException|SQLException e)
+                {
+                    e.printStackTrace();
+                }
                 this.setVisible(false);
     }//GEN-LAST:event_mkSerReqBtActionPerformed
 
