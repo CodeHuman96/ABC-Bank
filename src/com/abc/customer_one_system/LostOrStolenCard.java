@@ -7,7 +7,9 @@ package com.abc.customer_one_system;
 
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,6 +26,22 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException{
         initComponents();
         Connection con=ConnectionClass.getConnected();
+        Statement st=con.createStatement();
+        
+        String query="";
+        query="select * from credit_card_detail";
+        ResultSet rs=st.executeQuery(query);
+        while (rs.next())
+        {
+        
+            if (rs.getString("account_number").equals(""))
+            {
+            lbltxtCardNoCsr3.setText("rs.getInt(1)");
+            lbltxtCardTypeCsr3.setText("rs.getString(2)");
+            }
+        
+        }
+        
     }
 
     /**
