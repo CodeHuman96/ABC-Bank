@@ -5,6 +5,14 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
@@ -16,6 +24,32 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
      */
     public ListOfCreditCardAcc() {
         initComponents();
+        lblChk.setText(String.valueOf(CreditCardLogin.cid));
+        
+        try{
+         Connection connect = ConnectionClass.getConnected(); 
+         Statement st=connect.createStatement();
+         String query = "select a.account_number,c.card_type,a.balance,c.reward_points from account a join credit_card_detail c on a.account_number=c.account_number   where a.customer_id="+CreditCardLogin.cid;
+         ResultSet rs=st.executeQuery(query);
+         
+         while(rs.next())
+         {
+             
+            DefaultTableModel model = (DefaultTableModel)tblAccDetails.getModel();
+            model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4)});
+             
+         }
+         
+         /*else
+         {
+             lbl.setText("data not available");
+         }*/
+        
+        }
+        catch(ClassNotFoundException | SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -32,6 +66,7 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
         lblName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAccDetails = new javax.swing.JTable();
+        lblChk = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(100, 100));
@@ -50,16 +85,15 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
 
         tblAccDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Account Number ", "Card Type", "Account Balance", "Reward Points"
             }
         ));
         jScrollPane1.setViewportView(tblAccDetails);
+
+        lblChk.setText("123");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,11 +108,14 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
                         .addComponent(lblName)
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(260, 260, 260))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblChk)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(94, 94, 94))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(260, 260, 260))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +126,9 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
                     .addComponent(lblName))
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(lblChk)
+                .addGap(10, 10, 10)
                 .addComponent(btnBack)
                 .addGap(49, 49, 49))
         );
@@ -103,7 +142,7 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
         ssm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-
+       
     /**
      * @param args the command line arguments
      */
@@ -143,6 +182,7 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblChk;
     private javax.swing.JLabel lblName;
     private javax.swing.JTable tblAccDetails;
     // End of variables declaration//GEN-END:variables
