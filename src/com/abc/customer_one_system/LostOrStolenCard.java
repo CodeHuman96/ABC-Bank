@@ -5,6 +5,11 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +21,9 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     /**
      * Creates new form LostOrStolenCard
      */
-    public LostOrStolenCard() {
+    public LostOrStolenCard() throws ClassNotFoundException, SQLException{
         initComponents();
+        Connection con=ConnectionClass.getConnected();
     }
 
     /**
@@ -198,7 +204,13 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LostOrStolenCard().setVisible(true);
+                try {
+                    new LostOrStolenCard().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
