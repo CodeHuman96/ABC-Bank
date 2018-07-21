@@ -44,10 +44,6 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-<<<<<<< HEAD
-                              <Component id="cmbAccountNo" min="-2" pref="180" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
-=======
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblName" min="-2" pref="226" max="-2" attributes="0"/>
@@ -69,7 +65,6 @@
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
->>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
                           </Group>
                       </Group>
                   </Group>
@@ -92,18 +87,12 @@
                   <Component id="lblAccountNo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbAccountNo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblDate" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-=======
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="spinDate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
->>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -170,8 +159,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
-<<<<<<< HEAD
-=======
     <Component class="javax.swing.JLabel" name="lblMsg">
     </Component>
     <Component class="javax.swing.JSpinner" name="spinDate">
@@ -181,6 +168,5 @@
         </Property>
       </Properties>
     </Component>
->>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
   </SubComponents>
 </Form>
