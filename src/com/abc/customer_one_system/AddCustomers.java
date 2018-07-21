@@ -441,7 +441,7 @@ public class AddCustomers extends javax.swing.JFrame {
         boolean flag = true;
 
         try {
-
+            Connection connect = ConnectionClass.getConnected();
             lblMsg.setText("");
             String name = txtName.getText().trim();
             if (name.equals("")) {
@@ -526,27 +526,19 @@ public class AddCustomers extends javax.swing.JFrame {
             }
             if (flag) {
                 lblMsg.setText("Loading..");
-                try {
-                    //ckeck if data is already in the db name dob conatact number
-                    Connection connect = ConnectionClass.getConnected();
-                    if (!isPresent(name, contactNo, connect)) {
-                        lblMsg.setText("Adding Data");
-                        /*synchronized (this) {
-                            String statement = "";
-                            PreparedStatement stmt = connect.prepareStatement(statement);
-                            lblDateFormat.setText("connection made");
+                if (!isPresent(name, contactNo, connect)) {
+                    lblMsg.setText("Adding Data");
 
-                        }*/
-                    } else {
-                        lblMsg.setText("Data Already Exists");
-                    }
-                } catch (ClassNotFoundException | SQLException ex) {
-                    lblMsg.setText("Connection Error");
-
+                } else {
+                    lblMsg.setText("Data Already Exists");
                 }
+
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             lblMsg.setText("Invalid input(s)");
+        } catch (ClassNotFoundException | SQLException ex) {
+            lblMsg.setText("add jar file");
+
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 

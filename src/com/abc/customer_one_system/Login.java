@@ -170,17 +170,15 @@ public class Login extends javax.swing.JFrame {
     private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
         try {
             Connection connect = ConnectionClass.getConnected();
-            String query = "select * from employee where username='?'";
+            String query = "select pass from employee where username=?";
             PreparedStatement stmt = connect.prepareStatement(query);
             stmt.setString(1, usrName);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next() && rs.getString("pass").equals(pass)) {
-                return true;
-            }
+            return rs.next() && rs.getString(1).equals(pass);
         } catch (ClassNotFoundException | SQLException e) {
-            lblMsg.setText("Connection error");
+            return false;
         }
-        return false;
+
     }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //if business condition true
@@ -244,13 +242,13 @@ public class Login extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
-    boolean only_once=true;
+    boolean only_once = true;
     private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
         if (only_once) {
             txtUserName.setText("");
-            only_once=false;
+            only_once = false;
         }
-        
+
 
     }//GEN-LAST:event_txtUserNameMouseClicked
 
