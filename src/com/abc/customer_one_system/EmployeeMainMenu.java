@@ -19,13 +19,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      */
     public EmployeeMainMenu() {
         initComponents();
+        lblTemp.setText(Integer.toString(Login.EmpId));
     }
 
-    /*EmployeeMainMenu() {
-=======
->>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 
     
 
@@ -43,6 +39,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         btnBackOfficeMain = new javax.swing.JButton();
         btnCampainMain = new javax.swing.JButton();
         btnRewardManagement = new javax.swing.JButton();
+        lblTemp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +74,8 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             }
         });
 
+        lblTemp.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,6 +98,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                         .addGap(127, 127, 127)
                         .addComponent(btnRewardManagement)))
                 .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTemp)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +116,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 .addComponent(btnCampainMain)
                 .addGap(28, 28, 28)
                 .addComponent(btnRewardManagement)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(lblTemp)
+                .addContainerGap())
         );
 
         pack();
@@ -189,5 +194,6 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnCustOneMain;
     private javax.swing.JButton btnRewardManagement;
     private javax.swing.JLabel lblEmpMainMenu;
+    private javax.swing.JLabel lblTemp;
     // End of variables declaration//GEN-END:variables
 }

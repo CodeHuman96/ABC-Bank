@@ -51,6 +51,10 @@ public class MatchFormats {
         pattern = "[a-z A-Z .'-]";
         return name.matches(pattern);
     }
+    public boolean matchAccountNumber(String accNo){
+        pattern ="[0-9]{10}";
+        return accNo.matches(pattern);
+    }
 
     public boolean verifyDuration(String from, String to) {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");

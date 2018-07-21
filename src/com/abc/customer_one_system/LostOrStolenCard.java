@@ -5,6 +5,13 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +23,25 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     /**
      * Creates new form LostOrStolenCard
      */
-    public LostOrStolenCard() {
+    public LostOrStolenCard() throws ClassNotFoundException, SQLException{
         initComponents();
+        Connection con=ConnectionClass.getConnected();
+        Statement st=con.createStatement();
+        
+        String query="";
+        query="select * from credit_card_detail";
+        ResultSet rs=st.executeQuery(query);
+        while (rs.next())
+        {
+        
+            if (rs.getString("account_number").equals(""))
+            {
+            lbltxtCardNoCsr3.setText("rs.getInt(1)");
+            lbltxtCardTypeCsr3.setText("rs.getString(2)");
+            }
+        
+        }
+        
     }
 
     /**
@@ -198,7 +222,13 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LostOrStolenCard().setVisible(true);
+                try {
+                    new LostOrStolenCard().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
