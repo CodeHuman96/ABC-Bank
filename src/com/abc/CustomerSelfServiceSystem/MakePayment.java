@@ -71,6 +71,11 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setText("*");
 
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
+        cbmAcNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmAcNoActionPerformed(evt);
+            }
+        });
 
         cbmBiller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
 
@@ -309,6 +314,10 @@ public class MakePayment extends javax.swing.JFrame {
             lblMsg.setText("Invalid input(s)");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbmAcNoActionPerformed
 
     /**
      * @param args the command line arguments
