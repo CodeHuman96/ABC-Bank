@@ -2,10 +2,66 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
+<<<<<<< HEAD
             <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
             <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/Login.java</file>
             <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
+=======
+=======
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ServiceRequest.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ChequeBookRequest.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+=======
+=======
+>>>>>>> a6d86d90e2ee7f0a7b8a4b125d1c7f145347b16c
+>>>>>>> 2c7a05b207c3fe6d207e348d7b4cae4a1004b1e3
+<<<<<<< HEAD
+        <group>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/Login.java</file>
         </group>
+=======
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
+>>>>>>> c9ffffaf115352bf2b1398d8028f547947014edb
+>>>>>>> 4f8f524b10d1225af736125ae5a3559094ae74c1
+>>>>>>> be9e2c7bc267d71872c3884272a8cc8bac3780a3
+>>>>>>> 185465afe53bc03ffdda8db0563bc067a2b805c9
+=======
+            <file>file:/home/test/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/QueryResponse.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
+>>>>>>> a6d86d90e2ee7f0a7b8a4b125d1c7f145347b16c
+>>>>>>> 2c077450b1240a159ea1ca33eb3e7da539ec2001
+        </group>
+>>>>>>> 6e992e081b57c409224af60a5747164477456eef
+>>>>>>> da896116fb6baadad33392ea1deae54be86f65ec
     </open-files>
 </project-private>
