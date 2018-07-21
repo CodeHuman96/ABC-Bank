@@ -68,6 +68,11 @@ public class QueryResponse extends javax.swing.JFrame {
         btnSubmitCsr7.setText("Submit");
 
         btnRefreshCsr7.setText("Refresh");
+        btnRefreshCsr7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshCsr7ActionPerformed(evt);
+            }
+        });
 
         btnBackCsr7.setText("Back");
 
@@ -149,6 +154,10 @@ public class QueryResponse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRefreshCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshCsr7ActionPerformed
+        lbltxCustNameCsr7.setText("");
+    }//GEN-LAST:event_btnRefreshCsr7ActionPerformed
 
     /**
      * @param args the command line arguments

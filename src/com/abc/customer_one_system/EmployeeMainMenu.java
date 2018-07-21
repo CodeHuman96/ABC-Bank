@@ -21,11 +21,6 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         initComponents();
     }
 
-    /*EmployeeMainMenu() {
-=======
->>>>>>> f5baee0fa8b63a143706319aa1b3299aca6f4e12
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 
     
 
