@@ -154,15 +154,15 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 obj.setVisible(true);
                 try{
                     Connection connect=ConnectionClass.getConnected();
-                    String query="select name from customer where cust_user_name=?";
+                    String query="select name from customer where customer_id=?";
                     PreparedStatement stmt=connect.prepareStatement(query);
-                    stmt.setString(1,"cust123");
+                    stmt.setInt(1,CustomerLogin.customerid);
                     ResultSet rs = stmt.executeQuery();
                     rs.next();
                     name=rs.getString(1);
                     String query2="Select account_number from account where customer_id=?";
                     PreparedStatement stmt2=connect.prepareStatement(query2);
-                    stmt2.setString(1,"10000");
+                    stmt2.setInt(1,CustomerLogin.customerid);
                     ResultSet rs2=stmt2.executeQuery();
                     while(rs2.next())
                     {
