@@ -144,6 +144,7 @@ public class AddCustomers extends javax.swing.JFrame {
             }
         });
 
+        txtMonIncome.setText("12.0");
         txtMonIncome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMonIncomeActionPerformed(evt);
@@ -515,11 +516,12 @@ public class AddCustomers extends javax.swing.JFrame {
                 lblMobileNoFormat.setText("");
             }
             String occupation = txtOccupation.getText().trim();
+            Double monthlyIncome;
             if (txtMonIncome.getText().trim().equals("")) {
                 lblIncomeFormat.setText("Cannot be empty");
                 flag &= false;
             } else {
-                Double monthlyIncome = Double.parseDouble(txtMonIncome.getText().trim());
+                monthlyIncome = Double.parseDouble(txtMonIncome.getText().trim());
                 lblMsg.setText("");
             }
             if (flag) {
@@ -529,29 +531,25 @@ public class AddCustomers extends javax.swing.JFrame {
                     Connection connect = ConnectionClass.getConnected();
                     if (!isPresent(name, contactNo, connect)) {
                         lblMsg.setText("Adding Data");
-                        /*synchronized (this)*/ {
-                            String statement="";
+                        /*synchronized (this) {
+                            String statement = "";
                             PreparedStatement stmt = connect.prepareStatement(statement);
                             lblDateFormat.setText("connection made");
-                            
-                        }
+
+                        }*/
                     } else {
                         lblMsg.setText("Data Already Exists");
                     }
                 } catch (ClassNotFoundException | SQLException ex) {
-                    lblMsg.setText("DBConnection Error");
+                    lblMsg.setText("Connection Error");
 
                 }
-
-            } else {
-                lblMsg.setText("Invalid Entry");
             }
-        } catch (NumberFormatException e) {
+        }catch(NumberFormatException e){
             lblMsg.setText("Invalid input(s)");
         }
-
-
     }//GEN-LAST:event_btnSubmitActionPerformed
+
     private boolean isPresent(String name, String contactNo, Connection connect) throws SQLException {
 
         String statement = "select (customer_id) from customer where name=? and mobile_num=?";

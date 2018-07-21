@@ -75,7 +75,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txtUserName.setText("Test");
+        txtUserName.setText("EPB0001");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUserNameMouseClicked(evt);
@@ -168,17 +168,19 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
-        try (Connection connect = ConnectionClass.getConnected()) {
-            String query = "select pass from employee where username='?'";
+        try {
+            Connection connect = ConnectionClass.getConnected();
+            String query = "select * from employee where username='?'";
             PreparedStatement stmt = connect.prepareStatement(query);
             stmt.setString(1, usrName);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next() && !rs.getString(1).equals(pass)) {
-                return false;
+            if (rs.next() && rs.getString("pass").equals(pass)) {
+                return true;
             }
-            lblMsg.setText("Sucess");
+        } catch (ClassNotFoundException | SQLException e) {
+            lblMsg.setText("Connection error");
         }
-        return true;
+        return false;
     }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //if business condition true
@@ -189,7 +191,6 @@ public class Login extends javax.swing.JFrame {
         } else {
             try {
                 if (verification(usrName, password)) {
-                    lblMsg.setText("Loging in..");
                     EmployeeMainMenu obj;
                     obj = new EmployeeMainMenu();
                     obj.setVisible(true);
@@ -222,11 +223,18 @@ public class Login extends javax.swing.JFrame {
                 lblMsg.setText("Fields cannot be empty");
             } else {
                 try {
-                    verification(usrName, password);
+                    if (verification(usrName, password)) {
+                        lblMsg.setText("Loging in..");
+                        EmployeeMainMenu obj;
+                        obj = new EmployeeMainMenu();
+                        obj.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        lblMsg.setText("Incorrect user name or password");
+                    }
                 } catch (ClassNotFoundException | SQLException ex) {
-                    lblMsg.setText("DataBase ");
+                    lblMsg.setText("DataBase Not Connected");
                 }
-                lblMsg.setText("Incorrect user name or password");
             }
 
         }
@@ -236,9 +244,14 @@ public class Login extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
-
+    boolean only_once=true;
     private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
-        txtUserName.setText("");
+        if (only_once) {
+            txtUserName.setText("");
+            only_once=false;
+        }
+        
+
     }//GEN-LAST:event_txtUserNameMouseClicked
 
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
