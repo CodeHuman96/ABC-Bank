@@ -23,6 +23,9 @@ public class ConnectionClass {
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
 
 <<<<<<< HEAD
+ 
+=======
+<<<<<<< HEAD
 
     //static public Connection getConnected() throws ClassNotFoundException, SQLException{
 
