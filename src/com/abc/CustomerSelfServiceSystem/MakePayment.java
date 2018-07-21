@@ -278,7 +278,7 @@ public class MakePayment extends javax.swing.JFrame {
             String amount=txtAmount.getText().trim();
             if(amount.equals(""))
             {
-                MsgAmount.setText("cannot be empty");
+                MsgAmount.setText("Cannot be empty");
                 flag &=false;
             }
             else
@@ -288,7 +288,7 @@ public class MakePayment extends javax.swing.JFrame {
             String date=txtPayDueDate.getText().trim();
             if(date.equals(""))
             {
-                MsgDate.setText("cannot be empty");
+                MsgDate.setText("Cannot be empty");
                 flag &=false;
             }
             else
