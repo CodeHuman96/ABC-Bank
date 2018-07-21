@@ -5,6 +5,9 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+
+import java.sql.*;
+
 import java.time.LocalDate;
 
 /**
@@ -111,8 +114,9 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         MakePayment payment=new MakePayment();
         this.setVisible(false);
         payment.setVisible(true);
+        
     }//GEN-LAST:event_btnMakePaymentActionPerformed
-
+    
     private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed
         ViewPaymentHistory history=new ViewPaymentHistory();
         this.setVisible(false);
