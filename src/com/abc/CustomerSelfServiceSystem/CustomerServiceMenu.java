@@ -6,16 +6,24 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+=======
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> 358ed03341ff9964e0bcf0ccc091f794871060f0
 
 /**
  *
  * @author shivasai
  */
 public class CustomerServiceMenu extends javax.swing.JFrame {
+    static String name=new String();
+    static List<String> acc=new ArrayList<>();
 
     public static String wel;
     /**
@@ -176,6 +184,27 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     private void mkSerReqBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mkSerReqBtActionPerformed
                 ServiceRequest obj = new ServiceRequest();
                 obj.setVisible(true);
+                try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                }
+                catch(ClassNotFoundException|SQLException e)
+                {
+                    e.printStackTrace();
+                }
                 this.setVisible(false);
     }//GEN-LAST:event_mkSerReqBtActionPerformed
 

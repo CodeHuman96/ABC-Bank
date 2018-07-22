@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package com.abc.customer_one_system;
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+//import java.sql.Statement;
+//import static javax.management.remote.JMXConnectorFactory.connect;
 
 /**
  *
@@ -14,6 +19,35 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     /**
      * Creates new form ListOfCustomerRequest
      */
+    public void statusCheck(int type,String status) throws Exception
+    {
+        ConnectionClass concls = new ConnectionClass();
+        
+        Statement stmt = concls.getConnected().createStatement();
+        //pstmt.setInt(1,type);
+       // pstmt.setString(2,status);
+        String query="select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type="+type+" and cr.csr_status='"+status+"'";
+        
+        ResultSet rs=stmt.executeQuery(query);
+        
+             
+       
+        
+        while(rs.next())
+        {
+            int reqType = rs.getInt(1);
+            int acNo = rs.getInt(2);
+            String acType = rs.getString(3);
+            String custName = rs.getString(4);
+            Date reqDate = rs.getDate(5);
+            String rStatus = rs.getString(6);
+            DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+            model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
+            
+        }
+       // tblListOfCustReq.setModel(model);
+        
+    }
     public ListOfCustomerRequests() {
         initComponents();
     }
@@ -69,15 +103,17 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
         tblListOfCustReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Request Type", "Account Number", "Account Type", "Customer Name", "Request Date", "Status"
             }
         ));
+        tblListOfCustReq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListOfCustReqMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblListOfCustReq);
 
         btnBackListOfCustReq.setText("Back");
@@ -97,21 +133,20 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblTitleListOfCustReq)
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblReqTypeListOfCustReq, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(148, 148, 148)
-                                        .addComponent(lblStatusListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(150, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblStatusListOfCustReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblReqTypeListOfCustReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(109, 109, 109)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmbStatusListOfCustReq, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbRequestTypeListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cmbRequestTypeListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblTitleListOfCustReq)
+                                .addGap(26, 26, 26)))
                         .addGap(79, 79, 79)
                         .addComponent(btnSubmitListOfCustReq, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)))
@@ -146,7 +181,40 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
-        // TODO add your handling code here:
+        int type;
+        //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
+        String status=(String)cmbStatusListOfCustReq.getSelectedItem();
+        try
+        {
+            if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
+            {
+                type=1;
+                statusCheck(type,status);
+                
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Disputed Transaction")
+            {
+                type=5;
+                statusCheck(type,status);
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {
+                type=3;
+                statusCheck(type,status);
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
+            {
+                type=6;
+                statusCheck(type,status);
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+       
+            
+        
     }//GEN-LAST:event_btnSubmitListOfCustReqActionPerformed
 
     private void cmbRequestTypeListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRequestTypeListOfCustReqActionPerformed
@@ -162,6 +230,34 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         BackOfficeMenu backofficemenu = new BackOfficeMenu();
         backofficemenu.setVisible(true);
     }//GEN-LAST:event_btnBackListOfCustReqActionPerformed
+
+    private void tblListOfCustReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustReqMouseClicked
+         if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
+            {
+                this.setVisible(false);
+                ChequebookRequest cbr = new ChequebookRequest();
+                cbr.setVisible(true);
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Disputed Transaction")
+            {
+                this.setVisible(false);
+                DisputedTransaction dt = new DisputedTransaction();
+                dt.setVisible(true);
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {
+                this.setVisible(false);
+                LostOrStolenCard lst = new LostOrStolenCard();
+                lst.setVisible(true);
+            }
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
+            {
+                //this.setVisible(false);
+                
+            }
+        DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+         
+    }//GEN-LAST:event_tblListOfCustReqMouseClicked
 
     /**
      * @param args the command line arguments

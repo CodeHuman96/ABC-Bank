@@ -5,6 +5,9 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.*;
+
 /**
  *
  * @author test
@@ -28,10 +31,10 @@ public class ListOfQueries extends javax.swing.JFrame {
     private void initComponents() {
 
         lblStatusListCq = new javax.swing.JLabel();
-        cmbStatusListCq = new javax.swing.JComboBox<>();
+        cmbStatusListOfCustQueries = new javax.swing.JComboBox<>();
         btnSubmitListCq = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblListOfCustQueries = new javax.swing.JTable();
         btnBackListCq = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
 
@@ -39,30 +42,32 @@ public class ListOfQueries extends javax.swing.JFrame {
 
         lblStatusListCq.setText("Status");
 
-        cmbStatusListCq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
-        cmbStatusListCq.addActionListener(new java.awt.event.ActionListener() {
+        cmbStatusListOfCustQueries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
+        cmbStatusListOfCustQueries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbStatusListCqActionPerformed(evt);
+                cmbStatusListOfCustQueriesActionPerformed(evt);
             }
         });
 
         btnSubmitListCq.setText("Submit");
+        btnSubmitListCq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitListCqActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblListOfCustQueries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Query Number", "Customer name", "Customer Query", "Query Respone", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(tblListOfCustQueries);
+        if (tblListOfCustQueries.getColumnModel().getColumnCount() > 0) {
+            tblListOfCustQueries.getColumnModel().getColumn(0).setResizable(false);
+            tblListOfCustQueries.getColumnModel().getColumn(1).setResizable(false);
         }
 
         btnBackListCq.setText("Back");
@@ -88,7 +93,7 @@ public class ListOfQueries extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addComponent(lblStatusListCq, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbStatusListCq, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbStatusListOfCustQueries, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addComponent(btnSubmitListCq, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(112, Short.MAX_VALUE))
@@ -110,7 +115,7 @@ public class ListOfQueries extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStatusListCq, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbStatusListCq, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbStatusListOfCustQueries, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSubmitListCq))
                 .addGap(76, 76, 76)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,15 +127,33 @@ public class ListOfQueries extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbStatusListCqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusListCqActionPerformed
+    private void cmbStatusListOfCustQueriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusListOfCustQueriesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbStatusListCqActionPerformed
+    }//GEN-LAST:event_cmbStatusListOfCustQueriesActionPerformed
 
     private void btnBackListCqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackListCqActionPerformed
         this.setVisible(false);
         BackOfficeMenu backofficemenu = new BackOfficeMenu();
         backofficemenu.setVisible(true);
     }//GEN-LAST:event_btnBackListCqActionPerformed
+
+    private void btnSubmitListCqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListCqActionPerformed
+        try
+        {
+            String status = (String)cmbStatusListOfCustQueries.getSelectedItem();
+        
+        
+            ConnectionClass concls = new ConnectionClass();
+        
+            Statement stmt = concls.getConnected().createStatement();
+            
+            String query ="select q.csr_id, c.name, q.query_, q.query_response,cr.csr_status from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_ststus="+status; 
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }//GEN-LAST:event_btnSubmitListCqActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,10 +193,10 @@ public class ListOfQueries extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackListCq;
     private javax.swing.JButton btnSubmitListCq;
-    private javax.swing.JComboBox<String> cmbStatusListCq;
+    private javax.swing.JComboBox<String> cmbStatusListOfCustQueries;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblStatusListCq;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblListOfCustQueries;
     // End of variables declaration//GEN-END:variables
 }

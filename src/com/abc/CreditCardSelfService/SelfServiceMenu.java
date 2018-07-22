@@ -8,6 +8,9 @@ package com.abc.CreditCardSelfService;
 import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
 import com.abc.CustomerSelfServiceSystem.CustomerLogin;
 import com.abc.customer_one_system.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,8 +21,14 @@ public class SelfServiceMenu extends javax.swing.JFrame {
     /**
      * Creates new form SelfServiceMenu
      */
+     public String name;
     public SelfServiceMenu() {
         initComponents();
+       
+    }
+    public void setWel(String name)
+    {
+        lblWelcome.setText(name);
     }
 
     /**
@@ -88,7 +97,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
             }
         });
 
-        lblWelcome.setText("Welcome xxx");
+        lblWelcome.setText("                               ");
 
         btnCardAccounts.setText("List of Credit Card Accounts");
         btnCardAccounts.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +113,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(lblWelcome)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
@@ -161,9 +170,17 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
     private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
         // TODO add your handling code here:
-        RedeemRewardPoints rrp=new RedeemRewardPoints();
-        rrp.setVisible(true);
+        RedeemRewardPoints rrp;
+         try {
+             rrp = new RedeemRewardPoints();
+               rrp.setVisible(true);
           this.setVisible(false);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+         }
+      
     }//GEN-LAST:event_btnRedeemActionPerformed
 
     private void btnViewStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStatusActionPerformed
@@ -228,6 +245,8 @@ public class SelfServiceMenu extends javax.swing.JFrame {
                 new SelfServiceMenu().setVisible(true);
             }
         });
+       
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
