@@ -70,7 +70,7 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="radNo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cbmAcNo" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Component id="cbmAcNo" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -209,12 +209,8 @@
     <Component class="javax.swing.JComboBox" name="cbmAcNo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="item1"/>
-            <StringItem index="1" value="item2"/>
-            <StringItem index="2" value="item3"/>
-            <StringItem index="3" value="item4"/>
-            <StringItem index="4" value=" "/>
+          <StringArray count="1">
+            <StringItem index="0" value="add account"/>
           </StringArray>
         </Property>
       </Properties>
@@ -228,12 +224,8 @@
     <Component class="javax.swing.JComboBox" name="cbmBiller">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="item1"/>
-            <StringItem index="1" value="item2"/>
-            <StringItem index="2" value="item3"/>
-            <StringItem index="3" value="item4"/>
-            <StringItem index="4" value=" "/>
+          <StringArray count="1">
+            <StringItem index="0" value="select biller"/>
           </StringArray>
         </Property>
       </Properties>
@@ -258,6 +250,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAmount">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtAmountMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radYes">
       <Properties>
@@ -266,6 +261,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radYesMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radNo">
       <Properties>
@@ -274,8 +272,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radNoMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPayDueDate">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPayDueDateMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>

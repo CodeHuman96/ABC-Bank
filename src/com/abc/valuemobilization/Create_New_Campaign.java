@@ -350,11 +350,14 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             flag &= false;
         }
         try {
+            
             String Cid = txtCid.getText();
             String CTitle = txtCTitle.getText();
             String Desc = txtDesc.getText();
             String fDate = txtFrom.getText();
             String tDate = txtTo.getText();
+            int EmpId=Login.EmpId;
+            EmpId=11000000;
             int age = Integer.parseInt(txtAgeRel.getText());
             double balance = Double.parseDouble(txtAvgBal.getText());
             String profession = txtProf.getText();
@@ -364,7 +367,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             if (flag) {
                 Connection con = ConnectionClass.getConnected();
                 Statement s = con.createStatement();
-                String q1 = "insert into CAMPAIGN values('" + Cid + "','" + CTitle + "','" + Desc + "','" +fDate+ "','"+tDate+" ',11000000)";
+                String q1 = "insert into CAMPAIGN values('" + Cid + "','" + CTitle + "','" + Desc + "','" +fDate+ "','"+tDate+" ',"+EmpId+")";
                 String q2 = "insert into CAMPAIGN_CRITERIA values(" + age + "," + balance + ",'" + profession + "','"+ Cid+"')";
                 int result1 = s.executeUpdate(q1);
                 int result2 = s.executeUpdate(q2);
