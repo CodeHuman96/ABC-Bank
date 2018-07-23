@@ -126,13 +126,9 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         {
         MakePayment payment=new MakePayment();
         payment.setVisible(true);
-<<<<<<< HEAD
-        
-=======
         this.setVisible(false);
         }
         catch(ClassNotFoundException | SQLException e){}
->>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
     }//GEN-LAST:event_btnMakePaymentActionPerformed
     
     private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed

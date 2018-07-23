@@ -351,11 +351,7 @@ public class MakePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
-<<<<<<< HEAD
         // TODO add your handling code here:
-=======
-        
->>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
     }//GEN-LAST:event_cbmAcNoActionPerformed
 
     /**
