@@ -27,10 +27,10 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     public List_Of_Prospective_Customers()throws SQLException, ClassNotFoundException {
         initComponents();
         int EmpId=Login.EmpId;
-         String CTitle="";
-         String Status="";
-         String Name="";
-         String Mobile="";
+         
+        String Name="";
+        String Mobile="";
+        
         Connection con = ConnectionClass.getConnected();
         Statement s = con.createStatement();
         String q="Select * from PROSPECTIVE_CUSTOMERS p join CAMPAIGN c on p.CAMPAIGN_ID=c.CAMPAIGN_ID where p.EMPLOYEE_ID=11000000"/*+EmpId*/;
@@ -38,9 +38,9 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
         ResultSet rs= s.executeQuery(q);
         while(rs.next())
         {
-        CTitle=rs.getString(6);
+        String CTitle=rs.getString(6);
         
-        Status=rs.getString(1);
+        String Status=rs.getString(1);
         int Cust_Id=rs.getInt(2);
         
         DefaultTableModel model;
@@ -132,7 +132,7 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
+                        .addGap(144, 144, 144)
                         .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -145,10 +145,11 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
                 .addComponent(btnLogout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUpdate)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -165,28 +166,31 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
         
         try 
         {
-            Connection con = ConnectionClass.getConnected();
-            Statement s = con.createStatement();
+            
             DefaultTableModel model;
             model = (DefaultTableModel) tblProspects.getModel();
             
-            for(int i=0; i<tblProspects.getRowCount(); i++)
-            {
-                String status= model.getValueAt(tblProspects.getSelectedRow(), 3).toString();
-                String id=model.getValueAt(tblProspects.getSelectedRow(), 1).toString();
-           
-                String q="Update PROSPECTIVE_CUSTOMERS set STATUS='"+status+"' where CUSTOMER_ID="+id;
-                int result=s.executeUpdate(q);
-                
-                if(result>0)
-                {
-                    lblStatus.setText("Status Updated");
-                }
-                else
-                {
-                    lblStatus.setText("Unable to update status");
-                }
+            if (tblProspects.getSelectedRow() == -1) {
+            if (tblProspects.getRowCount() == 0) {
+                lblStatus.setText("Table is empty");
+            } else {
+                lblStatus.setText("Select a row");
             }
+        } else if (tblProspects.getSelectedColumnCount() > 1) {
+            lblStatus.setText("Select only one row");
+        } else {
+            
+            String CTitle=(String)model.getValueAt(tblProspects.getSelectedRow(),0);
+            int id=(int)model.getValueAt(tblProspects.getSelectedRow(),1);
+            String Name=(String)model.getValueAt(tblProspects.getSelectedRow(),2);
+            String Mobile=(String)model.getValueAt(tblProspects.getSelectedRow(),3);
+            String Id=Integer.toString(id);
+            Update_Campaign obj=new Update_Campaign(CTitle,Id,Name, Mobile);
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+            
+            
             
         } 
         catch (ClassNotFoundException | SQLException ex) 
