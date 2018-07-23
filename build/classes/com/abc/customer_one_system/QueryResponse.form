@@ -60,7 +60,7 @@
                           <Component id="lbltxCustNameCsr7" alignment="1" max="32767" attributes="0"/>
                           <Component id="lbltxQueryRecvOnCsr7" alignment="1" max="32767" attributes="0"/>
                           <Component id="lbltxQueryCsr7" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtareaResponseCsr7" pref="272" max="32767" attributes="0"/>
+                          <Component id="textareaResponseCsr7" pref="272" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -95,7 +95,7 @@
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtareaResponseCsr7" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="textareaResponseCsr7" min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblResponseCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblStarCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -167,14 +167,14 @@
         <Property name="text" type="java.lang.String" value="Response"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="txtareaResponseCsr7">
+    <Container class="javax.swing.JScrollPane" name="textareaResponseCsr7">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txtareaResponseCsr7">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
