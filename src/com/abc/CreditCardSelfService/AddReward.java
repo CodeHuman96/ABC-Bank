@@ -5,11 +5,34 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.JDBCConnection.ConnectionClass;
 import java.awt.BorderLayout;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -17,16 +40,69 @@ import javax.swing.JFileChooser;
  */
 public class AddReward extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form AddReward
      */
+     JFileChooser fileChooser;
+    JPanel pobj, innerPanel;
     public AddReward() throws Exception {
         initComponents();
         setSize(1000, 1000);
         //setLocation(1500, 1500);
+     //   setVisible(true);
         setLayout(new BorderLayout());
        /* String Pdesc=lblProductDesc.getText();
         Integer PtsNeed=Integer.parseInt(lblPtsNeeded.getText());*/
+    }
+    private void SaveImage(String imagePath) throws FileNotFoundException, IOException {
+        try {
+            byte[] rawBytes = null;
+            FileInputStream fis = null;
+
+            if (imagePath.equals("No File Uploaded")) {
+                ClassLoader cl = this.getClass().getClassLoader();
+                URL resouces = cl.getResource("resources/blank-image.png");
+                imagePath = resouces.getFile();
+            }
+
+            File fileObj = new File(imagePath);
+            fis = new FileInputStream(fileObj);
+            
+
+             Connection con=ConnectionClass.getConnected(); 
+            
+            PreparedStatement st = con.prepareStatement("insert into product values(prod_seq.nextval,?,?,?)");
+           int pts = Integer.parseInt(lblPtsNeeded.getText());
+            st.setString(1, lblProdDesc.getText());
+            //st.setInt(3,100);
+           // lblPtsNeeded.setText("100");
+           st.setInt(3, pts);
+             
+            //st.setBinaryStream(4, fis);
+            int imageLength = Integer.parseInt(String.valueOf(fileObj.length()));
+            
+            Blob blob = con.createBlob();
+
+
+            rawBytes = new byte[imageLength];
+            fis.read(rawBytes, 0, imageLength);
+            //st.setBinaryStream(4, (InputStream) fis, imageLength);
+            //st.setBytes(3, rawBytes);
+            
+            blob.setBytes(2, rawBytes);
+            st.setBlob(2, blob);
+         
+            
+            int count = st.executeUpdate();
+            if (count > 0) {
+                JOptionPane.showMessageDialog(this, "Data Saved Successfully");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Saving Data");
+            }
+        } catch (HeadlessException | ClassNotFoundException | NumberFormatException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
 
     /**
@@ -43,13 +119,15 @@ public class AddReward extends javax.swing.JFrame {
         lblProductDescLHS = new javax.swing.JLabel();
         lblPtsNeededLHS = new javax.swing.JLabel();
         lblProductImage = new javax.swing.JLabel();
-        lblProductDesc = new javax.swing.JLabel();
         lblPtsNeeded = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnUpload = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
+        lblProdDesc = new javax.swing.JTextField();
+        lblPtsneeded = new javax.swing.JTextField();
 
         jLabel5.setText("jLabel5");
 
@@ -64,9 +142,7 @@ public class AddReward extends javax.swing.JFrame {
 
         lblProductImage.setText("Product Image");
 
-        lblProductDesc.setText("abc");
-
-        lblPtsNeeded.setText("123                             ");
+        lblPtsNeeded.setText("     ");
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(224, 31, 31));
@@ -84,6 +160,11 @@ public class AddReward extends javax.swing.JFrame {
         });
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -92,29 +173,15 @@ public class AddReward extends javax.swing.JFrame {
             }
         });
 
+        lblProdDesc.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(106, 106, 106))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(btnSubmit)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBack))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblProductImage)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUpload)))
-                        .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -123,38 +190,61 @@ public class AddReward extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblPtsNeededLHS)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel9)))
-                        .addGap(35, 35, 35)
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblPtsneeded)
+                            .addComponent(lblProdDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPtsNeeded, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblProductImage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpload)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPtsNeeded, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                .addGap(46, 46, 46))
+                                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblProductDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(btnSubmit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBack)
+                                .addGap(75, 75, 75))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(43, 43, 43)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProductDescLHS)
-                    .addComponent(lblProductDesc)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(lblProdDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblPtsNeededLHS)
                         .addComponent(jLabel9))
-                    .addComponent(lblPtsNeeded, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPtsNeeded, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPtsneeded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProductImage)
                     .addComponent(btnUpload))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnBack))
@@ -173,11 +263,116 @@ public class AddReward extends javax.swing.JFrame {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
+        /*JFileChooser chooser = new JFileChooser();
         if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
             btnUpload.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
     }//GEN-LAST:event_btnUploadActionPerformed
+    */ /*JFileChooser chooser;
+        FileNameExtensionFilter filter;
+        chooser = new JFileChooser();
+        chooser.setCurrentDirectory(image);
+        filter = new FileNameExtensionFilter("jpeg, gif and png files", "jpg", "gif", "png");
+        chooser.addChoosableFileFilter(filter);
+ 
+        int i = chooser.showOpenDialog(this);
+        if (i == JFileChooser.APPROVE_OPTION) {
+            image = chooser.getSelectedFile();
+            btnUpload.setText(image.getAbsolutePath());
+            try {
+                BufferedImage originalImage = ImageIO.read(image);
+                int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+ 
+                BufferedImage resizeImageJpg = resizeImage(originalImage, type);
+                photo = new ImageIcon(toImage(resizeImageJpg));
+ 
+                //converting buffered image to byte array
+                raster = resizeImageJpg.getRaster();
+                data = (DataBufferByte) raster.getDataBuffer();
+ 
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+ 
+ 
+            //jPanel2.removeAll();
+            label = new JLabel("", photo, JLabel.CENTER);
+           // jPanel2.add(label);
+ 
+            repaint();
+            chooser.setCurrentDirectory(image);
+        }
+ 
     }
+    public Image toImage(BufferedImage bufferedImage) {
+        return Toolkit.getDefaultToolkit().createImage(bufferedImage.getSource());*/
+    fileChooser = new JFileChooser("/home/", FileSystemView.getFileSystemView());
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif", "gif", "bmp"));
+            int returnVal = fileChooser.showOpenDialog(pobj);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String fileName = fileChooser.getSelectedFile().getName();
+                String extension = fileName.substring(fileName.lastIndexOf("."));
+                if (extension.equalsIgnoreCase(".jpg") || extension.equalsIgnoreCase(".png")
+                        || extension.equalsIgnoreCase(".bmp") || extension.equalsIgnoreCase(".tif")
+                        || extension.equalsIgnoreCase(".gif")) {
+                    lblStatus.setText(fileChooser.getSelectedFile().getPath());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Kindly Select Image File Only",
+"Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                lblStatus.setText("No File Uploaded");
+            }
+    
+    }
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+         try {
+             // TODO add your handling code here:
+             /*Connection connect;
+             try {
+             connect = ConnectionClass.getConnected();
+             String sql="insert into product values(prod_seq.nextval,?,?,?)";
+             PreparedStatement st=connect.prepareStatement(sql);
+             
+             st.setString(2,lblProdDesc.getText());
+             st.setInt(4,Integer.parseInt(lblPtsNeeded.getText()));
+             byte[] extractBytes = data.getData();
+             st.setBytes(3, extractBytes);
+             int s = st.executeUpdate();
+             if (s > 0) {
+             lblStatus.setText("Uploaded successfully !");
+             
+             //JOptionPane.showMessageDialog(rootPane, "Uploaded successfully !");
+             } else {
+             lblStatus.setText("unsucessfull to upload image.");
+             }
+             connect.close();
+             st.close();
+             } // catch if found any exception during rum time.
+             
+             
+             
+             catch (ClassNotFoundException ex) {
+             Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (SQLException ex) {
+             Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+             }
+             private static BufferedImage resizeImage(BufferedImage originalImage, int type) {
+             BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
+             //Graphics2D g = resizedImage.createGraphics();
+             //g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+             //g.dispose();
+             
+             return resizedImage;*/
+             SaveImage(lblStatus.getText());
+         }catch (IOException ex) {
+             Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+    
 
     /**
      * @param args the command line arguments
@@ -226,11 +421,13 @@ public class AddReward extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblProductDesc;
+    private javax.swing.JTextField lblProdDesc;
     private javax.swing.JLabel lblProductDescLHS;
     private javax.swing.JLabel lblProductImage;
     private javax.swing.JLabel lblPtsNeeded;
     private javax.swing.JLabel lblPtsNeededLHS;
+    private javax.swing.JTextField lblPtsneeded;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 
     /*private void initComponents() {

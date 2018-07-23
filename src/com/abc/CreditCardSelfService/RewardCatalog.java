@@ -7,6 +7,8 @@ package com.abc.CreditCardSelfService;
 
 import com.abc.customer_one_system.EmployeeMainMenu;
 import com.abc.customer_one_system.Login;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -116,9 +118,15 @@ public class RewardCatalog extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        AddReward ar=new AddReward();
-        ar.setVisible(true);
+        AddReward ar;
+        try {
+            ar = new AddReward();
+            ar.setVisible(true);
           this.setVisible(false);
+        } catch (Exception ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
