@@ -4,6 +4,14 @@
  * and open the template in the editor.
  */
 package com.abc.CustomerSelfServiceSystem;
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -13,9 +21,27 @@ public class ListOfBillers extends javax.swing.JFrame {
 
     /**
      * Creates new form ListOfBillers
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public ListOfBillers() {
+    public ListOfBillers() throws ClassNotFoundException, SQLException {
         initComponents();
+        //BillPaymentLogin login=new BillPaymentLogin(); 
+        Connection connect = ConnectionClass.getConnected();
+        String customer_id=BillPaymentLogin.cust_id;
+        String statement = "select b.biller_name,biller_address,biller_category from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        ResultSet rs = stmt.executeQuery();
+        while(rs.next())
+        {
+        String name=rs.getString(1);
+        String address=rs.getString(2);
+        String category=rs.getString(3);
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblBillers.getModel();
+        model.addRow(new Object[]{name, address,category });
+        }
     }
 
     /**
@@ -38,11 +64,7 @@ public class ListOfBillers extends javax.swing.JFrame {
 
         tblBillers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Biller Name", "Address", "Category"
@@ -153,7 +175,13 @@ public class ListOfBillers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListOfBillers().setVisible(true);
+                try {
+                    new ListOfBillers().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ListOfBillers.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListOfBillers.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

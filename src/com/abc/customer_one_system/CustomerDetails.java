@@ -5,6 +5,10 @@
  */
 package com.abc.customer_one_system;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author test
@@ -197,8 +201,14 @@ public class CustomerDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        ListCustomers obj=new ListCustomers();
-        obj.setVisible(true);
+        ListCustomers obj;
+        try {
+            obj = new ListCustomers();
+            obj.setVisible(true);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }//GEN-LAST:event_btnBackActionPerformed
 

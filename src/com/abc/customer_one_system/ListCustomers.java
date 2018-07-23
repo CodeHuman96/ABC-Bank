@@ -5,17 +5,73 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
  */
 public class ListCustomers extends javax.swing.JFrame {
 
+    boolean isEmpty = false;
+
+    Boolean dataFlag[] = CustomerSearch.dataFlag;
+    String name = CustomerSearch.name.toLowerCase();
+    String dob = CustomerSearch.dob;
+    String accountNo = CustomerSearch.accountNo;
+    String mobileNo = CustomerSearch.mobile;
+    String PAN = CustomerSearch.PAN.toLowerCase();
+    String email = CustomerSearch.emailID.toLowerCase();
+    int customerID = CustomerSearch.customerID;
+
     /**
      * Creates new form ListCustomers
+     *
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public ListCustomers() {
+    public ListCustomers() throws ClassNotFoundException, SQLException {
         initComponents();
+        Connection connect = ConnectionClass.getConnected();
+        Statement statement = connect.createStatement();
+        String query = "select * from customer";
+        String query1 = "select * from customer where lower(name)='" + name + "'";
+        String query2 = "select * from customer where customer_id=" + customerID + " ";
+        //String query3="select * from customer where date_of_birth= date '"+dob+"' order by name";
+        String query4 = "select * from customer where preferred_acc_1=" + accountNo + " or preferred_acc_2=" + accountNo + "";
+        String query5 = "select * from customer where lower(email_id)='" + email + "' ";
+        String query6 = "select * from customer where pan='" + PAN + "' ";
+        String query7 = "select * from customer where mobile_num='" + mobileNo + "' ";
+        String add = " intersect ";
+        if (dataFlag[0]) {
+            query += add + query1;
+        }
+        if (dataFlag[1]) {
+            query += add + query2;
+        }
+        if (dataFlag[3]) {
+            query += add + query4;
+        }
+        if (dataFlag[4]) {
+            query += add + query5;
+        }
+        if (dataFlag[5]) {
+            query += add + query6;
+        }
+        if (dataFlag[6]) {
+            query += add + query7;
+
+        }
+        ResultSet resultData = statement.executeQuery(query);
+        displayData(resultData);
+
     }
 
     /**
@@ -41,7 +97,7 @@ public class ListCustomers extends javax.swing.JFrame {
 
         tblCustomerData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "Customer ID", "Date Of Birth", "Email ID", "PAN No", "Contact No"
@@ -100,7 +156,7 @@ public class ListCustomers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        CustomerSearch obj=new CustomerSearch();
+        CustomerSearch obj = new CustomerSearch();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -135,7 +191,11 @@ public class ListCustomers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListCustomers().setVisible(true);
+                try {
+                    new ListCustomers().setVisible(true);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ListCustomers.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -147,4 +207,17 @@ public class ListCustomers extends javax.swing.JFrame {
     private javax.swing.JLabel lblListOfCustomers;
     private javax.swing.JTable tblCustomerData;
     // End of variables declaration//GEN-END:variables
+    private void displayData(ResultSet resultData) throws SQLException {
+        while (resultData.next()) {
+            String lclName = resultData.getString("NAME");
+            int custID = resultData.getInt(1);
+            String lclDOB = resultData.getString("DATE_OF_BIRTH");
+            lclDOB = lclDOB.substring(0, 10);
+            String lclEmail = resultData.getString("EMAIL_ID");
+            String pan = resultData.getString("PAN");
+            String lblMobile = resultData.getString("MOBILE_NUM");
+            DefaultTableModel modelData = (DefaultTableModel) tblCustomerData.getModel();
+            modelData.addRow(new Object[]{lclName, custID, lclDOB, lclEmail, pan, lblMobile});
+        }
+    }
 }

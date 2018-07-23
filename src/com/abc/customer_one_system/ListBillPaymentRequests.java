@@ -13,16 +13,55 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author test
  */
+
+
+//trying it 
+
+
+class MyDefaultTableModel extends DefaultTableModel {
+    private boolean[][] editable_cells; // 2d array to represent rows and columns
+
+    private MyDefaultTableModel(int rows, int cols) { // constructor
+        super(rows, cols);
+        this.editable_cells = new boolean[rows][cols];
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) { // custom isCellEditable function
+        return this.editable_cells[row][column];
+    }
+
+    public void setCellEditable(int row, int col, boolean value) {
+        this.editable_cells[row][col] = value; // set cell true/false
+        this.fireTableCellUpdated(row, col);
+    }
+}
+
+
+
+
+
 public class ListBillPaymentRequests extends javax.swing.JFrame {
+
+    private boolean[][] editable_cells;
+    
+    public final void setCellEditable  (DefaultTableModel m,int row, int col, boolean value) {
+        //this.editable_cells= new boolean[row][col];
+        System.out.println(this);
+       this.editable_cells[row][col] = value; // set cell true/false
+      m.fireTableCellUpdated(row, col);
+    }
 
     /**
      * Creates new form ListBillPaymentRequests
@@ -40,15 +79,15 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
         while(rs.next())
             
         {  
-           
-            
+       
            
             LocalDate deadline=rs.getDate("payment_due_date").toLocalDate();
+            System.out.println(rs.getDate("payment_due_date"));
            
-           
-             if (Period.between(deadline,today).getDays()<=1 && rs.getString("payment_status").equals("pending"))//&& rs.getString("payment_status").equals("pending")
-            { 
-            
+           final long days = ChronoUnit.DAYS.between(today,deadline);
+             if ((days<=1) && rs.getString("payment_status").equalsIgnoreCase("pending"))//||rs.getString("payment_status").equals("pending"))
+            { //System.out.println(days);
+          
              
                 
                 String query2="select * from account where account_number="+rs.getString("account_number");
@@ -58,8 +97,14 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 ResultSet rs2=st2.executeQuery(query2);
                 
                 
-                DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
-               
+                 DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+                  System.out.println("grt");
+                 //MyDefaultTableModel model=(MyDefaultTableModel) tblCustBillPayment.getModel(); 
+                 //setCellEditable(model,1,7,false);
+                
+                 System.out.println(model.isCellEditable(1,7));
+                 
+                 
                
                 
                 while (rs2.next()){
@@ -75,6 +120,9 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                
                 
                 model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount")});
+                 // model.isCellEditable(1,7)=false;
+                
+                 System.out.println(model.isCellEditable(1,7));
                   
                 }
                 
@@ -86,6 +134,10 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
        
     }
     }
+    
+    
+    //trying it new
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

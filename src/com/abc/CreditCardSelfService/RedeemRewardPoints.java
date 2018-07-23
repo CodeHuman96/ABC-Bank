@@ -5,6 +5,15 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author test
@@ -14,8 +23,19 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
     /**
      * Creates new form RedeemRewardPoints
      */
-    public RedeemRewardPoints() {
+    public RedeemRewardPoints() throws ClassNotFoundException, SQLException {
         initComponents();
+         Connection connect = ConnectionClass.getConnected(); 
+         Statement st=connect.createStatement();
+         String sql="select c.account_number,c.reward_points from customer u join account a on u.customer_id=a.customer_id join credit_card_detail c on a.account_number=c.account_number where u.customer_id="+CreditCardLogin.cid;
+         ResultSet rs=st.executeQuery(sql);
+         while(rs.next())
+         {
+             lblAccno.setText(rs.getString(1));
+             lblPts.setText(String.valueOf(rs.getInt(2)));
+         }
+          
+         
     }
 
     /**
@@ -58,10 +78,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
 
         tblRedeem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Product Desc", " Product Image", "Points  needed ", "Quantity", "Points redeemed"
@@ -205,7 +222,13 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RedeemRewardPoints().setVisible(true);
+                try {
+                    new RedeemRewardPoints().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
