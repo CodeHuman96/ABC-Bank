@@ -6,10 +6,26 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
+
+=======
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+=======
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +33,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+>>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
 
 /**
  *
@@ -32,7 +50,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
      */
     public CustomerServiceMenu() {
         initComponents();
-        int id=10000;
+        int id=CustomerLogin.customerid;
         
          try
         {
@@ -135,11 +153,11 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(52, 52, 52)
                         .addComponent(header2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(140, 140, 140)
+                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chgPassBt)
