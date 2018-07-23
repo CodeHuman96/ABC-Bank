@@ -5,6 +5,13 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author shivasai
@@ -14,8 +21,43 @@ public class MyProfile extends javax.swing.JFrame {
     /**
      * Creates new form MyProfile
      */
-    public MyProfile() {
-        initComponents();
+    public MyProfile()
+            {
+                        initComponents();
+
+                 int id=10000;
+        try
+        {
+            
+            Connection con=ConnectionClass.getConnected();
+            String query="select name,cust_user_name,date_of_birth,mobile_num,address,city,pin,country,pan,email_id from customer where customer_id="+id;
+            PreparedStatement stmt=con.prepareStatement(query);
+          
+            ResultSet s=stmt.executeQuery();
+            s.next();
+           
+           
+          wellbl.setText("Welcome  "+s.getString(1));
+          
+    nametxt.setText(s.getString(1));
+    userNametxt.setText(s.getString(2));
+    DOBtxt.setText(s.getString(3));
+    phNotxt.setText(s.getString(4));
+    addresstxt.setText(s.getString(5));
+    citytxt.setText(s.getString(6));
+    pinCodetxt.setText(s.getString(7));
+    countrytxt.setText(s.getString(8));
+    panNotxt.setText(s.getString(9));
+    emailtxt.setText(s.getString(10));
+            
+            
+            
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    
+                    System.out.println("err");
+                }
         
     }
 
@@ -56,6 +98,7 @@ public class MyProfile extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        errlbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,6 +228,10 @@ public class MyProfile extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(errlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(396, 396, 396))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +290,9 @@ public class MyProfile extends javax.swing.JFrame {
                         .addComponent(panNotxt)
                         .addGap(18, 18, 18)
                         .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(errlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitBt)
                     .addComponent(backBt))
@@ -271,14 +320,34 @@ public class MyProfile extends javax.swing.JFrame {
             String pinCode=pinCodetxt.getText();
             String country=countrytxt.getText();
             String email=emailtxt.getText();
-            
+            try
+            {
+            update5(address,city,pinCode,country,email);}
+            catch(SQLException | ClassNotFoundException e)
+            {
+                System.out.println("sub");
+                e.printStackTrace();
+            }
            
     }//GEN-LAST:event_submitBtActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    private void update5(String adr,String city,String pincode,String country,String email)throws SQLException,ClassNotFoundException
+    {
+       
+        Connection con = ConnectionClass.getConnected();
+        Statement s =con.createStatement();
+        int id=10000;
+        //System.out.println("Entered");
+    String query="update customer set address='"+adr+"',city='"+city+"',pin='"+pincode+"',country='"+country+"',email_id='"+email+"' where customer_id="+id;
+    System.out.println("Entered"); 
+    int r= s.executeUpdate(query);
+      
+    if(r>0) errlbl.setText("update Successfull");
+    }
+    public static void main(String args[])throws SQLException,ClassNotFoundException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -302,7 +371,7 @@ public class MyProfile extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -323,6 +392,7 @@ public class MyProfile extends javax.swing.JFrame {
     private javax.swing.JTextField countrytxt;
     private javax.swing.JLabel emaillbl;
     private javax.swing.JTextField emailtxt;
+    private javax.swing.JLabel errlbl;
     private javax.swing.JLabel header3;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
