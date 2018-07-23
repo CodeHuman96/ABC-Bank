@@ -5,9 +5,13 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +24,42 @@ public class CustomerDetails extends javax.swing.JFrame {
      */
     public CustomerDetails() {
         initComponents();
+    }
+
+    public CustomerDetails(int CustID) throws ClassNotFoundException, SQLException {
+        initComponents();
+        Connection connect = ConnectionClass.getConnected();
+        Statement statement = connect.createStatement();
+        String query = "select * from customer where customer_id=" + CustID + " ";
+        String queryAccount = "select account_number,acc_type,balance from account where customer_id="+CustID+"";
+        ResultSet resultData = statement.executeQuery(query);
+        if (resultData.next()) {
+            String lclName = resultData.getString("NAME");
+            int custID = resultData.getInt(1);
+            String lclDOB = resultData.getString("DATE_OF_BIRTH");
+            lclDOB = lclDOB.substring(0, 10);
+            String lclEmail = resultData.getString("EMAIL_ID");
+            String pan = resultData.getString("PAN");
+            String lclMobile = resultData.getString("MOBILE_NUM");
+            outName.setText(lclName);
+            outDOB.setText(lclDOB);
+            outAddress.setText(resultData.getString("address"));
+            outEmailID.setText(lclEmail);
+            outContactNo.setText(lclMobile);
+            outOccupation.setText(resultData.getString("occupation"));
+            outMonthlyIncome.setText(Integer.toString(resultData.getInt("salary")));
+            outPAN.setText(resultData.getString("pan"));
+            ResultSet resultAcc = statement.executeQuery(queryAccount);
+            DefaultTableModel modelData = (DefaultTableModel) tblAccountDetails.getModel();
+            while(resultAcc.next()){
+                String accNo = resultAcc.getString("account_number");
+                String accType = resultAcc.getString("acc_type");
+                Double balance = resultAcc.getDouble("balance");
+                
+                modelData.addRow(new Object[]{accNo, accType, balance});
+            }
+
+        }
     }
 
     /**
@@ -49,7 +89,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         outOccupation = new javax.swing.JLabel();
         outMonthlyIncome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAccountDetails = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +129,7 @@ public class CustomerDetails extends javax.swing.JFrame {
 
         outMonthlyIncome.setText(" ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAccountDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -105,8 +145,8 @@ public class CustomerDetails extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        tblAccountDetails.setToolTipText("");
+        jScrollPane1.setViewportView(tblAccountDetails);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -201,15 +241,12 @@ public class CustomerDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        ListCustomers obj;
-        try {
-            obj = new ListCustomers();
-            obj.setVisible(true);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        CustomerSearch obj;
+        obj = new CustomerSearch();
+        obj.setVisible(true);
+        this.setVisible(false);
+
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -250,7 +287,6 @@ public class CustomerDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblContactNo;
     private javax.swing.JLabel lblCustomerDetails;
@@ -268,5 +304,6 @@ public class CustomerDetails extends javax.swing.JFrame {
     private javax.swing.JLabel outName;
     private javax.swing.JLabel outOccupation;
     private javax.swing.JLabel outPAN;
+    private javax.swing.JTable tblAccountDetails;
     // End of variables declaration//GEN-END:variables
 }
