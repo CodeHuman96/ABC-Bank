@@ -48,7 +48,7 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-        pattern = "[a-z A-Z .'-]";
+        pattern = "[a-zA-Z .'-]+";
         return name.matches(pattern);
     }
     public boolean matchAccountNumber(String accNo){
@@ -57,10 +57,9 @@ public class MatchFormats {
     }
 
     public boolean verifyDuration(String from, String to) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
         LocalDate fromdate = LocalDate.parse(from, f);
         LocalDate todate = LocalDate.parse(to, f);
-        int c = fromdate.compareTo(todate);
-        return c > 0;
+        return fromdate.compareTo(todate) > 0;
     }
 }

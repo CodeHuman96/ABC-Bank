@@ -189,9 +189,10 @@ public class BillPaymentLogin extends javax.swing.JFrame {
         PreparedStatement stmt=con.prepareStatement(query);
         stmt.setString(1,name);
         ResultSet rs=stmt.executeQuery();
-        while(rs.next())
+        while(rs.next()){
             cust_id=rs.getString(1);
             cust_name=rs.getString(2);
+        }
     }
    
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
