@@ -5,17 +5,66 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author shivasai
  */
 public class AccountStatement extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form AccountStatement
      */
-    public AccountStatement() {
+     public AccountStatement() {
         initComponents();
+        
+        //int id=CustomerLogin.customerid;
+        //int id=CustomerLogin.customerid;
+        int accno=Accounts.accno;
+        accNolbl.setText("AccountNumber: "+accno);
+         try
+        {
+            
+            Connection con=ConnectionClass.getConnected();
+           
+            String query="select s.transaction_time,s.transaction_type,s.amount,c.balance from transaction_ s join account c using(account_number) where account_number="+accno;
+           
+           Statement stmt=con.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            String type="";
+          
+            while(res.next())
+            {
+               if(res.getString(2).equals(0))
+               {
+                   type="Debit";
+               }
+               else 
+               {
+                   type="Credit";
+               }
+          
+            DefaultTableModel model=(DefaultTableModel)accStmttbl.getModel();
+            model.addRow(new Object[]{res.getDate(1),type,res.getDouble(3),res.getDouble(4)});
+               }
+            accStmttbl.setAutoCreateRowSorter(true);
+            
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(accStmttbl.getModel());
+        }
+         catch(SQLException | ClassNotFoundException e)
+         {
+             e.printStackTrace();
+         }
     }
 
     /**
@@ -29,41 +78,34 @@ public class AccountStatement extends javax.swing.JFrame {
 
         header5 = new javax.swing.JLabel();
         statementTbl = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        accStmttbl = new javax.swing.JTable();
         backBt = new javax.swing.JButton();
         accNolbl = new javax.swing.JLabel();
+        errlbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         header5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header5.setText("Account Statement");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        accStmttbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Date", "Description", "Credit/Debit Amount", "Closing Balance"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, true, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        statementTbl.setViewportView(jTable1);
+        accStmttbl.getTableHeader().setReorderingAllowed(false);
+        statementTbl.setViewportView(accStmttbl);
 
         backBt.setText("Back");
         backBt.addActionListener(new java.awt.event.ActionListener() {
@@ -88,12 +130,15 @@ public class AccountStatement extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(statementTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(accNolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(350, 350, 350)
-                        .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(423, Short.MAX_VALUE))
+                        .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(errlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(accNolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +147,11 @@ public class AccountStatement extends javax.swing.JFrame {
                 .addComponent(header5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(accNolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(statementTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addGap(31, 31, 31)
+                .addComponent(errlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBt)
                 .addGap(91, 91, 91))
         );
@@ -156,9 +203,10 @@ public class AccountStatement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accNolbl;
+    private javax.swing.JTable accStmttbl;
     private javax.swing.JButton backBt;
+    private javax.swing.JLabel errlbl;
     private javax.swing.JLabel header5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JScrollPane statementTbl;
     // End of variables declaration//GEN-END:variables
 }
