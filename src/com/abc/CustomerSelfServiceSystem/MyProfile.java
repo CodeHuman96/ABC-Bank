@@ -18,6 +18,7 @@ import java.sql.Statement;
  */
 public class MyProfile extends javax.swing.JFrame {
 
+    int id=CustomerLogin.customerid;
     /**
      * Creates new form MyProfile
      */
@@ -25,7 +26,7 @@ public class MyProfile extends javax.swing.JFrame {
             {
                         initComponents();
 
-                 int id=10000;
+                 
         try
         {
             
@@ -326,7 +327,7 @@ public class MyProfile extends javax.swing.JFrame {
             catch(SQLException | ClassNotFoundException e)
             {
                 System.out.println("sub");
-                e.printStackTrace();
+               
             }
            
     }//GEN-LAST:event_submitBtActionPerformed
@@ -339,10 +340,10 @@ public class MyProfile extends javax.swing.JFrame {
        
         Connection con = ConnectionClass.getConnected();
         Statement s =con.createStatement();
-        int id=10000;
+        
         //System.out.println("Entered");
     String query="update customer set address='"+adr+"',city='"+city+"',pin='"+pincode+"',country='"+country+"',email_id='"+email+"' where customer_id="+id;
-    System.out.println("Entered"); 
+    
     int r= s.executeUpdate(query);
       
     if(r>0) errlbl.setText("update Successfull");
