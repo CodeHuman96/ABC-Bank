@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class CustomerLogin extends javax.swing.JFrame {
 
     public static  int customerid;
+    
 
     /**
      * Creates new form Login
@@ -183,7 +184,7 @@ public class CustomerLogin extends javax.swing.JFrame {
                 if (validation(usrName, password)) {
                     CustomerServiceMenu obj;
                     customerid=getCustomerid(usrName);
-                    System.out.println(customerid);
+                    
                     obj = new CustomerServiceMenu();
                     obj.setVisible(true);
                     this.setVisible(false);
