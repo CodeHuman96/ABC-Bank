@@ -16,7 +16,16 @@ import java.sql.*;
 */ 
 public class ConnectionClass {
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
+<<<<<<< HEAD
     //static public Connection getConnected() throws ClassNotFoundException, SQLException{
+=======
+
+    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
+
+
+
+    
+>>>>>>> 6523847ad3ee80294eccc0650769d8c2db517083
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url="jdbc:oracle:thin:@192.168.1.47:1521:xe";
         String userName="mainuser";

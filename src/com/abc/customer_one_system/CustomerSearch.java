@@ -5,7 +5,12 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -258,7 +263,8 @@ public class CustomerSearch extends javax.swing.JFrame {
         lblCustIDFormat.setText("");
         lblPANFormat.setText("");
         lblMobileNoFormat.setText("");
-
+        lblNameFormat.setText("");
+        lblAccountNoFormat.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -270,42 +276,72 @@ public class CustomerSearch extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-
+    Boolean dataFlag[] = new Boolean[7];
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         MatchFormats match = new MatchFormats();
         try {
             String name = txtName.getText().trim();
+            if (!name.equals("")) {
+                if (match.matchName(name)) {
+                    dataFlag[0] = true;
+                } else {
+                    lblNameFormat.setText("Invalid name");
+                }
+            } else {
+                lblNameFormat.setText("");
+            }
             if (!txtCustomerID.getText().equals("")) {
                 int customerID = Integer.parseInt(txtCustomerID.getText());
+                dataFlag[1] = true;
             }
             String dob = txtDOB.getText().trim();
             //date of bith is in form dd/mm/yyyy
-            if (!dob.equals("") && !match.matchDOB(dob)) {
-                lblDateFormat.setText("Invalid");
+            if (!dob.equals("")) {
+                if (match.matchDOB(dob)) {
+                    dataFlag[2] = true;
+                } else {
+                    lblDateFormat.setText("Invalid");
+                }
             } else {
                 lblDateFormat.setText("dd/mm/yyyy");
             }
             String accountNo = txtAccountNo.getText().trim();
-            if (!accountNo.equals("") && !match.matchAccountNumber(accountNo)) {
-                lblAccountNoFormat.setText("Invalid format");
+            if (!accountNo.equals("")) {
+                if (match.matchAccountNumber(accountNo)) {
+                    dataFlag[3] = true;
+                } else {
+                    lblAccountNoFormat.setText("Invalid format");
+                }
             } else {
                 lblAccountNoFormat.setText("");
             }
             String emailID = txtEmailID.getText().toLowerCase();
-            if (!emailID.equals("") && !match.matchEmail(emailID)) {
-                lblEmailFormat.setText("Invalid Email ID");
+            if (!emailID.equals("")) {
+                if (match.matchEmail(emailID)) {
+                    dataFlag[4] = true;
+                } else {
+                    lblEmailFormat.setText("Invalid Email ID");
+                }
             } else {
                 lblEmailFormat.setText("");
             }
             String PAN = txtPAN.getText().trim();
-            if (!PAN.equals("") && !match.matchPAN(PAN)) {
-                lblPANFormat.setText("Invalid pan");
+            if (!PAN.equals("")) {
+                if (match.matchPAN(PAN)) {
+                    dataFlag[5] = true;
+                } else {
+                    lblPANFormat.setText("Invalid pan");
+                }
             } else {
                 lblPANFormat.setText("");
             }
             String mobile = txtMobileNo.getText().trim().replace(" ", "");
-            if (!mobile.equals("") && !match.matchMobileNo(mobile)) {
-                lblMobileNoFormat.setText("Invalid mobile no.");
+            if (!mobile.equals("")) {
+                if (match.matchMobileNo(mobile)) {
+                    dataFlag[6] = true;
+                } else {
+                    lblMobileNoFormat.setText("Invalid mobile no.");
+                }
             } else {
                 lblMobileNoFormat.setText("");
             }
@@ -313,6 +349,7 @@ public class CustomerSearch extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             lblMsg.setText("Enter valid data");
         }
+
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
