@@ -205,15 +205,15 @@ public class ChequeBookRequest extends javax.swing.JFrame {
                 ResultSet rs=stmt1.executeQuery(query1);
                 rs.next();
                 int r1=rs.getInt(1);
-                String query="insert into customer_service_request (csr_id,csr_type,csr_date,account_number)values ("+r1+",1,CURRENT_TIMESTAMP,'"+cmbAccountNo.getSelectedItem()+"')";
-                PreparedStatement stmt=connect.prepareStatement(query);
-                int r=stmt.executeUpdate(query);
+                String query2="insert into customer_service_request (csr_id,csr_type,csr_date,account_number)values ("+r1+",1,CURRENT_TIMESTAMP,'"+cmbAccountNo.getSelectedItem()+"')";
+                PreparedStatement stmt2=connect.prepareStatement(query2);
+                int r=stmt2.executeUpdate(query2);
                 if(r>0)
-                    lblMsg.setText("Request Successfully Added");
+                    lblMsg.setText("Request Added Successfully");
                
-                String query2="insert into cheque_book_request(no_of_leaves,csr_id) values("+str+","+r1+")";
-                PreparedStatement stmt2=connect.prepareStatement(query);
-                int r2=stmt.executeUpdate(query);
+                String query3="insert into cheque_book_request(no_of_leaves,csr_id) values("+str+","+r1+")";
+                PreparedStatement stmt3=connect.prepareStatement(query3);
+                stmt3.executeUpdate(query3);
             }
             catch(ClassNotFoundException|SQLException e)
             {

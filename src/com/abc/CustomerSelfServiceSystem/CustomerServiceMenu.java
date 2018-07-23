@@ -6,16 +6,13 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-=======
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> 358ed03341ff9964e0bcf0ccc091f794871060f0
 
 /**
  *
