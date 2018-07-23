@@ -424,11 +424,7 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
     return customer_id;
 }
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
-<<<<<<< HEAD
-        // TODO add your handling code here:
-=======
-        
->>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
+
     }//GEN-LAST:event_cbmAcNoActionPerformed
 
     private void txtAmountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseClicked
