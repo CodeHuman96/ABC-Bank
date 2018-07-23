@@ -55,7 +55,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "pending", "paid" }));
 
         lblFrom.setText("From");
 
@@ -200,12 +200,13 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         String from=txtFrom.getText();
         String to=txtTo.getText();
+        boolean flag=false;
         MatchFormats match=new MatchFormats();
         if(!from.equals("") && !to.equals(""))
         {
             if(match.verifyDuration(from,to))
             {
-            lblMsg.setText("Invalid to date");
+                lblMsg.setText("Invalid to date");
             }
             else
             {
