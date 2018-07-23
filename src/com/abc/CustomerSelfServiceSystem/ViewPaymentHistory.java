@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package com.abc.CustomerSelfServiceSystem;
+import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.MatchFormats;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,9 +22,13 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     /**
      * Creates new form ViewPaymentHistory
      */
+
     public ViewPaymentHistory() {
         initComponents();
+
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +51,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHistory = new javax.swing.JTable();
         lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,7 +65,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "pending", "paid" }));
 
         lblFrom.setText("From");
 
@@ -87,17 +97,9 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Date", "AC No", "Biller", "Amount", "Category", "Status"
@@ -111,7 +113,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblHistory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,22 +202,59 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         String from=txtFrom.getText();
         String to=txtTo.getText();
+        boolean flag=true;
         MatchFormats match=new MatchFormats();
-        if(!from.equals("") && !to.equals(""))
+        if(from.equals("") || to.equals(""))
         {
-            if(match.verifyDuration(from,to))
-            {
+            lblMsg.setText("cannot be empty");
+            flag &=false;
+        }
+        else if(!match.matchDate(from) && !match.matchDate(to) && !match.verifyDuration(from,to))
+        {
             lblMsg.setText("Invalid to date");
-            }
-            else
-            {
-                lblMsg.setText("");
-            }
+            flag &=false;
         }
         else
-            lblMsg.setText("cannot be empty");
+        {
+            lblMsg.setText("");
+        }
+        if(flag)
+        {
+            try
+            {
+                Connection con=ConnectionClass.getConnected();
+                lblMsg.setText("enetered values");
+                getPayment(from,to,con);             
+            }
+            catch(ClassNotFoundException | SQLException e)
+            { }
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void getPayment(String from,String to,Connection con) throws SQLException, ClassNotFoundException
+    {
+        String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
+        Statement stmt=con.createStatement();
+        //PreparedStatement stmt=con.prepareStatement(query);
+        //stmt.setString(1,from);
+        //stmt.setString(2,to);
+        //System.out.println("inside getPayment method");
+        ResultSet rs=stmt.executeQuery(query);
+        while(rs.next())
+        {
+            String date=rs.getString(1);
+            String acNo=rs.getString(2);
+            String biller=rs.getString(3);
+            double am=rs.getDouble(4);
+            String cat=rs.getString(5);
+            String stat=rs.getString(6);
+            DefaultTableModel model;
+            model= (DefaultTableModel) tblHistory.getModel();
+            model.addRow(new Object[]{date,acNo,biller,am,cat,stat});
+            //System.out.println("inside while in getPayment method");
+        }
+        
+    }
     private void txtToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToActionPerformed
     //    LocalDate todaydate = LocalDate.now();
     //    txtTo.setText(String.valueOf(todaydate));
@@ -262,13 +301,13 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbmCategory;
     private javax.swing.JComboBox<String> cbmStatus;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCategory;
     private javax.swing.JLabel lblFrom;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTo;
+    private javax.swing.JTable tblHistory;
     private javax.swing.JTextField txtFrom;
     private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables

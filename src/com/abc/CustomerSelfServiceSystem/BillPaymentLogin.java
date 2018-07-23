@@ -173,8 +173,11 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                 if(!flag) lblMsg.setText("Incorrect user name or password");
                 else
                 {
-                  customerIdName(name,con);  
-                 
+                  customerIdName(name,con);
+                  BillPaymentMenu menu= new BillPaymentMenu();
+                  this.setVisible(false);                  
+                  menu.setVisible(true);
+                  //System.out.println("cust_id"+cust_id+"cust_name"+cust_name);                  
                 }
             }
             catch(ClassNotFoundException | SQLException e){} 
@@ -182,9 +185,7 @@ public class BillPaymentLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
     private void customerIdName(String name,Connection con) throws SQLException
     {
-        BillPaymentMenu menu= new BillPaymentMenu();
-        this.setVisible(false);                  
-        menu.setVisible(true);
+        //BillPaymentMenu menu= new BillPaymentMenu();
         String query="select customer_id,name from customer where cust_user_name=?";
         PreparedStatement stmt=con.prepareStatement(query);
         stmt.setString(1,name);
@@ -194,7 +195,6 @@ public class BillPaymentLogin extends javax.swing.JFrame {
             cust_name=rs.getString(2);
         }
     }
-   
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed

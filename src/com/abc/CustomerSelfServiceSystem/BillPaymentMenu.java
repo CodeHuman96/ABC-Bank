@@ -18,10 +18,12 @@ public class BillPaymentMenu extends javax.swing.JFrame {
     /**
      * Creates new form BillPaymentMenu
      */
-    public BillPaymentMenu() {
+    public BillPaymentMenu() 
+    {
         initComponents();
-        String str=BillPaymentLogin.cust_name; 
-        lblMsg.setText("WELCOME "+ str);
+        //String str=BillPaymentLogin.cust_name; 
+        lblMsg.setText("WELCOME "+ BillPaymentLogin.cust_name);
+        //System.out.println("cust_id="+BillPaymentLogin.cust_id+" cust_name="+BillPaymentLogin.cust_name);
     }
 
     /**
@@ -78,33 +80,33 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
+                .addContainerGap(159, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnLogOff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageBillers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMakePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnViewPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(9, 9, 9))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnManageBillers)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageBillers)
                 .addGap(18, 18, 18)
                 .addComponent(btnMakePayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewPayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOff)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,7 +130,10 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         this.setVisible(false);
         }
         catch(ClassNotFoundException | SQLException e){}
+<<<<<<< HEAD
+=======
 
+>>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
     }//GEN-LAST:event_btnMakePaymentActionPerformed
     
     private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed
@@ -140,7 +145,7 @@ public class BillPaymentMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewPaymentActionPerformed
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
-        CustomerLogin obj=new CustomerLogin();
+        CustomerLoginTo obj=new CustomerLoginTo();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOffActionPerformed

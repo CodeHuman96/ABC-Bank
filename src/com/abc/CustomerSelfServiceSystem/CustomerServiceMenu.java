@@ -7,6 +7,7 @@ package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 <<<<<<< HEAD
@@ -14,11 +15,18 @@ import com.abc.JDBCConnection.ConnectionClass;
 
 >>>>>>> ee9ff5c01bedc551aa276443bbc3c429c052b0aa
 >>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
+=======
+
+=======
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,17 +34,32 @@ import java.util.List;
  
 =======
 <<<<<<< HEAD
+=======
+
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+=======
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 =======
-
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 >>>>>>> ee9ff5c01bedc551aa276443bbc3c429c052b0aa
 >>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
+=======
+>>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
 
 /**
  *
@@ -52,7 +75,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
      */
     public CustomerServiceMenu() {
         initComponents();
-        int id=10000;
+        int id=CustomerLogin.customerid;
         
          try
         {
@@ -155,11 +178,11 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(52, 52, 52)
                         .addComponent(header2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(140, 140, 140)
+                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chgPassBt)
@@ -242,7 +265,28 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutBtActionPerformed
 
     private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
-        
+        try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                 }
+                 catch(ClassNotFoundException|SQLException e)
+                 {
+                     e.printStackTrace();
+                 }
+                
                 ViewRequestStatus obj = new ViewRequestStatus();
                 obj.setVisible(true);
                 this.setVisible(false);

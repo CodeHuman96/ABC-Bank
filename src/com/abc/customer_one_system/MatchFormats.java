@@ -34,7 +34,6 @@ public class MatchFormats {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDay = LocalDate.parse(date, f);
         return LocalDate.now().compareTo(birthDay) > 0;
-
     }
 
     public boolean matchPIN(String pin) {
@@ -48,7 +47,11 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-        pattern = "[a-z A-Z .'-]";
+<<<<<<< HEAD
+        pattern = "[a-z A-Z .'-]+";
+=======
+        pattern = "[a-zA-Z .'-]+";
+>>>>>>> 1491a54fca02639da53abdf2b49cf92ae42c8a6c
         return name.matches(pattern);
     }
     public boolean matchAccountNumber(String accNo){
@@ -57,9 +60,22 @@ public class MatchFormats {
     }
 
     public boolean verifyDuration(String from, String to) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+        pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
+        if (!from.matches(pattern) || !to.matches(pattern)) {
+            return false;
+        }
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fromdate = LocalDate.parse(from, f);
         LocalDate todate = LocalDate.parse(to, f);
-        return fromdate.compareTo(todate) > 0;
+        return todate.compareTo(fromdate) > 0;
+    }
+    public boolean matchDate(String date){
+        pattern = "^(0[0-9] | [12][0-9] | 3[01])/( 0[0-9] | 1[012] )/[12][0-9]{3}$";
+        boolean flag=true;
+        try{
+            if (!date.matches(pattern)) { flag=false;}
+        }
+        catch(Exception e){ flag=false;}
+        return flag;
     }
 }

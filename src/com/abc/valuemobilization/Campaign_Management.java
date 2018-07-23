@@ -6,6 +6,9 @@
 package com.abc.valuemobilization;
 
 import com.abc.customer_one_system.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -127,8 +130,14 @@ public class Campaign_Management extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewCActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        View_Campaigns vc= new View_Campaigns();
-        vc.setVisible(true);
+        View_Campaigns vc;
+        try {
+            vc = new View_Campaigns();
+            vc.setVisible(true);
+        } catch (ClassNotFoundException | SQLException ex) {
+             ex.printStackTrace();
+        } 
+        
         
         this.setVisible(false);
     }//GEN-LAST:event_btnViewActionPerformed

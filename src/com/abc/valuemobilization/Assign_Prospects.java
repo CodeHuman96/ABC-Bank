@@ -48,6 +48,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
         txtcampaign = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,14 +91,14 @@ public class Assign_Prospects extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Check", "Campaign Name", "Customer Name", "Phone Number"
+                "Campaign Id", "Campaign Name", "Customer Id", "Customer Name", "Phone Number", "Check"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,6 +110,8 @@ public class Assign_Prospects extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblCustomers);
+
+        lblStatus.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,16 +134,21 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblEName)
-                                .addGap(31, 31, 31)
-                                .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(btnAssign)
-                                .addGap(61, 61, 61)
-                                .addComponent(btnCancel))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblEName)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(btnAssign)
+                                        .addGap(61, 61, 61))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)))
+                                .addComponent(btnCancel)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +162,9 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     .addComponent(btnSearch))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEName)
                     .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,6 +185,40 @@ public class Assign_Prospects extends javax.swing.JFrame {
         String Campaign= txtcampaign.getText();
         String Employee= txtEmployee.getText();
         
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblCustomers.getModel();
+        
+        
+        for(int i=0; i<tblCustomers.getRowCount(); i++)
+            {
+                if ((Boolean) tblCustomers.getModel().getValueAt(i, 5))
+                {
+                    try 
+                    {
+                        Connection con = ConnectionClass.getConnected();
+                        Statement s = con.createStatement();
+                        String q3="insert into PROSPECTIVE_CUSTOMERS values('nil',"+model.getValueAt(tblCustomers.getSelectedRow(), 2).toString()+",'"+model.getValueAt(tblCustomers.getSelectedRow(), 0).toString()+"',"+txtEmployee.getText()+")";
+                        
+                        int result = s.executeUpdate(q3);
+                        if(result>0)
+                        {
+                            lblStatus.setText("Successfully assigned");
+                        }
+                        
+                        else
+                        {
+                            lblStatus.setText("Not assigned");
+                        }
+                    } 
+                    catch (ClassNotFoundException | SQLException | NullPointerException ex) 
+                    {
+                        ex.printStackTrace();
+                    }
+                } 
+                
+            }
+        
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -192,6 +236,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
             int age=0;
             double balance=0.0;
             String profession="";
+            String Cid="";
             LocalDate ldate=LocalDate.now();
             
             Connection con = ConnectionClass.getConnected();
@@ -203,33 +248,29 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 age=rs.getInt("AGE_OF_RELATIONSHIP");
                 balance=rs.getDouble("MIN_BALANCE");
                 profession=rs.getString("PROFESSION");
+                Cid=rs.getString("CAMPAIGN_ID");
             }
             
             String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
-            rs= s.executeQuery(q2);
+            Statement s2 = con.createStatement();
+            ResultSet rs2= s2.executeQuery(q2);
             
             DefaultTableModel model;
             model = (DefaultTableModel) tblCustomers.getModel();
-            while(rs.next())
+            while(rs2.next())
             {
-                LocalDate date=rs.getDate("OPENING_DATE").toLocalDate();
+                LocalDate date=rs2.getDate("OPENING_DATE").toLocalDate();
                 int age_rel=Period.between(date, ldate).getYears();
                 
-                if(age_rel>age)
+                //if(age_rel>=age)
                 {
                     
-                    model.addRow(new Object[]{CTitle,rs.getString("NAME"), rs.getString("MOBILE_NUM")});
+                    model.addRow(new Object[]{Cid,CTitle,rs2.getInt("CUSTOMER_ID"),rs2.getString("NAME"), rs2.getString("MOBILE_NUM")});
                 }
                     
             }
             
-            for(int i=0; i<tblCustomers.getRowCount(); i++)
-            {
-                if ((Boolean) tblCustomers.getModel().getValueAt(i, 0))
-                {
-                    String q3="insert into PROSPECTIVE_CUSTOMERS values('nil',"+model.getValueAt(tblCustomers.getSelectedRow(), 1).toString()+"'camp',"+txtEmployee.getText()+")"; 
-                }
-            }
+            
             
              
             
@@ -287,6 +328,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCampaign;
     private javax.swing.JLabel lblEName;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTextField txtEmployee;
     private javax.swing.JTextField txtcampaign;
