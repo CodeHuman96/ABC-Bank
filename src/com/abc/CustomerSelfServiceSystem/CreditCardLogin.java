@@ -7,13 +7,12 @@ package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.CreditCardSelfService.SelfServiceMenu;
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import static java.time.LocalDate.from;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 //import static javafx.beans.binding.Bindings.select;
 
 /**
@@ -21,6 +20,8 @@ import java.util.logging.Logger;
  * @author test
  */
 public class CreditCardLogin extends javax.swing.JFrame {
+
+    public static int cid;
 
     /**
      * Creates new form CreditCardLogin
@@ -53,7 +54,11 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
         lblUname.setText("User Name");
 
-        txtUname.setText("                         ");
+        txtUname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUnameMouseClicked(evt);
+            }
+        });
         txtUname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUnameActionPerformed(evt);
@@ -87,6 +92,12 @@ public class CreditCardLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(236, 23, 23));
         jLabel2.setText("*");
 
+        txtPswrd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPswrdKeyReleased(evt);
+            }
+        });
+
         lblmsg.setForeground(new java.awt.Color(241, 10, 10));
         lblmsg.setText("                     ");
 
@@ -107,19 +118,21 @@ public class CreditCardLogin extends javax.swing.JFrame {
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPswrd)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblPswrd)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(199, 199, 199)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtPswrd, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                                .addComponent(txtUname))
+                                            .addGap(59, 59, 59)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblUname)
                                             .addComponent(btnSubmit))
                                         .addGap(64, 64, 64)
-                                        .addComponent(btnClear))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(199, 199, 199)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtUname, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                                            .addComponent(txtPswrd))
-                                        .addGap(59, 59, 59))))))
+                                        .addComponent(btnClear)
+                                        .addGap(4, 4, 4))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(160, 160, 160)
                         .addComponent(lblmsg)))
@@ -152,6 +165,21 @@ public class CreditCardLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
+        try {
+            Connection connect = ConnectionClass.getConnected();
+            String query = "select custpassword from customer where cust_user_name=?";
+            PreparedStatement stmt = connect.prepareStatement(query);
+            stmt.setString(1, usrName);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() && rs.getString(1).equals(pass);
+        } catch (ClassNotFoundException | SQLException e) {
+            return false;
+        }
+
+    }
+
+
     private void txtUnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUnameActionPerformed
@@ -164,45 +192,74 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        int flag=0;
-        String Uname=txtUname.getText();
-        String Pswrd=txtPswrd.getText();
-        if(Uname.equals("")||Pswrd.equals(""))
-                lblmsg.setText("Fields can't be empty");
-       
-      else
-        {
-            ConnectionClass cobj=new ConnectionClass();
-            Connection con=null;
+        // int flag = 0;
+        String Uname = txtUname.getText();
+        String Pswrd = txtPswrd.getText();
+        if (Uname.equals("") || Pswrd.equals(""))
+            lblmsg.setText("Fields can't be empty");
+
+        else {
             try {
-                con = cobj.getConnected();
-                Statement stmt=con.createStatement();
-                String query="select * from customer";
-                ResultSet rs=stmt.executeQuery(query);
-                while(rs.next())
-                {
-                    if(!(rs.getString("cust_user_name").equals(Uname))||(!(rs.getString("custpassword").equals(Pswrd))))
-                        flag=1;
-                    else if(rs.getString("cust_user_name").equals(Uname) && rs.getString("custpassword").equals(Pswrd))
-                    {
-                        lblmsg.setText("Welcome "+Uname);
-                        flag=0;
-                        SelfServiceMenu ssm=new SelfServiceMenu();
-                        ssm.setVisible(true);
-                        this.setVisible(false);
-                        
+                if (verification(Uname, Pswrd)) {
+                    SelfServiceMenu obj;
+                    obj = new SelfServiceMenu();
+                    //lname+="hai";
+                    obj.setWel("welcome " + Uname);
+
+                    Connection connect = ConnectionClass.getConnected();
+                    String sql = "select customer_id from customer where cust_user_name='" + Uname + "'";
+                    Statement st = connect.createStatement();
+                    ResultSet rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        cid = rs.getInt(1);
                     }
-                   
-                }if(flag==1)
-                 lblmsg.setText("Invalid credentials");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreditCardLogin.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(CreditCardLogin.class.getName()).log(Level.SEVERE, null, ex);
+
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    lblmsg.setText("Incorrect user name or password");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                lblmsg.setText("DataBase Not Connected");
             }
-           
-            }
+
+
     }//GEN-LAST:event_btnSubmitActionPerformed
+    }
+    private void txtPswrdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPswrdKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String Uname = txtUname.getText();
+            String Pswrd = txtPswrd.getText();
+            if (Uname.equals("") || Pswrd.equals("")) {
+                lblmsg.setText("Fields cannot be empty");
+            } else {
+                try {
+                    if (verification(Uname, Pswrd)) {
+                        lblmsg.setText("Loging in..");
+                        SelfServiceMenu obj;
+                        obj = new SelfServiceMenu();
+                        obj.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        lblmsg.setText("Incorrect user name or password");
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    lblmsg.setText("DataBase Not Connected");
+                }
+            }
+
+        }
+
+    }//GEN-LAST:event_txtPswrdKeyReleased
+    boolean only_once = true;
+    private void txtUnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnameMouseClicked
+        // TODO add your handling code here:
+        if (only_once) {
+            txtUname.setText("");
+            only_once = false;
+    }//GEN-LAST:event_txtUnameMouseClicked
+    }
 
     /**
      * @param args the command line arguments

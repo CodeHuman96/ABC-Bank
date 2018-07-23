@@ -5,17 +5,51 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+=======
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> 358ed03341ff9964e0bcf0ccc091f794871060f0
+
 /**
  *
  * @author shivasai
  */
 public class CustomerServiceMenu extends javax.swing.JFrame {
+    static String name=new String();
+    static List<String> acc=new ArrayList<>();
 
+    public static String wel;
     /**
      * Creates new form CustomerServiceMenu
      */
     public CustomerServiceMenu() {
         initComponents();
+        int id=10000;
+        
+         try
+        {
+            
+            Connection con=ConnectionClass.getConnected();
+            String query="select name from customer where customer_id="+id;
+            Statement stmt=con.createStatement();
+            
+            ResultSet s=stmt.executeQuery(query);
+            s.next();
+            wellbl.setText("Welcome "+s.getString(1));
+            wel=wellbl.getText();
+           
+    }
+         catch(SQLException | ClassNotFoundException e)
+         {
+             e.printStackTrace();
+         }
     }
 
     /**
@@ -94,7 +128,9 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(myprofileBt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
@@ -108,8 +144,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                             .addComponent(chgPassBt)
                             .addComponent(viewStatBt)
                             .addComponent(vewReqStatusBt)
-                            .addComponent(mkSerReqBt)
-                            .addComponent(myprofileBt))
+                            .addComponent(mkSerReqBt))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -119,18 +154,22 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(signOutBt)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(myprofileBt)
-                .addGap(26, 26, 26)
-                .addComponent(chgPassBt)
-                .addGap(21, 21, 21)
-                .addComponent(viewStatBt)
-                .addGap(33, 33, 33)
-                .addComponent(mkSerReqBt)
-                .addGap(27, 27, 27)
-                .addComponent(vewReqStatusBt))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(signOutBt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(chgPassBt)
+                        .addGap(21, 21, 21)
+                        .addComponent(viewStatBt)
+                        .addGap(33, 33, 33)
+                        .addComponent(mkSerReqBt)
+                        .addGap(27, 27, 27)
+                        .addComponent(vewReqStatusBt))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(myprofileBt)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -145,6 +184,27 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     private void mkSerReqBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mkSerReqBtActionPerformed
                 ServiceRequest obj = new ServiceRequest();
                 obj.setVisible(true);
+                try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                }
+                catch(ClassNotFoundException|SQLException e)
+                {
+                    e.printStackTrace();
+                }
                 this.setVisible(false);
     }//GEN-LAST:event_mkSerReqBtActionPerformed
 

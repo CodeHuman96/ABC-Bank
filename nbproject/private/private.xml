@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
             <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerSearch.java</file>
+=======
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
+>>>>>>> b6bb71daa0efd8ccb5e2403de325f62ae1862aee
         </group>
     </open-files>
 </project-private>

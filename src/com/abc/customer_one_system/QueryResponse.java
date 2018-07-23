@@ -75,6 +75,11 @@ public class QueryResponse extends javax.swing.JFrame {
         });
 
         btnBackCsr7.setText("Back");
+        btnBackCsr7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackCsr7ActionPerformed(evt);
+            }
+        });
 
         lblStarCsr7.setForeground(new java.awt.Color(242, 9, 9));
         lblStarCsr7.setText("*");
@@ -157,7 +162,17 @@ public class QueryResponse extends javax.swing.JFrame {
 
     private void btnRefreshCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshCsr7ActionPerformed
         lbltxCustNameCsr7.setText("");
+        lbltxQueryCsr7.setText("");
+        lbltxQueryRecvOnCsr7.setText("");
+        
+        
     }//GEN-LAST:event_btnRefreshCsr7ActionPerformed
+
+    private void btnBackCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr7ActionPerformed
+        this.setVisible(false);
+        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
+        listofcustomerrequests.setVisible(true);
+    }//GEN-LAST:event_btnBackCsr7ActionPerformed
 
     /**
      * @param args the command line arguments

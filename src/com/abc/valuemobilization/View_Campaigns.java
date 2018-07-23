@@ -5,6 +5,15 @@
  */
 package com.abc.valuemobilization;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
@@ -14,8 +23,22 @@ public class View_Campaigns extends javax.swing.JFrame {
     /**
      * Creates new form View_Campaigns
      */
-    public View_Campaigns() {
+    public View_Campaigns() throws SQLException, ClassNotFoundException {
         initComponents();
+        Connection con = ConnectionClass.getConnected();
+        Statement s = con.createStatement();
+        String q="Select * from CAMPAIGN";
+        ResultSet rs= s.executeQuery(q);
+        while(rs.next())
+        {
+        String CTitle=rs.getString(2);
+        String From=rs.getString(4);
+        String To=rs.getString(5);
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblCampaign.getModel();
+        model.addRow(new Object[]{CTitle, From,To });
+        }
+        
     }
 
     /**
@@ -30,7 +53,7 @@ public class View_Campaigns extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCampaign = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,12 +67,9 @@ public class View_Campaigns extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCampaign.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Campaign Title", "Valid From", "Valid To"
@@ -63,7 +83,7 @@ public class View_Campaigns extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCampaign);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,8 +109,8 @@ public class View_Campaigns extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblTitle)
                 .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnBack)
                 .addGap(38, 38, 38))
         );
@@ -108,7 +128,8 @@ public class View_Campaigns extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   
+    public static void main(String args[])  {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -134,9 +155,20 @@ public class View_Campaigns extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        
+        
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Campaigns().setVisible(true);
+                try {
+                    new View_Campaigns().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(View_Campaigns.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(View_Campaigns.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -144,7 +176,7 @@ public class View_Campaigns extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblCampaign;
     // End of variables declaration//GEN-END:variables
 }
