@@ -3,38 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/View_Campaigns.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Create_New_Campaign.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/BackOfficeMenu.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AddNewBiller.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-=======
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
->>>>>>> 970533739c5964e65099d406c61e1ddaf7ac0534
->>>>>>> 5cea15a63ededb9943a5a8b289da7e1062c26cce
->>>>>>> 3afdf20c8dddd5cce980fcca41092f1d878960d4
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/ListOfCreditCardAcc.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/AddReward.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CreditCardLogin.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/SelfServiceMenu.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/RewardCatalog.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/RedeemRewardPoints.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/ViewRequestStatus.java</file>
         </group>
     </open-files>
 </project-private>
