@@ -5,7 +5,14 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JSpinner;
 
 /**
@@ -20,6 +27,13 @@ public class LostStolenCard extends javax.swing.JFrame {
     public LostStolenCard() {
         initComponents();
         spinDate.setEditor(new JSpinner.DateEditor(spinDate,"dd.MM.yyyy"));
+        lblName.setText(CustomerServiceMenu.name);
+        Iterator itr=CustomerServiceMenu.acc.iterator();
+        while(itr.hasNext())
+        {
+            String s=(String)itr.next();
+            cmbAccountNo.addItem(s);
+        }
     }
 
     /**
@@ -41,6 +55,8 @@ public class LostStolenCard extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblMsg = new javax.swing.JLabel();
         spinDate = new javax.swing.JSpinner();
+        lblCard = new javax.swing.JLabel();
+        cmbCardNo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +91,8 @@ public class LostStolenCard extends javax.swing.JFrame {
 
         spinDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
 
+        lblCard.setText("Card No:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,11 +104,6 @@ public class LostStolenCard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAccountNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNamefield)
@@ -105,15 +118,24 @@ public class LostStolenCard extends javax.swing.JFrame {
                                         .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(112, 112, 112))))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSubmit)
+                                .addGap(60, 60, 60)
+                                .addComponent(btnBack)
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addComponent(spinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(btnSubmit)
-                                .addGap(58, 58, 58)
-                                .addComponent(btnBack)
-                                .addContainerGap())))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAccountNo)
+                            .addComponent(lblCard))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbAccountNo, 0, 226, Short.MAX_VALUE)
+                            .addComponent(cmbCardNo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,24 +150,43 @@ public class LostStolenCard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAccountNo)
                     .addComponent(cmbAccountNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCard)
+                    .addComponent(cmbCardNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
                     .addComponent(spinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnBack))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(lblMsg)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbAccountNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAccountNoActionPerformed
-        // TODO add your handling code here:
+        cmbCardNo.removeAllItems();
+        try
+       {
+            Connection connect=ConnectionClass.getConnected();
+            String query="Select card_no from credit_card_detail where account_number=?";
+            PreparedStatement stmt=connect.prepareStatement(query);
+            stmt.setString(1,(String)cmbAccountNo.getSelectedItem());
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next())
+            {
+                cmbCardNo.addItem(rs.getString(1));
+            }   
+       }
+       catch(ClassNotFoundException|SQLException e){
+           e.printStackTrace();
+       }
     }//GEN-LAST:event_cmbAccountNoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -159,6 +200,30 @@ public class LostStolenCard extends javax.swing.JFrame {
         if(cmbAccountNo.getSelectedIndex()==-1)
         {
             lblMsg.setText("Enter all the fields");
+        }
+        else
+        {
+            try
+            {
+                Connection connect=ConnectionClass.getConnected();
+                String query1="select CSR_ID_SEQ.nextval from dual";
+                PreparedStatement stmt1=connect.prepareStatement(query1);
+                ResultSet rs1=stmt1.executeQuery();
+                rs1.next();
+                int r=rs1.getInt(1);
+                String query2="insert into customer_service_request (csr_id,csr_type,csr_date,account_number) values("+r+",3,CURRENT_TIMESTAMP,'"+cmbAccountNo.getSelectedItem()+"')";
+                PreparedStatement stmt2=connect.prepareStatement(query2);
+                int rs2=stmt2.executeUpdate();
+                if(rs2>0)
+                lblMsg.setText("Request Added Succesfully");
+                String query3="insert into stolen_lost_card values(to_date('"+new SimpleDateFormat("yyyy/MM/dd").format(spinDate.getValue())+"','yyyy/MM/dd'),"+r+","+cmbCardNo.getSelectedItem()+")";
+                PreparedStatement stmt3=connect.prepareStatement(query3);
+                stmt3.executeUpdate();
+                
+            }
+            catch(ClassNotFoundException|SQLException e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -202,7 +267,9 @@ public class LostStolenCard extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbAccountNo;
+    private javax.swing.JComboBox<String> cmbCardNo;
     private javax.swing.JLabel lblAccountNo;
+    private javax.swing.JLabel lblCard;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblName;
