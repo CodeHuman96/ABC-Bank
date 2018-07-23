@@ -207,11 +207,12 @@ public class AddNewBiller extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBillerName)
-                    .addComponent(jLabel2)
-                    .addComponent(txtBillerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MsgBiller, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MsgBiller, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblBillerName)
+                        .addComponent(jLabel2)
+                        .addComponent(txtBillerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -273,6 +274,7 @@ public class AddNewBiller extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        try{
         ListOfBillers billers=new ListOfBillers();
         //this.setVisible(false);
         //billers.setVisible(true);
@@ -350,7 +352,7 @@ public class AddNewBiller extends javax.swing.JFrame {
                 if(!existingBiller(ac_no,id,connect))
                 {
                     int res=addBiller(name,ac_no,address,city, pin,cbm,id,connect);
-                    System.out.println(res);
+                    //System.out.println(res);
                 }               
                 
             } 
@@ -363,6 +365,8 @@ public class AddNewBiller extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddNewBiller.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        }
+        catch(Exception e){}
     }//GEN-LAST:event_btnSubmitActionPerformed
     private boolean existingBiller(String acc_no, String id, Connection connect) throws SQLException 
     {
@@ -390,9 +394,12 @@ public class AddNewBiller extends javax.swing.JFrame {
         return res;
     }
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        try{
         ListOfBillers billers=new ListOfBillers();
         this.setVisible(false);
         billers.setVisible(true);
+        }
+        catch(ClassNotFoundException | SQLException e){}
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed

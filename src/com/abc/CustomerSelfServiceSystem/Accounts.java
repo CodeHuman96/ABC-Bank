@@ -5,6 +5,13 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author shivasai
@@ -16,6 +23,33 @@ public class Accounts extends javax.swing.JFrame {
      */
     public Accounts() {
         initComponents();
+        
+        int id=10000;
+        
+         try
+        {
+            
+            Connection con=ConnectionClass.getConnected();
+            String query="select account_number,acc_type,balance from account where customer_id="+id;
+            PreparedStatement stmt=con.prepareStatement(query);
+            wellbl.setText(CustomerServiceMenu.wel);
+            ResultSet s=stmt.executeQuery();
+            while(s.next())
+            {
+                
+            DefaultTableModel model=(DefaultTableModel)accountsTbl.getModel();
+            model.addRow(new Object[]{s.getInt(1),s.getString(2),s.getDouble(3)});
+            if(s.getString(2).equals("Savings"))
+            {
+                
+            }
+           
+    }
+        }
+         catch(SQLException | ClassNotFoundException e)
+         {
+             e.printStackTrace();
+         }
     }
 
     /**
@@ -43,23 +77,15 @@ public class Accounts extends javax.swing.JFrame {
 
         accountsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Account Number", "Account Type", "Account Balance", "Average balance"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, true, true
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];

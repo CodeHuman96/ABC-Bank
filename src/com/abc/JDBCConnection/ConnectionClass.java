@@ -15,8 +15,9 @@ import java.sql.*;
  * @author test
 */ 
 public class ConnectionClass {
-<<<<<<< HEAD
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
+<<<<<<< HEAD
+=======
 =======
 
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
