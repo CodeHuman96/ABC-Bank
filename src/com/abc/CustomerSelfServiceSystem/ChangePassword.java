@@ -22,6 +22,7 @@ public class ChangePassword extends javax.swing.JFrame {
      */
     public ChangePassword() {
         initComponents();
+        wellbl.setText(CustomerServiceMenu.wel);
     }
 
     /**
@@ -135,15 +136,15 @@ public class ChangePassword extends javax.swing.JFrame {
                         .addGap(114, 114, 114)
                         .addComponent(submitBt)
                         .addGap(63, 63, 63)
-                        .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(clearBt, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(clearBt, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addComponent(header6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(402, Short.MAX_VALUE))
+                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,16 +206,14 @@ public class ChangePassword extends javax.swing.JFrame {
             Connection con=ConnectionClass.getConnected();
             
             Statement stmt=con.createStatement();
-            wellbl.setText(CustomerServiceMenu.wel);
+            
             String query="select custpassword from customer where customer_id="+id;
             ResultSet s=stmt.executeQuery(query);
             s.next();
-            if(oldPasstxt.getText().equals(null) || reTypePasstxt.getText().equals(null) || newPasstxt.getText().equals(null))
+            
+            if(s.getString(1).equals(oldPasstxt.getText()))
             {
-                errlbl.setText("Fields should not be empty");
-            }
-            else if(s.getString(1).equals(oldPasstxt.getText()))
-            {
+                
                 if(newPasstxt.getText().equals(reTypePasstxt.getText()) && !(newPasstxt.getText().equals(null)))
                 {
                     String newpass=newPasstxt.getText();
@@ -225,6 +224,7 @@ public class ChangePassword extends javax.swing.JFrame {
                         errlbl.setText("Password Changed Successfully");
                     }
                 }
+                
                 else
                 {
                     errlbl.setText("password and new password should be same");
@@ -238,7 +238,11 @@ public class ChangePassword extends javax.swing.JFrame {
     }
          catch(SQLException | ClassNotFoundException e)
          {
-             e.printStackTrace();
+             
+             
+                    errlbl.setText("Fieds can not be empty");
+             
+             
          }
     }//GEN-LAST:event_submitBtActionPerformed
 

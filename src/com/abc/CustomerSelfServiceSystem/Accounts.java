@@ -18,13 +18,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Accounts extends javax.swing.JFrame {
 
+    static int accno;
     /**
      * Creates new form Accounts
      */
     public Accounts() {
         initComponents();
-        
-        int id=10000;
+         wellbl.setText(CustomerServiceMenu.wel);
+        //int id=CustomerLogin.customerid;
+        //int id=CustomerLogin.customerid;
+        int id=CustomerLogin.customerid;
         
          try
         {
@@ -32,17 +35,25 @@ public class Accounts extends javax.swing.JFrame {
             Connection con=ConnectionClass.getConnected();
             String query="select account_number,acc_type,balance from account where customer_id="+id;
             PreparedStatement stmt=con.prepareStatement(query);
-            wellbl.setText(CustomerServiceMenu.wel);
+           
             ResultSet s=stmt.executeQuery();
+            double avg;
+            
             while(s.next())
             {
-                
-            DefaultTableModel model=(DefaultTableModel)accountsTbl.getModel();
-            model.addRow(new Object[]{s.getInt(1),s.getString(2),s.getDouble(3)});
-            if(s.getString(2).equals("Savings"))
+               if(s.getString(2).equals("Savings"))
             {
-                
-            }
+               avg=1000;
+               
+            } 
+               else
+               {
+                   avg=2000;
+                   
+               }
+            DefaultTableModel model=(DefaultTableModel)accountsTbl.getModel();
+            model.addRow(new Object[]{s.getInt(1),s.getString(2),s.getDouble(3),avg});
+            
            
     }
         }
@@ -111,19 +122,21 @@ public class Accounts extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(header4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(wellbl)
-                .addGap(137, 137, 137))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(header4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(wellbl)
+                        .addGap(137, 137, 137))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
+                .addComponent(backBt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,9 +147,9 @@ public class Accounts extends javax.swing.JFrame {
                     .addComponent(wellbl))
                 .addGap(63, 63, 63)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backBt)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,6 +163,10 @@ public class Accounts extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtActionPerformed
 
     private void accountsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsTblMouseClicked
+           
+        int row=accountsTbl.getSelectedRow();
+                int column=0;
+        accno=(Integer)(accountsTbl.getValueAt(row, column));
                 AccountStatement obj = new AccountStatement();
                 obj.setVisible(true);
                 this.setVisible(false);

@@ -9,15 +9,26 @@ package com.abc.customer_one_system;
  *
  * @author test
  */
+import com.abc.customer_one_system.ListOfQueries;
 public class QueryResponse extends javax.swing.JFrame {
 
     /**
      * Creates new form QueryResponse
      */
-    public QueryResponse() {
+    public QueryResponse()
+    {
         initComponents();
+      //  System.out.println(ListOfQueries.customerName);
+        lbltxCustNameCsr7.setText(ListOfQueries.customerName);
+        //lbltxQueryRecvOnCsr7.setText(ListOfQueries.queryRevDate);
+   
+        
     }
-
+    public QueryResponse(String queryNumber, String customerName, String customerQuery, String queryResponse, String queryStatus, String queryRevDate)
+    {
+        lbltxCustNameCsr7.setText(customerName);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +48,8 @@ public class QueryResponse extends javax.swing.JFrame {
         lblStatusCsr7 = new javax.swing.JLabel();
         cmbStatusCsr7 = new javax.swing.JComboBox<>();
         lblResponseCsr7 = new javax.swing.JLabel();
-        txtareaResponseCsr7 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textareaResponseCsr7 = new javax.swing.JScrollPane();
+        txtareaResponseCsr7 = new javax.swing.JTextArea();
         btnSubmitCsr7 = new javax.swing.JButton();
         btnRefreshCsr7 = new javax.swing.JButton();
         btnBackCsr7 = new javax.swing.JButton();
@@ -61,9 +72,9 @@ public class QueryResponse extends javax.swing.JFrame {
 
         lblResponseCsr7.setText("Response");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        txtareaResponseCsr7.setViewportView(jTextArea1);
+        txtareaResponseCsr7.setColumns(20);
+        txtareaResponseCsr7.setRows(5);
+        textareaResponseCsr7.setViewportView(txtareaResponseCsr7);
 
         btnSubmitCsr7.setText("Submit");
 
@@ -119,7 +130,7 @@ public class QueryResponse extends javax.swing.JFrame {
                             .addComponent(lbltxCustNameCsr7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbltxQueryRecvOnCsr7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbltxQueryCsr7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtareaResponseCsr7, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))))
+                            .addComponent(textareaResponseCsr7, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))))
                 .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
@@ -145,7 +156,7 @@ public class QueryResponse extends javax.swing.JFrame {
                     .addComponent(cmbStatusCsr7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtareaResponseCsr7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textareaResponseCsr7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblResponseCsr7)
                         .addComponent(lblStarCsr7)))
@@ -161,10 +172,11 @@ public class QueryResponse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefreshCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshCsr7ActionPerformed
-        lbltxCustNameCsr7.setText("");
+       /* lbltxCustNameCsr7.setText("");
         lbltxQueryCsr7.setText("");
-        lbltxQueryRecvOnCsr7.setText("");
-        
+        lbltxQueryRecvOnCsr7.setText("");*/
+       
+        txtareaResponseCsr7.setText("");
         
     }//GEN-LAST:event_btnRefreshCsr7ActionPerformed
 
@@ -174,6 +186,7 @@ public class QueryResponse extends javax.swing.JFrame {
         listofcustomerrequests.setVisible(true);
     }//GEN-LAST:event_btnBackCsr7ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -205,6 +218,7 @@ public class QueryResponse extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QueryResponse().setVisible(true);
+                
             }
         });
     }
@@ -214,7 +228,6 @@ public class QueryResponse extends javax.swing.JFrame {
     private javax.swing.JButton btnRefreshCsr7;
     private javax.swing.JButton btnSubmitCsr7;
     private javax.swing.JComboBox<String> cmbStatusCsr7;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblCustNameCsr7;
     private javax.swing.JLabel lblQueryCsr7;
     private javax.swing.JLabel lblQueyRecvOnCsr7;
@@ -225,6 +238,7 @@ public class QueryResponse extends javax.swing.JFrame {
     private javax.swing.JLabel lbltxCustNameCsr7;
     private javax.swing.JLabel lbltxQueryCsr7;
     private javax.swing.JLabel lbltxQueryRecvOnCsr7;
-    private javax.swing.JScrollPane txtareaResponseCsr7;
+    private javax.swing.JScrollPane textareaResponseCsr7;
+    private javax.swing.JTextArea txtareaResponseCsr7;
     // End of variables declaration//GEN-END:variables
 }

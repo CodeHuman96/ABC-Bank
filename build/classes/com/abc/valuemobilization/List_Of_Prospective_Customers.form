@@ -65,10 +65,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblProspects">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Campaign Title" type="java.lang.Object"/>
                 <Column editable="false" title="Prospect Name" type="java.lang.Object"/>
                 <Column editable="false" title="Contact Number" type="java.lang.Object"/>
@@ -84,7 +84,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="List Of prospective Customers"/>
+        <Property name="text" type="java.lang.String" value="List Of Prospective Customers"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogout">

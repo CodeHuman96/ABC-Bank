@@ -47,7 +47,11 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
+<<<<<<< HEAD
         pattern = "[a-z A-Z .'-]+";
+=======
+        pattern = "[a-zA-Z .'-]+";
+>>>>>>> 1491a54fca02639da53abdf2b49cf92ae42c8a6c
         return name.matches(pattern);
     }
     public boolean matchAccountNumber(String accNo){

@@ -12,8 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
+
+import java.time.temporal.ChronoUnit;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +23,45 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author test
  */
+
+
+//trying it 
+
+
+
+
+
+
+
+
 public class ListBillPaymentRequests extends javax.swing.JFrame {
+
+    /*private boolean[][] editable_cells;
+    
+    public final void setCellEditable  (DefaultTableModel m,int row, int col, boolean value) {
+        //this.editable_cells= new boolean[row][col];
+        System.out.println(this);
+       this.editable_cells[row][col] = value; // set cell true/false
+      m.fireTableCellUpdated(row, col);
+    }*/
+    class MyDefaultTableModel extends DefaultTableModel {
+    private boolean[][] editable_cells; // 2d array to represent rows and columns
+
+    private MyDefaultTableModel(int rows, int cols) { // constructor
+        super(rows, cols);
+        this.editable_cells = new boolean[rows][cols];
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) { // custom isCellEditable function
+        return this.editable_cells[row][column];
+    }
+
+    public void setCellEditable(int row, int col, boolean value) {
+        this.editable_cells[row][col] = value; // set cell true/false
+        this.fireTableCellUpdated(row, col);
+    }
+}
 
     /**
      * Creates new form ListBillPaymentRequests
@@ -40,15 +79,15 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
         while(rs.next())
             
         {  
-           
-            
+       
            
             LocalDate deadline=rs.getDate("payment_due_date").toLocalDate();
+            System.out.println(rs.getDate("payment_due_date"));
            
-           
-             if (Period.between(deadline,today).getDays()<=1 && rs.getString("payment_status").equals("pending"))//&& rs.getString("payment_status").equals("pending")
-            { 
-            
+           final long days = ChronoUnit.DAYS.between(today,deadline);
+             if ((days<=1) && rs.getString("payment_status").equalsIgnoreCase("pending"))//||rs.getString("payment_status").equals("pending"))
+            { //System.out.println(days);
+          
              
                 
                 String query2="select * from account where account_number="+rs.getString("account_number");
@@ -58,8 +97,14 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 ResultSet rs2=st2.executeQuery(query2);
                 
                 
-                DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
-               
+                 DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+                  //System.out.println("grt");
+                 MyDefaultTableModel mod=(MyDefaultTableModel) tblCustBillPayment.getModel(); 
+                 mod.setCellEditable(1,7,false);
+                
+                 //System.out.println(model.isCellEditable(1,7));
+                 
+                 
                
                 
                 while (rs2.next()){
@@ -75,6 +120,9 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                
                 
                 model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount")});
+                 // model.isCellEditable(1,7)=false;
+                
+                 System.out.println(model.isCellEditable(1,7));
                   
                 }
                 
@@ -86,6 +134,10 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
        
     }
     }
+    
+    
+    //trying it new
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,10 +147,15 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustBillPayment = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,12 +186,24 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
             }
         });
         tblCustBillPayment.setGridColor(new java.awt.Color(48, 19, 19));
+        tblCustBillPayment.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                tblCustBillPaymentComponentHidden(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCustBillPayment);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -152,7 +221,11 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(94, 94, 94)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmit)
+                .addGap(92, 92, 92)
                 .addComponent(btnBack)
                 .addGap(269, 269, 269))
         );
@@ -164,7 +237,10 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnSubmit)
+                    .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -177,6 +253,25 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
         BackOfficeMenu obj=new BackOfficeMenu();
         obj.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+      /*  System.out.println(tblCustBillPayment.getRowCount());
+        for (int i=0;i<tblCustBillPayment.getRowCount();i++){
+            
+        if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7)).booleanValue()==false &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,8)).booleanValue()==false  &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,6)).booleanValue()==false)
+        {lblError.setText("Fill all values");
+        break;}
+        
+       }
+        */
+   
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void tblCustBillPaymentComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblCustBillPaymentComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblCustBillPaymentComponentHidden
 
     /**
      * @param args the command line arguments
@@ -219,8 +314,11 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblError;
     private javax.swing.JTable tblCustBillPayment;
     // End of variables declaration//GEN-END:variables
 }
