@@ -20,9 +20,8 @@ public class BillPaymentMenu extends javax.swing.JFrame {
      */
     public BillPaymentMenu() {
         initComponents();
-        BillPaymentLogin login=new BillPaymentLogin();
-        String str=login.cust_name; 
-        lblMsg.setText("WELCOME "+str);
+        String str=BillPaymentLogin.cust_name; 
+        lblMsg.setText("WELCOME "+ str);
     }
 
     /**

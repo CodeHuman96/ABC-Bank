@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,11 +29,15 @@ public class MakePayment extends javax.swing.JFrame {
     /**
      * Creates new form MakePayment
      */
+    
+    public static String customer_id="";
+    public static String biller_id="";
+
     public MakePayment() throws ClassNotFoundException, SQLException {
         initComponents();
-        BillPaymentLogin login=new BillPaymentLogin(); 
+        //BillPaymentLogin login=new BillPaymentLogin(); 
         Connection connect = ConnectionClass.getConnected();
-        String customer_id=login.cust_id;
+        String customer_id=BillPaymentLogin.cust_id;
         String statement = "select b.biller_name from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
@@ -116,11 +123,33 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(246, 9, 9));
         jLabel8.setText("*");
 
+        txtAmount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAmountMouseClicked(evt);
+            }
+        });
+
         btnGroupPay.add(radYes);
         radYes.setText("Yes");
+        radYes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radYesMouseClicked(evt);
+            }
+        });
 
         btnGroupPay.add(radNo);
         radNo.setText("No");
+        radNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radNoMouseClicked(evt);
+            }
+        });
+
+        txtPayDueDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPayDueDateMouseClicked(evt);
+            }
+        });
 
         jLabel9.setForeground(new java.awt.Color(251, 8, 8));
         jLabel9.setText("*");
@@ -276,6 +305,7 @@ public class MakePayment extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //MatchFormats match=new MatchFormats();
         boolean flag = true;
+        double am=0;
         try
         {
             lblMsg.setText("");
@@ -319,7 +349,7 @@ public class MakePayment extends javax.swing.JFrame {
             }
             else
             {
-                double am=Double.parseDouble(txtAmount.getText());
+                am=Double.parseDouble(txtAmount.getText());
             }
             String date=txtPayDueDate.getText().trim();
             if(date.equals(""))
@@ -334,6 +364,12 @@ public class MakePayment extends javax.swing.JFrame {
             if(flag)
             {
                 lblMsg.setText("Processing");
+                Connection con=ConnectionClass.getConnected();
+                DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+                //String todate = String.valueOf(LocalDate.parse(date, f));
+                String paydate=String.valueOf(f.format(LocalDate.now()));
+                //System.out.println("date="+date+" paydate="+paydate);
+                addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);
             }
             else
             {
@@ -343,12 +379,77 @@ public class MakePayment extends javax.swing.JFrame {
         catch(NumberFormatException e)
         {
             lblMsg.setText("Invalid input(s)");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
+private void addPayment(Double amount,String dueDate,String date,String status,String acc,String billerId,Connection connect) throws SQLException
+{
+    String query="insert into make_payment values(?,?,?,?,billNo_seq.NEXTVAL,?,?)";
+    PreparedStatement stmt=connect.prepareStatement(query);
+    stmt.setDouble(1,amount);
+    stmt.setString(2,dueDate);
+    stmt.setString(3,date);
+    stmt.setString(4,status);
+    //stmt.setInt(5,billNo);
+    stmt.setString(5,acc);
+    stmt.setString(6,billerId);
+    stmt.execute();
+    //System.out.println("add Payment method");
+}
 
+private String getBiller(String name,String acNo,Connection con) throws SQLException, ClassNotFoundException
+{
+    String query="select biller_id from biller where biller_name=? and customer_id=?";
+    PreparedStatement stmt=con.prepareStatement(query);
+    stmt.setString(1,name);
+    stmt.setString(2,getCustId(acNo,con));
+    ResultSet rs=stmt.executeQuery();
+    //System.out.println("get Biller method");
+    while(rs.next()) {biller_id=rs.getString(1);}
+    return biller_id;
+}
+private String getCustId(String acNo,Connection con) throws ClassNotFoundException, SQLException
+{
+    String query="select customer_id from account where account_number=?";
+    PreparedStatement stmt=con.prepareStatement(query);
+    stmt.setString(1,acNo);
+    ResultSet rs=stmt.executeQuery();
+    //System.out.println("get cust_id method");
+    while(rs.next()) { customer_id=rs.getString(1);}
+    return customer_id;
+}
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
         
     }//GEN-LAST:event_cbmAcNoActionPerformed
+
+    private void txtAmountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseClicked
+        if(!MsgAmount.getText().trim().equals(""))
+        {
+            MsgAmount.setText("");
+        }
+    }//GEN-LAST:event_txtAmountMouseClicked
+
+    private void radYesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radYesMouseClicked
+        if(!MsgPay.getText().trim().equals(""))
+        {
+            MsgPay.setText("");
+        }
+    }//GEN-LAST:event_radYesMouseClicked
+
+    private void radNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radNoMouseClicked
+        if(!MsgPay.getText().trim().equals(""))
+        {
+            MsgPay.setText("");
+        }
+    }//GEN-LAST:event_radNoMouseClicked
+
+    private void txtPayDueDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPayDueDateMouseClicked
+        if(!MsgDate.getText().trim().equals(""))
+        {
+            MsgDate.setText("");
+        }
+    }//GEN-LAST:event_txtPayDueDateMouseClicked
 
     /**
      * @param args the command line arguments
@@ -366,29 +467,19 @@ public class MakePayment extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MakePayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MakePayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MakePayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MakePayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            @Override
-            public void run() {
-                try {
-                    new MakePayment().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new MakePayment().setVisible(true);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
        
