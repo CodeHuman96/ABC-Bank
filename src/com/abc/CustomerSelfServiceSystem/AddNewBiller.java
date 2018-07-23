@@ -288,12 +288,12 @@ public class AddNewBiller extends javax.swing.JFrame {
                 MsgBiller.setText("Cannot be empty");
                 flag &= false;
             } 
-    /*        else if(!match.matchName(name))
+            else if(!match.matchName(name))
             {
                 MsgBiller.setText("Invalid Name format");
                 flag &=false;
             }
-    */        else 
+            else 
             {
                 MsgBiller.setText("");
                 flag &= true;
