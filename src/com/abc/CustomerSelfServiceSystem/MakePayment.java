@@ -108,11 +108,9 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(252, 11, 11));
         jLabel6.setText("*");
 
-<<<<<<< HEAD
+
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
-=======
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "add account" }));
->>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
         cbmAcNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmAcNoActionPerformed(evt);
