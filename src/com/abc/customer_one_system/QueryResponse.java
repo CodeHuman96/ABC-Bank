@@ -9,15 +9,26 @@ package com.abc.customer_one_system;
  *
  * @author test
  */
+import com.abc.customer_one_system.ListOfQueries;
 public class QueryResponse extends javax.swing.JFrame {
 
     /**
      * Creates new form QueryResponse
      */
-    public QueryResponse() {
+    public QueryResponse()
+    {
         initComponents();
+      //  System.out.println(ListOfQueries.customerName);
+        lbltxCustNameCsr7.setText(ListOfQueries.customerName);
+        //lbltxQueryRecvOnCsr7.setText(ListOfQueries.queryRevDate);
+   
+        
     }
-
+    public QueryResponse(String queryNumber, String customerName, String customerQuery, String queryResponse, String queryStatus, String queryRevDate)
+    {
+        lbltxCustNameCsr7.setText(customerName);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,6 +218,7 @@ public class QueryResponse extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QueryResponse().setVisible(true);
+                
             }
         });
     }

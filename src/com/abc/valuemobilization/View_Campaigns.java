@@ -27,18 +27,17 @@ public class View_Campaigns extends javax.swing.JFrame {
         initComponents();
         Connection con = ConnectionClass.getConnected();
         Statement s = con.createStatement();
-        String q="Select * from CAMPAIGN";
-        ResultSet rs= s.executeQuery(q);
-        while(rs.next())
-        {
-        String CTitle=rs.getString(2);
-        String From=rs.getString(4);
-        String To=rs.getString(5);
-        DefaultTableModel model;
-        model = (DefaultTableModel) tblCampaign.getModel();
-        model.addRow(new Object[]{CTitle, From,To });
+        String q = "Select * from CAMPAIGN";
+        ResultSet rs = s.executeQuery(q);
+        while (rs.next()) {
+            String CTitle = rs.getString(2);
+            String From = rs.getString(4);
+            String To = rs.getString(5);
+            DefaultTableModel model;
+            model = (DefaultTableModel) tblCampaign.getModel();
+            model.addRow(new Object[]{CTitle, From, To});
         }
-        
+
     }
 
     /**
@@ -119,17 +118,16 @@ public class View_Campaigns extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Campaign_Management cm= new Campaign_Management();
+        Campaign_Management cm = new Campaign_Management();
         cm.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
-    public static void main(String args[])  {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -155,11 +153,6 @@ public class View_Campaigns extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
-        
-        
-        
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

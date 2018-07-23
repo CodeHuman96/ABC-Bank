@@ -18,6 +18,7 @@ public class DeDuplication extends javax.swing.JFrame {
      */
     public DeDuplication() {
         initComponents();
+        
     }
 
     /**

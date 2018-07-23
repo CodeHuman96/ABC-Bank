@@ -5,8 +5,6 @@
  */
 package com.abc.customer_one_system;
 
-import com.abc.JDBCConnection.ConnectionClass;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -21,6 +19,9 @@ public class CustomerSearch extends javax.swing.JFrame {
     /**
      * Creates new form CustomerSearch
      */
+    static Boolean dataFlag[] = {false,false,false,false,false,false,false};
+    static String name="", dob="", accountNo="", emailID="", PAN="", mobile="";
+    static int customerID=0;
     public CustomerSearch() {
         initComponents();
     }
@@ -97,7 +98,6 @@ public class CustomerSearch extends javax.swing.JFrame {
             }
         });
 
-        txtMobileNo.setText("+91 ");
         txtMobileNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMobileNoActionPerformed(evt);
@@ -265,6 +265,18 @@ public class CustomerSearch extends javax.swing.JFrame {
         lblMobileNoFormat.setText("");
         lblNameFormat.setText("");
         lblAccountNoFormat.setText("");
+        for(int i=0;i<7;i++){
+            dataFlag[i]=false;
+        }
+        name="";
+        dob="";
+        accountNo="";
+        emailID="";
+        PAN="";
+        mobile="";
+        customerID=0;
+    
+        
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -276,71 +288,78 @@ public class CustomerSearch extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-    Boolean dataFlag[] = new Boolean[7];
+    //name 1, custID 2, dob 3, accountNo 4, email 5 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         MatchFormats match = new MatchFormats();
+        boolean isValid = true;
         try {
-            String name = txtName.getText().trim();
+            name = txtName.getText().trim();
             if (!name.equals("")) {
                 if (match.matchName(name)) {
                     dataFlag[0] = true;
                 } else {
                     lblNameFormat.setText("Invalid name");
+                    isValid = false;
                 }
             } else {
                 lblNameFormat.setText("");
             }
             if (!txtCustomerID.getText().equals("")) {
-                int customerID = Integer.parseInt(txtCustomerID.getText());
+                customerID = Integer.parseInt(txtCustomerID.getText());
                 dataFlag[1] = true;
             }
-            String dob = txtDOB.getText().trim();
+            dob = txtDOB.getText().trim();
             //date of bith is in form dd/mm/yyyy
             if (!dob.equals("")) {
                 if (match.matchDOB(dob)) {
                     dataFlag[2] = true;
                 } else {
                     lblDateFormat.setText("Invalid");
+                    isValid = false;
                 }
             } else {
                 lblDateFormat.setText("dd/mm/yyyy");
             }
-            String accountNo = txtAccountNo.getText().trim();
+            accountNo = txtAccountNo.getText().trim();
             if (!accountNo.equals("")) {
                 if (match.matchAccountNumber(accountNo)) {
                     dataFlag[3] = true;
                 } else {
                     lblAccountNoFormat.setText("Invalid format");
+                    isValid = false;
                 }
             } else {
                 lblAccountNoFormat.setText("");
             }
-            String emailID = txtEmailID.getText().toLowerCase();
+            emailID = txtEmailID.getText().toLowerCase();
             if (!emailID.equals("")) {
                 if (match.matchEmail(emailID)) {
                     dataFlag[4] = true;
                 } else {
                     lblEmailFormat.setText("Invalid Email ID");
+                    isValid = false;
                 }
             } else {
                 lblEmailFormat.setText("");
             }
-            String PAN = txtPAN.getText().trim();
+            PAN = txtPAN.getText().trim();
             if (!PAN.equals("")) {
                 if (match.matchPAN(PAN)) {
                     dataFlag[5] = true;
                 } else {
                     lblPANFormat.setText("Invalid pan");
+                    isValid = false;
                 }
             } else {
                 lblPANFormat.setText("");
             }
-            String mobile = txtMobileNo.getText().trim().replace(" ", "");
+            mobile = txtMobileNo.getText().trim().replace(" ", "");
             if (!mobile.equals("")) {
                 if (match.matchMobileNo(mobile)) {
                     dataFlag[6] = true;
                 } else {
                     lblMobileNoFormat.setText("Invalid mobile no.");
+                    isValid = false;
                 }
             } else {
                 lblMobileNoFormat.setText("");
@@ -348,6 +367,18 @@ public class CustomerSearch extends javax.swing.JFrame {
 
         } catch (NumberFormatException e) {
             lblMsg.setText("Enter valid data");
+            isValid = false;
+        }
+        if (isValid) {
+            try {
+                ListCustomers obj = new ListCustomers();
+                obj.setVisible(true);
+                this.setVisible(false);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (Exception e){
+                lblMsg.setText("Error");
+            }
         }
 
 
@@ -381,10 +412,8 @@ public class CustomerSearch extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerSearch().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CustomerSearch().setVisible(true);
         });
     }
 
