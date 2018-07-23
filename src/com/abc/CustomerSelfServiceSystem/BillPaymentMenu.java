@@ -20,9 +20,8 @@ public class BillPaymentMenu extends javax.swing.JFrame {
      */
     public BillPaymentMenu() {
         initComponents();
-        BillPaymentLogin login=new BillPaymentLogin();
-        String str=login.cust_name; 
-        lblMsg.setText("WELCOME "+str);
+        String str=BillPaymentLogin.cust_name; 
+        lblMsg.setText("WELCOME "+ str);
     }
 
     /**
@@ -129,6 +128,10 @@ public class BillPaymentMenu extends javax.swing.JFrame {
         this.setVisible(false);
         }
         catch(ClassNotFoundException | SQLException e){}
+<<<<<<< HEAD
+=======
+
+>>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
     }//GEN-LAST:event_btnMakePaymentActionPerformed
     
     private void btnViewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPaymentActionPerformed

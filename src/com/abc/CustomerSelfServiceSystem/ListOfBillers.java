@@ -21,12 +21,14 @@ public class ListOfBillers extends javax.swing.JFrame {
 
     /**
      * Creates new form ListOfBillers
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     public ListOfBillers() throws ClassNotFoundException, SQLException {
         initComponents();
-        BillPaymentLogin login=new BillPaymentLogin(); 
+        //BillPaymentLogin login=new BillPaymentLogin(); 
         Connection connect = ConnectionClass.getConnected();
-        String customer_id=login.cust_id;
+        String customer_id=BillPaymentLogin.cust_id;
         String statement = "select b.biller_name,biller_address,biller_category from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
