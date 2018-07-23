@@ -6,6 +6,8 @@
 package com.abc.customer_one_system;
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 //import java.sql.Statement;
 //import static javax.management.remote.JMXConnectorFactory.connect;
@@ -21,9 +23,9 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
      */
     public void statusCheck(int type,String status) throws Exception
     {
-        ConnectionClass concls = new ConnectionClass();
-        
-        Statement stmt = concls.getConnected().createStatement();
+      //  ConnectionClass concls = new ConnectionClass();
+        Connection con = ConnectionClass.getConnected();
+        Statement stmt = con.createStatement();
         //pstmt.setInt(1,type);
        // pstmt.setString(2,status);
         String query="select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type="+type+" and cr.csr_status='"+status+"'";
@@ -184,34 +186,44 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         int type;
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
         String status=(String)cmbStatusListOfCustReq.getSelectedItem();
-        try
-        {
+        
             if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
             {
+            try {
                 type=1;
                 statusCheck(type,status);
+            } catch (Exception ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 
             }
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Disputed Transaction")
             {
+            try {
                 type=5;
                 statusCheck(type,status);
+            } catch (Exception ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
             {
+            try {
                 type=3;
                 statusCheck(type,status);
+            } catch (Exception ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
             {
+            try {
                 type=6;
                 statusCheck(type,status);
+            } catch (Exception ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch(Exception e)
-        {
-            
-        }
+            }
        
             
         
@@ -232,7 +244,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackListOfCustReqActionPerformed
 
     private void tblListOfCustReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustReqMouseClicked
-         if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
+         
+        if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
             {
                 this.setVisible(false);
                 ChequebookRequest cbr = new ChequebookRequest();
@@ -247,8 +260,16 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
             {
                 this.setVisible(false);
-                LostOrStolenCard lst = new LostOrStolenCard();
+                LostOrStolenCard lst;
+            try {
+                lst = new LostOrStolenCard();
                 lst.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
             }
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
             {
