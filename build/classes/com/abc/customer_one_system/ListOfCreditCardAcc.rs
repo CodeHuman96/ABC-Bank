@@ -1,2 +1,0 @@
-com.abc.CreditCardSelfService.ListOfCreditCardAcc
-com.abc.CreditCardSelfService.ListOfCreditCardAcc$1
