@@ -560,10 +560,10 @@ public class AddCustomers extends javax.swing.JFrame {
                             + "to_date(?, 'dd/mm/yyyy'),"
                             + "to_date(?, 'dd/mm/yyyy'))";
                     PreparedStatement prepStmt = connect.prepareStatement(query1);
-                    prepStmt.setString(1, name);
-                    prepStmt.setString(2, address);
-                    prepStmt.setString(3, pin);
-                    prepStmt.setString(4, city);
+                    prepStmt.setString(1, name.toLowerCase());
+                    prepStmt.setString(2, address.toLowerCase());
+                    prepStmt.setString(3, pin.toLowerCase());
+                    prepStmt.setString(4, city.toLowerCase());
                     prepStmt.setDouble(5, monthlyIncome);
                     prepStmt.setString(6, contactNo);
                     prepStmt.setString(7, usrName);

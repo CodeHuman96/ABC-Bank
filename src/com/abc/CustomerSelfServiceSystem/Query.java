@@ -5,6 +5,13 @@
  */
 package com.abc.CustomerSelfServiceSystem;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Iterator;
+
 /**
  *
  * @author test
@@ -16,6 +23,7 @@ public class Query extends javax.swing.JFrame {
      */
     public Query() {
         initComponents();
+        lblName.setText(CustomerServiceMenu.name);
     }
 
     /**
@@ -77,23 +85,24 @@ public class Query extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblQuery)
-                                .addGap(18, 18, 18)
+                                .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(44, 44, 44)
-                                            .addComponent(btnSubmit)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnBack))
-                                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(btnSubmit)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBack))
+                                    .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblNameField)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(115, 115, 115)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblQuery)
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,13 +117,13 @@ public class Query extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblQuery)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnSubmit))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +138,31 @@ public class Query extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
        if(txtQuery.getText().trim().equals(""))
        lblMsg.setText("Query Cannot be empty");
+       else
+       {
+           try
+           {
+               Connection connect=ConnectionClass.getConnected();
+               String query1="Select CSR_ID_SEQ.nextval from dual";
+               PreparedStatement stmt1=connect.prepareStatement(query1);
+               ResultSet rs1=stmt1.executeQuery();
+               rs1.next();
+               int r=rs1.getInt(1);
+               String query2="insert into customer_service_request (csr_id,csr_type,csr_date,account_number) values("+r+",7,CURRENT_TIMESTAMP,"+CustomerServiceMenu.acc.get(0)+")";
+               PreparedStatement stmt2=connect.prepareStatement(query2);
+               int rs2=stmt2.executeUpdate();
+               if(rs2>0)
+                   lblMsg.setText("Query Succesfully Recieved");
+               String query3="insert into customer_query (query,csr_id) values('"+txtQuery.getText()+"',"+r+")";
+               PreparedStatement stmt3=connect.prepareStatement(query3);
+               stmt3.executeUpdate();
+               
+           }   
+           catch(ClassNotFoundException|SQLException e)
+           {
+               e.printStackTrace();
+           }
+       }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**

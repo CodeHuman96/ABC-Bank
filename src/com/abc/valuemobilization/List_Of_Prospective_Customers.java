@@ -5,7 +5,15 @@
  */
 package com.abc.valuemobilization;
 //import com.abc.*;
+import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.Login;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +24,39 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     /**
      * Creates new form List_Of_Prospective_Customers
      */
-    public List_Of_Prospective_Customers() {
+    public List_Of_Prospective_Customers()throws SQLException, ClassNotFoundException {
         initComponents();
+        int EmpId=Login.EmpId;
+         String CTitle="";
+         String Status="";
+         String Name="";
+         String Mobile="";
+        Connection con = ConnectionClass.getConnected();
+        Statement s = con.createStatement();
+        String q="Select * from PROSPECTIVE_CUSTOMERS p join CAMPAIGN c on p.CAMPAIGN_ID=c.CAMPAIGN_ID where p.EMPLOYEE_ID="+EmpId;
+        String q2="Select * from PROSPECTIVE_CUSTOMERS p join CUSTOMER c on p.CUSTOMER_ID=c.CUSTOMER_ID where p.EMPLOYEE_ID="+EmpId;
+        ResultSet rs= s.executeQuery(q);
+        while(rs.next())
+        {
+        CTitle=rs.getString(6);
+        String Cid=rs.getString(3);
+        Status=rs.getString(1);
+        int Cust_Id=rs.getInt(2);
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblProspects.getModel();
+        Statement s2 = con.createStatement();
+        ResultSet rs2=s2.executeQuery(q2);
+        while(rs2.next())
+        {
+            Name=rs2.getString(6);
+            Mobile=rs2.getString(8);
+             
+        }
+        model.addRow(new Object[]{CTitle,Name,Mobile,Status });
+        }
+       
+        
     }
 
     /**
@@ -30,18 +69,15 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProspects = new javax.swing.JTable();
         lblTitle = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProspects.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Campaign Title", "Prospect Name", "Contact Number", "Status"
@@ -55,10 +91,10 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProspects);
 
         lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblTitle.setText("List Of prospective Customers");
+        lblTitle.setText("List Of Prospective Customers");
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +173,11 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new List_Of_Prospective_Customers().setVisible(true);
+                try {
+                    new List_Of_Prospective_Customers().setVisible(true);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    ex.printStackTrace();
+                } 
             }
         });
     }
@@ -145,7 +185,7 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblProspects;
     // End of variables declaration//GEN-END:variables
 }

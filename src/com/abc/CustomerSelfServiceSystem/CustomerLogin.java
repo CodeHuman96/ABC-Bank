@@ -151,6 +151,7 @@ public class CustomerLogin extends javax.swing.JFrame {
 
     private boolean validation(String userName,String passWord)throws SQLException,ClassNotFoundException
     {
+        
     
         try
         {
