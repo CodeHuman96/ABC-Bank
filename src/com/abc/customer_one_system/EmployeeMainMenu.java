@@ -7,6 +7,9 @@ package com.abc.customer_one_system;
 
 import com.abc.CreditCardSelfService.RewardCatalog;
 import com.abc.valuemobilization.Campaign_Management;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -133,9 +136,13 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCampainMainActionPerformed
 
     private void btnCustOneMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustOneMainActionPerformed
-        MainMenu obj=new MainMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
+        try {
+            MainMenu obj=new MainMenu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
