@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -42,7 +44,9 @@ public class MyProfile extends javax.swing.JFrame {
           
     nametxt.setText(s.getString(1));
     userNametxt.setText(s.getString(2));
-    DOBtxt.setText(s.getString(3));
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+     String strDate = dateFormat.format(s.getDate(3));
+    DOBtxt.setText(strDate);
     phNotxt.setText(s.getString(4));
     addresstxt.setText(s.getString(5));
     citytxt.setText(s.getString(6));

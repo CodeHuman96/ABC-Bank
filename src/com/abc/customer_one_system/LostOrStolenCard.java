@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.lang.String;
 
 /**
  *
@@ -23,10 +24,12 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
     /**
      * Creates new form LostOrStolenCard
+     * @param b
      */
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
+<<<<<<< HEAD
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -50,10 +53,39 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
+=======
+        Connection con=ConnectionClass.getConnected();
+        Statement st=con.createStatement();
+        
+        
+        ListOfCustomerRequests billpay=new ListOfCustomerRequests();
+        //String x=billpay.x;
+        
+        //DefaultTableModel model = (DefaultTableModel) tableTrainee.getModel();
+        //txtName.setText(model.getValueAt(tableTrainee.getSelectedRow(), 0).toString());
+       // DefaultTableModel model;
+        //model= (DefaultTableModel) ListBillPaymentRequests.tblListOfCustReq.getModel();
+        //String b=billpay.getAccountNumber();
+        //String x=billpay.getName().getValueAt(billpay.getSelectedRow(),1).toString();
+        
+        String query="";
+        query="select * from credit_card_detail";
+        ResultSet rs=st.executeQuery(query);
+        while (rs.next())
+        {
+        
+            if (rs.getString("account_number").equals(" "))
+            {
+            lbltxtCardNoCsr3.setText("rs.getInt(1)");
+            lbltxtCardTypeCsr3.setText("rs.getString(2)");
+            }
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
         
         }
         
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -245,7 +277,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+                                    }
         });
     }
 

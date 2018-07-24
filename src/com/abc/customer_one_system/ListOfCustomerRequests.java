@@ -62,14 +62,17 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String rStatus = rs.getString(6);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
-            
+             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
         }
        // tblListOfCustReq.setModel(model);
         
     }
     public ListOfCustomerRequests() {
-        initComponents();
-    }
+   
+  
+         
+  initComponents();}
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,6 +202,12 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /* public String getAccountNumber(){
+         return tblListOfCustReq.getValueAt(tblListOfCustReq.getSelectedRow(), 0).toString();
+
+    }*/
+     
+     
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         int type;
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
@@ -228,6 +237,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             try {
                 type=3;
                 statusCheck(type,status);
+               
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -285,8 +295,15 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 DisputedTransaction dt = new DisputedTransaction();
                 dt.setVisible(true);
             }
+<<<<<<< HEAD
             if(requestType.equals("Lost/Stolen Card"))
             {
+=======
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {   
+                this.setVisible(false);
+                LostOrStolenCard lst;
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
             try {
                 requestTypeVal=3;
                 this.setVisible(false);
@@ -341,6 +358,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ListOfCustomerRequests().setVisible(true);
+                
             }
         });
     }

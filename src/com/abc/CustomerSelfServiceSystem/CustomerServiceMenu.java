@@ -6,6 +6,10 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,16 +19,25 @@ import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+ 
 
+
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 /**
  *
  * @author shivasai
@@ -229,7 +242,28 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutBtActionPerformed
 
     private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
-        
+        try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                 }
+                 catch(ClassNotFoundException|SQLException e)
+                 {
+                     e.printStackTrace();
+                 }
+                
                 ViewRequestStatus obj = new ViewRequestStatus();
                 obj.setVisible(true);
                 this.setVisible(false);
