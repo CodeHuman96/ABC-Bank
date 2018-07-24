@@ -136,7 +136,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUserName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EPB0001"/>
+        <Property name="text" type="java.lang.String" value="SA00001"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtUserNameMouseClicked"/>

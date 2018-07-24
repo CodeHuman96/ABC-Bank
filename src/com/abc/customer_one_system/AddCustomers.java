@@ -10,9 +10,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -555,7 +558,7 @@ public class AddCustomers extends javax.swing.JFrame {
                             + "city,salary,mobile_num,"
                             + "cust_user_name,custpassword,"
                             + "date_of_birth,opening_date)"
-                            + " values(CUST_ID_SEQ.nextval,ACCOUNT_NUM_SEQ.nextval,"
+                            + " values (CUST_ID_SEQ.nextval,ACCOUNT_NUM_SEQ.nextval,"
                             + "?,?,?,?,?,?,?,?,"
                             + "to_date(?, 'dd/mm/yyyy'),"
                             + "to_date(?, 'dd/mm/yyyy'))";
@@ -594,6 +597,20 @@ public class AddCustomers extends javax.swing.JFrame {
                     }
                     prepStmt.close();
                     lblMsg.setText("Data Added");
+                    Statement statement = connect.createStatement();
+                    String query=" select  customer_id from customer where"
+                            + " cust_user_name='"+usrName+"' and"
+                            + " mobile_num='"+contactNo+"' and "
+                            + " name='"+name+"'";
+                    ResultSet resultData = statement.executeQuery(query);
+                    int custID=0;
+                    if(resultData.next()){
+                        custID=resultData.getInt("customer_id");
+                        AccountSetup obj=new AccountSetup(custID);
+                        obj.setVisible(true);
+                        this.setVisible(false);
+                    }
+                    
                 } else {
                     lblMsg.setText("Data Already Exists");
                 }
@@ -602,7 +619,7 @@ public class AddCustomers extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             lblMsg.setText("Invalid input(s)");
         } catch (ClassNotFoundException | SQLException ex) {
-            lblMsg.setText("Connection Error");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -618,8 +635,12 @@ public class AddCustomers extends javax.swing.JFrame {
 
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        MainMenu obj = new MainMenu();
-        obj.setVisible(true);
+        try {
+            MainMenu obj = new MainMenu();
+            obj.setVisible(true);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddCustomers.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnBackActionPerformed
 
