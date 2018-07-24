@@ -12,9 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-
+import javax.swing.JTable;
 import java.time.temporal.ChronoUnit;
-
+import javax.swing.table.TableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -27,41 +27,40 @@ import javax.swing.table.DefaultTableModel;
 
 //trying it 
 
+class MyDefaultTableModel extends DefaultTableModel {
+    private boolean[][] editable_cells; // 2d array to represent rows and columns
+     MyDefaultTableModel()
+    {   super();
+    
+    }
+   /* private MyDefaultTableModel(int rows, int cols) { // constructor
+        super(rows, cols);
+        this.editable_cells = new boolean[rows][cols];
+    }*/
 
+    @Override
+    public boolean isCellEditable(int row, int column) { // custom isCellEditable function
+       // return this.editable_cells[row][column];
+       switch(row){             
+           case 4:  // select the cell you want make it not editable 
+             return false;  
+         default: return true;}  
+         
+    }}
 
-
-
-
+    
+    
+   /* public void setCellEditable(int row, int col, boolean value) {
+        this.editable_cells[row][col] = value; // set cell true/false
+        this.fireTableCellUpdated(row, col);
+    }*/
+    
 
 
 public class ListBillPaymentRequests extends javax.swing.JFrame {
 
-    /*private boolean[][] editable_cells;
+ 
     
-    public final void setCellEditable  (DefaultTableModel m,int row, int col, boolean value) {
-        //this.editable_cells= new boolean[row][col];
-        System.out.println(this);
-       this.editable_cells[row][col] = value; // set cell true/false
-      m.fireTableCellUpdated(row, col);
-    }*/
-    class MyDefaultTableModel extends DefaultTableModel {
-    private boolean[][] editable_cells; // 2d array to represent rows and columns
-
-    private MyDefaultTableModel(int rows, int cols) { // constructor
-        super(rows, cols);
-        this.editable_cells = new boolean[rows][cols];
-    }
-
-    @Override
-    public boolean isCellEditable(int row, int column) { // custom isCellEditable function
-        return this.editable_cells[row][column];
-    }
-
-    public void setCellEditable(int row, int col, boolean value) {
-        this.editable_cells[row][col] = value; // set cell true/false
-        this.fireTableCellUpdated(row, col);
-    }
-}
 
     /**
      * Creates new form ListBillPaymentRequests
@@ -86,7 +85,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
            
            final long days = ChronoUnit.DAYS.between(today,deadline);
              if ((days<=1) && rs.getString("payment_status").equalsIgnoreCase("pending"))//||rs.getString("payment_status").equals("pending"))
-            { //System.out.println(days);
+            { System.out.println(days);
           
              
                 
@@ -95,16 +94,75 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 
                 Statement st2=con.createStatement();
                 ResultSet rs2=st2.executeQuery(query2);
+                //method 3
+               /* DefaultTableModel model=new DefaultTableModel(){public boolean isCellEditable(int row,int column)
+                {
+                    switch(row){             
+                            case 1:  // select the cell you want make it not editable 
+                                return true;  
+                            default: 
+                                return false;}  
+                }};
+                //tblCustBillPayment=new JTable(mod);
+                //DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+                model=(DefaultTableModel) tblCustBillPayment.getModel();
+                 
+                  */  
+
+        //DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+               
+                 
+                 
+                 
+                 
                 
-                
+                 
+                 
+                 //default method
                  DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
-                  //System.out.println("grt");
-                 MyDefaultTableModel mod=(MyDefaultTableModel) tblCustBillPayment.getModel(); 
-                 mod.setCellEditable(1,7,false);
+                 
+                 //method 2
+                /* DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();
+                 tblCustBillPayment=new JTable(model){
+                 public boolean isCellEditable(int rowIndex, int mColIndex) {
+                     if (rowIndex==1 && mColIndex==3)
+                     {return true;}
+                     else
+                     {return false;}
+                    }
+                 };*/
                 
-                 //System.out.println(model.isCellEditable(1,7));
+                
+                //method 3: table disappears(need param data and columnNames)
+                /*DefaultTableModel tableModel = new DefaultTableModel(data, columnNames) {
+
+                @Override
+                    public boolean isCellEditable(int row, int column) {
+                    //Only the third column
+                        return column == 3;
+                     }
+                        };
+
+                   tblCustBillPayment.setModel(tableModel);
+                 DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();*/
+                 
+                 //implementing extended class
+                  System.out.println("grt");
+                /* MyDefaultTableModel model=new MyDefaultTableModel();
+                 tblCustBillPayment=new JTable(model);*/
+                 
+                 //next one
+           /*  tblCustBillPayment = new JTable (model){public boolean isCellEditable(int row,int column)  
+        {switch(row){             
+           case 4:  // select the cell you want make it not editable 
+             return false;  
+         default: return true;}  
+        }}; */
+             
+               
                  
                  
+             
                
                 
                 while (rs2.next()){
@@ -117,12 +175,19 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 while (rs3.next()){
                 
                 
-               
+                    
+                //model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),"pay",null,"reject"});
+                if (rs2.getFloat("balance")>rs.getFloat("bill_amount"))  
+                {model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),true,false,false});}
+                  
+                  else
+                {model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),false,true,true});}
+                    System.out.println("added");
                 
-                model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount")});
-                 // model.isCellEditable(1,7)=false;
-                
-                 System.out.println(model.isCellEditable(1,7));
+                 //System.out.println(model.isCellEditable(2,15));
+                 System.out.println(model.isCellEditable(1,3));
+                  System.out.println(model.isCellEditable(4,6));
+                  
                   
                 }
                 
@@ -174,7 +239,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -185,6 +250,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCustBillPayment.setColumnSelectionAllowed(true);
         tblCustBillPayment.setGridColor(new java.awt.Color(48, 19, 19));
         tblCustBillPayment.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
@@ -192,6 +258,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblCustBillPayment);
+        tblCustBillPayment.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -256,15 +323,39 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-      /*  System.out.println(tblCustBillPayment.getRowCount());
+        System.out.println(tblCustBillPayment.getRowCount());
         for (int i=0;i<tblCustBillPayment.getRowCount();i++){
             
         if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7)).booleanValue()==false &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,8)).booleanValue()==false  &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,6)).booleanValue()==false)
-        {lblError.setText("Fill all values");
+        {lblError.setText("Either select Force pay or Reject! ");
         break;}
         
+        else if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7))==true &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,8))==true)
+        {lblError.setText("Select either Force pay or Reject! ");
+        break;}
        }
-        */
+        
+        
+        for (int i=0;i<tblCustBillPayment.getRowCount();i++)
+        {      Connection con;
+            try {
+                con = ConnectionClass.getConnected();
+                 Statement st=con.createStatement();
+            String query="select * from make_payment";
+                int result=st.executeUpdate(query);
+                while (result>0)
+                {
+                
+                }
+        
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ListBillPaymentRequests.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ListBillPaymentRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        
+        }
    
         
     }//GEN-LAST:event_btnSubmitActionPerformed

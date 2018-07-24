@@ -5,6 +5,13 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,10 +22,28 @@ public class DeDuplication extends javax.swing.JFrame {
 
     /**
      * Creates new form DeDuplication
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public DeDuplication() {
+    public DeDuplication() throws ClassNotFoundException, SQLException {
         initComponents();
-        
+        Connection connect = ConnectionClass.getConnected();
+        Statement statement =connect.createStatement();
+        String query="select * from UnmappedData order by accountholder,pan";
+        ResultSet resultData = statement.executeQuery(query);
+        DefaultTableModel modelData = (DefaultTableModel) tblDeDuplicate.getModel();
+        while(resultData.next()){
+            String accountNo=resultData.getString("accountnumber");
+            String name=resultData.getString("accountholder");
+            String DOB=resultData.getString("dateofbirth");
+            String pan=resultData.getString("pan");
+            String address=resultData.getString("address");
+            String contactNo=resultData.getString("phonenumber");
+            String status=resultData.getString("status");
+            String city=resultData.getString("city");
+            String pin=resultData.getString("pin");
+            modelData.addRow(new Object[]{false,accountNo,name,address,city,pin,contactNo,DOB,status,pan});
+        }
     }
 
     /**
@@ -36,6 +61,7 @@ public class DeDuplication extends javax.swing.JFrame {
         btnDeDuplicate = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("De Duplication ");
@@ -43,14 +69,7 @@ public class DeDuplication extends javax.swing.JFrame {
         tblDeDuplicate.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         tblDeDuplicate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Check", "Account No", "Name", "Address", "City", "Pin Code", "Contact No", "DOB", "Status", "PAN No"
@@ -98,28 +117,30 @@ public class DeDuplication extends javax.swing.JFrame {
             }
         });
 
+        lblMsg.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(261, 261, 261)
+                .addComponent(lblDeDuplicate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(lblDeDuplicate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 185, Short.MAX_VALUE)
                         .addComponent(btnDeDuplicate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(301, 301, 301)))
-                .addContainerGap())
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(313, 313, 313))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,14 +154,25 @@ public class DeDuplication extends javax.swing.JFrame {
                     .addComponent(btnDeDuplicate)
                     .addComponent(btnRefresh)
                     .addComponent(btnBack))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(lblMsg)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeDuplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeDuplicateActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblDeDuplicate.getModel();
+        if (tblDeDuplicate.getSelectedRow() == -1) {
+            if (tblDeDuplicate.getRowCount() == 0) {
+                lblMsg.setText("Table is empty");
+            } else {
+                lblMsg.setText("Select atleat one row");
+            }
+        }else {
+            lblMsg.setText("");
+       }
     }//GEN-LAST:event_btnDeDuplicateActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -149,14 +181,19 @@ public class DeDuplication extends javax.swing.JFrame {
         for (int iterator = 0; iterator < noRows; iterator++) {
             model.setValueAt(false, iterator, 0);
         }
+        lblMsg.setText("");
 
         //model.set
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        MainMenu obj = new MainMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
+        try {
+            MainMenu obj = new MainMenu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DeDuplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -187,9 +224,11 @@ public class DeDuplication extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new DeDuplication().setVisible(true);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DeDuplication.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -200,6 +239,7 @@ public class DeDuplication extends javax.swing.JFrame {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDeDuplicate;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JTable tblDeDuplicate;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,35 +24,34 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
     /**
      * Creates new form LostOrStolenCard
-     * @param b
+     * @param 
      */
-    public LostOrStolenCard() throws ClassNotFoundException, SQLException{
+    public LostOrStolenCard() throws ClassNotFoundException, SQLException
+    {
         initComponents();
-        Connection con=ConnectionClass.getConnected();
-        Statement st=con.createStatement();
+    }
+    public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
+    {
+        initComponents();
+        Connection con = ConnectionClass.getConnected();
+        Statement stmt = con.createStatement();
         
-        
-        ListOfCustomerRequests billpay=new ListOfCustomerRequests();
-        //String x=billpay.x;
-        
-        //DefaultTableModel model = (DefaultTableModel) tableTrainee.getModel();
-        //txtName.setText(model.getValueAt(tableTrainee.getSelectedRow(), 0).toString());
-       // DefaultTableModel model;
-        //model= (DefaultTableModel) ListBillPaymentRequests.tblListOfCustReq.getModel();
-        //String b=billpay.getAccountNumber();
-        //String x=billpay.getName().getValueAt(billpay.getSelectedRow(),1).toString();
-        
-        String query="";
-        query="select * from credit_card_detail";
-        ResultSet rs=st.executeQuery(query);
+        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response from   customer_service_request cr  join stolen_lost_card s \n" +
+                       "on s.csr_id=cr.csr_id join credit_card_detail c on  s.card_no= c.card_no where cr.csr_status='"+requestStatus+"' and  cr.csr_type="+requestTypeVal;
+                
+        ResultSet rs = stmt.executeQuery(query);
         while (rs.next())
         {
         
-            if (rs.getString("account_number").equals(" "))
-            {
-            lbltxtCardNoCsr3.setText("rs.getInt(1)");
-            lbltxtCardTypeCsr3.setText("rs.getString(2)");
-            }
+            String card_No = String.valueOf(rs.getLong(1));
+            String card_Type = rs.getString(2);
+            String lsc_Status = rs.getString(3);
+            String lsc_Response = rs.getString(4);
+            
+            lbltxtCardNoCsr3.setText(card_No);
+            lbltxtCardTypeCsr3.setText(card_Type);
+            cmbStatusCsr3.setSelectedItem(lsc_Status);
+            txtResponseCsr3.setText(lsc_Response);
         
         }
         
@@ -98,6 +97,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         lblAsterisk.setText("*");
 
         cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processing" }));
+        cmbStatusCsr3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbStatusCsr3ActionPerformed(evt);
+            }
+        });
 
         lblResponseCsr3.setText("Response");
 
@@ -124,42 +128,38 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblStatusCsr3)))
-                .addGap(116, 116, 116)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbltxtCardNoCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbltxtCardTypeCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCardTypeCsr3)
-                            .addComponent(lblCardNoCsr3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(232, 232, 232)
-                                .addComponent(btnSubmitCsr3)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnBackCsr3))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCardNoCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(lblCardTypeCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(184, 184, 184)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbltxtCardTypeCsr3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbltxtCardNoCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(cmbStatusCsr3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSubmitCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBackCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +183,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblResponseCsr3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmitCsr3)
                     .addComponent(btnBackCsr3))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -207,6 +207,10 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
+
+    private void cmbStatusCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusCsr3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStatusCsr3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -22,13 +22,13 @@ public class ListOfQueries extends javax.swing.JFrame {
     /**
      * Creates new form ListOfQueries
      */
-    public  String queryNumber;
-    public  String customerName;
-    public  String customerQuery;
-    public  String queryResponse;
-    public  String queryStatus;
-    public  String queryRevDate;
-    
+    public static int  queryNumber=0;
+/*    public static String customerName;
+    public static String customerQuery;
+    public static String queryResponse;
+    public static String queryStatus;
+    public static String queryRevDate;
+*/   
     public ListOfQueries() {
         initComponents();
         
@@ -79,7 +79,7 @@ public class ListOfQueries extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Query Number", "Customer name", "Customer Query", "Request Date", "Query Respone", "Status"
+                "Query Number", "Customer name", "Customer Query", "Query Respone", "Status"
             }
         ));
         tblListOfCustQueries.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,7 +167,7 @@ public class ListOfQueries extends javax.swing.JFrame {
         
             Statement stmt = con.createStatement();
             
-            String query ="select q.csr_id, c.name, q.query, cr.csr_date, q.query_response,cr.csr_status from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_status='"+status+"'"; 
+            String query ="select q.csr_id, c.name, q.query, q.query_response,cr.csr_status from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_status='"+status+"'"; 
             
             ResultSet rs = stmt.executeQuery(query);
             
@@ -176,12 +176,12 @@ public class ListOfQueries extends javax.swing.JFrame {
                 int q_no = rs.getInt(1);
                 String c_name = rs.getString(2);
                 String quer = rs.getString(3);
-                String queryDate = rs.getDate(4).toString();
-                String query_res = rs.getString(5);
-                String csr_status = rs.getString(6);
+                //String queryDate = rs.getDate(4).toString();
+                String query_res = rs.getString(4);
+                String csr_status = rs.getString(5);
                 
                 DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
-                model.addRow(new Object[]{q_no, c_name, quer, queryDate, query_res,csr_status});
+                model.addRow(new Object[]{q_no, c_name, quer, query_res,csr_status});
             }
             
         } catch (ClassNotFoundException ex) {
@@ -202,20 +202,25 @@ public class ListOfQueries extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void tblListOfCustQueriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustQueriesMouseClicked
-        this.setVisible(false);
-      DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
-      queryNumber = model.getValueAt(tblListOfCustQueries.getSelectedRow(),0).toString();
-     // System.out.println(queryNumber);
-      customerName = model.getValueAt(tblListOfCustQueries.getSelectedRow(),1).toString();
-      
-      customerQuery = model.getValueAt(tblListOfCustQueries.getSelectedRow(),2).toString();
-      queryRevDate = model.getValueAt(tblListOfCustQueries.getSelectedRow(),3).toString();
-      queryResponse = model.getValueAt(tblListOfCustQueries.getSelectedRow(),4).toString();
-      queryStatus = model.getValueAt(tblListOfCustQueries.getSelectedRow(),5).toString();
-     System.out.println(customerName);
-     // QueryResponse qr = new QueryResponse(queryNumber,customerName, customerQuery, queryResponse, queryStatus, queryRevDate);
-     QueryResponse qr = new QueryResponse();
-     qr.setVisible(true);
+        try {
+            this.setVisible(false);
+            DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
+            queryNumber = (int) model.getValueAt(tblListOfCustQueries.getSelectedRow(),0);
+            
+            /*      customerName = model.getValueAt(tblListOfCustQueries.getSelectedRow(),1).toString();
+            
+            customerQuery = model.getValueAt(tblListOfCustQueries.getSelectedRow(),2).toString();
+            queryRevDate = model.getValueAt(tblListOfCustQueries.getSelectedRow(),3).toString();
+            queryResponse = model.getValueAt(tblListOfCustQueries.getSelectedRow(),4).toString();
+            queryStatus = model.getValueAt(tblListOfCustQueries.getSelectedRow(),5).toString();
+            System.out.println(customerName);
+            QueryResponse qr = new QueryResponse(queryNumber,customerName, customerQuery, queryResponse, queryStatus, queryRevDate);
+            */
+            QueryResponse qr = new QueryResponse(queryNumber);
+            qr.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ListOfQueries.class.getName()).log(Level.SEVERE, null, ex);
+        }
      
     }//GEN-LAST:event_tblListOfCustQueriesMouseClicked
 /*     public String getCustomerName(String name)
