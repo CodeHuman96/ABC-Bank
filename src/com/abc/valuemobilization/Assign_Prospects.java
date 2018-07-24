@@ -36,6 +36,13 @@ public class Assign_Prospects extends javax.swing.JFrame {
         {
             cbCampaign.addItem(rs.getString("Campaign_Title"));
         }
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblCustomers.getModel();
+        for(int i=0; i<tblCustomers.getRowCount(); i++)
+        {
+            model.setValueAt(false, i, 0);
+        }
     }
 
     /**
@@ -197,10 +204,10 @@ public class Assign_Prospects extends javax.swing.JFrame {
         model = (DefaultTableModel) tblCustomers.getModel();
         //System.out.println(model.getValueAt(1,5).toString().equals("true"));
         
-        for(int i=0; i<tblCustomers.getRowCount(); i++)
+        /*for(int i=0; i<tblCustomers.getRowCount(); i++)
         {
             model.setValueAt(false, i, 0);
-        }
+        }*/
         
         
         for(int i=0; i<tblCustomers.getRowCount(); i++)
@@ -217,7 +224,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 
                     //if(true)
                     
-                if (!(model.getValueAt(i,5)==null)/*.toString().equals("null")*/)
+                if ((Boolean)model.getValueAt(i,5))/*.toString().equals("null")*/
                 {
                     try 
                     {
