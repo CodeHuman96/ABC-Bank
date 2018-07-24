@@ -6,42 +6,21 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
-<<<<<<< HEAD
-=======
 
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+
  
-
-
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-=======
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.List;
-
-<<<<<<< HEAD
-=======
-
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
-/**
- *
- * @author shivasai
- */
+ 
+ 
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
