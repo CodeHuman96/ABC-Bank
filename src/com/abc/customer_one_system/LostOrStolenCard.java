@@ -24,12 +24,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
     /**
      * Creates new form LostOrStolenCard
-     * @param b
+     * @param 
      */
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
-<<<<<<< HEAD
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -53,7 +52,6 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-=======
         Connection con=ConnectionClass.getConnected();
         Statement st=con.createStatement();
         
@@ -79,7 +77,6 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardNoCsr3.setText("rs.getInt(1)");
             lbltxtCardTypeCsr3.setText("rs.getString(2)");
             }
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
         
         }
         
