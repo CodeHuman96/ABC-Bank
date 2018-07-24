@@ -37,12 +37,13 @@ public class AccountStatement extends javax.swing.JFrame {
             
             Connection con=ConnectionClass.getConnected();
            
-            String query="select s.transaction_time,s.transaction_type,s.amount,c.balance from transaction_ s join account c using(account_number) where account_number="+accno;
+            String query="select s.transaction_time,s.transaction_type,s.amount,c.balance from transaction_ s join account c using(account_number) where account_number="+accno+" order by transaction_time desc";
            
            Statement stmt=con.createStatement();
             ResultSet res = stmt.executeQuery(query);
             String type="";
-          
+         
+        
             while(res.next())
             {
                if(res.getString(2).equals(0))
@@ -57,6 +58,9 @@ public class AccountStatement extends javax.swing.JFrame {
             DefaultTableModel model=(DefaultTableModel)accStmttbl.getModel();
             model.addRow(new Object[]{res.getDate(1),type,res.getDouble(3),res.getDouble(4)});
                }
+            if(accStmttbl.getRowCount()==0)
+                errlbl.setText("No Transactions Yet");
+            
             accStmttbl.setAutoCreateRowSorter(true);
             
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(accStmttbl.getModel());
