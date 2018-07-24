@@ -61,11 +61,11 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblCategory.setText("Category");
 
-        cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Categories", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Categories", "item1", "Item 2", "Item 3", "Item 4" }));
 
         lblStatus.setText("Status");
 
-        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "pending", "paid" }));
+        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Pending", "paid" }));
 
         lblFrom.setText("From");
 
@@ -209,37 +209,76 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             lblMsg.setText("cannot be empty");
             flag &=false;
         }
-        else if(!match.matchDate(from) && !match.matchDate(to) && !match.verifyDuration(from,to))
+        else if(!match.matchDate(from) )
         {
-            lblMsg.setText("Invalid to date");
+            lblMsg.setText("Invalid from format");
             flag &=false;
         }
+        else if(!match.matchDate(to))
+        {
+            lblMsg.setText("Invalid to format");
+            flag &=false;
+        }
+        //&& !match.verifyDuration(from,to))
+        else if(!match.verifyDuration(from,to))
+        {
+            lblMsg.setText("Invalid to date should be after from date");
+            flag &=false;
+        }        
         else
         {
             lblMsg.setText("");
         }
+        String cat=cbmCategory.getSelectedItem().toString();
+        String stat=cbmStatus.getSelectedItem().toString();
+        cat=cat.trim();
+        stat=stat.trim();
+        //System.out.println("cat="+cat+" stat="+stat);
         if(flag)
         {
             try
             {
                 Connection con=ConnectionClass.getConnected();
-                lblMsg.setText("enetered values");
-                getPayment(from,to,con);             
+                lblMsg.setText("entered values");
+                getPayment(from,to,cat,stat,con);             
             }
             catch(ClassNotFoundException | SQLException e)
             { }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void getPayment(String from,String to,Connection con) throws SQLException, ClassNotFoundException
+    private void getPayment(String from,String to,String category,String status,Connection con) throws SQLException, ClassNotFoundException
     {
-        String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
-        Statement stmt=con.createStatement();
-        //PreparedStatement stmt=con.prepareStatement(query);
-        //stmt.setString(1,from);
-        //stmt.setString(2,to);
-        //System.out.println("inside getPayment method");
-        ResultSet rs=stmt.executeQuery(query);
+        ResultSet rs=null;
+        //System.out.println("inside getPayment method,cat="+category+" stat="+status);
+        if(category.equals("All Categories")&& status.trim().equals("Status"))
+        {
+            System.out.println("all categories and all status");
+            String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
+            Statement stmt=con.createStatement();
+            rs=stmt.executeQuery(query);
+        }
+        else if(category.equals("All Categories") && !status.trim().equals("Status"))
+        {
+            System.out.println("all categories and selected status");
+            String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where m.payment_status='"+status+"' and  m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
+            Statement stmt=con.createStatement();
+            rs=stmt.executeQuery(query);            
+        }
+        else if(!category.equals("All Categories") && status.trim().equals("Status"))
+        {
+            System.out.println("selected category and all status");
+            String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where b.biller_category='"+category+"' and  m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
+            Statement stmt=con.createStatement();
+            rs=stmt.executeQuery(query);
+        }
+        else
+        {
+            System.out.println("selected category and selected status");
+            String query="select m.payment_date,m.account_number,b.biller_name,m.bill_amount,b.biller_category,m.payment_status from biller b join make_payment m on b.biller_id=m.biller_id where m.payment_status='"+status+"' and b.biller_category='"+category+"' and  m.payment_date between TO_DATE ('"+from+"','dd/mm/yyyy') and TO_DATE ('"+to+"','dd/mm/yyyy')";
+            Statement stmt=con.createStatement();
+            rs=stmt.executeQuery(query);
+        }
         while(rs.next())
         {
             String date=rs.getString(1);
@@ -252,8 +291,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             model= (DefaultTableModel) tblHistory.getModel();
             model.addRow(new Object[]{date,acNo,biller,am,cat,stat});
             //System.out.println("inside while in getPayment method");
-        }
-        
+        }        
     }
     private void txtToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToActionPerformed
     //    LocalDate todaydate = LocalDate.now();
