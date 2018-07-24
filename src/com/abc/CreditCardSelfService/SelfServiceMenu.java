@@ -7,8 +7,12 @@ package com.abc.CreditCardSelfService;
 
 import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
 import com.abc.CustomerSelfServiceSystem.CustomerLogin;
+import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.Login;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,14 +26,24 @@ public class SelfServiceMenu extends javax.swing.JFrame {
      * Creates new form SelfServiceMenu
      */
      public String name;
-    public SelfServiceMenu() {
+    public SelfServiceMenu(String name) throws ClassNotFoundException, SQLException {
         initComponents();
-       
+        /*  Connection con=ConnectionClass.getConnected();
+        Statement st=con.createStatement();
+        String s="select name from customer where customer_id="+CreditCardLogin.cid;
+        ResultSet rs=st.executeQuery(s);    
+        while(rs.next()){
+            lblWelcome.setText(rs.getString(1));}*/
+         lblWelcome.setText("welcome "+name);
+        
     }
-    public void setWel(String name)
+          
+       
+    
+   /* public void setWel(String name)
     {
         lblWelcome.setText(name);
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,9 +199,18 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
     private void btnViewStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStatusActionPerformed
         // TODO add your handling code here:
-        ViewRequestStatus vrs=new ViewRequestStatus();
-        vrs.setVisible(true);
-        this.setVisible(false);
+        ViewRequestStatus vrs;
+         
+         try {
+             vrs = new ViewRequestStatus();
+             vrs.setVisible(true);
+             this.setVisible(false);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+         }
+      
     }//GEN-LAST:event_btnViewStatusActionPerformed
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
@@ -242,7 +265,13 @@ public class SelfServiceMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SelfServiceMenu().setVisible(true);
+                try {
+                    new SelfServiceMenu(CreditCardLogin.topName).setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SelfServiceMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
        

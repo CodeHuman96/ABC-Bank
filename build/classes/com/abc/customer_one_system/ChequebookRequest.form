@@ -33,46 +33,35 @@
                       <Component id="lblTitle1" min="-2" pref="198" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="btnSubmitCsr1" min="-2" pref="114" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblStatusCsr1" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblRejectionCsr1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNoOfLeavesCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblReqDateCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblCustNameCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblAcTypeCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblAcNoCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="lblStatusCsr1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="lblRejectionCsr1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNoOfLeavesCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="lblReqDateCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="lblCustNameCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="lblAcTypeCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="lblAcNoCsr1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbltxNoOfLeavesCsr1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="321" max="32767" attributes="0"/>
+                          <Component id="cmbStatusCsr1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbltxNoOfLeavesCsr1" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                                  <Component id="cmbStatusCsr1" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lbltxReqDateCsr1" max="32767" attributes="0"/>
-                                          <Component id="lbltxAcTypeCsr1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lbltxAcNoCsr1" pref="321" max="32767" attributes="0"/>
-                                          <Component id="lbltxCustNameCsr1" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lbltxReqDateCsr1" max="32767" attributes="0"/>
+                                  <Component id="lbltxAcTypeCsr1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lbltxAcNoCsr1" pref="321" max="32767" attributes="0"/>
+                                  <Component id="lbltxCustNameCsr1" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                              <Component id="btnBackCsr1" min="-2" pref="119" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btnSubmitCsr1" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnBackCsr1" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -189,6 +178,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitCsr1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBackCsr1">
       <Properties>
