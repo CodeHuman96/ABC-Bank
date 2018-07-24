@@ -6,7 +6,10 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
+=======
 
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +22,11 @@ import java.util.List;
  
 
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +34,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 /**
  *
  * @author shivasai
