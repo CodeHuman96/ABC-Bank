@@ -79,7 +79,6 @@ public class CustomerSearch extends javax.swing.JFrame {
 
         lblMobileNo.setText("Mobile Number");
 
-        txtName.setText("name");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -284,9 +283,13 @@ public class CustomerSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        MainMenu obj = new MainMenu();
-        obj.setVisible(true);
-        this.setVisible(false);
+        try {
+            MainMenu obj = new MainMenu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBackActionPerformed
     //name 1, custID 2, dob 3, accountNo 4, email 5 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

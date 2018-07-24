@@ -300,7 +300,10 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             if(requestType.equals("Lost/Stolen Card"))
             {
 
+<<<<<<< HEAD
             
+=======
+>>>>>>> c0b0aa2e1ac8ea88ef5428e69625cc632a23583f
             try {
                 requestTypeVal=3;
                 this.setVisible(false);
