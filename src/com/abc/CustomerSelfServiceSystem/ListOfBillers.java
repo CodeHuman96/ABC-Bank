@@ -34,6 +34,7 @@ public class ListOfBillers extends javax.swing.JFrame {
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
         ResultSet rs = stmt.executeQuery();
+        
         while(rs.next())
         {
         String name=rs.getString(1);
@@ -41,7 +42,7 @@ public class ListOfBillers extends javax.swing.JFrame {
         String category=rs.getString(3);
         DefaultTableModel model;
         model = (DefaultTableModel) tblBillers.getModel();
-        model.addRow(new Object[]{name, address,category });
+        model.addRow(new Object[]{false,name, address,category });
         }
     }
 
@@ -65,20 +66,28 @@ public class ListOfBillers extends javax.swing.JFrame {
 
         tblBillers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null}
             },
             new String [] {
-                "Biller Name", "Address", "Category"
+                "Select", "Biller Name", "Address", "Category"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblBillers.setName(""); // NOI18N
         jScrollPane1.setViewportView(tblBillers);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N

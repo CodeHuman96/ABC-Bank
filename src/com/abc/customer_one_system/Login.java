@@ -6,6 +6,7 @@
 package com.abc.customer_one_system;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import com.abc.valuemobilization.List_Of_Prospective_Customers;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,11 +22,11 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    public static int EmpId=0;
     public Login() {
         initComponents();
         btnClear.setToolTipText("Clear fields");
     }
-    public static int EmpId;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,7 +76,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txtUserName.setText("EPB0001");
+        txtUserName.setText("SA00001");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUserNameMouseClicked(evt);
@@ -170,12 +171,17 @@ public class Login extends javax.swing.JFrame {
     private boolean verification(String usrName, String pass) throws ClassNotFoundException, SQLException {
         try {
             Connection connect = ConnectionClass.getConnected();
-            String query = "select emp_id,pass from employee where username=?";
+            String query = "select pass,emp_id from employee where username=?";
             PreparedStatement stmt = connect.prepareStatement(query);
             stmt.setString(1, usrName);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next() && rs.getString("pass").equals(pass) && ((EmpId=rs.getInt("emp_id"))>=0);
+            
+            ResultSet rs= stmt.executeQuery();
+            rs.next();
+            boolean result=rs.getString("pass").equals(pass);
+            EmpId=rs.getInt(2);
+            return  result; 
         } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
             return false;
         }
 
@@ -189,10 +195,17 @@ public class Login extends javax.swing.JFrame {
         } else {
             try {
                 if (verification(usrName, password)) {
-                    EmployeeMainMenu obj;
-                    obj = new EmployeeMainMenu();
-                    obj.setVisible(true);
+                    if (usrName.substring(0, 2).equals("SA")) {
+                        List_Of_Prospective_Customers obj1;
+                        obj1 = new List_Of_Prospective_Customers();
+                        obj1.setVisible(true);
+                    } else {
+                        EmployeeMainMenu obj;
+                        obj = new EmployeeMainMenu(usrName);
+                        obj.setVisible(true);
+                    }
                     this.setVisible(false);
+
                 } else {
                     lblMsg.setText("Incorrect user name or password");
                 }
@@ -222,10 +235,15 @@ public class Login extends javax.swing.JFrame {
             } else {
                 try {
                     if (verification(usrName, password)) {
-                        lblMsg.setText("Loging in..");
-                        EmployeeMainMenu obj;
-                        obj = new EmployeeMainMenu();
-                        obj.setVisible(true);
+                        if (usrName.substring(0, 2).equals("SA")) {
+                            List_Of_Prospective_Customers obj1;
+                            obj1 = new List_Of_Prospective_Customers();
+                            obj1.setVisible(true);
+                        } else {
+                            EmployeeMainMenu obj;
+                            obj = new EmployeeMainMenu(usrName);
+                            obj.setVisible(true);
+                        }
                         this.setVisible(false);
                     } else {
                         lblMsg.setText("Incorrect user name or password");

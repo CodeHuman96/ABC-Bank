@@ -38,6 +38,7 @@ public class MakePayment extends javax.swing.JFrame {
         //BillPaymentLogin login=new BillPaymentLogin(); 
         Connection connect = ConnectionClass.getConnected();
         String customer_id=BillPaymentLogin.cust_id;
+        
         String statement = "select b.biller_name from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
@@ -46,6 +47,7 @@ public class MakePayment extends javax.swing.JFrame {
         {
             cbmBiller.addItem(rs.getString(1));
         }
+        
         statement="select a.account_number from account a join customer c on a.customer_id=c.customer_id where c.customer_id=?";
         stmt=connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
@@ -65,6 +67,9 @@ public class MakePayment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        submit = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        btnOk = new javax.swing.JButton();
         btnGroupPay = new javax.swing.ButtonGroup();
         lblAcNo = new javax.swing.JLabel();
         lblBiller = new javax.swing.JLabel();
@@ -93,6 +98,42 @@ public class MakePayment extends javax.swing.JFrame {
         MsgPay = new javax.swing.JLabel();
         lblMsg = new javax.swing.JLabel();
 
+        submit.setSize(new java.awt.Dimension(400, 400));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel2.setText("Your payment request has been submitted");
+
+        btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout submitLayout = new javax.swing.GroupLayout(submit.getContentPane());
+        submit.getContentPane().setLayout(submitLayout);
+        submitLayout.setHorizontalGroup(
+            submitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(submitLayout.createSequentialGroup()
+                .addGroup(submitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(submitLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(submitLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(btnOk)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        submitLayout.setVerticalGroup(
+            submitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(submitLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(btnOk)
+                .addContainerGap(136, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblAcNo.setText("AC No.");
@@ -108,8 +149,6 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(252, 11, 11));
         jLabel6.setText("*");
 
-
-        cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", "item3", "item4", " " }));
         cbmAcNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "add account" }));
         cbmAcNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,17 +398,18 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgDate.setText("Cannot be empty");
                 flag &=false;
             }
-            else if(!match.matchDate(date))
+            else if(!match.matchDate(date) || match.matchDOB(date))
             {
                 flag &=false;
-            }
+            }           
             else
             {
                 flag &=true;
             }
             if(flag)
             {
-                lblMsg.setText("Processing");
+                //lblMsg.setText("Processing");
+                submit.setVisible(true);
                 Connection con=ConnectionClass.getConnected();
                 DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MMM/yyyy");
                 //String todate = String.valueOf(LocalDate.parse(date, f));
@@ -426,11 +466,7 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
     return customer_id;
 }
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
-<<<<<<< HEAD
-        // TODO add your handling code here:
-=======
 
->>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
     }//GEN-LAST:event_cbmAcNoActionPerformed
 
     private void txtAmountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseClicked
@@ -460,6 +496,14 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
             MsgDate.setText("");
         }
     }//GEN-LAST:event_txtPayDueDateMouseClicked
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+        submit.setVisible(false);
+        this.setVisible(false);
+        BillPaymentMenu menu=new BillPaymentMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -504,12 +548,14 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
     private javax.swing.JLabel MsgPay;
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGroupPay;
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cbmAcNo;
     private javax.swing.JComboBox<String> cbmBiller;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -522,6 +568,7 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
     private javax.swing.JLabel lblPayNow;
     private javax.swing.JRadioButton radNo;
     private javax.swing.JRadioButton radYes;
+    private javax.swing.JDialog submit;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtPayDueDate;
     // End of variables declaration//GEN-END:variables
