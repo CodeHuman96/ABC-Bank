@@ -47,11 +47,7 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-<<<<<<< HEAD
-        pattern = "[a-z A-Z .'-]+";
-=======
-        pattern = "[a-zA-Z .'-]+";
->>>>>>> 1491a54fca02639da53abdf2b49cf92ae42c8a6c
+       pattern = "[a-zA-Z .'-]+";
         return name.matches(pattern);
     }
     public boolean matchAccountNumber(String accNo){
@@ -70,7 +66,7 @@ public class MatchFormats {
         return todate.compareTo(fromdate) > 0;
     }
     public boolean matchDate(String date){
-        pattern = "^(0[0-9] | [12][0-9] | 3[01])/( 0[0-9] | 1[012] )/[12][0-9]{3}$";
+        pattern = "^([0][1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$";
         boolean flag=true;
         try{
             if (!date.matches(pattern)) { flag=false;}

@@ -359,10 +359,10 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgDate.setText("Cannot be empty");
                 flag &=false;
             }
-            else if(!match.matchDate(date))
+            else if(!match.matchDate(date) || match.matchDOB(date))
             {
                 flag &=false;
-            }
+            }           
             else
             {
                 flag &=true;
@@ -426,11 +426,7 @@ private String getCustId(String acNo,Connection con) throws ClassNotFoundExcepti
     return customer_id;
 }
     private void cbmAcNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmAcNoActionPerformed
-<<<<<<< HEAD
-        // TODO add your handling code here:
-=======
 
->>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
     }//GEN-LAST:event_cbmAcNoActionPerformed
 
     private void txtAmountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseClicked
