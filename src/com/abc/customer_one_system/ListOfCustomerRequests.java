@@ -60,6 +60,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String custName = rs.getString(4);
             Date reqDate = rs.getDate(5);
             String rStatus = rs.getString(6);
+           // System.out.println(acNo);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
              //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
@@ -295,15 +296,11 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 DisputedTransaction dt = new DisputedTransaction();
                 dt.setVisible(true);
             }
-<<<<<<< HEAD
+
             if(requestType.equals("Lost/Stolen Card"))
             {
-=======
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
-            {   
-                this.setVisible(false);
-                LostOrStolenCard lst;
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
+
+            
             try {
                 requestTypeVal=3;
                 this.setVisible(false);

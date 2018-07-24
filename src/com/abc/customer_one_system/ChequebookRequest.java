@@ -10,6 +10,7 @@ import static com.abc.customer_one_system.ListOfCustomerRequests.requestType;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -124,7 +125,7 @@ public class ChequebookRequest extends javax.swing.JFrame {
             }
         });
 
-        cmbStatusCsr1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Approved", "Processed" }));
+        cmbStatusCsr1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
 
         txtareaRejectionCsr1.setColumns(20);
         txtareaRejectionCsr1.setRows(5);
@@ -230,6 +231,14 @@ public class ChequebookRequest extends javax.swing.JFrame {
             
             success = stmt.executeUpdate(query);
             
+            if(success>0)
+            {
+                 JOptionPane.showMessageDialog(null, "Updated Successfully");
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(null, "Error in Updating!\n Try Again!");
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ChequebookRequest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
