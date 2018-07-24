@@ -25,6 +25,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
      */
     public RedeemRewardPoints() throws ClassNotFoundException, SQLException {
         initComponents();
+        lblWel.setText(CreditCardLogin.topName);
          Connection connect = ConnectionClass.getConnected(); 
          Statement st=connect.createStatement();
          String sql="select c.account_number,c.reward_points from customer u join account a on u.customer_id=a.customer_id join credit_card_detail c on a.account_number=c.account_number where u.customer_id="+CreditCardLogin.cid;

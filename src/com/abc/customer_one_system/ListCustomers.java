@@ -41,7 +41,8 @@ public class ListCustomers extends javax.swing.JFrame {
         initComponents();
         Connection connect = ConnectionClass.getConnected();
         Statement statement = connect.createStatement();
-        String query = "select * from customer";
+        String query = "select * from ("
+                + "select * from customer";
         String query1 = "select * from customer where lower(name)='" + name + "'";
         String query2 = "select * from customer where customer_id=" + customerID + " ";
         //String query3="select * from customer where date_of_birth= date '"+dob+"' order by name";
@@ -69,6 +70,7 @@ public class ListCustomers extends javax.swing.JFrame {
             query += add + query7;
 
         }
+        query += ") order by name";
         ResultSet resultData = statement.executeQuery(query);
         displayData(resultData);
 
@@ -88,6 +90,8 @@ public class ListCustomers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomerData = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer List");
@@ -120,10 +124,25 @@ public class ListCustomers extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        lblMsg.setText("  ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addGap(224, 224, 224))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,13 +151,11 @@ public class ListCustomers extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblListOfCustomers)
-                                .addGap(223, 223, 223))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(265, 265, 265))))))
+                        .addComponent(lblListOfCustomers)
+                        .addGap(223, 223, 223))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +165,12 @@ public class ListCustomers extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBack)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMsg)
+                .addContainerGap())
         );
 
         pack();
@@ -160,6 +181,31 @@ public class ListCustomers extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblCustomerData.getModel();
+        if (tblCustomerData.getSelectedRow() == -1) {
+            if (tblCustomerData.getRowCount() == 0) {
+                lblMsg.setText("Table is empty");
+            } else {
+                lblMsg.setText("Select a row");
+            }
+        } else if (tblCustomerData.getSelectedColumnCount() > 1) {
+            lblMsg.setText("Select only one row");
+        } else {
+            try {
+                int custID;
+                custID = (int) model.getValueAt(tblCustomerData.getSelectedRow(), 1);
+                CustomerDetails obj = new CustomerDetails(custID);
+                obj.setVisible(true);
+                this.setVisible(false);
+            } catch (ClassNotFoundException | SQLException ex) {
+                lblMsg.setText("Connection issue");
+            } 
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,9 +248,11 @@ public class ListCustomers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblListOfCustomers;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JTable tblCustomerData;
     // End of variables declaration//GEN-END:variables
     private void displayData(ResultSet resultData) throws SQLException {

@@ -6,16 +6,61 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+ 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee9ff5c01bedc551aa276443bbc3c429c052b0aa
+>>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
+=======
+
+=======
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
+>>>>>>> b42697f9b69e03348c7c4f73c2c706b159939ab0
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+ 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+ 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> b42697f9b69e03348c7c4f73c2c706b159939ab0
 
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ee9ff5c01bedc551aa276443bbc3c429c052b0aa
+>>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
+=======
+>>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
+>>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
+>>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
+>>>>>>> b42697f9b69e03348c7c4f73c2c706b159939ab0
 
 /**
  *
@@ -221,7 +266,28 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutBtActionPerformed
 
     private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
-        
+        try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                 }
+                 catch(ClassNotFoundException|SQLException e)
+                 {
+                     e.printStackTrace();
+                 }
+                
                 ViewRequestStatus obj = new ViewRequestStatus();
                 obj.setVisible(true);
                 this.setVisible(false);

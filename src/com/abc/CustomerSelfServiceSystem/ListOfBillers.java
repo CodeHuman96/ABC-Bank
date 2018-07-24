@@ -29,6 +29,7 @@ public class ListOfBillers extends javax.swing.JFrame {
         //BillPaymentLogin login=new BillPaymentLogin(); 
         Connection connect = ConnectionClass.getConnected();
         String customer_id=BillPaymentLogin.cust_id;
+        System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
         String statement = "select b.biller_name,biller_address,biller_category from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
@@ -177,9 +178,7 @@ public class ListOfBillers extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ListOfBillers().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ListOfBillers.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
+                } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(ListOfBillers.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

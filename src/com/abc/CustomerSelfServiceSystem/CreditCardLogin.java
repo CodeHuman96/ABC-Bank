@@ -18,10 +18,15 @@ import java.sql.Statement;
 /**
  *
  * @author test
+ * 
+ * 
+ * 
+ * 
  */
 public class CreditCardLogin extends javax.swing.JFrame {
 
     public static int cid;
+    public static String topName;
 
     /**
      * Creates new form CreditCardLogin
@@ -173,7 +178,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
             stmt.setString(1, usrName);
             ResultSet rs = stmt.executeQuery();
             return rs.next() && rs.getString(1).equals(pass);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (Exception e) {
             return false;
         }
 
@@ -201,10 +206,14 @@ public class CreditCardLogin extends javax.swing.JFrame {
         else {
             try {
                 if (verification(Uname, Pswrd)) {
-                    SelfServiceMenu obj;
-                    obj = new SelfServiceMenu();
+                     Connection con=ConnectionClass.getConnected();
+                    Statement st1=con.createStatement();
+                   
                     //lname+="hai";
-                    obj.setWel("welcome " + Uname);
+                   
+                   // obj.setWel("welcome " +topName);
+                    
+                    
 
                     Connection connect = ConnectionClass.getConnected();
                     String sql = "select customer_id from customer where cust_user_name='" + Uname + "'";
@@ -214,6 +223,15 @@ public class CreditCardLogin extends javax.swing.JFrame {
                         cid = rs.getInt(1);
                     }
 
+                  
+                     String s="select name from customer where customer_id="+CreditCardLogin.cid;
+                    ResultSet rs1=st1.executeQuery(s);    
+                 
+                    while(rs1.next()){
+                        topName=rs1.getString(1);}
+                    
+                      
+                    SelfServiceMenu obj = new SelfServiceMenu(topName);
                     obj.setVisible(true);
                     this.setVisible(false);
                 } else {
@@ -238,7 +256,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     if (verification(Uname, Pswrd)) {
                         lblmsg.setText("Loging in..");
                         SelfServiceMenu obj;
-                        obj = new SelfServiceMenu();
+                        obj = new SelfServiceMenu(topName);
                         obj.setVisible(true);
                         this.setVisible(false);
                     } else {
