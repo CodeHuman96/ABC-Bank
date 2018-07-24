@@ -8,12 +8,12 @@ package com.abc.CustomerSelfServiceSystem;
 //import com.abc.customer_one_system.MatchFormats;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import com.abc.customer_one_system.MatchFormats;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -305,7 +305,7 @@ public class MakePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        //MatchFormats match=new MatchFormats();
+        MatchFormats match=new MatchFormats();
         boolean flag = true;
         double am=0;
         try
@@ -357,6 +357,10 @@ public class MakePayment extends javax.swing.JFrame {
             if(date.equals(""))
             {
                 MsgDate.setText("Cannot be empty");
+                flag &=false;
+            }
+            else if(!match.matchDate(date))
+            {
                 flag &=false;
             }
             else
