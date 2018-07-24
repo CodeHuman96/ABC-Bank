@@ -25,8 +25,24 @@ public class Assign_Prospects extends javax.swing.JFrame {
     /**
      * Creates new form Assign_Prospects
      */
-    public Assign_Prospects() {
+    public Assign_Prospects() throws SQLException, ClassNotFoundException {
         initComponents();
+        
+        Connection con = ConnectionClass.getConnected();
+        Statement s = con.createStatement();
+        String q="Select Campaign_Title from Campaign";
+        ResultSet rs=s.executeQuery(q);
+        while(rs.next())
+        {
+            cbCampaign.addItem(rs.getString("Campaign_Title"));
+        }
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblCustomers.getModel();
+        for(int i=0; i<tblCustomers.getRowCount(); i++)
+        {
+            model.setValueAt(false, i, 0);
+        }
     }
 
     /**
@@ -49,13 +65,14 @@ public class Assign_Prospects extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
         lblStatus = new javax.swing.JLabel();
+        cbCampaign = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Assign Prospects to Sales Agents");
 
-        lblCampaign.setText("Campaign");
+        lblCampaign.setText("Campaign Title :");
 
         lblEName.setText("Employee's name");
 
@@ -97,21 +114,14 @@ public class Assign_Prospects extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
         jScrollPane1.setViewportView(tblCustomers);
 
-        lblStatus.setText("jLabel2");
+        lblStatus.setText("Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,16 +130,18 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(106, 106, 106)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(lblCampaign)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(104, 104, 104)))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(12, 12, 12)
                         .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -155,7 +167,9 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampaign)
                     .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,17 +196,35 @@ public class Assign_Prospects extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmployeeActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
-        String Campaign= txtcampaign.getText();
+        String Campaign= cbCampaign.getSelectedItem().toString();
         String Employee= txtEmployee.getText();
         
         
         DefaultTableModel model;
         model = (DefaultTableModel) tblCustomers.getModel();
+        //System.out.println(model.getValueAt(1,5).toString().equals("true"));
+        
+        /*for(int i=0; i<tblCustomers.getRowCount(); i++)
+        {
+            model.setValueAt(false, i, 0);
+        }*/
         
         
         for(int i=0; i<tblCustomers.getRowCount(); i++)
             {
-                if ((Boolean) tblCustomers.getModel().getValueAt(i, 5))
+                    //boolean b=model.getValueAt(i,5).toString().equals("true");
+                    System.out.println(model.getValueAt(i,5));
+                    //System.out.println(tblCustomers.getModel().getValueAt(i, 5));
+                    //System.out.println((Boolean) tblCustomers.getModel().getValueAt(i, 5));
+                    //System.out.println(Boolean.valueOf(tblCustomers.getValueAt(i, 5).toString()));
+                    //System.out.println(model.getValueAt(tblCustomers.getSelectedRow(), 5).toString());
+                    //boolean b=(boolean)tblCustomers.getModel().getValueAt(i,5);
+                    /*String b=model.getValueAt(tblCustomers.getSelectedRow(), 5).toString();
+                    System.out.println(b);*/
+                
+                    //if(true)
+                    
+                if ((Boolean)model.getValueAt(i,5))/*.toString().equals("null")*/
                 {
                     try 
                     {
@@ -262,7 +294,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 LocalDate date=rs2.getDate("OPENING_DATE").toLocalDate();
                 int age_rel=Period.between(date, ldate).getYears();
                 
-                //if(age_rel>=age)
+                if(age_rel<=age)
                 {
                     
                     model.addRow(new Object[]{Cid,CTitle,rs2.getInt("CUSTOMER_ID"),rs2.getString("NAME"), rs2.getString("MOBILE_NUM")});
@@ -315,7 +347,11 @@ public class Assign_Prospects extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Assign_Prospects().setVisible(true);
+                try {
+                    new Assign_Prospects().setVisible(true);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                } 
             }
         });
     }
@@ -324,6 +360,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cbCampaign;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCampaign;

@@ -180,7 +180,10 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                   //System.out.println("cust_id"+cust_id+"cust_name"+cust_name);                  
                 }
             }
-            catch(ClassNotFoundException | SQLException e){} 
+            catch(ClassNotFoundException | SQLException e){
+                //System.out.println("Database not connected");
+                lblMsg.setText("Database not connected");
+            } 
         }
     }//GEN-LAST:event_btnLoginActionPerformed
     private void customerIdName(String name,Connection con) throws SQLException

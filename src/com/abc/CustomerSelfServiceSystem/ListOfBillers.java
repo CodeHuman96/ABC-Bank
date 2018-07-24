@@ -34,6 +34,7 @@ public class ListOfBillers extends javax.swing.JFrame {
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
         ResultSet rs = stmt.executeQuery();
+        
         while(rs.next())
         {
         String name=rs.getString(1);

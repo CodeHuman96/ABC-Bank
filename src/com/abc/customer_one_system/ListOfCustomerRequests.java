@@ -275,6 +275,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
+<<<<<<< HEAD
         }
         if (requestType.equals("Disputed Transaction")) {
             requestTypeVal = 5;
@@ -284,6 +285,23 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         }
         if (requestType.equals("Lost/Stolen Card")) {
 
+=======
+            }
+            if(requestType.equals("Disputed Transaction"))
+            {
+                requestTypeVal=5;
+                this.setVisible(false);
+                DisputedTransaction dt = new DisputedTransaction();
+                dt.setVisible(true);
+            }
+
+            if(requestType.equals("Lost/Stolen Card"))
+            {
+<<<<<<< HEAD
+=======
+
+>>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
+>>>>>>> a7b0bfafca7f0a5b3c47470db1704226a4e0ddb2
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);
