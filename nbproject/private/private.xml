@@ -3,123 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListCustomers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/List_Of_Prospective_Customers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/View_Campaigns.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Create_New_Campaign.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Update_Campaign.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/DisputedTransaction.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/ListOfCreditCardAcc.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/AddReward.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CreditCardLogin.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/SelfServiceMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/RewardCatalog.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/RedeemRewardPoints.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CreditCardSelfService/ViewRequestStatus.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/EmployeeMainMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/View_Campaigns.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Create_New_Campaign.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
-=======
-=======
->>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-=======
->>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/QueryResponse.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ChequeBookRequest.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
-=======
-<<<<<<< HEAD
->>>>>>> b42697f9b69e03348c7c4f73c2c706b159939ab0
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/Login.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
->>>>>>> 970533739c5964e65099d406c61e1ddaf7ac0534
->>>>>>> 5cea15a63ededb9943a5a8b289da7e1062c26cce
->>>>>>> 3afdf20c8dddd5cce980fcca41092f1d878960d4
->>>>>>> 4a44fdb710501709283eddf4d9e16d1ce38866b2
->>>>>>> cb689a3f8b8a23874e546e8dc00ea51b476b06e4
->>>>>>> f8e2df953aa8d7a3ebf300334fbfb763ed2764bd
-=======
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
->>>>>>> b6bb71daa0efd8ccb5e2403de325f62ae1862aee
->>>>>>> 6523847ad3ee80294eccc0650769d8c2db517083
->>>>>>> ee9ff5c01bedc551aa276443bbc3c429c052b0aa
->>>>>>> 0eab3f269924ccb7ddd715d89a7f2772ad7657db
-=======
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
-<<<<<<< HEAD
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-=======
-=======
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ServiceRequest.java</file>
-<<<<<<< HEAD
-=======
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ChequeBookRequest.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
->>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
->>>>>>> a332d9d404ec627dbdca1420fe375a8c5ad3a613
->>>>>>> 79ca06886f5a3e3e160fee89d0d7359bce8b4ec4
->>>>>>> 19df997d584a8eb055aa7b241c2c286878518acf
->>>>>>> 8b50cb61c68aa472a290234f628aed035cb72e12
->>>>>>> 1491a54fca02639da53abdf2b49cf92ae42c8a6c
->>>>>>> df20fa36d971143e7da834b3f4678003fee69d57
->>>>>>> d2c964e600ae5cdb5677d549b4de35dbc79d2250
->>>>>>> b42697f9b69e03348c7c4f73c2c706b159939ab0
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
         </group>
     </open-files>
 </project-private>

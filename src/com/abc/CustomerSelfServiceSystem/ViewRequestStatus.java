@@ -62,7 +62,7 @@ public class ViewRequestStatus extends javax.swing.JFrame {
 
         lblRequestType.setText("Request Type:");
 
-        cmbRequestType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Lost/Stolen Card", "Disputed Transaction", "Redemption Request", "Query Request" }));
+        cmbRequestType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "Cheque Book", "Lost/Stolen Card", "Disputed Transaction", "Redemption Request", "Query Request" }));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -140,14 +140,58 @@ public class ViewRequestStatus extends javax.swing.JFrame {
                     .addComponent(cmbRequestType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSubmit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
      private void retriveData(int a)
     {
+        System.out.print(a);
+        if(a==0)
+        {
+            String req_detail=new String();
+        try{
+        Connection connect=ConnectionClass.getConnected();
+        String query1="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number='"+cmbAccountNo.getSelectedItem()+"' order by csr_date desc";
+        PreparedStatement stmt=connect.prepareStatement(query1);
+        ResultSet rs1=stmt.executeQuery(query1);
+        while(rs1.next())
+        {
+            Date d=rs1.getDate(1);
+            int csr_type=rs1.getInt(2);
+            String csr_response=rs1.getString(3);
+            String csr_status=rs1.getString(4);
+            switch (csr_type) {
+                case 1:
+                    req_detail="Cheque Book Request";
+                    break;
+                case 3:
+                    req_detail="Lost Stolen";
+                    break;
+                case 5:
+                    req_detail="Disputed Transaction";
+                    break;
+                case 6:
+                    req_detail="Reedemption Request";
+                    break;
+                default:
+                    req_detail="Query Request";
+                    break;
+            }
+            
+            DefaultTableModel model = (DefaultTableModel) tblRequestStatus.getModel();
+            model.addRow(new Object[]{d,csr_type,req_detail,csr_response,csr_status}); 
+        }
+        }
+        catch(ClassNotFoundException|SQLException e)
+        {
+            e.printStackTrace();
+        }
+        }
+        else
+        {
         String req_detail=new String();
         switch (a) {
             case 1:
@@ -168,7 +212,7 @@ public class ViewRequestStatus extends javax.swing.JFrame {
         }
         try{
         Connection connect=ConnectionClass.getConnected();
-        String query1="select csr_date,csr_type,csr_response,csr_status from customer_service_request where csr_type="+a+" and account_number='"+cmbAccountNo.getSelectedItem()+"'";
+        String query1="select csr_date,csr_type,csr_response,csr_status from customer_service_request where csr_type="+a+" and account_number='"+cmbAccountNo.getSelectedItem()+"' order by csr_date desc";
         PreparedStatement stmt=connect.prepareStatement(query1);
         ResultSet rs1=stmt.executeQuery(query1);
         while(rs1.next())
@@ -188,23 +232,27 @@ public class ViewRequestStatus extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         DefaultTableModel model=(DefaultTableModel) tblRequestStatus.getModel();
         model.setRowCount(0);
         switch (cmbRequestType.getSelectedIndex()) {
             case 0:
-                retriveData(1);
+                retriveData(0);
                 break;
             case 1:
-                retriveData(3);
+                retriveData(1);
                 break;
             case 2:
-                retriveData(5);
+                retriveData(3);
                 break;
             case 3:
-                retriveData(6);
+                retriveData(5);
                 break;
             case 4:
+                retriveData(6);
+                break;
+            case 5:
                 retriveData(7);
                 break;
         }
