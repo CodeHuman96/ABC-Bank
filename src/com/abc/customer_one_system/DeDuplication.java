@@ -172,6 +172,17 @@ public class DeDuplication extends javax.swing.JFrame {
             }
         }else {
             lblMsg.setText("");
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
        }
     }//GEN-LAST:event_btnDeDuplicateActionPerformed
 

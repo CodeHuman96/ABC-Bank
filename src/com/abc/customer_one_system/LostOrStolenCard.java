@@ -52,31 +52,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-        Connection con=ConnectionClass.getConnected();
-        Statement st=con.createStatement();
         
-        
-        ListOfCustomerRequests billpay=new ListOfCustomerRequests();
-        //String x=billpay.x;
-        
-        //DefaultTableModel model = (DefaultTableModel) tableTrainee.getModel();
-        //txtName.setText(model.getValueAt(tableTrainee.getSelectedRow(), 0).toString());
-       // DefaultTableModel model;
-        //model= (DefaultTableModel) ListBillPaymentRequests.tblListOfCustReq.getModel();
-        //String b=billpay.getAccountNumber();
-        //String x=billpay.getName().getValueAt(billpay.getSelectedRow(),1).toString();
-        
-        String query="";
-        query="select * from credit_card_detail";
-        ResultSet rs=st.executeQuery(query);
-        while (rs.next())
-        {
-        
-            if (rs.getString("account_number").equals(" "))
-            {
-            lbltxtCardNoCsr3.setText("rs.getInt(1)");
-            lbltxtCardTypeCsr3.setText("rs.getString(2)");
-            }
         
         }
         

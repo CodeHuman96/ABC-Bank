@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.abc.customer_one_system;
+
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.*;
 import java.util.logging.Level;
@@ -21,39 +22,37 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     /**
      * Creates new form ListOfCustomerRequest
      */
-    public static int requestTypeVal=0;
+    public static int requestTypeVal = 0;
     public static String requestStatus, requestType;
     public static int csr_id;
-    
-    public void statusCheck(int type,String status) throws Exception
-    {
-      //  ConnectionClass concls = new ConnectionClass();
+
+    public void statusCheck(int type, String status) throws Exception {
+        //  ConnectionClass concls = new ConnectionClass();
         Connection con = ConnectionClass.getConnected();
         Statement stmt = con.createStatement();
         //pstmt.setInt(1,type);
-       // pstmt.setString(2,status);
-        String query="select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type="+type+" and cr.csr_status='"+status+"'";
-        
-        ResultSet rs=stmt.executeQuery(query);
-        
-             
-       
-        
-        while(rs.next())
-        {
+        // pstmt.setString(2,status);
+        String query = "select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type=" + type + " and cr.csr_status='" + status + "'";
+
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
             int typeVal = rs.getInt(1);
-            String reqType="";
-            switch(type)
-            {
-                case 1: reqType = "Cheque Book";
-                        break;
-                case 3: reqType = "Lost/Stolen Card";
-                        break;
-                case 5: reqType = "Disputed Transaction";
-                        break;
-                case 6: reqType = "Redeem";
-                        break;
-                
+            String reqType = "";
+            switch (type) {
+                case 1:
+                    reqType = "Cheque Book";
+                    break;
+                case 3:
+                    reqType = "Lost/Stolen Card";
+                    break;
+                case 5:
+                    reqType = "Disputed Transaction";
+                    break;
+                case 6:
+                    reqType = "Redeem";
+                    break;
+
             }
             int acNo = rs.getInt(2);
             String acType = rs.getString(3);
@@ -62,17 +61,16 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String rStatus = rs.getString(6);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
-             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
+            //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
         }
-       // tblListOfCustReq.setModel(model);
-        
+        // tblListOfCustReq.setModel(model);
+
     }
+
     public ListOfCustomerRequests() {
-   
-  
-         
-  initComponents();}
-        
+
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,54 +204,45 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
          return tblListOfCustReq.getValueAt(tblListOfCustReq.getSelectedRow(), 0).toString();
 
     }*/
-     
-     
+
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         int type;
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
-        String status=(String)cmbStatusListOfCustReq.getSelectedItem();
-        
-            if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
-            {
+        String status = (String) cmbStatusListOfCustReq.getSelectedItem();
+
+        if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Cheque Book") {
             try {
-                type=1;
-                statusCheck(type,status);
+                type = 1;
+                statusCheck(type, status);
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-            }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Disputed Transaction")
-            {
+
+        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Disputed Transaction") {
             try {
-                type=5;
-                statusCheck(type,status);
+                type = 5;
+                statusCheck(type, status);
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/Stolen Card")
-            {
+        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Lost/Stolen Card") {
             try {
-                type=3;
-                statusCheck(type,status);
-               
+                type = 3;
+                statusCheck(type, status);
+
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
-            {
+        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Redeem") {
             try {
-                type=6;
-                statusCheck(type,status);
+                type = 6;
+                statusCheck(type, status);
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-       
-            
-        
+        }
+
+
     }//GEN-LAST:event_btnSubmitListOfCustReqActionPerformed
 
     private void cmbRequestTypeListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRequestTypeListOfCustReqActionPerformed
@@ -271,60 +260,48 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackListOfCustReqActionPerformed
 
     private void tblListOfCustReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustReqMouseClicked
-         
+
         DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
-        
-        requestType =  model.getValueAt(tblListOfCustReq.getSelectedRow(),0).toString();
-        requestStatus = model.getValueAt(tblListOfCustReq.getSelectedRow(),5).toString();
-        
-        if(requestType.equals("Cheque Book"))
-            {
-            try {            
-                requestTypeVal=1;
+
+        requestType = model.getValueAt(tblListOfCustReq.getSelectedRow(), 0).toString();
+        requestStatus = model.getValueAt(tblListOfCustReq.getSelectedRow(), 5).toString();
+
+        if (requestType.equals("Cheque Book")) {
+            try {
+                requestTypeVal = 1;
                 this.setVisible(false);
                 ChequebookRequest cbr = new ChequebookRequest(requestTypeVal, requestStatus);
                 cbr.setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-            if(requestType.equals("Disputed Transaction"))
-            {
-                requestTypeVal=5;
-                this.setVisible(false);
-                DisputedTransaction dt = new DisputedTransaction();
-                dt.setVisible(true);
-            }
-<<<<<<< HEAD
-            if(requestType.equals("Lost/Stolen Card"))
-            {
-=======
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
-            {   
-                this.setVisible(false);
-                LostOrStolenCard lst;
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
+        }
+        if (requestType.equals("Disputed Transaction")) {
+            requestTypeVal = 5;
+            this.setVisible(false);
+            DisputedTransaction dt = new DisputedTransaction();
+            dt.setVisible(true);
+        }
+        if (requestType.equals("Lost/Stolen Card")) {
+
             try {
-                requestTypeVal=3;
+                requestTypeVal = 3;
                 this.setVisible(false);
                 LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);
                 lst.setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-            }              
-                         
-            if(requestType.equals("Redeem"))
-            {
-                requestTypeVal=6;                                  
-                //this.setVisible(false);
-                
-            }
-                
-                
-        
-         
+
+        }
+
+        if (requestType.equals("Redeem")) {
+            requestTypeVal = 6;
+            //this.setVisible(false);
+
+        }
+
+
     }//GEN-LAST:event_tblListOfCustReqMouseClicked
 
     /**
@@ -358,7 +335,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ListOfCustomerRequests().setVisible(true);
-                
+
             }
         });
     }
