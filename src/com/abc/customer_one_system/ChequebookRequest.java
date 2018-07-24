@@ -5,6 +5,13 @@
  */
 package com.abc.customer_one_system;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import static com.abc.customer_one_system.ListOfCustomerRequests.requestType;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author test
@@ -17,7 +24,44 @@ public class ChequebookRequest extends javax.swing.JFrame {
     public ChequebookRequest() {
         initComponents();
     }
-
+    
+    
+    public ChequebookRequest(int requestTypeVal, String requestStatus)throws Exception
+    {
+        initComponents();
+        
+        Connection con = ConnectionClass.getConnected();
+        Statement stmt = con.createStatement();
+        String query ="select a.account_number, a.acc_type, c.name, cr.csr_date, cb.no_of_leaves, cr.csr_status, cr.csr_response,cr.csr_id\n" +
+                      "from cheque_book_request cb join customer_service_request cr on cr.csr_id = cb.csr_id \n" +
+                      "join account a on cr.account_number = a.account_number\n" +
+                       "join customer c on c.customer_id = a.customer_id where  cr.csr_status='"+requestStatus+"' and cr.csr_type="+requestTypeVal; 
+        
+        
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next())
+        {
+            String ac_no = String.valueOf(rs.getLong(1));
+            String ac_type = rs.getString(2);
+            String cust_name = rs.getString(3);
+            String rev_date = rs.getDate(4).toString();
+            String leaves = String.valueOf(rs.getInt(5));
+            String cb_status = rs.getString(6);
+            String cb_response = rs.getString(7);
+            ListOfCustomerRequests.csr_id = rs.getInt(8);
+            
+            lbltxAcNoCsr1.setText(ac_no);
+            lbltxAcTypeCsr1.setText(ac_type);
+            lbltxCustNameCsr1.setText(cust_name);
+            lbltxReqDateCsr1.setText(rev_date);
+            lbltxNoOfLeavesCsr1.setText(leaves);
+            cmbStatusCsr1.setSelectedItem(cb_status);
+            txtareaRejectionCsr1.setText(cb_response);
+            
+        }
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,7 +91,6 @@ public class ChequebookRequest extends javax.swing.JFrame {
         txtareaRejectionCsr1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(607, 550));
         setSize(new java.awt.Dimension(607, 612));
 
         lblTitle1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -68,6 +111,11 @@ public class ChequebookRequest extends javax.swing.JFrame {
         lblRejectionCsr1.setText("Reason for Rejection");
 
         btnSubmitCsr1.setText("Submit");
+        btnSubmitCsr1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitCsr1ActionPerformed(evt);
+            }
+        });
 
         btnBackCsr1.setText("Back");
         btnBackCsr1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,38 +140,32 @@ public class ChequebookRequest extends javax.swing.JFrame {
                         .addGap(201, 201, 201)
                         .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addComponent(btnSubmitCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblStatusCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRejectionCsr1)
-                                    .addComponent(lblNoOfLeavesCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblReqDateCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCustNameCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAcTypeCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAcNoCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblStatusCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRejectionCsr1)
+                            .addComponent(lblNoOfLeavesCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblReqDateCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCustNameCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAcTypeCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAcNoCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(83, 83, 83)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbltxNoOfLeavesCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                            .addComponent(cmbStatusCsr1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbltxNoOfLeavesCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(cmbStatusCsr1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lbltxReqDateCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lbltxAcTypeCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lbltxAcNoCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                                            .addComponent(lbltxCustNameCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbltxReqDateCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbltxAcTypeCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbltxAcNoCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                                    .addComponent(lbltxCustNameCsr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(btnBackCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(btnSubmitCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBackCsr1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)))))
                 .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
@@ -177,6 +219,23 @@ public class ChequebookRequest extends javax.swing.JFrame {
         listofcustomerrequests.setVisible(true);
         //System.exit(0);
     }//GEN-LAST:event_btnBackCsr1ActionPerformed
+
+    private void btnSubmitCsr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr1ActionPerformed
+        
+        int success;
+        try {
+            Connection con = ConnectionClass.getConnected();
+            Statement stmt = con.createStatement();
+            String query = "update customer_service_request set csr_status='"+cmbStatusCsr1.getSelectedItem()+"',csr_response='"+txtareaRejectionCsr1.getText()+"'";
+            
+            success = stmt.executeUpdate(query);
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ChequebookRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChequebookRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSubmitCsr1ActionPerformed
 
     /**
      * @param args the command line arguments
