@@ -21,6 +21,10 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     /**
      * Creates new form ListOfCustomerRequest
      */
+    public static int requestTypeVal=0;
+    public static String requestStatus, requestType;
+    public static int csr_id;
+    
     public void statusCheck(int type,String status) throws Exception
     {
       //  ConnectionClass concls = new ConnectionClass();
@@ -37,7 +41,20 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         
         while(rs.next())
         {
-            int reqType = rs.getInt(1);
+            int typeVal = rs.getInt(1);
+            String reqType="";
+            switch(type)
+            {
+                case 1: reqType = "Cheque Book";
+                        break;
+                case 3: reqType = "Lost/Stolen Card";
+                        break;
+                case 5: reqType = "Disputed Transaction";
+                        break;
+                case 6: reqType = "Redeem";
+                        break;
+                
+            }
             int acNo = rs.getInt(2);
             String acType = rs.getString(3);
             String custName = rs.getString(4);
@@ -45,14 +62,17 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String rStatus = rs.getString(6);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
-            
+             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
         }
        // tblListOfCustReq.setModel(model);
         
     }
     public ListOfCustomerRequests() {
-        initComponents();
-    }
+   
+  
+         
+  initComponents();}
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,6 +202,12 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /* public String getAccountNumber(){
+         return tblListOfCustReq.getValueAt(tblListOfCustReq.getSelectedRow(), 0).toString();
+
+    }*/
+     
+     
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         int type;
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
@@ -206,11 +232,12 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
             }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/Stolen Card")
             {
             try {
                 type=3;
                 statusCheck(type,status);
+               
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -245,38 +272,58 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
     private void tblListOfCustReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustReqMouseClicked
          
-        if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Cheque Book")
+        DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+        
+        requestType =  model.getValueAt(tblListOfCustReq.getSelectedRow(),0).toString();
+        requestStatus = model.getValueAt(tblListOfCustReq.getSelectedRow(),5).toString();
+        
+        if(requestType.equals("Cheque Book"))
             {
+            try {            
+                requestTypeVal=1;
                 this.setVisible(false);
-                ChequebookRequest cbr = new ChequebookRequest();
+                ChequebookRequest cbr = new ChequebookRequest(requestTypeVal, requestStatus);
                 cbr.setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Disputed Transaction")
+            }
+            if(requestType.equals("Disputed Transaction"))
             {
+                requestTypeVal=5;
                 this.setVisible(false);
                 DisputedTransaction dt = new DisputedTransaction();
                 dt.setVisible(true);
             }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+<<<<<<< HEAD
+            if(requestType.equals("Lost/Stolen Card"))
             {
+=======
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {   
                 this.setVisible(false);
                 LostOrStolenCard lst;
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
             try {
-                lst = new LostOrStolenCard();
+                requestTypeVal=3;
+                this.setVisible(false);
+                LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);
                 lst.setVisible(true);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
                 
-            }
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Redeem")
+            }              
+                         
+            if(requestType.equals("Redeem"))
             {
+                requestTypeVal=6;                                  
                 //this.setVisible(false);
                 
             }
-        DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+                
+                
+        
          
     }//GEN-LAST:event_tblListOfCustReqMouseClicked
 
@@ -311,6 +358,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ListOfCustomerRequests().setVisible(true);
+                
             }
         });
     }

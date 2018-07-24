@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +26,7 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
      */
     public ListOfCreditCardAcc() {
         initComponents();
+        lblName.setText(CreditCardLogin.topName);
         lblChk.setText(String.valueOf(CreditCardLogin.cid));
         
         try{
@@ -138,9 +141,17 @@ public class ListOfCreditCardAcc extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SelfServiceMenu ssm=new SelfServiceMenu();
-        ssm.setVisible(true);
-        this.setVisible(false);
+        SelfServiceMenu ssm;
+        try {
+            ssm = new SelfServiceMenu(CreditCardLogin.topName);
+            ssm.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListOfCreditCardAcc.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListOfCreditCardAcc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnBackActionPerformed
        
     /**

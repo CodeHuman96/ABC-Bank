@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,13 +18,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListOfQueries extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form ListOfQueries
      */
+    public static int  queryNumber=0;
+/*    public static String customerName;
+    public static String customerQuery;
+    public static String queryResponse;
+    public static String queryStatus;
+    public static String queryRevDate;
+*/   
     public ListOfQueries() {
         initComponents();
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,10 +88,6 @@ public class ListOfQueries extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblListOfCustQueries);
-        if (tblListOfCustQueries.getColumnModel().getColumnCount() > 0) {
-            tblListOfCustQueries.getColumnModel().getColumn(0).setResizable(false);
-            tblListOfCustQueries.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         btnBackListCq.setText("Back");
         btnBackListCq.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +176,7 @@ public class ListOfQueries extends javax.swing.JFrame {
                 int q_no = rs.getInt(1);
                 String c_name = rs.getString(2);
                 String quer = rs.getString(3);
+                //String queryDate = rs.getDate(4).toString();
                 String query_res = rs.getString(4);
                 String csr_status = rs.getString(5);
                 
@@ -195,14 +202,28 @@ public class ListOfQueries extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void tblListOfCustQueriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListOfCustQueriesMouseClicked
-        this.setVisible(false);
-      QueryResponse qr = new QueryResponse();
-      qr.setVisible(true);
-      DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
-    //  qr.getCustomerName(model.getValueAt(tblListOfCustQueries.getSelectedRow(),0).toString());
-   
+        try {
+            this.setVisible(false);
+            DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
+            queryNumber = (int) model.getValueAt(tblListOfCustQueries.getSelectedRow(),0);
+            
+            /*      customerName = model.getValueAt(tblListOfCustQueries.getSelectedRow(),1).toString();
+            
+            customerQuery = model.getValueAt(tblListOfCustQueries.getSelectedRow(),2).toString();
+            queryRevDate = model.getValueAt(tblListOfCustQueries.getSelectedRow(),3).toString();
+            queryResponse = model.getValueAt(tblListOfCustQueries.getSelectedRow(),4).toString();
+            queryStatus = model.getValueAt(tblListOfCustQueries.getSelectedRow(),5).toString();
+            System.out.println(customerName);
+            QueryResponse qr = new QueryResponse(queryNumber,customerName, customerQuery, queryResponse, queryStatus, queryRevDate);
+            */
+            QueryResponse qr = new QueryResponse(queryNumber);
+            qr.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ListOfQueries.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
     }//GEN-LAST:event_tblListOfCustQueriesMouseClicked
-     public String getCustomerName(String name)
+/*     public String getCustomerName(String name)
      {
          return name;
      }
@@ -219,6 +240,7 @@ public class ListOfQueries extends javax.swing.JFrame {
      {
          qr.lbltxCustNameCsr7.setText(name);
      }
+*/
     /**
      * @param args the command line arguments
      */

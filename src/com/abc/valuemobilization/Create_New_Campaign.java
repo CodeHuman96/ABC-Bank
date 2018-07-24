@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -322,6 +323,17 @@ public class Create_New_Campaign extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         MatchFormats match = new MatchFormats();
         boolean flag = true;
+        
+        Date fromDate = null, toDate = null;
+            try {
+            fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(txtFrom.getText());
+            
+            toDate = new SimpleDateFormat("dd/MM/yyyy").parse(txtTo.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(Create_New_Campaign.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            LocalDate date=LocalDate.now();
 
         if (txtCid.getText().equals("")) {
             lblIdMsg.setText("Required Field");
@@ -349,6 +361,17 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             lblDateMsg.setText("Invalid date format");
             flag &= false;
         }
+        
+        else if(!match.verifyDuration(txtFrom.getText(),txtTo.getText()))
+        {
+            lblDateMsg.setText("Valid From should be less than Valid To");
+            flag &= false;
+        }
+        /*else if(!match.matchDOB(txtFrom.getText()) || !match.matchDOB(txtFrom.getText()))
+                {
+                    lblDateMsg.setText("Invalid date format");
+            flag &= false;
+                }*/
         try {
             
             String Cid = txtCid.getText();
@@ -361,9 +384,9 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             int age = Integer.parseInt(txtAgeRel.getText());
             double balance = Double.parseDouble(txtAvgBal.getText());
             String profession = txtProf.getText();
-            /*Date fromDate = null, toDate = null;
-            fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(fDate);
-            toDate = new SimpleDateFormat("dd/MM/yyyy").parse(tDate);*/
+            
+            
+            
             if (flag) {
                 Connection con = ConnectionClass.getConnected();
                 Statement s = con.createStatement();

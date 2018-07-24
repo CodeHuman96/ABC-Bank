@@ -7,35 +7,37 @@ package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
 <<<<<<< HEAD
-
 =======
->>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
+
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+ 
+
+
 <<<<<<< HEAD
-
+import java.util.ArrayList;
+import java.util.List;
+=======
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-=======
+import java.util.ArrayList;
+import java.util.List;
+
 <<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
 =======
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
->>>>>>> c00ca001d943a6cfc73b7b46f5fadc21d2f006df
->>>>>>> af722e8e3e3b38207f2fb9a66680e4cb7e417d47
-
+>>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
 /**
  *
  * @author shivasai
@@ -144,26 +146,27 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(86, 86, 86)
+                .addComponent(header2)
+                .addGap(140, 140, 140)
+                .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addComponent(chgPassBt)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(myprofileBt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(header2)
-                        .addGap(140, 140, 140)
-                        .addComponent(wellbl, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chgPassBt)
-                            .addComponent(viewStatBt)
                             .addComponent(vewReqStatusBt)
-                            .addComponent(mkSerReqBt))
+                            .addComponent(mkSerReqBt)
+                            .addComponent(viewStatBt))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -176,19 +179,19 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(signOutBt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addComponent(chgPassBt)
-                        .addGap(21, 21, 21)
-                        .addComponent(viewStatBt)
-                        .addGap(33, 33, 33)
-                        .addComponent(mkSerReqBt)
-                        .addGap(27, 27, 27)
-                        .addComponent(vewReqStatusBt))
+                        .addComponent(signOutBt))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(myprofileBt)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(myprofileBt)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chgPassBt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewStatBt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mkSerReqBt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(vewReqStatusBt)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,7 +243,28 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutBtActionPerformed
 
     private void vewReqStatusBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vewReqStatusBtActionPerformed
-        
+        try{
+                    Connection connect=ConnectionClass.getConnected();
+                    String query="select name from customer where customer_id=?";
+                    PreparedStatement stmt=connect.prepareStatement(query);
+                    stmt.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs = stmt.executeQuery();
+                    rs.next();
+                    name=rs.getString(1);
+                    String query2="Select account_number from account where customer_id=?";
+                    PreparedStatement stmt2=connect.prepareStatement(query2);
+                    stmt2.setInt(1,CustomerLogin.customerid);
+                    ResultSet rs2=stmt2.executeQuery();
+                    while(rs2.next())
+                    {
+                        acc.add(rs2.getString("account_number"));
+                    }
+                 }
+                 catch(ClassNotFoundException|SQLException e)
+                 {
+                     e.printStackTrace();
+                 }
+                
                 ViewRequestStatus obj = new ViewRequestStatus();
                 obj.setVisible(true);
                 this.setVisible(false);

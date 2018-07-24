@@ -9,15 +9,56 @@ package com.abc.customer_one_system;
  *
  * @author test
  */
+import com.abc.JDBCConnection.ConnectionClass;
+import com.abc.customer_one_system.ListOfQueries;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.*;
 public class QueryResponse extends javax.swing.JFrame {
 
     /**
      * Creates new form QueryResponse
      */
-    public QueryResponse() {
+    public QueryResponse() throws Exception
+    {
         initComponents();
+      //System.out.println(ListOfQueries.customerName);
+        //lbltxCustNameCsr7.setText(ListOfQueries.customerName);
+        //lbltxQueryRecvOnCsr7.setText(ListOfQueries.queryRevDate);
+   
+        
     }
-
+  //  public QueryResponse(String queryNumber, String customerName, String customerQuery, String queryResponse, String queryStatus, String queryRevDate)
+    public QueryResponse(int queryNumber)throws Exception
+    {
+        initComponents();
+       // lbltxCustNameCsr7.setText(customerName);
+        Connection con = ConnectionClass.getConnected();
+        Statement stmt = con.createStatement();
+        String query = "select  c.name, cr.csr_date, q.query, cr.csr_status, q.query_response from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_id='"+queryNumber+"'"; 
+        
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next())
+        {
+            String customerName = rs.getString(1);
+            String queryRevDate = rs.getDate(2).toString();
+            String quer = rs.getString(3);
+            String queryStatus = rs.getString(4);
+            String queryRes = rs.getString(5);
+            
+            lbltxCustNameCsr7.setText(customerName);
+            lbltxQueryRecvOnCsr7.setText(queryRevDate);
+            lbltxQueryCsr7.setText(quer);
+            cmbStatusCsr7.setSelectedItem(queryStatus);
+            txtareaResponseCsr7.setText(queryRes);
+            
+            
+            
+        }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,8 +212,8 @@ public class QueryResponse extends javax.swing.JFrame {
 
     private void btnBackCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackCsr7ActionPerformed
         this.setVisible(false);
-        ListOfCustomerRequests listofcustomerrequests = new ListOfCustomerRequests();
-        listofcustomerrequests.setVisible(true);
+        ListOfQueries listofqueries = new ListOfQueries();
+        listofqueries.setVisible(true);
     }//GEN-LAST:event_btnBackCsr7ActionPerformed
 
     
@@ -206,7 +247,12 @@ public class QueryResponse extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QueryResponse().setVisible(true);
+                try {
+                    new QueryResponse().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(QueryResponse.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         });
     }
