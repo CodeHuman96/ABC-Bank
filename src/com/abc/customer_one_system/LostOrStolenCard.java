@@ -29,17 +29,6 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
->>>>>>> c626444df48cd7b4de0b48f23c2fd7832c03b48c
->>>>>>> a7577587c322bdfe5a4dc3bf86cec7342b5e73ef
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -63,26 +52,10 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        
-        
-=======
-<<<<<<< HEAD
-=======
-        
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
->>>>>>> a7b0bfafca7f0a5b3c47470db1704226a4e0ddb2
->>>>>>> a7577587c322bdfe5a4dc3bf86cec7342b5e73ef
+
         }
         
-    }
->>>>>>> c626444df48cd7b4de0b48f23c2fd7832c03b48c
-
-       
+    }      
     }
     }
    
