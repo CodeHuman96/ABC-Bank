@@ -215,7 +215,9 @@ public class Update_Campaign extends javax.swing.JFrame {
             List_Of_Prospective_Customers obj=new List_Of_Prospective_Customers();
             obj.setVisible(true);
             this.setVisible(false);
-        } catch (SQLException | ClassNotFoundException ex) {
+        } 
+        catch (SQLException | ClassNotFoundException ex) 
+        {
             ex.printStackTrace();
         } 
     }//GEN-LAST:event_btnBackActionPerformed

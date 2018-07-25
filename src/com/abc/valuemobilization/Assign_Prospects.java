@@ -55,7 +55,6 @@ public class Assign_Prospects extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         txtEmployee = new javax.swing.JTextField();
-        txtcampaign = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
         lblStatus = new javax.swing.JLabel();
@@ -124,18 +123,14 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblCampaign)
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(12, 12, 12)
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCampaign)
+                        .addGap(32, 32, 32)
+                        .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)
                         .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -161,13 +156,11 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampaign)
-                    .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
+                    .addComponent(btnSearch)
+                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -362,6 +355,5 @@ public class Assign_Prospects extends javax.swing.JFrame {
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTextField txtEmployee;
-    private javax.swing.JTextField txtcampaign;
     // End of variables declaration//GEN-END:variables
 }
