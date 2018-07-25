@@ -8,10 +8,7 @@ package com.abc.JDBCConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-<<<<<<< HEAD
 import java.sql.*;
-=======
->>>>>>> c0b0aa2e1ac8ea88ef5428e69625cc632a23583f
 /**
  *
  * @author test
@@ -19,13 +16,6 @@ import java.sql.*;
 public class ConnectionClass {
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
 
-<<<<<<< HEAD
-
-    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
-
-    Class.forName("oracle.jdbc.driver.OracleDriver");
-=======
->>>>>>> c0b0aa2e1ac8ea88ef5428e69625cc632a23583f
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url="jdbc:oracle:thin:@192.168.1.47:1521:xe";
         String userName="mainuser";

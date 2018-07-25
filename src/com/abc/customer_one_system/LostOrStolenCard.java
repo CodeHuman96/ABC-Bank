@@ -29,10 +29,6 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
-<<<<<<< HEAD
-
-=======
->>>>>>> c0b0aa2e1ac8ea88ef5428e69625cc632a23583f
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {

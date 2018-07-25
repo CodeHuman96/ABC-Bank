@@ -227,7 +227,7 @@ public class ChequebookRequest extends javax.swing.JFrame {
         try {
             Connection con = ConnectionClass.getConnected();
             Statement stmt = con.createStatement();
-            String query = "update customer_service_request set csr_status='"+cmbStatusCsr1.getSelectedItem()+"',csr_response='"+txtareaRejectionCsr1.getText()+"'";
+            String query = "update customer_service_request set csr_status='"+cmbStatusCsr1.getSelectedItem()+"',csr_response='"+txtareaRejectionCsr1.getText()+"'where csr_id="+ListOfCustomerRequests.csr_id;
             
             success = stmt.executeUpdate(query);
             
