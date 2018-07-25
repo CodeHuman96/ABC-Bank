@@ -84,8 +84,8 @@
                   <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="401" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,12 +114,13 @@
     <Component class="javax.swing.JComboBox" name="cmbRequestType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Cheque Book"/>
-            <StringItem index="1" value="Lost/Stolen Card"/>
-            <StringItem index="2" value="Disputed Transaction"/>
-            <StringItem index="3" value="Redemption Request"/>
-            <StringItem index="4" value="Query Request"/>
+          <StringArray count="6">
+            <StringItem index="0" value="none"/>
+            <StringItem index="1" value="Cheque Book"/>
+            <StringItem index="2" value="Lost/Stolen Card"/>
+            <StringItem index="3" value="Disputed Transaction"/>
+            <StringItem index="4" value="Redemption Request"/>
+            <StringItem index="5" value="Query Request"/>
           </StringArray>
         </Property>
       </Properties>

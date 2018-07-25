@@ -20,13 +20,19 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeMainMenu
      */
+    boolean accessFlag = false;
+
     public EmployeeMainMenu() {
         initComponents();
-        //lblTemp.setText(Integer.toString(Login.EmpId));
     }
 
-
-    
+    public EmployeeMainMenu(String usrName) {
+        initComponents();
+        if (usrName.substring(0, 2).equals("MA")) {
+            accessFlag = true;
+        }
+        //lblTemp.setText(Integer.toString(Login.EmpId));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +48,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         btnBackOfficeMain = new javax.swing.JButton();
         btnCampainMain = new javax.swing.JButton();
         btnRewardManagement = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +83,8 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             }
         });
 
+        lblMsg.setText("  ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +104,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                         .addGap(131, 131, 131)
                         .addComponent(btnCustOneMain))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addGap(27, 27, 27)
+                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnRewardManagement)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
@@ -111,7 +122,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnCampainMain)
                 .addGap(28, 28, 28)
-                .addComponent(btnRewardManagement)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRewardManagement)
+                    .addComponent(lblMsg))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -120,24 +133,24 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
 
     private void btnBackOfficeMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackOfficeMainActionPerformed
 
-        BackOfficeMenu obj=new BackOfficeMenu();
+        BackOfficeMenu obj = new BackOfficeMenu();
         obj.setVisible(true);
         this.setVisible(false);
 
-   {                                                 
+        {
 
-   }                                                 
-                                                
+        }
+
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
-        Campaign_Management cm=new Campaign_Management();
+        Campaign_Management cm = new Campaign_Management();
         cm.setVisible(true);
     }//GEN-LAST:event_btnCampainMainActionPerformed
 
     private void btnCustOneMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustOneMainActionPerformed
         try {
-            MainMenu obj=new MainMenu();
+            MainMenu obj = new MainMenu();
             obj.setVisible(true);
             this.setVisible(false);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -146,9 +159,14 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
-        RewardCatalog obj1=new RewardCatalog();
-        obj1.setVisible(true);
-        this.setVisible(false);
+        if (accessFlag) {
+            RewardCatalog obj1 = new RewardCatalog();
+            obj1.setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            lblMsg.setText("Access denied");
+        }
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
@@ -184,7 +202,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 new EmployeeMainMenu().setVisible(true);
             }
         });
-}
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackOfficeMain;
@@ -192,5 +210,6 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnCustOneMain;
     private javax.swing.JButton btnRewardManagement;
     private javax.swing.JLabel lblEmpMainMenu;
+    private javax.swing.JLabel lblMsg;
     // End of variables declaration//GEN-END:variables
 }

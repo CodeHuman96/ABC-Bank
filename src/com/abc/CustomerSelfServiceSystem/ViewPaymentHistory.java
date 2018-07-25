@@ -61,7 +61,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblCategory.setText("Category");
 
-        cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Categories", "item1", "Item 2", "Item 3", "Item 4" }));
+        cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Categories", "item1", "public" }));
 
         lblStatus.setText("Status");
 

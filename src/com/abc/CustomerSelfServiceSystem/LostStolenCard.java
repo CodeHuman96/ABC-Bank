@@ -197,7 +197,7 @@ public class LostStolenCard extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
 
-        if(cmbAccountNo.getSelectedIndex()==-1)
+        if(cmbAccountNo.getSelectedIndex()==-1 || cmbCardNo.getSelectedIndex()==-1)
         {
             lblMsg.setText("Enter all the fields");
         }

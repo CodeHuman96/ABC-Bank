@@ -29,6 +29,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
+
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -52,13 +53,12 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-        
+
         }
         
     }
 
    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,7 +96,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         lblAsterisk.setForeground(new java.awt.Color(229, 30, 30));
         lblAsterisk.setText("*");
 
-        cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processing" }));
+        cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
         cmbStatusCsr3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbStatusCsr3ActionPerformed(evt);

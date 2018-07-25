@@ -148,7 +148,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Pending"/>
             <StringItem index="1" value="Rejected"/>
-            <StringItem index="2" value="Processing"/>
+            <StringItem index="2" value="Processed"/>
           </StringArray>
         </Property>
       </Properties>
