@@ -65,7 +65,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Pending", "paid" }));
+        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Pending", "Paid", "Force Pay", "Reject" }));
 
         lblFrom.setText("From");
 
