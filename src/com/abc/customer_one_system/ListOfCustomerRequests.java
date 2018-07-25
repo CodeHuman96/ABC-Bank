@@ -299,8 +299,6 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             {
 
 
-           
-
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);
