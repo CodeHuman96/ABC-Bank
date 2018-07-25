@@ -37,7 +37,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         Connection con = ConnectionClass.getConnected();
         Statement stmt = con.createStatement();
         
-        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response from   customer_service_request cr  join stolen_lost_card s \n" +
+        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response,cr.csr_id from   customer_service_request cr  join stolen_lost_card s \n" +
                        "on s.csr_id=cr.csr_id join credit_card_detail c on  s.card_no= c.card_no where cr.csr_status='"+requestStatus+"' and  cr.csr_type="+requestTypeVal;
                 
         ResultSet rs = stmt.executeQuery(query);
@@ -48,6 +48,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             String card_Type = rs.getString(2);
             String lsc_Status = rs.getString(3);
             String lsc_Response = rs.getString(4);
+           ListOfCustomerRequests.csr_id = rs.getInt(5);
+           System.out.println(ListOfCustomerRequests.csr_id );
             
             lbltxtCardNoCsr3.setText(card_No);
             lbltxtCardTypeCsr3.setText(card_Type);
@@ -205,7 +207,26 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         {if ( txtResponseCsr3.getText().equals("") )
         { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
         }
+           
+         
+        try {
+            //ListOfCustomerRequests.csr_id=;
+            Connection connect=ConnectionClass.getConnected();
+            Statement st =connect.createStatement();
+            String query="update customer_service_request set csr_status='"+cmbStatusCsr3.getSelectedItem().toString()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
+            int result=st.executeUpdate(query);
+            String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
+            int result1=st.executeUpdate(query1);
             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
+         
+         
     }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
 
     private void cmbStatusCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusCsr3ActionPerformed
