@@ -83,6 +83,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         txtResponseCsr3 = new javax.swing.JTextArea();
         btnSubmitCsr3 = new javax.swing.JButton();
         btnBackCsr3 = new javax.swing.JButton();
+        lblSubmit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,14 +142,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addContainerGap(198, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -188,7 +194,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmitCsr3)
-                    .addComponent(btnBackCsr3))
+                    .addComponent(btnBackCsr3)
+                    .addComponent(lblSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -217,6 +224,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             int result=st.executeUpdate(query);
             String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
             int result1=st.executeUpdate(query1);
+            
+            lblSubmit.setText("Data submitted!");
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
@@ -285,6 +294,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     private javax.swing.JLabel lblCardTypeCsr3;
     private javax.swing.JLabel lblResponseCsr3;
     private javax.swing.JLabel lblStatusCsr3;
+    private javax.swing.JLabel lblSubmit;
     private javax.swing.JLabel lbltxtCardNoCsr3;
     private javax.swing.JLabel lbltxtCardTypeCsr3;
     private javax.swing.JTextArea txtResponseCsr3;
