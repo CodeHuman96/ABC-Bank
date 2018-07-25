@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,7 +36,16 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
              lblAccno.setText(rs.getString(1));
              lblPts.setText(String.valueOf(rs.getInt(2)));
          }
-          
+         //String sql1="select product_desc,points_reqd from product where points_reqd<='"+lblPts.getText()+"'";
+         String sql1="select product_desc,points_reqd from product";// where points_reqd<='"+lblPts.getText()+"'";
+         ResultSet rs1=st.executeQuery(sql1);
+         
+         while(rs1.next())
+         {
+             //rs.getString(2)
+          DefaultTableModel model = (DefaultTableModel)tblRedeem.getModel();
+            model.addRow(new Object[]{rs1.getString(1),' ',rs1.getString(2)});   
+         }
          
     }
 

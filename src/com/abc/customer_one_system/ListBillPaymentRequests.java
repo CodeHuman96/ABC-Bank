@@ -335,7 +335,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
         break;}
        }
         Connection con;
-        
+        lblError.setText("Successfully submitted!");
         for (int i=0;i<tblCustBillPayment.getRowCount();i++)
         {      
             try {
@@ -361,9 +361,16 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 else if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7))==true)
                 { query="update make_payment set payment_status='Force Paid' where bill_no="+tblCustBillPayment.getValueAt(i,0);
                  result=st.executeUpdate(query);
-                 {
+                 if (result>0)
+                {
                 System.out.println("set force paid");
+                
+                query="update account set balance=balance-(select bill_amount from make_payment where bill_no="+ tblCustBillPayment.getValueAt(i,0)+ ") where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
+                result=st.executeUpdate(query);
+                
+                
                 }
+                
                 }
                  
                 else if(((Boolean)tblCustBillPayment.getModel().getValueAt(i,8))==true)
