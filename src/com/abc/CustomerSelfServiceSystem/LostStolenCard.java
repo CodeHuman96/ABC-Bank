@@ -203,6 +203,29 @@ public class LostStolenCard extends javax.swing.JFrame {
         }
         else
         {
+            
+            int flag=0;
+            try{
+                Connection connect=ConnectionClass.getConnected();
+                String query1="select card_no from stolen_lost_card";
+                PreparedStatement stmt1=connect.prepareStatement(query1);
+                ResultSet rs1=stmt1.executeQuery();
+                while(rs1.next())
+                {
+                    if(Integer.parseInt((String) cmbCardNo.getSelectedItem())==rs1.getInt(1))
+                      flag=1;  
+                }
+            }
+            catch(ClassNotFoundException|SQLException e)
+            {
+                 e.printStackTrace();
+            }
+            if(flag==1)
+            {
+                lblMsg.setText("Card Detail Already present");
+            }
+            else
+            {
             try
             {
                 Connection connect=ConnectionClass.getConnected();
@@ -223,6 +246,7 @@ public class LostStolenCard extends javax.swing.JFrame {
             }
             catch(ClassNotFoundException|SQLException e){
                 e.printStackTrace();
+            }
             }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
