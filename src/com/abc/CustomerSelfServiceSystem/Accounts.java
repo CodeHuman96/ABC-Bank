@@ -83,7 +83,7 @@ public class Accounts extends javax.swing.JFrame {
         header4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header4.setText("My Accounts");
 
-        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 15)); // NOI18N
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         wellbl.setText("Welcome    ");
 
         accountsTbl.setModel(new javax.swing.table.DefaultTableModel(
