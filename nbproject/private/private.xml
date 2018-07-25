@@ -3,62 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ServiceRequest.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AccountSetup.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/DeDuplication.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/DeDuplication.java</file>
-=======
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentMenu.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
-<<<<<<< HEAD
-=======
->>>>>>> 28d1ff515be202d5cdfd48c7d543b6dfe8bd0987
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/QueryResponse.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ChequebookRequest.java</file>
-            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-=======
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
->>>>>>> d1609686539caf6b7fc11a70dbf3102fa9a58ccd
->>>>>>> 275a9f4ff93b10dd390a040016d3cb5474df1612
->>>>>>> b043601c21e4d6d23b26e472b6b1c89d55ff4f29
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
->>>>>>> a7b0bfafca7f0a5b3c47470db1704226a4e0ddb2
->>>>>>> 0ada8a22c76a58f84cec271b02be8aaae5dc6708
         </group>
     </open-files>
 </project-private>
