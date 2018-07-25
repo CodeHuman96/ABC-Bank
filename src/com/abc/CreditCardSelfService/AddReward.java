@@ -22,7 +22,9 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -40,22 +42,23 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class AddReward extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form AddReward
      */
-     JFileChooser fileChooser;
+    JFileChooser fileChooser;
     JPanel pobj, innerPanel;
+
     public AddReward() throws Exception {
         initComponents();
         setSize(1000, 1000);
         //setLocation(1500, 1500);
-     //   setVisible(true);
+        //   setVisible(true);
         setLayout(new BorderLayout());
-       /* String Pdesc=lblProductDesc.getText();
+        /* String Pdesc=lblProductDesc.getText();
         Integer PtsNeed=Integer.parseInt(lblPtsNeeded.getText());*/
     }
-    private void SaveImage(String imagePath) throws FileNotFoundException, IOException {
+
+    /*  private void SaveImage(String imagePath) throws FileNotFoundException, IOException {
         try {
             byte[] rawBytes = null;
             FileInputStream fis = null;
@@ -103,8 +106,7 @@ public class AddReward extends javax.swing.JFrame {
         } catch (HeadlessException | ClassNotFoundException | NumberFormatException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-    }
-
+    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,7 +307,9 @@ public class AddReward extends javax.swing.JFrame {
     }
     public Image toImage(BufferedImage bufferedImage) {
         return Toolkit.getDefaultToolkit().createImage(bufferedImage.getSource());*/
-    fileChooser = new JFileChooser("/home/", FileSystemView.getFileSystemView());
+
+
+ /*fileChooser = new JFileChooser("/home/", FileSystemView.getFileSystemView());
             fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif", "gif", "bmp"));
             int returnVal = fileChooser.showOpenDialog(pobj);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -321,14 +325,14 @@ public class AddReward extends javax.swing.JFrame {
                 }
             } else {
                 lblStatus.setText("No File Uploaded");
-            }
-    
+            }*/
     }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-         try {
-             // TODO add your handling code here:
-             /*Connection connect;
+        // try {
+
+        // TODO add your handling code here:
+        /*Connection connect;
              try {
              connect = ConnectionClass.getConnected();
              String sql="insert into product values(prod_seq.nextval,?,?,?)";
@@ -366,13 +370,34 @@ public class AddReward extends javax.swing.JFrame {
              //g.dispose();
              
              return resizedImage;*/
-             SaveImage(lblStatus.getText());
+        Connection connect;
+        try {
+            connect = ConnectionClass.getConnected();
+            Statement st = connect.createStatement();
+            String sql = "insert into product(product_id,product_desc,points_reqd)values(prod_seq.nextval,'" + lblProdDesc.getText().trim() + "','" + lblPtsneeded.getText().trim() + "')";
+
+            System.out.println(lblPtsneeded.getText());
+
+            int r = st.executeUpdate(sql);
+            if (r > 0) {
+                lblStatus.setText("Details added successfully");
+                lblProdDesc.setText("");
+                lblPtsneeded.setText("");
+            } else {
+                lblStatus.setText("Error in inserting values");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /*SaveImage(lblStatus.getText());
          }catch (IOException ex) {
              Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+         }*/
+
     }//GEN-LAST:event_btnSubmitActionPerformed
-    
 
     /**
      * @param args the command line arguments
