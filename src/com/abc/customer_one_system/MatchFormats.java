@@ -63,13 +63,35 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
+<<<<<<< HEAD
+
+       pattern = "[a-zA-Z .'-]+";
+
+
+
+       pattern = "[a-zA-Z .'-]+";
+
+
+
         pattern = "[a-z A-Z .'-]+";
+
+        pattern = "[a-zA-Z .'-]+";
+
+
+       pattern = "[a-zA-Z .'-]+";
+
+
+       pattern = "[a-zA-Z .'-]+";
+
+
+=======
+        pattern = "[a-z A-Z .'-]+";
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
         return name.matches(pattern);
 
     }
-
-    public boolean matchAccountNumber(String accNo) {
-        pattern = "[0-9]{10}";
+    public boolean matchAccountNumber(String accNo){
+        pattern ="[0-9]{10}";
         return accNo.matches(pattern);
     }
 
@@ -83,17 +105,13 @@ public class MatchFormats {
         LocalDate todate = LocalDate.parse(to, f);
         return todate.compareTo(fromdate) > 0;
     }
-
-    public boolean matchDate(String date) {
+    public boolean matchDate(String date){
         pattern = "^([0][1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$";
-        boolean flag = true;
-        try {
-            if (!date.matches(pattern)) {
-                flag = false;
-            }
-        } catch (Exception e) {
-            flag = false;
+        boolean flag=true;
+        try{
+            if (!date.matches(pattern)) { flag=false;}
         }
+        catch(Exception e){ flag=false;}
         return flag;
     }
 }
