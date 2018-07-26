@@ -64,6 +64,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         vewReqStatusBt = new javax.swing.JButton();
         viewStatBt = new javax.swing.JButton();
         chgPassBt = new javax.swing.JButton();
+        homeBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,13 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
             }
         });
 
+        homeBt.setText("Home");
+        homeBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,6 +142,8 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(myprofileBt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(homeBt)
+                        .addGap(68, 68, 68)
                         .addComponent(signOutBt)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
@@ -153,7 +163,9 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(signOutBt))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(signOutBt)
+                            .addComponent(homeBt)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(myprofileBt)))
@@ -250,6 +262,12 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_chgPassBtActionPerformed
 
+    private void homeBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtActionPerformed
+        CustomerLoginTo obj = new CustomerLoginTo();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_homeBtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +307,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton chgPassBt;
     private javax.swing.JLabel header2;
+    private javax.swing.JButton homeBt;
     private javax.swing.JButton mkSerReqBt;
     private javax.swing.JButton myprofileBt;
     private javax.swing.JButton signOutBt;

@@ -38,7 +38,7 @@ public class AccountStatement extends javax.swing.JFrame {
             
             Connection con=ConnectionClass.getConnected();
            
-            String query="select s.transaction_time,s.transaction_type,s.amount,s.closing_balance from transaction_ s where account_number='"+accno+"' order by transaction_time desc";        
+            String query="select s.transaction_time,s.transaction_type,s.amount,s.closing_balance from transaction_ s where account_number='"+accno+"' order by transaction_time desc limi";        
            Statement stmt=con.createStatement();
             ResultSet res = stmt.executeQuery(query);
             String type="";
