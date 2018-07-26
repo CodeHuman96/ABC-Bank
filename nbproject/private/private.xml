@@ -4,6 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfQueries.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/QueryResponse.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ChequebookRequest.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
+=======
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
@@ -46,6 +57,7 @@
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Update_Campaign.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Effectiveness.java</file>
+>>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
 =======
 <<<<<<< HEAD
             <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AddNewBiller.java</file>
@@ -66,6 +78,7 @@
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
 =======
 >>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
+>>>>>>> 0f0e7702fc368289effa846ae9de9c656597b3aa
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
@@ -73,15 +86,21 @@
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> 2d5215e2f19475140dad041e3b5a7408b2019642
 >>>>>>> e9e0259cadebfd766cd1b2045ef65ee34dfe50b3
 >>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
 >>>>>>> e3575873e7ace20facdad2318434917b52d658f6
+<<<<<<< HEAD
+=======
 >>>>>>> 2013e890bda34fd8af96cdbbfa6c644bdb45cd25
 >>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
 >>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
 >>>>>>> 985dd244434dcd17c568641d8171068db33cbf0d
 >>>>>>> c3a9d6b728f7a36c6a32d3f8c6b470be5158f1b4
+>>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
+>>>>>>> 0f0e7702fc368289effa846ae9de9c656597b3aa
         </group>
     </open-files>
 </project-private>

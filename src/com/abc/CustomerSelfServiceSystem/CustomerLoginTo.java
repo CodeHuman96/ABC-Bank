@@ -36,8 +36,9 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         billPaymentBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CUSTOMER SERVICES");
 
-        customServiceMenuBt.setText("Customer Service menu");
+        customServiceMenuBt.setText("Customer Self-Service menu");
         customServiceMenuBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customServiceMenuBtActionPerformed(evt);

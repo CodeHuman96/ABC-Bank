@@ -51,6 +51,7 @@ public class ChangePassword extends javax.swing.JFrame {
         clearBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CHANGE PASSWORD");
 
         oldPasslbl.setText("Old Password");
 

@@ -95,6 +95,7 @@ public class Accounts extends javax.swing.JFrame {
         backBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MY ACCOUNTS");
 
         header4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header4.setText("My Accounts");

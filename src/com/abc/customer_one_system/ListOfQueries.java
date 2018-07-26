@@ -167,7 +167,7 @@ public class ListOfQueries extends javax.swing.JFrame {
         
             Statement stmt = con.createStatement();
             
-            String query ="select q.csr_id, c.name, q.query, q.query_response,cr.csr_status from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_status='"+status+"'"; 
+            String query ="select q.csr_id, c.name, q.query, cr.csr_response,cr.csr_status from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_status='"+status+"' order by cr.csr_date desc"; 
             
             ResultSet rs = stmt.executeQuery(query);
             
