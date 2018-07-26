@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
 /**
  *
  * @author test
@@ -173,6 +171,7 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                 if(!flag) lblMsg.setText("Incorrect user name or password");
                 else
                 {
+                  CustomerLoginTo.login=1;
                   customerIdName(name,con);                  
                   BillPaymentMenu menu= new BillPaymentMenu();
                   this.setVisible(false);                  

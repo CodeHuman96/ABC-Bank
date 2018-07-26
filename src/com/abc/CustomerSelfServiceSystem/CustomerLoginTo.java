@@ -16,6 +16,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     /**
      * Creates new form CustomerLoginTo
      */
+     public static int login=0;
     public CustomerLoginTo() {
         initComponents();
     }
@@ -97,17 +98,33 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     }//GEN-LAST:event_customServiceMenuBtActionPerformed
 
     private void creditCardServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditCardServiceMenuBtActionPerformed
-       
        CreditCardLogin obj=new CreditCardLogin();
+       SelfServiceMenu menu=new SelfServiceMenu();
+       if(login==0)
+        {
         obj.setVisible(true);
         this.setVisible(false);
-        
+        }
+        else
+        {
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_creditCardServiceMenuBtActionPerformed
 
     private void billPaymentBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billPaymentBtActionPerformed
         BillPaymentLogin obj=new BillPaymentLogin();
-        obj.setVisible(true);
-        this.setVisible(false);
+        BillPaymentMenu menu=new BillPaymentMenu();
+        if(login==0)
+        {
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+        else
+        {
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_billPaymentBtActionPerformed
 
     /**

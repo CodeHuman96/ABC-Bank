@@ -26,6 +26,10 @@ public class SelfServiceMenu extends javax.swing.JFrame {
      * Creates new form SelfServiceMenu
      */
      public String name;
+     public SelfServiceMenu()
+     {
+         initComponents();
+     }
     public SelfServiceMenu(String name) throws ClassNotFoundException, SQLException {
         initComponents();
         /*  Connection con=ConnectionClass.getConnected();
