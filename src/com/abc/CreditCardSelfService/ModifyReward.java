@@ -30,13 +30,22 @@ public class ModifyReward extends javax.swing.JFrame {
    
     public ModifyReward() throws ClassNotFoundException, SQLException {
         initComponents();
+        lblProdDesc.setText(RewardCatalog.prodDesc);
+         lblPtsNeeded.setText(RewardCatalog.ptsReq);
+         if(RewardCatalog.status=="Active")
+         {
+             rbtnActive.setSelected(true);
+             rbtnInactive.setSelected(false);
+         }
+            
+         else
+         {
+              rbtnActive.setSelected(false);
+               rbtnInactive.setSelected(true);
+         }
+            
     }
-    public ModifyReward(String a,String b)
-    {
-        initComponents();
-        lblProdDesc.setText(a);
-         lblPtsNeeded.setText(b);
-    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,7 +209,7 @@ public class ModifyReward extends javax.swing.JFrame {
         try {
             connect=ConnectionClass.getConnected();
             st1 = connect.createStatement();
-            String sql1="update product set product_desc='"+ lblProdDesc.getText().trim()+"',points_reqd='"+ lblPtsNeeded.getText()+"'";
+            String sql1="update product set product_desc='"+ lblProdDesc.getText().trim()+"',points_reqd='"+ lblPtsNeeded.getText()+"'where product_id="+RewardCatalog.prodId;
             int r=st1.executeUpdate(sql1);
             if(r>0)
             {

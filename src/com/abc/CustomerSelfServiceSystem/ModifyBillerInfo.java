@@ -76,7 +76,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         lblMsg = new javax.swing.JLabel();
         MsgAcNo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lblStat = new javax.swing.JLabel();
+        MsgStat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +98,11 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
 
         lblAddress.setText("Address");
 
+        txtAddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAddressMouseClicked(evt);
+            }
+        });
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAddressActionPerformed(evt);
@@ -112,6 +117,11 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(249, 9, 6));
         jLabel8.setText("*");
 
+        txtCity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCityMouseClicked(evt);
+            }
+        });
         txtCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCityActionPerformed(evt);
@@ -122,6 +132,12 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
 
         jLabel9.setForeground(new java.awt.Color(249, 9, 6));
         jLabel9.setText("*");
+
+        txtPin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPinMouseClicked(evt);
+            }
+        });
 
         cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", " ", " " }));
 
@@ -242,7 +258,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
                         .addComponent(MsgBiller, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(MsgAcNo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblStat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MsgStat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(MsgCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
                 .addGap(73, 73, 73))
         );
@@ -313,7 +329,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
                                 .addComponent(lblPayNow)
                                 .addComponent(radYes)
                                 .addComponent(radNo)
-                                .addComponent(lblStat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(MsgStat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -341,11 +357,17 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCityActionPerformed
 
     private void radYesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radYesMouseClicked
-        
+     if(!MsgStat.getText().trim().equals(""))
+        {
+            MsgStat.setText("");
+        }
     }//GEN-LAST:event_radYesMouseClicked
 
     private void radNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radNoMouseClicked
-       
+       if(!MsgStat.getText().trim().equals(""))
+        {
+            MsgStat.setText("");
+        }
     }//GEN-LAST:event_radNoMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -439,7 +461,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             }
             else
             {
-                lblStat.setText("Cannot be empty");
+                MsgStat.setText("Cannot be empty");
             }
             Connection con = ConnectionClass.getConnected();
             System.out.println(flag+" before if");
@@ -457,6 +479,27 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtAddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddressMouseClicked
+        if(!MsgAddress.getText().trim().equals(""))
+        {
+            MsgAddress.setText("");
+        }
+    }//GEN-LAST:event_txtAddressMouseClicked
+
+    private void txtCityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCityMouseClicked
+       if(!MsgCity.getText().trim().equals(""))
+        {
+            MsgCity.setText("");
+        }
+    }//GEN-LAST:event_txtCityMouseClicked
+
+    private void txtPinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPinMouseClicked
+        if(!MsgPin.getText().trim().equals(""))
+        {
+            MsgPin.setText("");
+        }
+    }//GEN-LAST:event_txtPinMouseClicked
     private void updateBiller(String name,String acc_no,String add,String cbm,String stat,Connection con) throws ClassNotFoundException,SQLException
     {
         //System.out.println("update biller");
@@ -533,6 +576,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private javax.swing.JLabel MsgCategory;
     private javax.swing.JLabel MsgCity;
     private javax.swing.JLabel MsgPin;
+    private javax.swing.JLabel MsgStat;
     private javax.swing.JButton btnBack;
     private javax.swing.ButtonGroup btnGrpStat;
     private javax.swing.JButton btnUpdate;
@@ -553,7 +597,6 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblPayNow;
     private javax.swing.JLabel lblPinCode;
-    private javax.swing.JLabel lblStat;
     private javax.swing.JRadioButton radNo;
     private javax.swing.JRadioButton radYes;
     private javax.swing.JTextField txtAddress;

@@ -32,7 +32,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         Statement stmt = con.createStatement();
         //pstmt.setInt(1,type);
         // pstmt.setString(2,status);
-        String query = "select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type=" + type + " and cr.csr_status='" + status + "'";
+        String query = "select cr.csr_type,cr.account_number,a.acc_type,c.name,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type=" + type + " and cr.csr_status='" + status + "'";
 
         ResultSet rs = stmt.executeQuery(query);
 
@@ -46,9 +46,6 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 case 3:
                     reqType = "Lost/Stolen Card";
                     break;
-                case 5:
-                    reqType = "Disputed Transaction";
-                    break;
                 case 6:
                     reqType = "Redeem";
                     break;
@@ -59,6 +56,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String custName = rs.getString(4);
             Date reqDate = rs.getDate(5);
             String rStatus = rs.getString(6);
+           // System.out.println(acNo);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
@@ -98,7 +96,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
         lblReqTypeListOfCustReq.setText("Request Type");
 
-        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Disputed Transaction", "Lost/Stolen Card", "Redeem" }));
+        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Lost/Stolen Card", "Redeem" }));
         cmbRequestTypeListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRequestTypeListOfCustReqActionPerformed(evt);
@@ -218,13 +216,6 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Disputed Transaction") {
-            try {
-                type = 5;
-                statusCheck(type, status);
-            } catch (Exception ex) {
-                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Lost/Stolen Card") {
             try {
                 type = 3;
@@ -275,50 +266,21 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
         }
-        if (requestType.equals("Disputed Transaction")) {
-            requestTypeVal = 5;
-            this.setVisible(false);
-            DisputedTransaction dt = new DisputedTransaction();
-            dt.setVisible(true);
-        }
-        if (requestType.equals("Lost/Stolen Card")) {
-
 <<<<<<< HEAD
+          
 =======
-
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
-            }
-            if(requestType.equals("Disputed Transaction"))
-            {
-                requestTypeVal=5;
-                this.setVisible(false);
-                DisputedTransaction dt = new DisputedTransaction();
-                dt.setVisible(true);
-            }
-
+        
+        
             if(requestType.equals("Lost/Stolen Card"))
             {
-<<<<<<< HEAD
+>>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
+        if(requestType.equals("Lost/Stolen Card"))
+        {
 
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
-            {   
-                this.setVisible(false);
-                LostOrStolenCard lst;
-
-
-
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
+           
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);
