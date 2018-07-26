@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class CustomerLogin extends javax.swing.JFrame {
     public CustomerLogin() {
         initComponents();
         clearBtn.setToolTipText("Clear fields");
+        errlbl.setForeground(Color.red);
     }
 
     /**
