@@ -243,7 +243,9 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
                 getPayment(from,to,cat,stat,con);             
             }
             catch(ClassNotFoundException | SQLException e)
-            { }
+            { 
+                lblMsg.setText("Invalid date format");
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
