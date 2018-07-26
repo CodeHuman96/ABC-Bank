@@ -64,30 +64,12 @@ public class MatchFormats {
 
     public boolean matchName(String name) {
        pattern = "[a-zA-Z .'-]+";
-<<<<<<< HEAD
+
 
        return name.matches(pattern);
-=======
-
-=======
-
-       pattern = "[a-zA-Z .'-]+";
 
 
 
-        pattern = "[a-z A-Z .'-]+";
-
-        pattern = "[a-zA-Z .'-]+";
-
-
-       pattern = "[a-zA-Z .'-]+";
-
-
-       pattern = "[a-zA-Z .'-]+";
-
->>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
-        return name.matches(pattern);
->>>>>>> e3575873e7ace20facdad2318434917b52d658f6
     }
     public boolean matchAccountNumber(String accNo){
         pattern ="[0-9]{10}";

@@ -240,20 +240,34 @@ public class QueryResponse extends javax.swing.JFrame {
             }
             else        
             {
-                int success;
-                Connection con = ConnectionClass.getConnected();
-                Statement stmt = con.createStatement();
-                String query = "update customer_service_request set csr_status='"+cmbStatusCsr7.getSelectedItem()+"',csr_response='"+txtareaResponseCsr7.getText()+"'where csr_id="+ListOfCustomerRequests.csr_id;
-                String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfCustomerRequests.csr_id;
-                success = stmt.executeUpdate(query);
-            
-                if(success>0)
-                {
-                    JOptionPane.showMessageDialog(null, "Updated Successfully");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Error in Updating!\n Try Again!");
+                try {
+                    int flag=0;
+                    int[] success;
+                    Connection con = ConnectionClass.getConnected();
+                    Statement stmt = con.createStatement();
+                    String query = "update customer_service_request set csr_status='"+cmbStatusCsr7.getSelectedItem()+"',csr_response='"+txtareaResponseCsr7.getText()+"'where csr_id="+ListOfCustomerRequests.csr_id;
+                    stmt.addBatch(query);
+                    String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfCustomerRequests.csr_id;
+                    stmt.addBatch(query1);
+                    success = stmt.executeBatch();
+                    
+                    for(int i=0;i<success.length;i++)
+                    {
+                        if(success[i]>0)
+                            flag++;
+                    }
+                    if(flag>1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Updated Successfully");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Error in Updating!\n Try Again!");
+                    }
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(QueryResponse.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(QueryResponse.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
     }//GEN-LAST:event_btnSubmitCsr7ActionPerformed
