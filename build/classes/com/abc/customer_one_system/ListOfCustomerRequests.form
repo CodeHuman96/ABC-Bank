@@ -105,11 +105,10 @@
     <Component class="javax.swing.JComboBox" name="cmbRequestTypeListOfCustReq">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="Cheque Book"/>
-            <StringItem index="1" value="Disputed Transaction"/>
-            <StringItem index="2" value="Lost/Stolen Card"/>
-            <StringItem index="3" value="Redeem"/>
+            <StringItem index="1" value="Lost/Stolen Card"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>

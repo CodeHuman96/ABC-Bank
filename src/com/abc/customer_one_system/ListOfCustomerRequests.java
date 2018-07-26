@@ -24,7 +24,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
      */
     public static int requestTypeVal = 0;
     public static String requestStatus, requestType;
-    public static int csr_id;
+    public static int csr_id = 0;
+    DefaultTableModel model=null;
 
     public void statusCheck(int type, String status) throws Exception {
         //  ConnectionClass concls = new ConnectionClass();
@@ -32,7 +33,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         Statement stmt = con.createStatement();
         //pstmt.setInt(1,type);
         // pstmt.setString(2,status);
-        String query = "select cr.csr_type,cr.account_number,c.name,a.acc_type,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type=" + type + " and cr.csr_status='" + status + "'";
+        String query = "select cr.csr_type,cr.account_number,a.acc_type,c.name,cr.csr_date,cr.csr_status from customer_service_request cr join account a on cr.account_number = a.account_number join customer c on a.customer_id = c.customer_id where cr.csr_type=" + type + " and cr.csr_status='" + status + "'";
 
         ResultSet rs = stmt.executeQuery(query);
 
@@ -46,20 +47,15 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 case 3:
                     reqType = "Lost/Stolen Card";
                     break;
-                case 5:
-                    reqType = "Disputed Transaction";
-                    break;
-                case 6:
-                    reqType = "Redeem";
-                    break;
-
+                
             }
             int acNo = rs.getInt(2);
             String acType = rs.getString(3);
             String custName = rs.getString(4);
             Date reqDate = rs.getDate(5);
             String rStatus = rs.getString(6);
-            DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+            // System.out.println(acNo);
+            model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
         }
@@ -70,6 +66,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     public ListOfCustomerRequests() {
 
         initComponents();
+         model = (DefaultTableModel) tblListOfCustReq.getModel();
     }
 
     /**
@@ -98,7 +95,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
         lblReqTypeListOfCustReq.setText("Request Type");
 
-        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Disputed Transaction", "Lost/Stolen Card", "Redeem" }));
+        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Lost/Stolen Card", " " }));
         cmbRequestTypeListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRequestTypeListOfCustReqActionPerformed(evt);
@@ -207,6 +204,11 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         int type;
+        int rowCount = model.getRowCount();
+//Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
         String status = (String) cmbStatusListOfCustReq.getSelectedItem();
 
@@ -218,13 +220,6 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Disputed Transaction") {
-            try {
-                type = 5;
-                statusCheck(type, status);
-            } catch (Exception ex) {
-                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Lost/Stolen Card") {
             try {
                 type = 3;
@@ -233,14 +228,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Redeem") {
-            try {
-                type = 6;
-                statusCheck(type, status);
-            } catch (Exception ex) {
-                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        } 
+        
 
 
     }//GEN-LAST:event_btnSubmitListOfCustReqActionPerformed
@@ -275,12 +264,21 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
+<<<<<<< HEAD
         }
        
         if(requestType.equals("Lost/Stolen Card"))
         {
             try 
             {
+=======
+
+        }
+
+        if (requestType.equals("Lost/Stolen Card")) {
+
+            try {
+>>>>>>> b38e18fe0c6b6134d88487b8b60fd9ab8556b626
                 requestTypeVal = 3;
                 this.setVisible(false);
                 LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);

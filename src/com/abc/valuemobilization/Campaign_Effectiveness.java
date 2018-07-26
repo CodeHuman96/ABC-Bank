@@ -220,13 +220,13 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 }
                 
                 String ni="", c="";
-                status=status.toLowerCase();
-                if(status.equals("active"))
+                
+                if(status.equalsIgnoreCase("active"))
                 {
                     c="Yes";
                 }
                 
-                else if(status.equals("inactive"))
+                else if(status.equalsIgnoreCase("inactive"))
                 {
                     ni="Yes";
                 }

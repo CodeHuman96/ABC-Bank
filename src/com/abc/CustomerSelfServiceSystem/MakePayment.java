@@ -98,7 +98,7 @@ public class MakePayment extends javax.swing.JFrame {
         MsgPay = new javax.swing.JLabel();
         lblMsg = new javax.swing.JLabel();
 
-        submit.setSize(new java.awt.Dimension(400, 400));
+        submit.setSize(new java.awt.Dimension(400, 300));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Your payment request has been submitted");
@@ -388,11 +388,18 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgAmount.setText("Cannot be empty");
                 flag &=false;
             }
+            else if(Double.parseDouble(amount)<=0)
+            {
+                MsgAmount.setText("Invalid transfer amount");
+                flag &=false;
+            }
             else
             {
                 am=Double.parseDouble(txtAmount.getText());
             }
+            
             String date=txtPayDueDate.getText().trim();
+            
             if(date.equals(""))
             {
                 MsgDate.setText("Cannot be empty");
@@ -400,38 +407,42 @@ public class MakePayment extends javax.swing.JFrame {
             }
             else if(!match.matchDate(date) || match.matchDOB(date))
             {
+                MsgDate.setText("Invalid date format");
                 flag &=false;
             }           
             else
             {
                 flag &=true;
             }
+            
             if(flag)
             {
-                //lblMsg.setText("Processing");
-                submit.setVisible(true);
+                
+                //submit.setVisible(true);
                 Connection con=ConnectionClass.getConnected();
                 DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MMM/yyyy");
                 //String todate = String.valueOf(LocalDate.parse(date, f));
                 String paydate=String.valueOf(f.format(LocalDate.now()));
                 //System.out.println("date="+date+" paydate="+paydate);
-                addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);
+                addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);lblMsg.setText("Processing");
             }
-            else
+            /*else
             {
                 lblMsg.setText("Invalid Entry");
-            }
+            }*/
         }
         catch(NumberFormatException e)
         {
             lblMsg.setText("Invalid input(s)");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException | SQLException ex) 
+        {
+           MsgDate.setText("Invalid date format");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 private void addPayment(Double amount,String dueDate,String date,String status,String acc,String billerId,Connection connect) throws SQLException
 {
-    String query="insert into make_payment values(?,?,?,?,billNo_seq.NEXTVAL,?,?)";
+    String query="insert into make_payment values(?,TO_DATE (?,'dd/MM/yyyy'),TO_DATE(?,'dd/MM/yyyy'),?,billNo_seq.NEXTVAL,?,?)";
     PreparedStatement stmt=connect.prepareStatement(query);
     stmt.setDouble(1,amount);
     stmt.setString(2,dueDate);

@@ -30,6 +30,9 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
       int c = 0,f=0;
     public RedeemRewardPoints() throws ClassNotFoundException, SQLException {
         initComponents();
+        
+        
+         
         lblWel.setText(CreditCardLogin.topName);
         Connection connect = ConnectionClass.getConnected();
         Statement st = connect.createStatement();
@@ -38,7 +41,10 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         while (rs.next()) {
             lblAccno.setText(rs.getString(1));
             lblPts.setText(String.valueOf(rs.getInt(2)));
+             lblmsg.setText((lblPts.getText()));
         }
+        if(Integer.parseInt(lblPts.getText())==0)
+            lblStat.setText("You don't have enough points to redeem");
         //String sql1="select product_desc,points_reqd from product where points_reqd<='"+lblPts.getText()+"'";
 
         String sql1 = "select product_desc,points_reqd from product";// where points_reqd<='"+lblPts.getText()+"'";
@@ -63,23 +69,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
             }
 
         }
-        /*  while(c>0)
-         {
-            DefaultTableModel model = (DefaultTableModel)tblRedeem.getModel();
-            int qty=(int)model.getValueAt(tblRedeem.getSelectedRow(), 3);
-            int req=(int)model.getValueAt(tblRedeem.getSelectedRow(), 2);
-            int redeem=qty*req;
-            if(redeem>Integer.parseInt(lblPts.getText()))
-            {
-                lblStat.setText("OOPS! Can't redeem because you run out of points");
-            }
-            else
-            {
-                 model.setValueAt(redeem, tblRedeem.getSelectedRow(), 4);
-                 --c;
-            }
-            
-         }*/
+         
 
     }
 
@@ -106,6 +96,8 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblStat = new javax.swing.JLabel();
         btnProceed = new javax.swing.JButton();
+        lblmsg = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -143,7 +135,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
 
         lblTotalRedeemedLHS.setText("Total points Redeemed");
 
-        lblTotalRedeemed.setText("xxxx");
+        lblTotalRedeemed.setText("0");
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -163,54 +155,66 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         lblStat.setForeground(new java.awt.Color(235, 16, 16));
         lblStat.setText(" ");
 
-        btnProceed.setText("jButton1");
+        btnProceed.setText("Total");
         btnProceed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProceedActionPerformed(evt);
             }
         });
 
+        lblmsg.setText("0");
+
+        jLabel2.setText("Balance");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAccNoLHS)
-                            .addComponent(lblPtsLHS))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPts)
-                            .addComponent(lblAccno)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTotalRedeemedLHS)
-                .addGap(48, 48, 48)
-                .addComponent(lblTotalRedeemed)
-                .addGap(43, 43, 43))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(btnProceed)
-                .addGap(39, 39, 39)
-                .addComponent(btnSubmit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(81, 81, 81))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblWel)
                 .addGap(46, 46, 46))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTotalRedeemedLHS)
+                                    .addComponent(jLabel2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnProceed)
+                                .addGap(163, 163, 163)
+                                .addComponent(btnSubmit)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotalRedeemed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblmsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(128, 128, 128))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblAccNoLHS)
+                                .addComponent(lblPtsLHS))
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPts)
+                                .addComponent(lblAccno)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,20 +231,24 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPts)
                     .addComponent(lblPtsLHS))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalRedeemedLHS)
                     .addComponent(lblTotalRedeemed))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblmsg)
+                    .addComponent(jLabel2))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProceed)
                     .addComponent(btnSubmit)
-                    .addComponent(btnBack)
-                    .addComponent(btnProceed))
-                .addGap(34, 34, 34)
+                    .addComponent(btnBack))
+                .addGap(32, 32, 32)
                 .addComponent(lblStat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,7 +269,29 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
               lblStat.setText("Limit is exceeded...can't redeem");
           else
           {
-              
+              int rem=Integer.parseInt(lblPts.getText())-sum;
+              Connection connect;
+            try {
+                connect = ConnectionClass.getConnected();
+                Statement st = connect.createStatement();
+                String sql="update credit_card_detail set reward_points="+rem+"where account_number=(select preferred_acc_1 from customer where customer_id="+CreditCardLogin.cid+")";
+                  int r=st.executeUpdate(sql);
+                if(r>0)
+                {
+                    lblStat.setText("Redeemed Successfully");
+                    lblTotalRedeemed.setText(String.valueOf(sum));
+                }
+                else
+                    lblStat.setText("Redemption failed");
+                
+                
+                lblmsg.setText(String.valueOf(rem));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               
           }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -316,6 +346,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
     private javax.swing.JButton btnProceed;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAccNoLHS;
     private javax.swing.JLabel lblAccno;
@@ -325,16 +356,21 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalRedeemed;
     private javax.swing.JLabel lblTotalRedeemedLHS;
     private javax.swing.JLabel lblWel;
+    private javax.swing.JLabel lblmsg;
     private javax.swing.JTable tblRedeem;
     // End of variables declaration//GEN-END:variables
  List<Integer>l=new ArrayList<Integer>();
  int sum=0;
-    private void getQty() {
+    private void getQty()throws NumberFormatException {
         //model = (DefaultTableModel) tblRedeem.getModel();
         for(int i=0;i<tblRedeem.getRowCount();i++)
         {
         tblRedeem.editCellAt(tblRedeem.getSelectedRow(), 3);
-        
+        if(model.getValueAt(i,3)==" ") //||model.getValueAt(i,3)!="")
+        {
+            model.setValueAt(0,i,3);
+        }
+        else{
         try {
             int qty = Integer.parseInt((String) model.getValueAt(i,3));
             System.out.println("c= "+c);
@@ -365,7 +401,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         }
         catch(Exception e){
             e.printStackTrace();
-        }
+        }}
         }
         
     }
