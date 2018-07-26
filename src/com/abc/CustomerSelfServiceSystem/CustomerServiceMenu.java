@@ -15,14 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 
-/**
- *
- * @author shivasai
- */
->>>>>>> 2013e890bda34fd8af96cdbbfa6c644bdb45cd25
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
