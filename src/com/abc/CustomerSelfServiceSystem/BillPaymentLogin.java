@@ -195,6 +195,8 @@ public class BillPaymentLogin extends javax.swing.JFrame {
         while(rs.next()){
             cust_id=rs.getString(1);
             cust_name=rs.getString(2);
+            CustomerLogin.customerid=rs.getInt(1);
+            CustomerLogin.customername=rs.getString(1);
             CreditCardLogin.cid=rs.getInt(1);
             CreditCardLogin.topName=rs.getString(2);
         }
