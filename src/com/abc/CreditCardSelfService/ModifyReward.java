@@ -33,7 +33,7 @@ public class ModifyReward extends javax.swing.JFrame {
         initComponents();
         lblProdDesc.setText(RewardCatalog.prodDesc);
          lblPtsNeeded.setText(RewardCatalog.ptsReq);
-         if(RewardCatalog.status=="Active")
+         /*if(RewardCatalog.status=="Active")
          {
              rbtnActive.setSelected(true);
              rbtnInactive.setSelected(false);
@@ -43,7 +43,7 @@ public class ModifyReward extends javax.swing.JFrame {
          {
               rbtnActive.setSelected(false);
                rbtnInactive.setSelected(true);
-         }
+         }*/
             
     }
      
@@ -61,14 +61,13 @@ public class ModifyReward extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblProdDescLHS = new javax.swing.JLabel();
         lblPtsNeededLHS = new javax.swing.JLabel();
-        lblStatus = new javax.swing.JLabel();
-        rbtnActive = new javax.swing.JRadioButton();
-        rbtnInactive = new javax.swing.JRadioButton();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblStat1 = new javax.swing.JLabel();
         lblProdDesc = new javax.swing.JTextField();
         lblPtsNeeded = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,14 +77,6 @@ public class ModifyReward extends javax.swing.JFrame {
         lblProdDescLHS.setText("Product Description");
 
         lblPtsNeededLHS.setText("Points needed per unit");
-
-        lblStatus.setText("Status");
-
-        bg1.add(rbtnActive);
-        rbtnActive.setText("Active");
-
-        bg1.add(rbtnInactive);
-        rbtnInactive.setText("Inactive");
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -101,10 +92,19 @@ public class ModifyReward extends javax.swing.JFrame {
             }
         });
 
+        lblStat1.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
         lblStat1.setForeground(new java.awt.Color(36, 250, 70));
-        lblStat1.setText("b");
+        lblStat1.setText(" ");
 
         lblProdDesc.setText(" ");
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(232, 10, 10));
+        jLabel2.setText("*");
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(235, 20, 20));
+        jLabel3.setText("*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,23 +126,17 @@ public class ModifyReward extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblStatus)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rbtnActive)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbtnInactive))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPtsNeededLHS)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblProdDescLHS)
-                                        .addGap(83, 83, 83)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblProdDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                                            .addComponent(lblPtsNeeded))))
-                                .addGap(0, 28, Short.MAX_VALUE)))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                            .addComponent(lblProdDescLHS)
+                            .addComponent(lblPtsNeededLHS))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblProdDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(lblPtsNeeded))))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,18 +150,16 @@ public class ModifyReward extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblProdDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblProdDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPtsNeededLHS)
-                    .addComponent(lblPtsNeeded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblStatus)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rbtnActive)
-                        .addComponent(rbtnInactive)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPtsNeeded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(lblStat1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,6 +188,11 @@ public class ModifyReward extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+       /* if(lblProdDesc.getText().equals("")||lblPtsNeeded.getText().equals(""))
+        {
+            lblStat1.setText("Fields can't be empty");
+        }
+        else{*/
          Statement st1;
         try {
             connect=ConnectionClass.getConnected();
@@ -204,23 +201,26 @@ public class ModifyReward extends javax.swing.JFrame {
             int r=st1.executeUpdate(sql1);
             if(r>0)
             {
-                lblStat1.setText("update Successful");
-                sleep(500);
+                //lblStat1.setText("update Successful");
                 RewardCatalog rc=new RewardCatalog();
                 rc.setVisible(true);
                 this.setVisible(false);
+                
+                //sleep(500);
+                System.out.println(lblStat1.getText());
+                //
             }
+            
             else
                  lblStat1.setText("update failed");  
+            
                                 
         } catch (SQLException ex) {
             Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+//}  
     
          
                
@@ -291,13 +291,12 @@ public class ModifyReward extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField lblProdDesc;
     private javax.swing.JLabel lblProdDescLHS;
     private javax.swing.JTextField lblPtsNeeded;
     private javax.swing.JLabel lblPtsNeededLHS;
     private javax.swing.JLabel lblStat1;
-    private javax.swing.JLabel lblStatus;
-    private javax.swing.JRadioButton rbtnActive;
-    private javax.swing.JRadioButton rbtnInactive;
     // End of variables declaration//GEN-END:variables
 }

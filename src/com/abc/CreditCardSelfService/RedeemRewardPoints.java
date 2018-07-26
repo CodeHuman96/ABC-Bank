@@ -5,12 +5,13 @@
  */
 package com.abc.CreditCardSelfService;
 
-import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
+import com.abc.CustomerSelfServiceSystem.*;//CreditCardLogin;
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
     /**
      * Creates new form RedeemRewardPoints
      */
+    public static String acno="";
     DefaultTableModel model=null;
       int c = 0,f=0;
     public RedeemRewardPoints() throws ClassNotFoundException, SQLException {
@@ -36,13 +38,18 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         lblWel.setText(CreditCardLogin.topName);
         Connection connect = ConnectionClass.getConnected();
         Statement st = connect.createStatement();
-        String sql = "select c.account_number,c.reward_points from customer u join account a on u.customer_id=a.customer_id join credit_card_detail c on a.account_number=c.account_number where u.customer_id=" + CreditCardLogin.cid;
+        String sql = "select c.account_number,c.reward_points from customer u join account a on u.customer_id=a.customer_id join credit_card_detail c on a.account_number=c.account_number where u.customer_id=" +CreditCardLogin.cid;
         ResultSet rs = st.executeQuery(sql);
+       
         while (rs.next()) {
-            lblAccno.setText(rs.getString(1));
+            System.out.println(rs.getString(1));
+           acno=rs.getString(1);
             lblPts.setText(String.valueOf(rs.getInt(2)));
              lblmsg.setText((lblPts.getText()));
         }
+         lblAccno.setText(acno);
+        
+        
         if(Integer.parseInt(lblPts.getText())==0)
             lblStat.setText("You don't have enough points to redeem");
         //String sql1="select product_desc,points_reqd from product where points_reqd<='"+lblPts.getText()+"'";
@@ -53,14 +60,16 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
 
         while (rs1.next()) {
             try {
-                int req = Integer.parseInt(rs1.getString(2));
-                int avail = Integer.parseInt(lblPts.getText());
-                lblAccno.setText(Integer.toString(req));
+                System.out.println("now"+rs1.getString(2).trim());
+                
+                int req = Integer.parseInt(rs1.getString(2).trim());
+                int avail = Integer.parseInt(lblPts.getText().trim());
+                //lblAccno.setText(Integer.toString(req));
                 if (req <= avail) {
                     ++c;
                     f=c;
                     model = (DefaultTableModel) tblRedeem.getModel();
-                    model.addRow(new Object[]{rs1.getString(1)," ", rs1.getString(2),"",""});
+                    model.addRow(new Object[]{rs1.getString(1),rs1.getString(2),"",""});
                     
 
                 }
@@ -120,11 +129,11 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product Desc", " Product Image", "Points  needed ", "Quantity", "Points redeemed"
+                "Product Desc", "Points  needed ", "Quantity", "Points redeemed"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -197,19 +206,20 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnBack)
                                 .addGap(128, 128, 128))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAccNoLHS)
-                                .addComponent(lblPtsLHS))
-                            .addGap(40, 40, 40)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblPts)
-                                .addComponent(lblAccno)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAccNoLHS)
+                            .addComponent(lblPtsLHS))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPts)
+                            .addComponent(lblAccno))
+                        .addGap(382, 382, 382))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -266,9 +276,50 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         findSum();
         System.out.println("sum in submit "+sum);
           if(sum>Integer.parseInt(lblPts.getText()))
+          {
               lblStat.setText("Limit is exceeded...can't redeem");
+               Connection connect;
+            try {
+                connect = ConnectionClass.getConnected();
+                Statement st = connect.createStatement();
+                String sql="insert into customer_service_request(csr_type,csr_date,csr_status,csr_response,account_number)values("+6+",CURRENT_TIMESTAMP,'Rejected','done','"+acno+"')";
+                int r=st.executeUpdate(sql);
+                
+                if(r>0)
+                    System.out.println("Request sent");
+                else
+                    System.out.println("Failed");
+           
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+          }
           else
           {
+                
+            try {
+                Connection connect = ConnectionClass.getConnected();
+                
+                Statement st = connect.createStatement();
+                String sql="insert into customer_service_request(csr_type,csr_date,csr_status,csr_response,account_number)values("+6+",CURRENT_TIMESTAMP,'Processed','done','"+acno+"')";
+                int r=st.executeUpdate(sql);
+                if(r>0)
+                    System.out.println("Request sent");
+                else
+                    System.out.println("Failed");
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(RedeemRewardPoints.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                
+                
+              
               int rem=Integer.parseInt(lblPts.getText())-sum;
               Connection connect;
             try {
@@ -279,6 +330,7 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
                 if(r>0)
                 {
                     lblStat.setText("Redeemed Successfully");
+                    
                     lblTotalRedeemed.setText(String.valueOf(sum));
                 }
                 else
@@ -365,33 +417,34 @@ public class RedeemRewardPoints extends javax.swing.JFrame {
         //model = (DefaultTableModel) tblRedeem.getModel();
         for(int i=0;i<tblRedeem.getRowCount();i++)
         {
-        tblRedeem.editCellAt(tblRedeem.getSelectedRow(), 3);
-        if(model.getValueAt(i,3)==" ") //||model.getValueAt(i,3)!="")
+        tblRedeem.editCellAt(tblRedeem.getSelectedRow(), 2);
+        if(model.getValueAt(i,2)==" ") //||model.getValueAt(i,3)!="")
         {
-            model.setValueAt(0,i,3);
+            model.setValueAt(0,i,2);
         }
         else{
         try {
-            int qty = Integer.parseInt((String) model.getValueAt(i,3));
+            //int qty = Integer.parseInt((String) model.getValueAt(i,2));
+            int qty=Integer.parseInt(((String)model.getValueAt(i,2)).trim());
             System.out.println("c= "+c);
-            int req1 = Integer.parseInt((String) model.getValueAt(i,2));
+            int req1 = Integer.parseInt(((String) model.getValueAt(i,1)).trim());
             
             int redeem = qty * req1;
             //lblPts.setText(String.valueOf(qty));
             String str=lblPts.getText();
             //model.setValueAt(redeem, tblRedeem.getSelectedRow(), 4);
-            model.setValueAt(redeem,i, 4);
+            model.setValueAt(redeem,i, 3);
             System.out.println(i);
             if (redeem > Integer.parseInt(str) ){
                 lblStat.setText("OOPS! Can't redeem because you run out of points");
             } 
             else {
-                model.setValueAt(redeem, tblRedeem.getSelectedRow(), 4);
+                model.setValueAt(redeem, tblRedeem.getSelectedRow(), 3);
                 lblStat.setText("");
                 //--c;
             }
            
-            l.add((Integer) model.getValueAt(tblRedeem.getSelectedRow(),4));
+            l.add((Integer) model.getValueAt(tblRedeem.getSelectedRow(),3));
             if(c==0)
                 findSum();
             

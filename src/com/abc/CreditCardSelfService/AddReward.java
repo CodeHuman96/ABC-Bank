@@ -164,16 +164,15 @@ public class AddReward extends javax.swing.JFrame {
             }
         });
 
+        lblStatus.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
+        lblStatus.setForeground(new java.awt.Color(228, 27, 27));
+
         lblProdDesc.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -200,7 +199,10 @@ public class AddReward extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPtsneeded, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblProdDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(61, 61, 61))))))
+                                .addGap(61, 61, 61))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(btnSubmit)
@@ -226,9 +228,9 @@ public class AddReward extends javax.swing.JFrame {
                     .addComponent(lblPtsNeededLHS)
                     .addComponent(lblPtsneeded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(36, 36, 36)
-                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnBack))
@@ -358,6 +360,9 @@ public class AddReward extends javax.swing.JFrame {
         try {
             connect = ConnectionClass.getConnected();
             Statement st = connect.createStatement();
+            if(lblProdDesc.getText().trim().equals("")||lblPtsneeded.getText().trim().equals(""))
+                lblStatus.setText("Fields can't be Empty");
+            else{   
             String sql = "insert into product(product_id,product_desc,points_reqd)values(prod_seq.nextval,'" + lblProdDesc.getText().trim() + "','" + lblPtsneeded.getText().trim() + "')";
 
             System.out.println(lblPtsneeded.getText());
@@ -369,6 +374,7 @@ public class AddReward extends javax.swing.JFrame {
                 lblPtsneeded.setText("");
             } else {
                 lblStatus.setText("Error in inserting values");
+            }
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddReward.class.getName()).log(Level.SEVERE, null, ex);
