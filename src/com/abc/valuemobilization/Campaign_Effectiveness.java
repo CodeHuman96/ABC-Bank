@@ -52,7 +52,6 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         lblTotalProspects = new javax.swing.JLabel();
         lblUnassignedP = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
-        txtCampaign = new javax.swing.JTextField();
         lblUnassigned = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMonitor = new javax.swing.JTable();
@@ -73,12 +72,6 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         lblUnassignedP.setText("Unassigned Prospects :");
 
         lblTotal.setText("xxx");
-
-        txtCampaign.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCampaignActionPerformed(evt);
-            }
-        });
 
         lblUnassigned.setText("xxx");
 
@@ -125,7 +118,7 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -141,8 +134,6 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                                 .addGap(96, 96, 96))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCampaign)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)))
                         .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
@@ -161,7 +152,6 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampaign)
-                    .addComponent(txtCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
                     .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
@@ -181,10 +171,6 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCampaignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCampaignActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCampaignActionPerformed
 
     private void lblBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblBackActionPerformed
         Campaign_Management cm = new Campaign_Management();
@@ -358,6 +344,5 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
     private javax.swing.JLabel lblUnassigned;
     private javax.swing.JLabel lblUnassignedP;
     private javax.swing.JTable tblMonitor;
-    private javax.swing.JTextField txtCampaign;
     // End of variables declaration//GEN-END:variables
 }

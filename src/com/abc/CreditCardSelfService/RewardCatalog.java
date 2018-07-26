@@ -5,10 +5,15 @@
  */
 package com.abc.CreditCardSelfService;
 
-import com.abc.customer_one_system.EmployeeMainMenu;
+import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.Login;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +24,19 @@ public class RewardCatalog extends javax.swing.JFrame {
     /**
      * Creates new form RewardCatalog
      */
-    public RewardCatalog() {
+    public RewardCatalog() throws ClassNotFoundException, SQLException {
         initComponents();
+         Connection con = ConnectionClass.getConnected();
+         String sql="select product_desc,points_reqd from product";
+                //String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number =(select account_number from customer where customer_id="+CreditCardLogin.cid+")"+"and csr_type="+6;
+                Statement st=con.createStatement();
+                ResultSet rs=st.executeQuery(sql);
+                while(rs.next())
+                {
+                      DefaultTableModel model = (DefaultTableModel)tblProduct.getModel();
+                        model.addRow(new Object[]{rs.getString(1),"",rs.getString(2),"Active"});
+                }
+                
     }
 
     /**
@@ -131,9 +147,27 @@ public class RewardCatalog extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        ModifyReward mr=new ModifyReward();
-        mr.setVisible(true);
-          this.setVisible(false);
+        ModifyReward mr;
+        try {
+        
+          
+          Connection connect=ConnectionClass.getConnected();
+           Statement st=connect.createStatement();
+         
+        String sql="select product_desc,points_reqd from product where product_id not in(select product_id from redeem)";
+        ResultSet rs=st.executeQuery(sql);
+        int  c=0;
+        while(rs.next())
+        {
+            mr= new ModifyReward(rs.getString(1),rs.getString(2));
+            mr.setVisible(true);
+        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -172,7 +206,13 @@ public class RewardCatalog extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RewardCatalog().setVisible(true);
+                try {
+                    new RewardCatalog().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

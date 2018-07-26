@@ -81,11 +81,11 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
        
            
             LocalDate deadline=rs.getDate("payment_due_date").toLocalDate();
-            System.out.println(rs.getDate("payment_due_date"));
+            //System.out.println(rs.getDate("payment_due_date"));
            
            final long days = ChronoUnit.DAYS.between(today,deadline);
              if ((days<=1) && rs.getString("payment_status").equalsIgnoreCase("pending"))//||rs.getString("payment_status").equals("pending"))
-            { System.out.println(days);
+            { //System.out.println(days);
           
              
                 
@@ -147,7 +147,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                  DefaultTableModel model=(DefaultTableModel) tblCustBillPayment.getModel();*/
                  
                  //implementing extended class
-                  System.out.println("grt");
+                  //System.out.println("grt");
                 /* MyDefaultTableModel model=new MyDefaultTableModel();
                  tblCustBillPayment=new JTable(model);*/
                  
@@ -178,15 +178,15 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                     
                 //model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),"pay",null,"reject"});
                 if (rs2.getFloat("balance")>rs.getFloat("bill_amount"))  
-                {model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),true,false,false});}
+                {model.addRow(new Object[]{rs.getString("bill_no"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),true,false,false});}
                   
                   else
-                {model.addRow(new Object[]{rs.getString("biller_id"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),false,true,true});}
-                    System.out.println("added");
+                {model.addRow(new Object[]{rs.getString("bill_no"),rs3.getString("name"),6,rs.getString("account_number"),rs2.getFloat("balance"),rs.getFloat("bill_amount"),false,true,true});}
+                    //System.out.println("added");
                 
                  //System.out.println(model.isCellEditable(2,15));
-                 System.out.println(model.isCellEditable(1,3));
-                  System.out.println(model.isCellEditable(4,6));
+                // System.out.println(model.isCellEditable(1,3));
+                 // System.out.println(model.isCellEditable(4,6));
                   
                   
                 }
@@ -232,7 +232,7 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Biller ID", "Customer Name", "Customer Request", "Account Number", "Account Balance", "Bill Amount", "Pay", "Force Pay", "Reject"
+                "Bill  ID", "Customer Name", "Customer Request", "Account Number", "Account Balance", "Bill Amount", "Pay", "Force Pay", "Reject"
             }
         ) {
             Class[] types = new Class [] {
@@ -324,37 +324,100 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         System.out.println(tblCustBillPayment.getRowCount());
+        int count=0;
+        
         for (int i=0;i<tblCustBillPayment.getRowCount();i++){
             
         if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7)).booleanValue()==false &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,8)).booleanValue()==false  &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,6)).booleanValue()==false)
         {lblError.setText("Either select Force pay or Reject! ");
-        break;}
+        //System.out.println("Anamoly case");
+        i=i--;
+        continue;
+        }
         
         else if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7))==true &&((Boolean)tblCustBillPayment.getModel().getValueAt(i,8))==true)
         {lblError.setText("Select either Force pay or Reject! ");
-        break;}
+        i=i--;
+        continue;
+        }
+        
+        else
+        {   count++;
+            
+        }
+     
+       
        }
-        
-        
+        Connection con;
+        //lblError.setText("Successfully submitted!");
+        if (count==tblCustBillPayment.getRowCount()){
         for (int i=0;i<tblCustBillPayment.getRowCount();i++)
-        {      Connection con;
+        {     lblError.setText("Successfully submitted!"); 
             try {
                 con = ConnectionClass.getConnected();
                  Statement st=con.createStatement();
-            String query="select * from make_payment";
-                int result=st.executeUpdate(query);
-                while (result>0)
+                 
+                 String query="";
+                 int result=0;
+                 
+                 if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,6))==true)
+                 {query="update make_payment set payment_status='paid' where bill_no="+tblCustBillPayment.getValueAt(i,0);
+                result=st.executeUpdate(query);
+               if (result>0)
                 {
+                //System.out.println("set paid");
+                
+                query="update account set balance=balance-(select bill_amount from make_payment where bill_no="+ tblCustBillPayment.getValueAt(i,0)+ ") where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
+                result=st.executeUpdate(query);
+                
+                
+                int billno=Integer.parseInt(tblCustBillPayment.getValueAt(i,0).toString());
+                String query1="select b.biller_acc_no from make_payment m join biller b on m.biller_id=b.biller_id where m.bill_no="+billno;
+                ResultSet rs=st.executeQuery(query1); 
+                while (rs.next())
+                {query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"')";
+                result=st.executeUpdate(query);}
+                }
+                 }
+                
+                else if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,7))==true)
+                { query="update make_payment set payment_status='Force Paid' where bill_no="+tblCustBillPayment.getValueAt(i,0);
+                 result=st.executeUpdate(query);
+                 if (result>0)
+                {
+                //System.out.println("set force paid");
+                
+                query="update account set balance=balance-(select bill_amount from make_payment where bill_no="+ tblCustBillPayment.getValueAt(i,0)+ ") where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
+                result=st.executeUpdate(query);
+                
+                int billno=Integer.parseInt(tblCustBillPayment.getValueAt(i,0).toString());
+                String query1="select b.biller_acc_no from make_payment m join biller b on m.biller_id=b.biller_id where m.bill_no="+billno;
+                ResultSet rs=st.executeQuery(query1); 
+                while (rs.next())
+                {query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"')";
+                result=st.executeUpdate(query);}
+                
                 
                 }
-        
-            } catch (ClassNotFoundException ex) {
+                
+                }
+                 
+                else if(((Boolean)tblCustBillPayment.getModel().getValueAt(i,8))==true)
+                 {query="update make_payment set payment_status='Rejected' where bill_no="+tblCustBillPayment.getValueAt(i,0);
+                   result=st.executeUpdate(query);
+                   {
+                //System.out.println("set rejected");
+                }      
+                         
+                } 
+            }
+             catch (ClassNotFoundException ex) {
                 Logger.getLogger(ListBillPaymentRequests.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ListBillPaymentRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
        
-        
+        }
         }
    
         

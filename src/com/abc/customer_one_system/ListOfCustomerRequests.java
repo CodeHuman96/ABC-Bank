@@ -275,6 +275,10 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
         }
         if (requestType.equals("Disputed Transaction")) {
             requestTypeVal = 5;
@@ -284,6 +288,10 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
         }
         if (requestType.equals("Lost/Stolen Card")) {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
             }
             if(requestType.equals("Disputed Transaction"))
             {
@@ -295,6 +303,19 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
             if(requestType.equals("Lost/Stolen Card"))
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {   
+                this.setVisible(false);
+                LostOrStolenCard lst;
+=======
+>>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
+
+
+>>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);
