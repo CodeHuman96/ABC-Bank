@@ -148,7 +148,7 @@ public class Query extends javax.swing.JFrame {
                ResultSet rs1=stmt1.executeQuery();
                rs1.next();
                int r=rs1.getInt(1);
-               String query2="insert into customer_service_request (csr_id,csr_type,csr_date,account_number) values("+r+",7,CURRENT_TIMESTAMP,"+CustomerServiceMenu.acc.get(0)+")";
+               String query2="insert into customer_service_request (csr_id,csr_type,csr_date,account_number) values("+r+",7,CURRENT_TIMESTAMP,"+CustomerServiceMenu.pacc+")";
                PreparedStatement stmt2=connect.prepareStatement(query2);
                int rs2=stmt2.executeUpdate();
                if(rs2>0)

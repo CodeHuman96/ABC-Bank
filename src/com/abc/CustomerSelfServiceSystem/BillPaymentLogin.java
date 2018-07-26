@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
 /**
  *
  * @author test
@@ -173,6 +171,7 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                 if(!flag) lblMsg.setText("Incorrect user name or password");
                 else
                 {
+                  CustomerLoginTo.login=1;
                   customerIdName(name,con);                  
                   BillPaymentMenu menu= new BillPaymentMenu();
                   this.setVisible(false);                  
@@ -196,7 +195,10 @@ public class BillPaymentLogin extends javax.swing.JFrame {
         while(rs.next()){
             cust_id=rs.getString(1);
             cust_name=rs.getString(2);
+            CreditCardLogin.cid=rs.getInt(1);
+            CreditCardLogin.topName=rs.getString(2);
         }
+        
     }
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
