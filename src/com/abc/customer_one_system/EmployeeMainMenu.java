@@ -92,23 +92,26 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(lblEmpMainMenu))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(btnCampainMain))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(btnBackOfficeMain))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(btnCustOneMain))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCampainMain)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRewardManagement)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(lblEmpMainMenu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(btnBackOfficeMain))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(btnCustOneMain))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addComponent(btnRewardManagement)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,11 +123,11 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(btnBackOfficeMain)
                 .addGap(28, 28, 28)
-                .addComponent(btnCampainMain)
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRewardManagement)
+                    .addComponent(btnCampainMain)
                     .addComponent(lblMsg))
+                .addGap(28, 28, 28)
+                .addComponent(btnRewardManagement)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -144,8 +147,12 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
     private void btnCampainMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampainMainActionPerformed
-        Campaign_Management cm = new Campaign_Management();
-        cm.setVisible(true);
+        if (accessFlag) {
+            Campaign_Management cm = new Campaign_Management();
+            cm.setVisible(true);
+        } else {
+            lblMsg.setText("Access denied");
+        }
     }//GEN-LAST:event_btnCampainMainActionPerformed
 
     private void btnCustOneMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustOneMainActionPerformed
@@ -159,14 +166,28 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
+<<<<<<< HEAD
+        RewardCatalog obj1 = new RewardCatalog();
+        obj1.setVisible(true);
+        this.setVisible(false);
+=======
         if (accessFlag) {
-            RewardCatalog obj1 = new RewardCatalog();
-            obj1.setVisible(true);
+            RewardCatalog obj1;
+            try {
+                obj1 = new RewardCatalog();
+                 obj1.setVisible(true);
             this.setVisible(false);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
         }
         else{
             lblMsg.setText("Access denied");
         }
+>>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
