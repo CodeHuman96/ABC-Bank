@@ -29,8 +29,8 @@ public class CreditCardLogin extends javax.swing.JFrame {
     public static String topName;
 
     /**
-     * Creates new form CreditCardLogin
-     */
+     * Creates new form CreditCardLogin*/
+
     public CreditCardLogin() {
         initComponents();
         
@@ -229,7 +229,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
                     while (rs1.next()) {
                         topName = rs1.getString(1);
-                        BillPaymentLogin.cust_name=rs.getString(1);
+                        BillPaymentLogin.cust_name=rs1.getString(1);
                     }
                      
                     SelfServiceMenu obj = new SelfServiceMenu(topName);
@@ -240,6 +240,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 lblmsg.setText("DataBase Not Connected");
+                ex.printStackTrace();
             }
 
 
