@@ -388,6 +388,10 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgAmount.setText("Cannot be empty");
                 flag &=false;
             }
+            else if(Double.parseDouble(amount)<=0)
+            {
+                MsgAmount.setText("Cannot be empty");
+            }
             else
             {
                 am=Double.parseDouble(txtAmount.getText());

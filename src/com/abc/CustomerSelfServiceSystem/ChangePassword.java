@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ public class ChangePassword extends javax.swing.JFrame {
      */
     public ChangePassword() {
         initComponents();
+        errlbl.setForeground(Color.red);
        
     }
 
@@ -51,6 +53,7 @@ public class ChangePassword extends javax.swing.JFrame {
         clearBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CHANGE PASSWORD");
 
         oldPasslbl.setText("Old Password");
 
