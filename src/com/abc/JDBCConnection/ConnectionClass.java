@@ -11,18 +11,6 @@ import java.sql.SQLException;
 public class ConnectionClass {
 
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
-<<<<<<< HEAD
-=======
- 
-
-
-    
-
-
-
-    
->>>>>>> 2d5215e2f19475140dad041e3b5a7408b2019642
-
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url="jdbc:oracle:thin:@192.168.1.47:1521:xe";
         String userName="mainuser";

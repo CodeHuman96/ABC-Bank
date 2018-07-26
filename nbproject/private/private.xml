@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
-=======
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
->>>>>>> 2d5215e2f19475140dad041e3b5a7408b2019642
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
         </group>
     </open-files>
 </project-private>
