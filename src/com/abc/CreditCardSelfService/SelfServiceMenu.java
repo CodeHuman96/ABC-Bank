@@ -56,9 +56,6 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
         lblTitle2 = new javax.swing.JLabel();
         btnRedeem = new javax.swing.JButton();
-        btnAddon = new javax.swing.JButton();
-        btnDispTrans = new javax.swing.JButton();
-        btnIncreaseLimit = new javax.swing.JButton();
         btnViewStatus = new javax.swing.JButton();
         btnSignOut = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
@@ -66,34 +63,13 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitle2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblTitle2.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         lblTitle2.setText("Credit card self-service menu ");
 
         btnRedeem.setText("Redeem reward points");
         btnRedeem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRedeemActionPerformed(evt);
-            }
-        });
-
-        btnAddon.setText("Add-on card request");
-        btnAddon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddonActionPerformed(evt);
-            }
-        });
-
-        btnDispTrans.setText("Disputed transaction");
-        btnDispTrans.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDispTransActionPerformed(evt);
-            }
-        });
-
-        btnIncreaseLimit.setText("Request increase in credit limit");
-        btnIncreaseLimit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIncreaseLimitActionPerformed(evt);
             }
         });
 
@@ -125,12 +101,6 @@ public class SelfServiceMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitle2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(lblWelcome)
-                .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -140,47 +110,39 @@ public class SelfServiceMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSignOut))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDispTrans)
-                            .addComponent(btnAddon)
-                            .addComponent(btnIncreaseLimit)
-                            .addComponent(btnViewStatus))
-                        .addGap(0, 137, Short.MAX_VALUE)))
+                        .addComponent(btnViewStatus)
+                        .addGap(0, 211, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblWelcome)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTitle2)
+                        .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle2)
-                    .addComponent(lblWelcome))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnSignOut))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRedeem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCardAccounts)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddon)
+                .addComponent(lblWelcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDispTrans)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIncreaseLimit)
+                .addComponent(lblTitle2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSignOut)
+                .addGap(5, 5, 5)
+                .addComponent(btnRedeem)
+                .addGap(35, 35, 35)
+                .addComponent(btnCardAccounts)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(btnViewStatus)
-                .addGap(47, 47, 47))
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddonActionPerformed
 
     private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
         // TODO add your handling code here:
@@ -219,14 +181,6 @@ public class SelfServiceMenu extends javax.swing.JFrame {
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSignOutActionPerformed
-
-    private void btnDispTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDispTransActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDispTransActionPerformed
-
-    private void btnIncreaseLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncreaseLimitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIncreaseLimitActionPerformed
 
     private void btnCardAccountsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardAccountsActionPerformed
         // TODO add your handling code here:
@@ -279,10 +233,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddon;
     private javax.swing.JButton btnCardAccounts;
-    private javax.swing.JButton btnDispTrans;
-    private javax.swing.JButton btnIncreaseLimit;
     private javax.swing.JButton btnRedeem;
     private javax.swing.JButton btnSignOut;
     private javax.swing.JButton btnViewStatus;
