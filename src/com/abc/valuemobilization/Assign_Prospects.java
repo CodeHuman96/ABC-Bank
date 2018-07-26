@@ -7,6 +7,7 @@ package com.abc.valuemobilization;
 
 import com.abc.JDBCConnection.ConnectionClass;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,22 +28,15 @@ public class Assign_Prospects extends javax.swing.JFrame {
      */
     public Assign_Prospects() throws SQLException, ClassNotFoundException {
         initComponents();
-        
+
         Connection con = ConnectionClass.getConnected();
         Statement s = con.createStatement();
-        String q="Select Campaign_Title from Campaign";
-        ResultSet rs=s.executeQuery(q);
-        while(rs.next())
-        {
+        String q = "Select Campaign_Title from Campaign";
+        ResultSet rs = s.executeQuery(q);
+        while (rs.next()) {
             cbCampaign.addItem(rs.getString("Campaign_Title"));
         }
-        
-        DefaultTableModel model;
-        model = (DefaultTableModel) tblCustomers.getModel();
-        for(int i=0; i<tblCustomers.getRowCount(); i++)
-        {
-            model.setValueAt(false, i, 0);
-        }
+
     }
 
     /**
@@ -61,7 +55,6 @@ public class Assign_Prospects extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         txtEmployee = new javax.swing.JTextField();
-        txtcampaign = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
         lblStatus = new javax.swing.JLabel();
@@ -130,18 +123,14 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblCampaign)
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(12, 12, 12)
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCampaign)
+                        .addGap(32, 32, 32)
+                        .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)
                         .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -167,13 +156,11 @@ public class Assign_Prospects extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampaign)
-                    .addComponent(txtcampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
+                    .addComponent(btnSearch)
+                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -196,124 +183,124 @@ public class Assign_Prospects extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmployeeActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
-        String Campaign= cbCampaign.getSelectedItem().toString();
-        String Employee= txtEmployee.getText();
-        
-        
+        String Campaign = cbCampaign.getSelectedItem().toString();
+        String Employee = txtEmployee.getText();
+
         DefaultTableModel model;
         model = (DefaultTableModel) tblCustomers.getModel();
         //System.out.println(model.getValueAt(1,5).toString().equals("true"));
-        
+
         /*for(int i=0; i<tblCustomers.getRowCount(); i++)
         {
-            model.setValueAt(false, i, 0);
+            model.setValueAt(false, i, 5);
         }*/
-        
-        
-        for(int i=0; i<tblCustomers.getRowCount(); i++)
-            {
-                    //boolean b=model.getValueAt(i,5).toString().equals("true");
-                    System.out.println(model.getValueAt(i,5));
-                    //System.out.println(tblCustomers.getModel().getValueAt(i, 5));
-                    //System.out.println((Boolean) tblCustomers.getModel().getValueAt(i, 5));
-                    //System.out.println(Boolean.valueOf(tblCustomers.getValueAt(i, 5).toString()));
-                    //System.out.println(model.getValueAt(tblCustomers.getSelectedRow(), 5).toString());
-                    //boolean b=(boolean)tblCustomers.getModel().getValueAt(i,5);
-                    /*String b=model.getValueAt(tblCustomers.getSelectedRow(), 5).toString();
+        for (int i = 0; i < tblCustomers.getRowCount(); i++) {
+            // lblStatus.setText("Assigning...");
+            //boolean b=model.getValueAt(i,5).toString().equals("true");
+            System.out.println(model.getValueAt(i, 5));
+            //System.out.println(tblCustomers.getModel().getValueAt(i, 5));
+            //System.out.println((Boolean) tblCustomers.getModel().getValueAt(i, 5));
+            //System.out.println(Boolean.valueOf(tblCustomers.getValueAt(i, 5).toString()));
+            //System.out.println(model.getValueAt(tblCustomers.getSelectedRow(), 5).toString());
+            //boolean b=(boolean)tblCustomers.getModel().getValueAt(i,5);
+            /*String b=model.getValueAt(tblCustomers.getSelectedRow(), 5).toString();
                     System.out.println(b);*/
-                
-                    //if(true)
+
+            //if(true)
+            if ((Boolean) model.getValueAt(i, 5))/*.toString().equals("null")*/ {
+                try {
                     
-                if ((Boolean)model.getValueAt(i,5))/*.toString().equals("null")*/
-                {
-                    try 
-                    {
-                        Connection con = ConnectionClass.getConnected();
-                        Statement s = con.createStatement();
-                        String q3="insert into PROSPECTIVE_CUSTOMERS values('nil',"+model.getValueAt(tblCustomers.getSelectedRow(), 2).toString()+",'"+model.getValueAt(tblCustomers.getSelectedRow(), 0).toString()+"',"+txtEmployee.getText()+")";
+                    Connection con = ConnectionClass.getConnected();
+                    
+                     
+                    //String q3 = "insert into PROSPECTIVE_CUSTOMERS values('nil'," + model.getValueAt(i, 2).toString() + ",'" + model.getValueAt(i, 0).toString() + "'," + txtEmployee.getText() + ")";
+                    String q3 = "insert into PROSPECTIVE_CUSTOMERS values(?,?,?,?)";
+                    PreparedStatement s3 = con.prepareStatement(q3);
+                    
+                    s3.setString(1,"nil");
+                    s3.setInt(2,(int)model.getValueAt(i, 2));
+                    s3.setString(3,model.getValueAt(i, 0).toString());
+                    s3.setInt(4,Integer.parseInt(txtEmployee.getText().toString()));
+                    
+                    int result = s3.executeUpdate();
+                    
+                    System.out.println(result);
+                    
+                    if (result>0) {
+                        lblStatus.setText("Successfully assigned");
+                     
                         
-                        int result = s.executeUpdate(q3);
-                        if(result>0)
-                        {
-                            lblStatus.setText("Successfully assigned");
-                        }
-                        
-                        else
-                        {
-                            lblStatus.setText("Not assigned");
-                        }
                     } 
-                    catch (ClassNotFoundException | SQLException | NullPointerException ex) 
-                    {
-                        ex.printStackTrace();
+                    
+                    else {
+                        
+                        lblStatus.setText("Not assigned");
                     }
-                } 
-                
+                   
+                } catch (ClassNotFoundException | SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
-        
+
+        }
+
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        Campaign_Management cm= new Campaign_Management();
+        Campaign_Management cm = new Campaign_Management();
         cm.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String CTitle=txtcampaign.getText();
-        
-        try 
-        {
-            int age=0;
-            double balance=0.0;
-            String profession="";
-            String Cid="";
-            LocalDate ldate=LocalDate.now();
-            
+        String CTitle = cbCampaign.getSelectedItem().toString();
+
+        try {
+            int age = 0;
+            double balance = 0.0;
+            String profession = "";
+            String Cid = "";
+            LocalDate ldate = LocalDate.now();
+
             Connection con = ConnectionClass.getConnected();
             Statement s = con.createStatement();
-            String q="Select * from CAMPAIGN_CRITERIA c1 join CAMPAIGN c2 on c1.CAMPAIGN_ID=c2.CAMPAIGN_ID where c2.CAMPAIGN_TITLE='"+CTitle+"'";
-            ResultSet rs= s.executeQuery(q);
-            while(rs.next())
-            {
-                age=rs.getInt("AGE_OF_RELATIONSHIP");
-                balance=rs.getDouble("MIN_BALANCE");
-                profession=rs.getString("PROFESSION");
-                Cid=rs.getString("CAMPAIGN_ID");
+            String q = "Select * from CAMPAIGN_CRITERIA c1 join CAMPAIGN c2 on c1.CAMPAIGN_ID=c2.CAMPAIGN_ID where c2.CAMPAIGN_TITLE='" + CTitle + "'";
+            ResultSet rs = s.executeQuery(q);
+            while (rs.next()) {
+                age = rs.getInt("AGE_OF_RELATIONSHIP");
+                balance = rs.getDouble("MIN_BALANCE");
+                profession = rs.getString("PROFESSION");
+                Cid = rs.getString("CAMPAIGN_ID");
             }
-            
-            String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
+
+            String q2 = "Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='" + profession + "' and a.BALANCE>=" + balance;
             Statement s2 = con.createStatement();
-            ResultSet rs2= s2.executeQuery(q2);
-            
+            ResultSet rs2 = s2.executeQuery(q2);
+
             DefaultTableModel model;
             model = (DefaultTableModel) tblCustomers.getModel();
-            while(rs2.next())
-            {
-                LocalDate date=rs2.getDate("OPENING_DATE").toLocalDate();
-                int age_rel=Period.between(date, ldate).getYears();
-                
-                if(age_rel<=age)
-                {
-                    
-                    model.addRow(new Object[]{Cid,CTitle,rs2.getInt("CUSTOMER_ID"),rs2.getString("NAME"), rs2.getString("MOBILE_NUM")});
+            while (rs2.next()) {
+                LocalDate date = rs2.getDate("OPENING_DATE").toLocalDate();
+                int age_rel = Period.between(date, ldate).getYears();
+
+                if (age_rel <= age) {
+
+                    model.addRow(new Object[]{Cid, CTitle, rs2.getInt("CUSTOMER_ID"), rs2.getString("NAME"), rs2.getString("MOBILE_NUM")});
                 }
-                    
+
             }
-            
-            
-            
-             
-            
-            
-        } 
-        catch (SQLException|ClassNotFoundException ex) 
-        {
+
+            model = (DefaultTableModel) tblCustomers.getModel();
+            for (int i = 0; i < tblCustomers.getRowCount(); i++) {
+                model.setValueAt(false, i, 5);
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
-        } 
-        
-        
+        }
+
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
@@ -351,7 +338,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     new Assign_Prospects().setVisible(true);
                 } catch (SQLException | ClassNotFoundException ex) {
                     ex.printStackTrace();
-                } 
+                }
             }
         });
     }
@@ -368,6 +355,5 @@ public class Assign_Prospects extends javax.swing.JFrame {
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTextField txtEmployee;
-    private javax.swing.JTextField txtcampaign;
     // End of variables declaration//GEN-END:variables
 }

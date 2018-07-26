@@ -268,9 +268,41 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             }
 
         }
+<<<<<<< HEAD
         
         if (requestType.equals("Lost/Stolen Card")) 
         {     
+=======
+        if (requestType.equals("Disputed Transaction")) {
+            requestTypeVal = 5;
+            this.setVisible(false);
+            DisputedTransaction dt = new DisputedTransaction();
+            dt.setVisible(true);
+        }
+        if (requestType.equals("Lost/Stolen Card")) {
+
+
+            }
+            if(requestType.equals("Disputed Transaction"))
+            {
+                requestTypeVal=5;
+                this.setVisible(false);
+                DisputedTransaction dt = new DisputedTransaction();
+                dt.setVisible(true);
+            }
+
+            if(requestType.equals("Lost/Stolen Card"))
+            {
+<<<<<<< HEAD
+
+            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
+            {   
+                this.setVisible(false);
+                LostOrStolenCard lst;
+=======
+>>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
+
+>>>>>>> e3575873e7ace20facdad2318434917b52d658f6
 
             try {
                 requestTypeVal = 3;
