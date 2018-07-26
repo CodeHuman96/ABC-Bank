@@ -359,6 +359,8 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                  
                  String query="";
                  int result=0;
+                 ResultSet rs=null;
+                 float closing_balance=0.00f;
                  
                  if (((Boolean)tblCustBillPayment.getModel().getValueAt(i,6))==true)
                  {query="update make_payment set payment_status='paid' where bill_no="+tblCustBillPayment.getValueAt(i,0);
@@ -369,13 +371,18 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 
                 query="update account set balance=balance-(select bill_amount from make_payment where bill_no="+ tblCustBillPayment.getValueAt(i,0)+ ") where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
                 result=st.executeUpdate(query);
+                query="select balance from account where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
+                rs=st.executeQuery(query);
+                while (rs.next()){
+                closing_balance= rs.getFloat(1);}
+                
                 
                 
                 int billno=Integer.parseInt(tblCustBillPayment.getValueAt(i,0).toString());
                 String query1="select b.biller_acc_no from make_payment m join biller b on m.biller_id=b.biller_id where m.bill_no="+billno;
-                ResultSet rs=st.executeQuery(query1); 
+                rs=st.executeQuery(query1); 
                 while (rs.next())
-                {query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"')";
+                {query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number,closing_balance) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"',"+closing_balance+")";
                 result=st.executeUpdate(query);}
                 }
                  }
@@ -389,12 +396,17 @@ public class ListBillPaymentRequests extends javax.swing.JFrame {
                 
                 query="update account set balance=balance-(select bill_amount from make_payment where bill_no="+ tblCustBillPayment.getValueAt(i,0)+ ") where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
                 result=st.executeUpdate(query);
+                query="select balance from account where account_number="+tblCustBillPayment.getValueAt(i,3)  ;
+                rs=st.executeQuery(query);
+                while (rs.next()){
+                closing_balance= rs.getFloat(1);}
                 
                 int billno=Integer.parseInt(tblCustBillPayment.getValueAt(i,0).toString());
                 String query1="select b.biller_acc_no from make_payment m join biller b on m.biller_id=b.biller_id where m.bill_no="+billno;
-                ResultSet rs=st.executeQuery(query1); 
+                rs=st.executeQuery(query1); 
                 while (rs.next())
-                {query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"')";
+                {   
+                    query="insert into transaction_(transaction_type,transaction_time,amount,receiver_acc_no,account_number,closing_balance) values('0',CURRENT_TIMESTAMP,"+tblCustBillPayment.getValueAt(i,5)+",'"+rs.getString(1)+"','"+tblCustBillPayment.getValueAt(i,3)+"',"+closing_balance+")";
                 result=st.executeUpdate(query);}
                 
                 
