@@ -29,48 +29,54 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnSubmitCsr7" min="-2" pref="99" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="btnRefreshCsr7" min="-2" pref="98" max="-2" attributes="0"/>
-                      <EmptySpace pref="111" max="32767" attributes="0"/>
-                      <Component id="btnBackCsr7" min="-2" pref="88" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblQueyRecvOnCsr7" alignment="1" max="32767" attributes="0"/>
                               <Component id="lblCustNameCsr7" alignment="0" max="32767" attributes="0"/>
                               <Component id="lblQueryCsr7" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="btnSubmitCsr7" min="-2" pref="99" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblStarCsr7" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblResponseCsr7" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Component id="lblStatusCsr7" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblStarCsr7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblResponseCsr7" min="-2" pref="130" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                      <Component id="btnRefreshCsr7" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                      <Component id="btnBackCsr7" min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="cmbStatusCsr7" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbltxCustNameCsr7" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbltxQueryRecvOnCsr7" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbltxQueryCsr7" alignment="1" max="32767" attributes="0"/>
-                          <Component id="textareaResponseCsr7" pref="272" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textareaResponseCsr7" min="-2" pref="272" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="cmbStatusCsr7" alignment="0" pref="272" max="32767" attributes="0"/>
+                              <Component id="lbltxCustNameCsr7" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lbltxQueryRecvOnCsr7" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lbltxQueryCsr7" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="lblMessage" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitleCsr7" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -93,21 +99,27 @@
                   <Component id="lblStatusCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbStatusCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textareaResponseCsr7" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblResponseCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblStarCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblResponseCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStarCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="textareaResponseCsr7" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="lblMessage" min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSubmitCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRefreshCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBackCsr7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -186,6 +198,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitCsr7ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRefreshCsr7">
       <Properties>
@@ -209,6 +224,13 @@
           <Color blue="9" green="9" red="f2" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMessage">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="8" green="25" red="ef" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
