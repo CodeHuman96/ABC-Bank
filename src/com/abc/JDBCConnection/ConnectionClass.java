@@ -9,12 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-<<<<<<< HEAD
 
-
-import java.sql.*;
-
-=======
 
 import java.sql.*;
 
@@ -35,34 +30,11 @@ public class ConnectionClass {
 
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
 
-<<<<<<< HEAD
 
-    //public static Connection getConnected() throws ClassNotFoundException, SQLException{
-
-    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
-
-    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
-
-   
-
-
-
-    //public static Connection getConnected() throws ClassNotFoundException, SQLException{
-=======
->>>>>>> 0f0e7702fc368289effa846ae9de9c656597b3aa
-
-
-
-
-  
-<<<<<<< HEAD
-    
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-=======
     Class.forName("oracle.jdbc.driver.OracleDriver");
 
 
->>>>>>> 0f0e7702fc368289effa846ae9de9c656597b3aa
+
         String url="jdbc:oracle:thin:@192.168.1.47:1521:xe";
         String userName="mainuser";
         String pass="password";
