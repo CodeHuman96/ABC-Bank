@@ -143,17 +143,25 @@ public class Campaign_Management extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorActionPerformed
-        Campaign_Effectiveness ce= new Campaign_Effectiveness();
-        ce.setVisible(true);
-        
-        this.setVisible(false);
+        try {
+            Campaign_Effectiveness ce= new Campaign_Effectiveness();
+            ce.setVisible(true);
+            
+            this.setVisible(false);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Campaign_Management.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnMonitorActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
-        Assign_Prospects ap= new Assign_Prospects();
-        ap.setVisible(true);
-        
-        this.setVisible(false);
+        try {
+            Assign_Prospects ap= new Assign_Prospects();
+            ap.setVisible(true);
+            
+            this.setVisible(false);
+        } catch (SQLException |ClassNotFoundException ex) {
+            Logger.getLogger(Campaign_Management.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed

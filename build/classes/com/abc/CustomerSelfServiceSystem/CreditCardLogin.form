@@ -106,6 +106,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUname">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="cust123"/>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtUnameMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUnameActionPerformed"/>
@@ -163,6 +166,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPswrd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="newpass"/>
+      </Properties>
       <Events>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPswrdKeyReleased"/>
       </Events>

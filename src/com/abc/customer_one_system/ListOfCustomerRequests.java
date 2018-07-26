@@ -297,11 +297,14 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
             if(requestType.equals("Lost/Stolen Card"))
             {
+<<<<<<< HEAD
 
             else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
             {   
                 this.setVisible(false);
                 LostOrStolenCard lst;
+=======
+>>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
 
 
             try {
