@@ -264,21 +264,15 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-<<<<<<< HEAD
         }
        
-        if(requestType.equals("Lost/Stolen Card"))
-        {
-            try 
-            {
-=======
+        
 
-        }
+        
 
         if (requestType.equals("Lost/Stolen Card")) {
 
             try {
->>>>>>> b38e18fe0c6b6134d88487b8b60fd9ab8556b626
                 requestTypeVal = 3;
                 this.setVisible(false);
                 LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);

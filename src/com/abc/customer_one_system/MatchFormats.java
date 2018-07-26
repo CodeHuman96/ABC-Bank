@@ -35,18 +35,18 @@ public class MatchFormats {
         LocalDate birthDay = LocalDate.parse(date, f);
         return LocalDate.now().compareTo(birthDay) > 0;
     }
-    
+
     public boolean matchDate2(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
         if (!date.matches(pattern)) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
-    
+
     public boolean matchToDate(String date) {
-       
+
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate toDate = LocalDate.parse(date, f);
         return toDate.compareTo(LocalDate.now()) > 0;
@@ -63,15 +63,12 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-       pattern = "[a-zA-Z .'-]+";
-<<<<<<< HEAD
-=======
-
->>>>>>> b38e18fe0c6b6134d88487b8b60fd9ab8556b626
+        pattern = "[a-zA-Z .'-]+";
         return name.matches(pattern);
     }
-    public boolean matchAccountNumber(String accNo){
-        pattern ="[0-9]{10}";
+
+    public boolean matchAccountNumber(String accNo) {
+        pattern = "[0-9]{10}";
         return accNo.matches(pattern);
     }
 
@@ -85,13 +82,17 @@ public class MatchFormats {
         LocalDate todate = LocalDate.parse(to, f);
         return todate.compareTo(fromdate) > 0;
     }
-    public boolean matchDate(String date){
+
+    public boolean matchDate(String date) {
         pattern = "^([0][1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$";
-        boolean flag=true;
-        try{
-            if (!date.matches(pattern)) { flag=false;}
+        boolean flag = true;
+        try {
+            if (!date.matches(pattern)) {
+                flag = false;
+            }
+        } catch (Exception e) {
+            flag = false;
         }
-        catch(Exception e){ flag=false;}
         return flag;
     }
 }

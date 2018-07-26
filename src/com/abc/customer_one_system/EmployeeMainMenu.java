@@ -164,44 +164,14 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
-<<<<<<< HEAD
         try {
             RewardCatalog obj1 = new RewardCatalog();
             obj1.setVisible(true);
             this.setVisible(false);
-
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-=======
-<<<<<<< HEAD
 
-        RewardCatalog obj1 = new RewardCatalog();
-        obj1.setVisible(true);
-        this.setVisible(false);
-
-        if (accessFlag) {
-            RewardCatalog obj1;
-            try {
-                obj1 = new RewardCatalog();
-                 obj1.setVisible(true);
-=======
-        try {
-            RewardCatalog obj1 = new RewardCatalog();
-            obj1.setVisible(true);
->>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
-            this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-<<<<<<< HEAD
-=======
-        
->>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
->>>>>>> b38e18fe0c6b6134d88487b8b60fd9ab8556b626
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
