@@ -388,6 +388,11 @@ public class MakePayment extends javax.swing.JFrame {
                 MsgAmount.setText("Cannot be empty");
                 flag &=false;
             }
+            else if(Double.parseDouble(amount)<=0)
+            {
+                MsgAmount.setText("Invalid transfer amount");
+                flag &=false;
+            }
             else
             {
                 am=Double.parseDouble(txtAmount.getText());
@@ -400,6 +405,7 @@ public class MakePayment extends javax.swing.JFrame {
             }
             else if(!match.matchDate(date) || match.matchDOB(date))
             {
+                MsgDate.setText("Invalid date format");
                 flag &=false;
             }           
             else
@@ -417,10 +423,10 @@ public class MakePayment extends javax.swing.JFrame {
                 //System.out.println("date="+date+" paydate="+paydate);
                 addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);
             }
-            else
+            /*else
             {
                 lblMsg.setText("Invalid Entry");
-            }
+            }*/
         }
         catch(NumberFormatException e)
         {

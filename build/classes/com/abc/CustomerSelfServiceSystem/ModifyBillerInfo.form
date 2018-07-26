@@ -119,7 +119,7 @@
                       <Component id="MsgAcNo" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblStat" alignment="0" max="32767" attributes="0"/>
+                      <Component id="MsgStat" alignment="0" max="32767" attributes="0"/>
                       <Component id="MsgCategory" alignment="0" pref="122" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -214,7 +214,7 @@
                               <Component id="lblPayNow" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="radYes" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="radNo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblStat" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="MsgStat" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -275,6 +275,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAddress">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtAddressMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAddressActionPerformed"/>
       </Events>
     </Component>
@@ -301,6 +302,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCity">
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCityMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCityActionPerformed"/>
       </Events>
     </Component>
@@ -318,6 +320,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPin">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPinMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbmCategory">
       <Properties>
@@ -420,7 +425,7 @@
         <Property name="text" type="java.lang.String" value="Modify Biller Information"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblStat">
+    <Component class="javax.swing.JLabel" name="MsgStat">
     </Component>
   </SubComponents>
 </Form>

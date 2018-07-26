@@ -171,6 +171,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMsg">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7" green="7" red="e7" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spinDate">
       <Properties>

@@ -16,6 +16,7 @@ public class CustomerLoginTo extends javax.swing.JFrame {
     /**
      * Creates new form CustomerLoginTo
      */
+     public static int login=0;
     public CustomerLoginTo() {
         initComponents();
     }
@@ -35,8 +36,9 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         billPaymentBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CUSTOMER SERVICES");
 
-        customServiceMenuBt.setText("Customer Service menu");
+        customServiceMenuBt.setText("Customer Self-Service menu");
         customServiceMenuBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customServiceMenuBtActionPerformed(evt);
@@ -90,24 +92,49 @@ public class CustomerLoginTo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void customServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customServiceMenuBtActionPerformed
         CustomerLogin obj=new CustomerLogin();
+        CustomerServiceMenu menu=new CustomerServiceMenu();
+        if(login==0){
         obj.setVisible(true);
         this.setVisible(false);
+        }
+        else
+        {
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_customServiceMenuBtActionPerformed
 
     private void creditCardServiceMenuBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditCardServiceMenuBtActionPerformed
-       
        CreditCardLogin obj=new CreditCardLogin();
+       SelfServiceMenu menu=new SelfServiceMenu();
+       if(login==0)
+        {
         obj.setVisible(true);
         this.setVisible(false);
-        
+        }
+        else
+        {
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_creditCardServiceMenuBtActionPerformed
 
     private void billPaymentBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billPaymentBtActionPerformed
         BillPaymentLogin obj=new BillPaymentLogin();
-        obj.setVisible(true);
-        this.setVisible(false);
+        BillPaymentMenu menu=new BillPaymentMenu();
+        if(login==0)
+        {
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+        else
+        {
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_billPaymentBtActionPerformed
 
     /**
