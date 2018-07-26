@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ public class AccountStatement extends javax.swing.JFrame {
     
      public AccountStatement() {
         initComponents();
+        errlbl.setForeground(Color.red);
         int count_transactions=0;
         
         String accno=Integer.toString(Accounts.accno);
@@ -38,7 +40,7 @@ public class AccountStatement extends javax.swing.JFrame {
             
             Connection con=ConnectionClass.getConnected();
            
-            String query="select s.transaction_time,s.transaction_type,s.amount,s.closing_balance from transaction_ s where account_number='"+accno+"' order by transaction_time desc limi";        
+            String query="select s.transaction_time,s.transaction_type,s.amount,s.closing_balance from transaction_ s where account_number='"+accno+"' order by transaction_time desc";        
            Statement stmt=con.createStatement();
             ResultSet res = stmt.executeQuery(query);
             String type="";
@@ -47,7 +49,7 @@ public class AccountStatement extends javax.swing.JFrame {
             while(res.next())
             {
                 count_transactions++;
-                System.out.println(res.getInt(2));
+                
                if(res.getInt(2)==0)
                {
                    type="Debit";
@@ -92,6 +94,7 @@ public class AccountStatement extends javax.swing.JFrame {
         errlbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ACCOUNT STATEMENT");
 
         header5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header5.setText("Account Statement");

@@ -55,18 +55,31 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
+<<<<<<< HEAD
 
         }
         
+=======
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
 
     }      
+   
     }
+<<<<<<< HEAD
     }
 
     }
 
+
+=======
+   
 
    
+
+
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
+   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,14 +229,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
     private void btnSubmitCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr3ActionPerformed
         // TODO add your handling code here:
+        int flag=1;
          if (cmbStatusCsr3.getSelectedItem()=="Rejected" )
         {if ( txtResponseCsr3.getText().equals("") )
-        { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
+        {   lblSubmit.setText("Enter reason!");
+            JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");
+            flag=0;
+        }
         }
            
          
         try {
             //ListOfCustomerRequests.csr_id=;
+            if (flag==1){
             Connection connect=ConnectionClass.getConnected();
             Statement st =connect.createStatement();
             String query="update customer_service_request set csr_status='"+cmbStatusCsr3.getSelectedItem().toString()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
@@ -231,7 +249,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
             int result1=st.executeUpdate(query1);
             
-            lblSubmit.setText("Data submitted!");
+            lblSubmit.setText("Data submitted!");}
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
