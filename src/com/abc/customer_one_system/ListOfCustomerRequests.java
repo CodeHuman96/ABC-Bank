@@ -24,7 +24,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
      */
     public static int requestTypeVal = 0;
     public static String requestStatus, requestType;
-    public static int csr_id;
+    public static int csr_id = 0;
+    DefaultTableModel model=null;
 
     public void statusCheck(int type, String status) throws Exception {
         //  ConnectionClass concls = new ConnectionClass();
@@ -56,8 +57,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             String custName = rs.getString(4);
             Date reqDate = rs.getDate(5);
             String rStatus = rs.getString(6);
-           // System.out.println(acNo);
-            DefaultTableModel model = (DefaultTableModel) tblListOfCustReq.getModel();
+            // System.out.println(acNo);
+            model = (DefaultTableModel) tblListOfCustReq.getModel();
             model.addRow(new Object[]{reqType, acNo, acType, custName, reqDate, rStatus});
             //String x=model.getValueAt(tblListOfCustReq.getSelectedRow(),1).toString();
         }
@@ -68,6 +69,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
     public ListOfCustomerRequests() {
 
         initComponents();
+         model = (DefaultTableModel) tblListOfCustReq.getModel();
     }
 
     /**
@@ -205,6 +207,11 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
     private void btnSubmitListOfCustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitListOfCustReqActionPerformed
         int type;
+        int rowCount = model.getRowCount();
+//Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
         //String type=(String)cmbRequestTypeListOfCustReq.getSelectedItem();
         String status = (String) cmbStatusListOfCustReq.getSelectedItem();
 
@@ -268,19 +275,9 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             }
 
         }
-<<<<<<< HEAD
-          
-=======
-        
-        
-            if(requestType.equals("Lost/Stolen Card"))
-            {
->>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
 
-        if(requestType.equals("Lost/Stolen Card"))
-        {
+        if (requestType.equals("Lost/Stolen Card")) {
 
-           
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);

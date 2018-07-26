@@ -166,28 +166,17 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
-<<<<<<< HEAD
-        RewardCatalog obj1 = new RewardCatalog();
-        obj1.setVisible(true);
-        this.setVisible(false);
-=======
-        if (accessFlag) {
-            RewardCatalog obj1;
-            try {
-                obj1 = new RewardCatalog();
-                 obj1.setVisible(true);
+        try {
+            RewardCatalog obj1 = new RewardCatalog();
+            obj1.setVisible(true);
             this.setVisible(false);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-            lblMsg.setText("Access denied");
-        }
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
+
+        
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
