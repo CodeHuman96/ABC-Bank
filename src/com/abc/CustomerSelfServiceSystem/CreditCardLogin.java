@@ -222,6 +222,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     while (rs.next()) {
                         cid = rs.getInt(1);
                         BillPaymentLogin.cust_id=rs.getString(1);
+                        CustomerLogin.customerid=rs.getInt(1);
                     }
 
                     String s = "select name from customer where customer_id=" + CreditCardLogin.cid;
@@ -230,6 +231,10 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     while (rs1.next()) {
                         topName = rs1.getString(1);
                         BillPaymentLogin.cust_name=rs1.getString(1);
+<<<<<<< HEAD
+=======
+                        CustomerLogin.customername=rs.getString(1);
+>>>>>>> 1dd16c036c2e3c84abc231a99f49df69eaae53a6
                     }
                      
                     SelfServiceMenu obj = new SelfServiceMenu(topName);
