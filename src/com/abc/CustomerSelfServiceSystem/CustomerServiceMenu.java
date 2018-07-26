@@ -15,13 +15,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+<<<<<<< HEAD
+=======
 
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
 /**
  *
  * @author shivasai
  */
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();

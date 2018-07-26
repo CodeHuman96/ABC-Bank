@@ -55,15 +55,29 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
+<<<<<<< HEAD
+
+        }
+        
+=======
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
 
     }      
    
     }
+<<<<<<< HEAD
+    }
+
+    }
+
+
+=======
    
 
    
 
 
+>>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
    
 
     /**
