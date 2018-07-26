@@ -18,6 +18,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author shivasai
  */
+
 public class AccountStatement extends javax.swing.JFrame {
     
     
@@ -37,7 +38,7 @@ public class AccountStatement extends javax.swing.JFrame {
             
             Connection con=ConnectionClass.getConnected();
            
-            String query="select s.transaction_time,s.transaction_type,s.amount,c.balance from transaction_ s join account c using(account_number) where account_number="+accno+" order by transaction_time desc";
+            String query="select s.transaction_time,s.transaction_type,s.amount,c.balance from transaction_ s join account c using(account_number) where account_number="+accno+" order by transaction_time desc limit 10";
            
            Statement stmt=con.createStatement();
             ResultSet res = stmt.executeQuery(query);
