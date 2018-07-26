@@ -194,7 +194,7 @@ public class ChequeBookRequest extends javax.swing.JFrame {
       String str=getSelectedButtonText(buttonGroup1);
         if(cmbAccountNo.getSelectedIndex()==-1 || str==null)
         {
-            
+            lblMsg.setText("All fields are neccessary");
         }
         else
         {
