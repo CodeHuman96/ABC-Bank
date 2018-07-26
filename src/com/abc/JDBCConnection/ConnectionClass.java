@@ -27,48 +27,12 @@ import java.sql.*;
 public class ConnectionClass {
 
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
-<<<<<<< HEAD
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-=======
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-    //public static Connection getConnected() throws ClassNotFoundException, SQLException{
-
-    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
-
-    //static public Connection getConnected() throws ClassNotFoundException, SQLException{
-
-   
-
-
-
-    //public static Connection getConnected() throws ClassNotFoundException, SQLException{
->>>>>>> c3a9d6b728f7a36c6a32d3f8c6b470be5158f1b4
-
-
-
-
   
-    Class.forName("oracle.jdbc.driver.OracleDriver");
+ 
+        Class.forName("oracle.jdbc.driver.OracleDriver");
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
  
         Class.forName("oracle.jdbc.driver.OracleDriver");
->>>>>>> e5b4bac82dbdae5e99ef034f9b141e7d8c332130
- 
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e6bdaf3f10cb98b80d0ff2226124f009780be87f
->>>>>>> c3a9d6b728f7a36c6a32d3f8c6b470be5158f1b4
->>>>>>> e5b4bac82dbdae5e99ef034f9b141e7d8c332130
         String url="jdbc:oracle:thin:@192.168.1.47:1521:xe";
         String userName="mainuser";
         String pass="password";

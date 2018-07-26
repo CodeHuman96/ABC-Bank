@@ -36,7 +36,7 @@ public class QueryResponse extends javax.swing.JFrame {
        // lbltxCustNameCsr7.setText(customerName);
         Connection con = ConnectionClass.getConnected();
         Statement stmt = con.createStatement();
-        String query = "select  c.name, cr.csr_date, q.query, cr.csr_status, q.query_response from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_id='"+queryNumber+"'"; 
+        String query = "select  c.name, cr.csr_date, q.query, cr.csr_status, cr.csr_response from customer_query q join customer_service_request cr on q.csr_id=cr.csr_id join account a on cr.account_number=a.account_number join customer c on a.customer_id=c.customer_id where cr.csr_id='"+queryNumber+"'"; 
         
         ResultSet rs = stmt.executeQuery(query);
         
@@ -47,6 +47,7 @@ public class QueryResponse extends javax.swing.JFrame {
             String quer = rs.getString(3);
             String queryStatus = rs.getString(4);
             String queryRes = rs.getString(5);
+            //ListOfCustomerRequests.csr
             
             lbltxCustNameCsr7.setText(customerName);
             lbltxQueryRecvOnCsr7.setText(queryRevDate);
@@ -234,36 +235,39 @@ public class QueryResponse extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackCsr7ActionPerformed
 
     private void btnSubmitCsr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr7ActionPerformed
-            if(txtareaResponseCsr7.getText().equals(""))
+            if(cmbStatusCsr7.getSelectedItem().equals("Rejected") &&  txtareaResponseCsr7.getText().equals(""))
             {
                 lblMessage.setText("Please Provide a Response!");
             }
             else        
             {
                 try {
-                    int flag=0;
-                    int[] success;
+                    int update=0;
+                    int success=0;
                     Connection con = ConnectionClass.getConnected();
                     Statement stmt = con.createStatement();
-                    String query = "update customer_service_request set csr_status='"+cmbStatusCsr7.getSelectedItem()+"',csr_response='"+txtareaResponseCsr7.getText()+"'where csr_id="+ListOfCustomerRequests.csr_id;
-                    stmt.addBatch(query);
-                    String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfCustomerRequests.csr_id;
-                    stmt.addBatch(query1);
-                    success = stmt.executeBatch();
+                     Statement stmt1 = con.createStatement();
+                                        System.out.println(success);
+ 
+                    String query = "update customer_service_request set csr_status='"+(String) cmbStatusCsr7.getSelectedItem()+"',csr_response='"+(String)txtareaResponseCsr7.getText()+"'where csr_id="+ListOfQueries.queryNumber;
+                    success= stmt.executeUpdate(query);
+                    String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfQueries.queryNumber;
+                    update=stmt1.executeUpdate(query1);
                     
-                    for(int i=0;i<success.length;i++)
-                    {
-                        if(success[i]>0)
-                            flag++;
-                    }
-                    if(flag>1)
+                    System.out.println(ListOfQueries.queryNumber);
+                    //System.out.println(update);
+                    
+                    if(success==1 && update==1 )
                     {
                         JOptionPane.showMessageDialog(null, "Updated Successfully");
                     }
+                       
+
                     else
                     {
                         JOptionPane.showMessageDialog(null, "Error in Updating!\n Try Again!");
                     }
+                    System.out.println(success);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(QueryResponse.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
