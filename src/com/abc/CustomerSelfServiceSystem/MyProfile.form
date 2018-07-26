@@ -145,15 +145,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="panNolbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="emaillbl" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="panNolbl" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="panNotxt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="emailtxt" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="emailtxt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="emaillbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>

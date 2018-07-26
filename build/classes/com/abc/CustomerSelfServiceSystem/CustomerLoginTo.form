@@ -26,13 +26,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="customServiceMenuBt" alignment="0" max="32767" attributes="0"/>
-                  <Component id="creditCardServiceMenuBt" alignment="0" pref="258" max="32767" attributes="0"/>
-                  <Component id="header" alignment="0" max="32767" attributes="0"/>
-                  <Component id="billPaymentBt" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="customServiceMenuBt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="creditCardServiceMenuBt" alignment="0" pref="258" max="32767" attributes="0"/>
+                          <Component id="billPaymentBt" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="header" min="-2" pref="215" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
@@ -41,9 +48,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="header" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="customServiceMenuBt" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="creditCardServiceMenuBt" min="-2" max="-2" attributes="0"/>

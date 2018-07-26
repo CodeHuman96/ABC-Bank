@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,6 +47,7 @@ public class Query extends javax.swing.JFrame {
         lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("QUERY");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Enter Query Request");
@@ -71,6 +73,8 @@ public class Query extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblMsg.setForeground(new java.awt.Color(226, 13, 13));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +156,7 @@ public class Query extends javax.swing.JFrame {
                PreparedStatement stmt2=connect.prepareStatement(query2);
                int rs2=stmt2.executeUpdate();
                if(rs2>0)
-                   lblMsg.setText("Query Succesfully Recieved");
+                   JOptionPane.showMessageDialog(null,"Request Added Succesfully");
                String query3="insert into customer_query (query,csr_id) values('"+txtQuery.getText()+"',"+r+")";
                PreparedStatement stmt3=connect.prepareStatement(query3);
                stmt3.executeUpdate();

@@ -57,6 +57,7 @@ public class ChequeBookRequest extends javax.swing.JFrame {
         lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CHEQUE BOOK REQUEST");
 
         lblChequeBookRequest.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblChequeBookRequest.setText("Cheque Book Request");
