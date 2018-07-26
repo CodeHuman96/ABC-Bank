@@ -517,7 +517,7 @@ public class AddCustomers extends javax.swing.JFrame {
             } else {
                 lblCityMsg.setText("");
             }
-            String pin = txtPIN.getText().trim();
+            String pin = txtPIN.getText().trim().toUpperCase();
             if (pin.equals("")) {
                 lblPinFormat.setText("Cannot be empty");
                 flag &= false;
