@@ -33,6 +33,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
      */
     public CreditCardLogin() {
         initComponents();
+        
     }
 
     /**
@@ -208,6 +209,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
         else {
             try {
                 if (verification(Uname, Pswrd)) {
+                  
                     Connection con = ConnectionClass.getConnected();
                     Statement st1 = con.createStatement();
 
@@ -227,7 +229,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     while (rs1.next()) {
                         topName = rs1.getString(1);
                     }
-
+                     
                     SelfServiceMenu obj = new SelfServiceMenu(topName);
                     obj.setVisible(true);
                     this.setVisible(false);

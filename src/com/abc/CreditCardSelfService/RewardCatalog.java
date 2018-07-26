@@ -21,20 +21,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RewardCatalog extends javax.swing.JFrame {
 
+    public static String prodDesc;
+    public static String ptsReq;
+    public static int prodId;
+     public static String status;
+
+    
     /**
      * Creates new form RewardCatalog
      */
     public RewardCatalog() throws ClassNotFoundException, SQLException {
         initComponents();
          Connection con = ConnectionClass.getConnected();
-         String sql="select product_desc,points_reqd from product";
+         String sql="select product_desc,product_id,points_reqd from product";
                 //String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number =(select account_number from customer where customer_id="+CreditCardLogin.cid+")"+"and csr_type="+6;
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 while(rs.next())
                 {
                       DefaultTableModel model = (DefaultTableModel)tblProduct.getModel();
-                        model.addRow(new Object[]{rs.getString(1),"",rs.getString(2),"Active"});
+                        model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),"Active"});
                 }
                 
     }
@@ -54,6 +60,7 @@ public class RewardCatalog extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +74,20 @@ public class RewardCatalog extends javax.swing.JFrame {
             new String [] {
                 "Product Desc", "Product Image", "Points needed", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProduct);
 
         btnLogout.setText("Log out");
@@ -91,27 +111,33 @@ public class RewardCatalog extends javax.swing.JFrame {
             }
         });
 
+        lblMsg.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
+        lblMsg.setForeground(new java.awt.Color(218, 17, 17));
+        lblMsg.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(13, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogout)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAdd)
                 .addGap(84, 84, 84)
                 .addComponent(btnUpdate)
                 .addGap(87, 87, 87))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +152,9 @@ public class RewardCatalog extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(lblMsg)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -147,14 +175,61 @@ public class RewardCatalog extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        ModifyReward mr;
-        try {
+        
+        //try {
         
           
-          Connection connect=ConnectionClass.getConnected();
-           Statement st=connect.createStatement();
+          /*Connection connect;
+       
+            connect = ConnectionClass.getConnected();
+            Statement st=connect.createStatement();*/
+          DefaultTableModel model=(DefaultTableModel)tblProduct.getModel();
+          
+           if (tblProduct.getSelectedRow() == -1) {
+            if (tblProduct.getRowCount() == 0) {
+                lblMsg.setText("Table is empty");
+            } else {
+                lblMsg.setText("You must select a Product");
+            }
+        }
+           else
+           {
+               
+            ModifyReward mr;
+        try {
+            mr = new ModifyReward();
+            mr.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           }
+          
+          
+            /*DefaultTableModel model=(DefaultTableModel)tblProduct.getModel();
+            prodDesc=(String) model.getValueAt(tblProduct.getSelectedRow(),0);
+            ptsReq=(String) model.getValueAt(tblProduct.getSelectedRow(),2);
+            status=(String) model.getValueAt(tblProduct.getSelectedRow(),3);
+            
+            ModifyReward mr;
+        try {
+            mr = new ModifyReward();
+            mr.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+            
+             
+             
+      
+          
          
-        String sql="select product_desc,points_reqd from product where product_id not in(select product_id from redeem)";
+        /*String sql="select product_desc,points_reqd from product where product_id not in(select product_id from redeem)";
         ResultSet rs=st.executeQuery(sql);
         int  c=0;
         while(rs.next())
@@ -166,7 +241,7 @@ public class RewardCatalog extends javax.swing.JFrame {
             Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(RewardCatalog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -175,6 +250,16 @@ public class RewardCatalog extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
+        // TODO add your handling code here:
+            DefaultTableModel model=(DefaultTableModel)tblProduct.getModel();
+            prodDesc=(String) model.getValueAt(tblProduct.getSelectedRow(),0);
+            prodId=(int) model.getValueAt(tblProduct.getSelectedRow(),1);
+            ptsReq=(String) model.getValueAt(tblProduct.getSelectedRow(),2);
+            status=(String) model.getValueAt(tblProduct.getSelectedRow(),3);
+            
+    }//GEN-LAST:event_tblProductMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,6 +308,7 @@ public class RewardCatalog extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 }
