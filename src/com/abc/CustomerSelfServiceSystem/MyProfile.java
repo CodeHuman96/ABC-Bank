@@ -45,7 +45,7 @@ errlbl.setForeground(Color.red);
           
     nametxt.setText(s.getString(1));
     userNametxt.setText(s.getString(2));
-    DateFormat dateFormat = new SimpleDateFormat("dd-mm-yy");
+    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
      String strDate = dateFormat.format(s.getDate(3));
     DOBtxt.setText(strDate);
     phNotxt.setText(s.getString(4));
@@ -119,7 +119,7 @@ errlbl.setForeground(Color.red);
         header3.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header3.setText("Profile Details");
 
-        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         wellbl.setText("Welcome");
 
         namelbl.setText("Name");
