@@ -41,37 +41,24 @@ public class ListCustomers extends javax.swing.JFrame {
         initComponents();
         Connection connect = ConnectionClass.getConnected();
         Statement statement = connect.createStatement();
-        String query = "select * from ("
+        String query[]=new String[8];
+        query[0] = "select * from ("
                 + "select * from customer";
-        String query1 = "select * from customer where lower(name)='" + name + "'";
-        String query2 = "select * from customer where customer_id=" + customerID + " ";
-        //String query3="select * from customer where date_of_birth= date '"+dob+"' order by name";
-        String query4 = "select * from customer where preferred_acc_1=" + accountNo + " or preferred_acc_2=" + accountNo + "";
-        String query5 = "select * from customer where lower(email_id)='" + email + "' ";
-        String query6 = "select * from customer where pan='" + PAN + "' ";
-        String query7 = "select * from customer where mobile_num='" + mobileNo + "' ";
+        query[1] = "select * from customer where lower(name)='" + name + "'";
+        query[2] = "select * from customer where customer_id=" + customerID + " ";
+        query[3]="select * from customer where date_of_birth="
+                + "(SELECT TO_DATE('"+dob+"', 'DD/MM/YYYY') FROM dual)";
+        query[4] = "select * from customer where preferred_acc_1=" + accountNo + " or preferred_acc_2=" + accountNo + "";
+        query[5] = "select * from customer where lower(email_id)='" + email + "' ";
+        query[6] = "select * from customer where pan='" + PAN + "' ";
+        query[7] = "select * from customer where mobile_num='" + mobileNo + "' ";
         String add = " intersect ";
-        if (dataFlag[0]) {
-            query += add + query1;
+        for(int i=0;i<7;i++){
+            if(dataFlag[i])
+            query[0] += add + query[i+1];    
         }
-        if (dataFlag[1]) {
-            query += add + query2;
-        }
-        if (dataFlag[3]) {
-            query += add + query4;
-        }
-        if (dataFlag[4]) {
-            query += add + query5;
-        }
-        if (dataFlag[5]) {
-            query += add + query6;
-        }
-        if (dataFlag[6]) {
-            query += add + query7;
-
-        }
-        query += ") order by name";
-        ResultSet resultData = statement.executeQuery(query);
+        query[0] += ") order by name";
+        ResultSet resultData = statement.executeQuery(query[0]);
         displayData(resultData);
 
     }

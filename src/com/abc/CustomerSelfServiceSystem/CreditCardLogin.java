@@ -18,10 +18,10 @@ import java.sql.Statement;
 /**
  *
  * @author test
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
  */
 public class CreditCardLogin extends javax.swing.JFrame {
 
@@ -59,6 +59,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
         lblUname.setText("User Name");
 
+        txtUname.setText("cust123");
         txtUname.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUnameMouseClicked(evt);
@@ -97,6 +98,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(236, 23, 23));
         jLabel2.setText("*");
 
+        txtPswrd.setText("newpass");
         txtPswrd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPswrdKeyReleased(evt);
@@ -206,15 +208,11 @@ public class CreditCardLogin extends javax.swing.JFrame {
         else {
             try {
                 if (verification(Uname, Pswrd)) {
-                     Connection con=ConnectionClass.getConnected();
-                    Statement st1=con.createStatement();
-                   
-                    //lname+="hai";
-                   
-                   // obj.setWel("welcome " +topName);
-                    
-                    
+                    Connection con = ConnectionClass.getConnected();
+                    Statement st1 = con.createStatement();
 
+                    //lname+="hai";
+                    // obj.setWel("welcome " +topName);
                     Connection connect = ConnectionClass.getConnected();
                     String sql = "select customer_id from customer where cust_user_name='" + Uname + "'";
                     Statement st = connect.createStatement();
@@ -223,14 +221,13 @@ public class CreditCardLogin extends javax.swing.JFrame {
                         cid = rs.getInt(1);
                     }
 
-                  
-                     String s="select name from customer where customer_id="+CreditCardLogin.cid;
-                    ResultSet rs1=st1.executeQuery(s);    
-                 
-                    while(rs1.next()){
-                        topName=rs1.getString(1);}
-                    
-                      
+                    String s = "select name from customer where customer_id=" + CreditCardLogin.cid;
+                    ResultSet rs1 = st1.executeQuery(s);
+
+                    while (rs1.next()) {
+                        topName = rs1.getString(1);
+                    }
+
                     SelfServiceMenu obj = new SelfServiceMenu(topName);
                     obj.setVisible(true);
                     this.setVisible(false);

@@ -29,11 +29,12 @@ public class ListOfBillers extends javax.swing.JFrame {
         //BillPaymentLogin login=new BillPaymentLogin(); 
         Connection connect = ConnectionClass.getConnected();
         String customer_id=BillPaymentLogin.cust_id;
-        System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
+        //System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
         String statement = "select b.biller_name,biller_address,biller_category from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=?";
         PreparedStatement stmt = connect.prepareStatement(statement);
         stmt.setString(1,customer_id);
         ResultSet rs = stmt.executeQuery();
+        
         while(rs.next())
         {
         String name=rs.getString(1);
@@ -41,7 +42,7 @@ public class ListOfBillers extends javax.swing.JFrame {
         String category=rs.getString(3);
         DefaultTableModel model;
         model = (DefaultTableModel) tblBillers.getModel();
-        model.addRow(new Object[]{false,name, address,category });
+        model.addRow(new Object[]{false,name,address,category });
         }
     }
 
@@ -59,13 +60,15 @@ public class ListOfBillers extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ListOfBillers");
 
         tblBillers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "Select", "Biller Name", "Address", "Category"
@@ -106,24 +109,37 @@ public class ListOfBillers extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(247, 247, 247)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnUpdate)
+                        .addGap(53, 53, 53)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +148,14 @@ public class ListOfBillers extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
+                .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
+                    .addComponent(btnUpdate)
                     .addComponent(btnBack))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +173,58 @@ public class ListOfBillers extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblBillers.getModel();
+        //System.out.println(tblBillers.getSelectedRow());
+        int flag=0,c=0;
+        int index=0;
+        for(int i=0;i<model.getRowCount();i++)
+        {
+            if((Boolean)model.getValueAt(i,0) )
+            { c++;}
+            if((Boolean)model.getValueAt(i,0) && flag<1)
+            { flag++; index=tblBillers.getSelectedRow();}
+            //System.out.println(model.getValueAt(i,0));
+        }
+        //System.out.println(flag);
+        //System.out.println(index);
+        if(c==0) lblMsg.setText("Select atleat one row");
+        else if(c>1) lblMsg.setText("Select only one row");
+        else
+        {
+            try 
+            {
+                String name=(String)model.getValueAt(index,1);
+                String acNo=getBillerAc(name);
+                String add=(String)model.getValueAt(index,2);  
+                //System.out.println("name="+name+" acNo="+acNo+" add="+add);
+                ModifyBillerInfo info=new ModifyBillerInfo(name,acNo,add);
+                info.setVisible(true);
+                this.setVisible(false);
+            } 
+            catch (ClassNotFoundException | SQLException ex) 
+            {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+    private String getBillerAc(String name) throws ClassNotFoundException, SQLException
+    {
+        Connection connect = ConnectionClass.getConnected();
+        String customer_id=BillPaymentLogin.cust_id;
+        //System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
+        String statement = "select biller_acc_no from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=? and b.biller_name=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        stmt.setString(2,name);
+        ResultSet rs = stmt.executeQuery();
+        String acNo="";
+        while(rs.next())
+        {
+        acNo=rs.getString(1);
+        }
+        return acNo;
+    }
     /**
      * @param args the command line arguments
      */
@@ -196,8 +267,10 @@ public class ListOfBillers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JTable tblBillers;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,14 @@
  */
 package com.abc.CreditCardSelfService;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author test
@@ -14,8 +22,20 @@ public class ModifyReward extends javax.swing.JFrame {
     /**
      * Creates new form ModifyReward
      */
-    public ModifyReward() {
+    String old="";
+    int flag=0;
+     Connection connect =null;
+     
+           
+   
+    public ModifyReward() throws ClassNotFoundException, SQLException {
         initComponents();
+    }
+    public ModifyReward(String a,String b)
+    {
+        initComponents();
+        lblProdDesc.setText(a);
+         lblPtsNeeded.setText(b);
     }
 
     /**
@@ -33,13 +53,14 @@ public class ModifyReward extends javax.swing.JFrame {
         lblProdImgLHS = new javax.swing.JLabel();
         lblPtsNeededLHS = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        lblProdDesc = new javax.swing.JLabel();
-        lblPtsNeeded = new javax.swing.JLabel();
         btnUpload = new javax.swing.JButton();
         rbtnActive = new javax.swing.JRadioButton();
         rbtnInactive = new javax.swing.JRadioButton();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblStat = new javax.swing.JLabel();
+        lblProdDesc = new javax.swing.JTextField();
+        lblPtsNeeded = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,10 +75,6 @@ public class ModifyReward extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        lblProdDesc.setText("xxxx");
-
-        lblPtsNeeded.setText("xxxx");
-
         btnUpload.setText("Upload..");
 
         bg1.add(rbtnActive);
@@ -67,6 +84,11 @@ public class ModifyReward extends javax.swing.JFrame {
         rbtnInactive.setText("Inactive");
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +96,10 @@ public class ModifyReward extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblStat.setText(" ");
+
+        lblProdDesc.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,11 +112,13 @@ public class ModifyReward extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblStatus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rbtnActive))
+                                .addComponent(rbtnActive)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnInactive))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblProdDescLHS)
@@ -98,16 +126,22 @@ public class ModifyReward extends javax.swing.JFrame {
                                     .addComponent(lblProdImgLHS))
                                 .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpload)
-                                    .addComponent(lblPtsNeeded)
-                                    .addComponent(lblProdDesc))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtnInactive))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnUpload)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblProdDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                            .addComponent(lblPtsNeeded))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addComponent(btnUpdate)
                         .addGap(52, 52, 52)
-                        .addComponent(btnBack)))
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(lblStat, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,14 +149,14 @@ public class ModifyReward extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProdDescLHS)
-                    .addComponent(lblProdDesc))
+                    .addComponent(lblProdDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPtsNeededLHS)
-                    .addComponent(lblPtsNeeded))
+                    .addComponent(lblPtsNeeded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblProdImgLHS)
@@ -133,7 +167,9 @@ public class ModifyReward extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtnActive)
                         .addComponent(rbtnInactive)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblStat)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnBack))
@@ -145,10 +181,66 @@ public class ModifyReward extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        RewardCatalog rc=new RewardCatalog();
-        rc.setVisible(true);
+        RewardCatalog rc;
+        try {
+            rc = new RewardCatalog();
+             rc.setVisible(true);
           this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+         Statement st1;
+        try {
+            connect=ConnectionClass.getConnected();
+            st1 = connect.createStatement();
+            String sql1="update product set product_desc='"+ lblProdDesc.getText().trim()+"',points_reqd='"+ lblPtsNeeded.getText()+"'";
+            int r=st1.executeUpdate(sql1);
+            if(r>0)
+            {
+                lblStat.setText("update Successful");
+                RewardCatalog rc=new RewardCatalog();
+                rc.setVisible(true);
+                this.setVisible(false);
+            }
+            else
+                 lblStat.setText("update failed");  
+                                
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    
+         
+               
+                
+               // 
+        
+         
+                 
+         
+         /*   Statement st1;
+        try {
+            st1 = connect.createStatement();
+            String sql1="update product set product_desc='"+ lblProdDesc.getText().trim()+"',points_reqd='"+ lblPtsNeeded.getText()+"'";
+            int r=st1.executeUpdate(sql1);
+            if(r>0)
+                lblStat.setText("update Successful");
+            else
+                   lblStat.setText("update failed");  
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+            
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +272,13 @@ public class ModifyReward extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifyReward().setVisible(true);
+                try {
+                    new ModifyReward().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -191,11 +289,12 @@ public class ModifyReward extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpload;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblProdDesc;
+    private javax.swing.JTextField lblProdDesc;
     private javax.swing.JLabel lblProdDescLHS;
     private javax.swing.JLabel lblProdImgLHS;
-    private javax.swing.JLabel lblPtsNeeded;
+    private javax.swing.JTextField lblPtsNeeded;
     private javax.swing.JLabel lblPtsNeededLHS;
+    private javax.swing.JLabel lblStat;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JRadioButton rbtnActive;
     private javax.swing.JRadioButton rbtnInactive;

@@ -5,6 +5,17 @@
  */
 package com.abc.valuemobilization;
 
+import com.abc.JDBCConnection.ConnectionClass;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author test
@@ -14,8 +25,17 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
     /**
      * Creates new form Campaign_Effectiveness
      */
-    public Campaign_Effectiveness() {
+    public Campaign_Effectiveness()throws SQLException, ClassNotFoundException {
         initComponents();
+        
+        Connection con = ConnectionClass.getConnected();
+        Statement s = con.createStatement();
+        String q="Select Campaign_Id from Campaign";
+        ResultSet rs=s.executeQuery(q);
+        while(rs.next())
+        {
+            cbCampaign.addItem(rs.getString("Campaign_Id"));
+        }
     }
 
     /**
@@ -30,13 +50,14 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         lblCampaign = new javax.swing.JLabel();
         lblTotalProspects = new javax.swing.JLabel();
+        lblUnassignedP = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         lblUnassigned = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMonitor = new javax.swing.JTable();
         lblBack = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        cbCampaign = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,28 +65,19 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Monitor Campaign Effectiveness");
 
-        lblCampaign.setText("Campaign");
+        lblCampaign.setText("Campaign Id :");
 
         lblTotalProspects.setText("Total Prospects :");
 
-        lblUnassigned.setText("Unassigned Prospects :");
+        lblUnassignedP.setText("Unassigned Prospects :");
 
-        jLabel5.setText("xxx");
+        lblTotal.setText("xxx");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        lblUnassigned.setText("xxx");
 
-        jLabel6.setText("xxx");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMonitor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Sales Agent", "Assigned Prospects", "Follow Up", "Not Interested", "Committed"
@@ -79,12 +91,19 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblMonitor);
 
         lblBack.setText("Back");
         lblBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lblBackActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -99,19 +118,24 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTotalProspects)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblUnassigned)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblUnassignedP)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblUnassigned, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblTotalProspects)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(96, 96, 96))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCampaign)
-                                .addGap(45, 45, 45)
-                                .addComponent(jTextField1))))
+                                .addGap(36, 36, 36)))
+                        .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(lblBack))
@@ -125,18 +149,19 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblTitle)
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampaign)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(btnSearch)
+                    .addComponent(cbCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotalProspects))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnassigned))
+                    .addComponent(lblUnassigned, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnassignedP))
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -147,16 +172,126 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void lblBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblBackActionPerformed
-        Campaign_Management cm= new Campaign_Management();
+        Campaign_Management cm = new Campaign_Management();
         cm.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_lblBackActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        
+            String campaign = cbCampaign.getSelectedItem().toString();
+            int assigned=0, total=0;
+        try 
+        {
+            Connection con = ConnectionClass.getConnected();
+            
+            
+            Statement s = con.createStatement();
+            String q = "Select * from PROSPECTIVE_CUSTOMERS where CAMPAIGN_ID='" + campaign + "'";
+            ResultSet rs = s.executeQuery(q);
+
+            while (rs.next()) 
+            {
+                assigned++;
+                String agent = rs.getString("Employee_id");
+                String customer = rs.getString("Customer_id");
+                String status = rs.getString("Status");
+                System.out.println(agent);
+                
+                String agent_name="", customer_name="";
+                String q2="Select NAME from CUSTOMER where CUSTOMER_ID="+customer;
+                Statement s2=con.createStatement();
+                ResultSet rs2=s2.executeQuery(q2);
+                while(rs2.next())
+                {
+                    customer_name=rs2.getString("Name");
+                }
+                
+                
+                String q3="Select NAME from EMPLOYEE where EMP_ID="+agent;
+                Statement s3=con.createStatement();
+                ResultSet rs3=s3.executeQuery(q3);
+                while(rs3.next())
+                {
+                    agent_name=rs3.getString("Name");
+                    System.out.println("Agent is "+agent_name);
+                }
+                
+                String ni="", c="";
+                status=status.toLowerCase();
+                if(status.equals("active"))
+                {
+                    c="Yes";
+                }
+                
+                else if(status.equals("inactive"))
+                {
+                    ni="Yes";
+                }
+                
+
+                DefaultTableModel model;
+                model = (DefaultTableModel) tblMonitor.getModel();
+                model.addRow(new Object[]{agent_name, customer_name, status, ni, c});
+                
+                
+                
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
+        
+        
+        try 
+        {
+            int age=0;
+            double balance=0.0;
+            String profession="";
+            String Cid="";
+            LocalDate ldate=LocalDate.now();
+            
+            Connection con = ConnectionClass.getConnected();
+            Statement s = con.createStatement();
+            String q="Select * from CAMPAIGN_CRITERIA c1 join CAMPAIGN c2 on c1.CAMPAIGN_ID=c2.CAMPAIGN_ID where c2.CAMPAIGN_ID='"+campaign+"'";
+            ResultSet rs= s.executeQuery(q);
+            while(rs.next())
+            {
+                age=rs.getInt("AGE_OF_RELATIONSHIP");
+                balance=rs.getDouble("MIN_BALANCE");
+                profession=rs.getString("PROFESSION");
+                Cid=rs.getString("CAMPAIGN_ID");
+            }
+            
+            String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
+            Statement s2 = con.createStatement();
+            ResultSet rs2= s2.executeQuery(q2);
+            
+            
+            while(rs2.next())
+            {
+                LocalDate date=rs2.getDate("OPENING_DATE").toLocalDate();
+                int age_rel=Period.between(date, ldate).getYears();
+                
+                if(age_rel<=age)
+                {
+                    
+                    total++;
+                }
+                    
+            }
+        }catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        lblTotal.setText(Integer.toString(total));
+        lblUnassigned.setText(Integer.toString(total-assigned));
+
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,23 +321,28 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable()  {
             public void run() {
-                new Campaign_Effectiveness().setVisible(true);
+                try {
+                    new Campaign_Effectiveness().setVisible(true);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                } 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cbCampaign;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton lblBack;
     private javax.swing.JLabel lblCampaign;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalProspects;
     private javax.swing.JLabel lblUnassigned;
+    private javax.swing.JLabel lblUnassignedP;
+    private javax.swing.JTable tblMonitor;
     // End of variables declaration//GEN-END:variables
 }

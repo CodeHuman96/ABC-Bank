@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,17 +26,18 @@ public class CustomerDetails extends javax.swing.JFrame {
     public CustomerDetails() {
         initComponents();
     }
-
+    int custID;
     public CustomerDetails(int CustID) throws ClassNotFoundException, SQLException {
         initComponents();
+        this.custID = CustID;
         Connection connect = ConnectionClass.getConnected();
         Statement statement = connect.createStatement();
         String query = "select * from customer where customer_id=" + CustID + " ";
-        String queryAccount = "select account_number,acc_type,balance from account where customer_id="+CustID+"";
+        String queryAccount = "select account_number,acc_type,balance from account where customer_id=" + CustID + "";
         ResultSet resultData = statement.executeQuery(query);
         if (resultData.next()) {
             String lclName = resultData.getString("NAME");
-            int custID = resultData.getInt(1);
+            int lclCustID = resultData.getInt(1);
             String lclDOB = resultData.getString("DATE_OF_BIRTH");
             lclDOB = lclDOB.substring(0, 10);
             String lclEmail = resultData.getString("EMAIL_ID");
@@ -51,11 +53,10 @@ public class CustomerDetails extends javax.swing.JFrame {
             outPAN.setText(resultData.getString("pan"));
             ResultSet resultAcc = statement.executeQuery(queryAccount);
             DefaultTableModel modelData = (DefaultTableModel) tblAccountDetails.getModel();
-            while(resultAcc.next()){
-                String accNo = resultAcc.getString("account_number");
+            while (resultAcc.next()) {
+                String accNo =   resultAcc.getString("account_number");
                 String accType = resultAcc.getString("acc_type");
                 Double balance = resultAcc.getDouble("balance");
-                
                 modelData.addRow(new Object[]{accNo, accType, balance});
             }
 
@@ -91,8 +92,10 @@ public class CustomerDetails extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAccountDetails = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        lblAddAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer Details");
 
         lblCustomerDetails.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblCustomerDetails.setText("CUSTOMER DETAILS");
@@ -155,6 +158,13 @@ public class CustomerDetails extends javax.swing.JFrame {
             }
         });
 
+        lblAddAccount.setText("Add Account");
+        lblAddAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblAddAccountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,7 +196,9 @@ public class CustomerDetails extends javax.swing.JFrame {
                             .addComponent(outOccupation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(outMonthlyIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
+                        .addGap(232, 232, 232)
+                        .addComponent(lblAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(72, 72, 72)
@@ -233,7 +245,9 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(lblAddAccount))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -248,6 +262,17 @@ public class CustomerDetails extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void lblAddAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblAddAccountActionPerformed
+        try {
+            AccountSetup obj=new AccountSetup(custID,false);
+            obj.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_lblAddAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,16 +302,15 @@ public class CustomerDetails extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerDetails().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CustomerDetails().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lblAddAccount;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblContactNo;
     private javax.swing.JLabel lblCustomerDetails;

@@ -101,7 +101,7 @@ public class BillPaymentMenu extends javax.swing.JFrame {
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGap(27, 27, 27)
                 .addComponent(btnManageBillers)
                 .addGap(18, 18, 18)
                 .addComponent(btnMakePayment)
@@ -109,7 +109,7 @@ public class BillPaymentMenu extends javax.swing.JFrame {
                 .addComponent(btnViewPayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOff)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
