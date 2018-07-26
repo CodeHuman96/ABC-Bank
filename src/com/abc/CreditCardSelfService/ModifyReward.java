@@ -181,9 +181,17 @@ public class ModifyReward extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        RewardCatalog rc=new RewardCatalog();
-        rc.setVisible(true);
+        RewardCatalog rc;
+        try {
+            rc = new RewardCatalog();
+             rc.setVisible(true);
           this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyReward.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
