@@ -118,7 +118,7 @@ public class ViewRequestStatus extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addGap(258, 258, 258))
+                .addGap(265, 265, 265))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +165,8 @@ public class ViewRequestStatus extends javax.swing.JFrame {
         {
             try {
                 Connection con = ConnectionClass.getConnected();
-                 String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number ="+1000000009+"and csr_type="+6;
+                 String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number =(select preferred_acc_1 from customer where customer_id="+CreditCardLogin.cid+")and csr_type="+6;
+                 //String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number ="+1000000000+"and csr_type="+6;
                 //String sql="select csr_date,csr_type,csr_response,csr_status from customer_service_request where account_number =(select account_number from customer where customer_id="+CreditCardLogin.cid+")"+"and csr_type="+6;
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);

@@ -639,14 +639,10 @@ public class AddCustomers extends javax.swing.JFrame {
 
                     } else {
                         Statement statement = connect.createStatement();
-                        String query = " select  customer_id from customer where"
-                                + " cust_user_name='" + usrName + "' and"
-                                + " mobile_num='" + contactNo + "' and "
-                                + " name='" + name + "'";
-
+                        String query = "select cust_id_seq.currval from dual";
                         ResultSet resultData = statement.executeQuery(query);
                         resultData.next();
-                        int custID = resultData.getInt("customer_id");
+                        int custID = resultData.getInt(1);
 
                         AccountSetup obj = new AccountSetup(custID);
                         obj.setVisible(true);
