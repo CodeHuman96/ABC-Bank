@@ -10,11 +10,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.lang.String;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.lang.String;
 
 /**
  *
@@ -24,44 +23,48 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
     /**
      * Creates new form LostOrStolenCard
-     * @param 
+     *
+     * @param
      */
-    public LostOrStolenCard() throws ClassNotFoundException, SQLException
-    {
+    public LostOrStolenCard() throws ClassNotFoundException, SQLException {
         initComponents();
-
     }
-    public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
-    {
+
+    public LostOrStolenCard(int requestTypeVal, String requestStatus) throws Exception {
         initComponents();
         Connection con = ConnectionClass.getConnected();
         Statement stmt = con.createStatement();
-        
-        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response,cr.csr_id from   customer_service_request cr  join stolen_lost_card s \n" +
-                       "on s.csr_id=cr.csr_id join credit_card_detail c on  s.card_no= c.card_no where cr.csr_status='"+requestStatus+"' and  cr.csr_type="+requestTypeVal;
-                
+
+        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response,cr.csr_id from   customer_service_request cr  join stolen_lost_card s \n"
+                + "on s.csr_id=cr.csr_id join credit_card_detail c on  s.card_no= c.card_no where cr.csr_status='" + requestStatus + "' and  cr.csr_type=" + requestTypeVal;
+
         ResultSet rs = stmt.executeQuery(query);
-        while (rs.next())
-        {
-        
+        while (rs.next()) {
+
             String card_No = String.valueOf(rs.getLong(1));
             String card_Type = rs.getString(2);
             String lsc_Status = rs.getString(3);
             String lsc_Response = rs.getString(4);
-           ListOfCustomerRequests.csr_id = rs.getInt(5);
-           System.out.println(ListOfCustomerRequests.csr_id );
-            
+            ListOfCustomerRequests.csr_id = rs.getInt(5);
+            System.out.println(ListOfCustomerRequests.csr_id);
+
             lbltxtCardNoCsr3.setText(card_No);
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
 
         }
+<<<<<<< HEAD
     }      
    
    
 
    
+=======
+    }
+
+ 
+>>>>>>> 9c4d15100281ef488e90d62e9abed02424de8f80
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,13 +235,16 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
             int result1=st.executeUpdate(query1);
             
-            lblSubmit.setText("Data submitted!");}
+            lblSubmit.setText("Data submitted!");
+
+}
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(LostOrStolenCard.class
+.getName()).log(Level.SEVERE, null, ex);
+        
+
+}
          
          
          
@@ -263,16 +269,28 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LostOrStolenCard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LostOrStolenCard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LostOrStolenCard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LostOrStolenCard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LostOrStolenCard.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LostOrStolenCard.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LostOrStolenCard.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LostOrStolenCard.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -281,10 +299,16 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             public void run() {
                 try {
                     new LostOrStolenCard().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+                
+
+} catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LostOrStolenCard.class
+.getName()).log(Level.SEVERE, null, ex);
+                
+
+} catch (SQLException ex) {
+                    Logger.getLogger(LostOrStolenCard.class
+.getName()).log(Level.SEVERE, null, ex);
                 }
                                     }
         });

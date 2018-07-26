@@ -333,5 +333,5 @@ public class QueryResponse extends javax.swing.JFrame {
     private javax.swing.JLabel lbltxQueryRecvOnCsr7;
     private javax.swing.JScrollPane textareaResponseCsr7;
     private javax.swing.JTextArea txtareaResponseCsr7;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration//GEN-END:variable
 }

@@ -209,16 +209,6 @@ public class ListOfQueries extends javax.swing.JFrame {
             this.setVisible(false);
             DefaultTableModel model = (DefaultTableModel) tblListOfCustQueries.getModel();
             queryNumber = (int) model.getValueAt(tblListOfCustQueries.getSelectedRow(), 0);
-
-            /*      customerName = model.getValueAt(tblListOfCustQueries.getSelectedRow(),1).toString();
-            
-            customerQuery = model.getValueAt(tblListOfCustQueries.getSelectedRow(),2).toString();
-            queryRevDate = model.getValueAt(tblListOfCustQueries.getSelectedRow(),3).toString();
-            queryResponse = model.getValueAt(tblListOfCustQueries.getSelectedRow(),4).toString();
-            queryStatus = model.getValueAt(tblListOfCustQueries.getSelectedRow(),5).toString();
-            System.out.println(customerName);
-            QueryResponse qr = new QueryResponse(queryNumber,customerName, customerQuery, queryResponse, queryStatus, queryRevDate);
-             */
             QueryResponse qr = new QueryResponse(queryNumber);
             qr.setVisible(true);
         } catch (Exception ex) {
@@ -226,24 +216,7 @@ public class ListOfQueries extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tblListOfCustQueriesMouseClicked
-    /*     public String getCustomerName(String name)
-     {
-         return name;
-     }
-     public String getQueryRevDate(String date)
-     {
-         return date;
-     }
-     public String getQuery(String query)
-     {
-         return query;
-     }
-      QueryResponse qr = new QueryResponse();
-     public void setCustomerName(String name)
-     {
-         qr.lbltxCustNameCsr7.setText(name);
-     }
-     */
+    
     /**
      * @param args the command line arguments
      */

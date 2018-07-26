@@ -193,7 +193,7 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_oldPasstxtActionPerformed
 
     private void submitBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtActionPerformed
-      int id=10000;
+      int id=CustomerLogin.customerid;
         
          try
         {
