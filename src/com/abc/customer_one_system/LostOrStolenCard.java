@@ -57,48 +57,11 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             txtResponseCsr3.setText(lsc_Response);
 
         }
-<<<<<<< HEAD
-        
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
-
-        
-    
-=======
-        
-=======
->>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
->>>>>>> cde57a799c89dcf452d2ce892ce4579b202faa0b
->>>>>>> 33b7e78f0362c3eab6a9bc562a2a7e142ed1554e
-
     }      
    
-<<<<<<< HEAD
-
-    } 
-=======
-    }
-
-    }
-
-    }
-
-<<<<<<< HEAD
-=======
-=======
    
 
    
-
-
->>>>>>> b1a53fab642cb0498456be953d0951a772b80d04
-   
->>>>>>> cde57a799c89dcf452d2ce892ce4579b202faa0b
->>>>>>> 33b7e78f0362c3eab6a9bc562a2a7e142ed1554e
 
     /**
      * This method is called from within the constructor to initialize the form.
