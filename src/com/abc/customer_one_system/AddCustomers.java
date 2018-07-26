@@ -11,8 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +30,31 @@ public class AddCustomers extends javax.swing.JFrame {
      */
     public AddCustomers() {
         initComponents();
+    }
+    boolean flagDeDuplicate = false;
+    List<Long> accountNumbers;
+
+    AddCustomers(List<Long> accountNumbers) throws ClassNotFoundException, SQLException {
+        initComponents();
+        this.accountNumbers = accountNumbers;
+        flagDeDuplicate = true;
+        long baseAccountNo = accountNumbers.get(0);
+        Connection connect = ConnectionClass.getConnected();
+        Statement statement = connect.createStatement();
+        String query = "select * from UnmappedData "
+                + "where accountnumber=" + baseAccountNo;
+        ResultSet resultData = statement.executeQuery(query);
+        if (resultData.next()) {
+            txtName.setText(resultData.getString("accountholder"));
+            txtDOB.setText(resultData.getString("dateofbirth").substring(0, 10));
+            txtPAN.setText(resultData.getString("pan"));
+            txtAddress.setText(resultData.getString("address"));
+            txtContactNo.setText(resultData.getString("phonenumber"));
+            txtCity.setText(resultData.getString("city"));
+            txtPIN.setText(resultData.getString("pin"));
+
+        }
+
     }
 
     /**
@@ -512,6 +539,7 @@ public class AddCustomers extends javax.swing.JFrame {
             String pan = txtPAN.getText().trim();
             if (pan.equals("")) {
                 optionalDataFlag[1] = false;
+                lblPANFormat.setText("");
             } else if (!match.matchPAN(pan)) {
                 lblPANFormat.setText("Invalid Format");
                 flag &= false;
@@ -597,20 +625,32 @@ public class AddCustomers extends javax.swing.JFrame {
                     }
                     prepStmt.close();
                     lblMsg.setText("Data Added");
-                    Statement statement = connect.createStatement();
-                    String query=" select  customer_id from customer where"
-                            + " cust_user_name='"+usrName+"' and"
-                            + " mobile_num='"+contactNo+"' and "
-                            + " name='"+name+"'";
-                    ResultSet resultData = statement.executeQuery(query);
-                    int custID=0;
-                    if(resultData.next()){
-                        custID=resultData.getInt("customer_id");
-                        AccountSetup obj=new AccountSetup(custID);
+                    if (flagDeDuplicate) {
+                        Statement statement = connect.createStatement();
+                        String query = "select cust_id_seq.currval from dual";
+                        ResultSet resultData = statement.executeQuery(query);
+                        resultData.next();
+                        int custID=resultData.getInt(1);
+                        addInAccount(custID);
+                        new DeDuplication().setVisible(true);
+                        this.setVisible(false);
+
+                    } else {
+                        Statement statement = connect.createStatement();
+                        String query = " select  customer_id from customer where"
+                                + " cust_user_name='" + usrName + "' and"
+                                + " mobile_num='" + contactNo + "' and "
+                                + " name='" + name + "'";
+
+                        ResultSet resultData = statement.executeQuery(query);
+                        resultData.next();
+                        int custID = resultData.getInt("customer_id");
+
+                        AccountSetup obj = new AccountSetup(custID);
                         obj.setVisible(true);
                         this.setVisible(false);
                     }
-                    
+
                 } else {
                     lblMsg.setText("Data Already Exists");
                 }
@@ -777,5 +817,32 @@ public class AddCustomers extends javax.swing.JFrame {
     private String createUsrName() {
         Random rand = new Random();
         return "cust" + Integer.toString(rand.nextInt(10)) + Integer.toString(rand.nextInt(10)) + Integer.toString(rand.nextInt(10));
+    }
+
+    private void addInAccount(int custID) throws ClassNotFoundException, SQLException {
+
+        Connection connect = ConnectionClass.getConnected();
+        Statement statement = connect.createStatement();
+        String q = "insert into account values (?,?,?,?,"
+                + "to_date(?,'yyyy-mm-dd'),?)";
+        PreparedStatement prepStmt = connect.prepareStatement(q);
+        for (int i = 0; i < accountNumbers.size(); i++) {
+            System.out.println("cvfgbhj");
+            prepStmt.setLong(1, accountNumbers.get(i));
+            prepStmt.setString(2, "savings");
+            prepStmt.setString(3, "active");
+            prepStmt.setDouble(4, 500);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.now();
+            prepStmt.setString(5, (String) dtf.format(localDate));
+            prepStmt.setInt(6, custID);
+            prepStmt.addBatch();
+        }
+        prepStmt.executeBatch();
+        for (int i = 0; i < accountNumbers.size(); i++) {
+            String q1 = "delete from unmappeddata where accountnumber = " + accountNumbers.get(i);
+            statement.executeUpdate(q1);
+        }
+        lblMsg.setText("Data DeDuplicated");
     }
 }

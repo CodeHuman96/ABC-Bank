@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -22,27 +24,29 @@ public class DeDuplication extends javax.swing.JFrame {
 
     /**
      * Creates new form DeDuplication
+     *
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
     public DeDuplication() throws ClassNotFoundException, SQLException {
+        this.accountNumbers = new ArrayList<>();
         initComponents();
         Connection connect = ConnectionClass.getConnected();
-        Statement statement =connect.createStatement();
-        String query="select * from UnmappedData order by accountholder,pan";
+        Statement statement = connect.createStatement();
+        String query = "select * from UnmappedData order by accountholder,pan";
         ResultSet resultData = statement.executeQuery(query);
         DefaultTableModel modelData = (DefaultTableModel) tblDeDuplicate.getModel();
-        while(resultData.next()){
-            String accountNo=resultData.getString("accountnumber");
-            String name=resultData.getString("accountholder");
-            String DOB=resultData.getString("dateofbirth");
-            String pan=resultData.getString("pan");
-            String address=resultData.getString("address");
-            String contactNo=resultData.getString("phonenumber");
-            String status=resultData.getString("status");
-            String city=resultData.getString("city");
-            String pin=resultData.getString("pin");
-            modelData.addRow(new Object[]{false,accountNo,name,address,city,pin,contactNo,DOB,status,pan});
+        while (resultData.next()) {
+            long accountNo = resultData.getLong("accountnumber");
+            String name = resultData.getString("accountholder");
+            String DOB = resultData.getString("dateofbirth");
+            String pan = resultData.getString("pan");
+            String address = resultData.getString("address");
+            String contactNo = resultData.getString("phonenumber");
+            String status = resultData.getString("status");
+            String city = resultData.getString("city");
+            String pin = resultData.getString("pin");
+            modelData.addRow(new Object[]{false, accountNo, name, address, city, pin, contactNo, DOB, status, pan});
         }
     }
 
@@ -161,7 +165,7 @@ public class DeDuplication extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    List<Long> accountNumbers;
     private void btnDeDuplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeDuplicateActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblDeDuplicate.getModel();
         if (tblDeDuplicate.getSelectedRow() == -1) {
@@ -170,20 +174,22 @@ public class DeDuplication extends javax.swing.JFrame {
             } else {
                 lblMsg.setText("Select atleat one row");
             }
-        }else {
-            lblMsg.setText("");
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-       }
+        } else {
+            try {
+                lblMsg.setText("");
+                for (int itr = 0; itr < tblDeDuplicate.getRowCount(); itr++) {
+                    if ((boolean) tblDeDuplicate.getValueAt(itr, 0) == true) {
+                        Long l = (Long) tblDeDuplicate.getValueAt(itr, 1);
+                        accountNumbers.add(l);
+                    }
+                }
+                AddCustomers obj = new AddCustomers(accountNumbers);
+                obj.setVisible(true);
+                this.setVisible(false);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DeDuplication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnDeDuplicateActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -194,7 +200,7 @@ public class DeDuplication extends javax.swing.JFrame {
         }
         lblMsg.setText("");
 
-        //model.set
+
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -223,15 +229,11 @@ public class DeDuplication extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeDuplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeDuplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeDuplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DeDuplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */

@@ -295,7 +295,7 @@ public class AddNewBiller extends javax.swing.JFrame {
             }
             else 
             {
-                MsgBiller.setText("");
+                MsgBiller.setText(name);
                 flag &= true;
             }
             String ac_no = txtBillerAcNo.getText().trim();
@@ -339,11 +339,13 @@ public class AddNewBiller extends javax.swing.JFrame {
                 MsgPin.setText("");
             }           
             //String
+             System.out.println(flag);
             Connection connect = ConnectionClass.getConnected();
-            
+            lblMsg.setText("submit");
+           
             if (flag) 
             {
-                //lblMsg.setText("Adding..");
+                lblMsg.setText("Adding..");
                 
                 //billers.setVisible(true);
                 BillPaymentMenu menu=new BillPaymentMenu();
@@ -375,7 +377,8 @@ public class AddNewBiller extends javax.swing.JFrame {
             Logger.getLogger(AddNewBiller.class.getName()).log(Level.SEVERE, null, ex);
         } 
         }
-        catch(Exception e){}
+        catch(Exception e){
+        e.printStackTrace();}
     }//GEN-LAST:event_btnSubmitActionPerformed
     private boolean existingBiller(String acc_no, String id, Connection connect) throws SQLException 
     {
@@ -389,7 +392,7 @@ public class AddNewBiller extends javax.swing.JFrame {
     private int addBiller(String name,String acc_no,String add,String city,String pin,String cbm,String id,Connection con) throws SQLException
     {
         int res=0;
-        String query="insert into biller values(billlerId_Seq.NEXTVAL,?,?,?,?,?)";
+        String query="insert into biller values(billlerId_Seq.NEXTVAL,?,?,?,?,?,?)";
         PreparedStatement ps=con.prepareStatement(query);
         //ps.setInt(1,);
         ps.setString(1,name);
@@ -398,6 +401,7 @@ public class AddNewBiller extends javax.swing.JFrame {
         ps.setString(3,cbm);
         ps.setString(4,acc_no);       
         ps.setString(5,id);
+        ps.setString(6,"Active");
         res=ps.executeUpdate();        
         return res;
     }

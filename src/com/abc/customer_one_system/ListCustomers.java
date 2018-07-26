@@ -41,21 +41,22 @@ public class ListCustomers extends javax.swing.JFrame {
         initComponents();
         Connection connect = ConnectionClass.getConnected();
         Statement statement = connect.createStatement();
-        String query[]=new String[8];
+        String query[] = new String[8];
         query[0] = "select * from ("
                 + "select * from customer";
         query[1] = "select * from customer where lower(name)='" + name + "'";
         query[2] = "select * from customer where customer_id=" + customerID + " ";
-        query[3]="select * from customer where date_of_birth="
-                + "(SELECT TO_DATE('"+dob+"', 'DD/MM/YYYY') FROM dual)";
+        query[3] = "select * from customer where date_of_birth="
+                + "(SELECT TO_DATE('" + dob + "', 'DD/MM/YYYY') FROM dual)";
         query[4] = "select * from customer where preferred_acc_1=" + accountNo + " or preferred_acc_2=" + accountNo + "";
         query[5] = "select * from customer where lower(email_id)='" + email + "' ";
         query[6] = "select * from customer where pan='" + PAN + "' ";
         query[7] = "select * from customer where mobile_num='" + mobileNo + "' ";
         String add = " intersect ";
-        for(int i=0;i<7;i++){
-            if(dataFlag[i])
-            query[0] += add + query[i+1];    
+        for (int i = 0; i < 7; i++) {
+            if (dataFlag[i]) {
+                query[0] += add + query[i + 1];
+            }
         }
         query[0] += ") order by name";
         ResultSet resultData = statement.executeQuery(query[0]);
@@ -188,7 +189,8 @@ public class ListCustomers extends javax.swing.JFrame {
                 this.setVisible(false);
             } catch (ClassNotFoundException | SQLException ex) {
                 lblMsg.setText("Connection issue");
-            } 
+            }
+
         }
 
 
