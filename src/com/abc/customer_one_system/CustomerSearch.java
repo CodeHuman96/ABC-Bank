@@ -24,6 +24,31 @@ public class CustomerSearch extends javax.swing.JFrame {
     static int customerID=0;
     public CustomerSearch() {
         initComponents();
+        txtName.setText("");
+        txtCustomerID.setText("");
+        txtDOB.setText("");
+        txtAccountNo.setText("");
+        txtEmailID.setText("");
+        txtPAN.setText("");
+        txtMobileNo.setText("");
+        lblDateFormat.setText("dd/mm/yyyy");
+        lblEmailFormat.setText("");
+        lblCustIDFormat.setText("");
+        lblPANFormat.setText("");
+        lblMobileNoFormat.setText("");
+        lblNameFormat.setText("");
+        lblAccountNoFormat.setText("");
+        for(int i=0;i<7;i++){
+            dataFlag[i]=false;
+        }
+        name="";
+        dob="";
+        accountNo="";
+        emailID="";
+        PAN="";
+        mobile="";
+        customerID=0;
+    
     }
 
     /**
