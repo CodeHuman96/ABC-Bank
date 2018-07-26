@@ -295,7 +295,7 @@ public class AddNewBiller extends javax.swing.JFrame {
             }
             else 
             {
-                MsgBiller.setText(name);
+                MsgBiller.setText("");
                 flag &= true;
             }
             String ac_no = txtBillerAcNo.getText().trim();

@@ -239,11 +239,13 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             try
             {
                 Connection con=ConnectionClass.getConnected();
-                lblMsg.setText("entered values");
+                //lblMsg.setText("entered values");
                 getPayment(from,to,cat,stat,con);             
             }
             catch(ClassNotFoundException | SQLException e)
-            { }
+            { 
+                lblMsg.setText("Invalid date format");
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
