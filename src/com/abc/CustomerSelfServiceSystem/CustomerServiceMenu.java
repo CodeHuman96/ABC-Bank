@@ -24,7 +24,7 @@ import java.util.List;
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
-    static String pacc;
+    public static String pacc;
 
     public static String wel;
     /**
@@ -83,7 +83,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         header2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header2.setText("Customer Service Menu");
 
-        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         wellbl.setText("Welcome");
 
         signOutBt.setText("Signout");

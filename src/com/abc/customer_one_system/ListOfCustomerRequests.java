@@ -47,10 +47,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
                 case 3:
                     reqType = "Lost/Stolen Card";
                     break;
-                case 6:
-                    reqType = "Redeem";
-                    break;
-
+                
             }
             int acNo = rs.getInt(2);
             String acType = rs.getString(3);
@@ -98,7 +95,7 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
 
         lblReqTypeListOfCustReq.setText("Request Type");
 
-        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Lost/Stolen Card", "Redeem" }));
+        cmbRequestTypeListOfCustReq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque Book", "Lost/Stolen Card", " " }));
         cmbRequestTypeListOfCustReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRequestTypeListOfCustReqActionPerformed(evt);
@@ -231,14 +228,8 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (cmbRequestTypeListOfCustReq.getSelectedItem() == "Redeem") {
-            try {
-                type = 6;
-                statusCheck(type, status);
-            } catch (Exception ex) {
-                Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        } 
+        
 
 
     }//GEN-LAST:event_btnSubmitListOfCustReqActionPerformed
@@ -273,28 +264,25 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }     
+        
+        if (requestType.equals("Lost/Stolen Card")) 
+        {
 
-        }
-
-        if (requestType.equals("Lost/Stolen Card")) {
-
-            try {
+            try 
+            {
                 requestTypeVal = 3;
                 this.setVisible(false);
                 LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);
                 lst.setVisible(true);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
 
-        if (requestType.equals("Redeem")) {
-            requestTypeVal = 6;
-            //this.setVisible(false);
-
-        }
-
+        
 
     }//GEN-LAST:event_tblListOfCustReqMouseClicked
 

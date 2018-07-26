@@ -64,12 +64,14 @@
                           <Component id="jLabel11" alignment="1" pref="15" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtPinCode" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtBillerName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCity" alignment="0" pref="159" max="32767" attributes="0"/>
-                          <Component id="txtBillerAcNo" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtPinCode" alignment="0" pref="159" max="32767" attributes="0"/>
+                              <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtBillerName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtBillerAcNo" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="txtCity" min="-2" pref="159" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -131,8 +133,8 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCity" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
@@ -152,8 +154,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblCity" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCity" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>

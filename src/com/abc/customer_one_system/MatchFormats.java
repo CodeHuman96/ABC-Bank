@@ -35,18 +35,18 @@ public class MatchFormats {
         LocalDate birthDay = LocalDate.parse(date, f);
         return LocalDate.now().compareTo(birthDay) > 0;
     }
-    
+
     public boolean matchDate2(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
         if (!date.matches(pattern)) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
-    
+
     public boolean matchToDate(String date) {
-       
+
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate toDate = LocalDate.parse(date, f);
         return toDate.compareTo(LocalDate.now()) > 0;
@@ -63,6 +63,7 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
+<<<<<<< HEAD
 
 
 
@@ -74,8 +75,14 @@ public class MatchFormats {
 
 
 
+=======
+<<<<<<< HEAD
+ 
+>>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
         pattern = "[a-z A-Z .'-]+";
+        return name.matches(pattern);
 
+<<<<<<< HEAD
         pattern = "[a-zA-Z .'-]+";
 
        pattern = "[a-zA-Z .'-]+";
@@ -85,10 +92,17 @@ public class MatchFormats {
 
        pattern = "[a-zA-Z .'-]+";
 
+=======
+ 
+=======
+        pattern = "[a-zA-Z .'-]+";
+>>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
         return name.matches(pattern);
+>>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
     }
-    public boolean matchAccountNumber(String accNo){
-        pattern ="[0-9]{10}";
+
+    public boolean matchAccountNumber(String accNo) {
+        pattern = "[0-9]{10}";
         return accNo.matches(pattern);
     }
 
@@ -102,13 +116,17 @@ public class MatchFormats {
         LocalDate todate = LocalDate.parse(to, f);
         return todate.compareTo(fromdate) > 0;
     }
-    public boolean matchDate(String date){
+
+    public boolean matchDate(String date) {
         pattern = "^([0][1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$";
-        boolean flag=true;
-        try{
-            if (!date.matches(pattern)) { flag=false;}
+        boolean flag = true;
+        try {
+            if (!date.matches(pattern)) {
+                flag = false;
+            }
+        } catch (Exception e) {
+            flag = false;
         }
-        catch(Exception e){ flag=false;}
         return flag;
     }
 }

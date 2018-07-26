@@ -61,6 +61,7 @@ public class LostStolenCard extends javax.swing.JFrame {
         cmbCardNo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOST OR STOLEN CARD");
 
         lblReportStolenCard.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblReportStolenCard.setText("Report Lost/Stolen Debit Card");

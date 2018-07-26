@@ -45,13 +45,20 @@ errlbl.setForeground(Color.red);
           
     nametxt.setText(s.getString(1));
     userNametxt.setText(s.getString(2));
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
      String strDate = dateFormat.format(s.getDate(3));
     DOBtxt.setText(strDate);
     phNotxt.setText(s.getString(4));
     addresstxt.setText(s.getString(5));
     citytxt.setText(s.getString(6));
+    if(s.getString(7)==null)
+    {
+        pinCodetxt.setText("-");
+    }
+    else
+    {
     pinCodetxt.setText(s.getString(7));
+    }
     countrytxt.setText(s.getString(8));
     panNotxt.setText(s.getString(9));
     emailtxt.setText(s.getString(10));
@@ -112,7 +119,7 @@ errlbl.setForeground(Color.red);
         header3.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header3.setText("Profile Details");
 
-        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         wellbl.setText("Welcome");
 
         namelbl.setText("Name");
@@ -286,14 +293,13 @@ errlbl.setForeground(Color.red);
                     .addComponent(jLabel17))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panNolbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(emaillbl))
+                    .addComponent(panNolbl)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panNotxt)
                         .addGap(18, 18, 18)
-                        .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emaillbl))))
                 .addGap(18, 18, 18)
                 .addComponent(errlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

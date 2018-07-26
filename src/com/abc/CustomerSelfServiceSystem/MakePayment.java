@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -98,7 +99,7 @@ public class MakePayment extends javax.swing.JFrame {
         MsgPay = new javax.swing.JLabel();
         lblMsg = new javax.swing.JLabel();
 
-        submit.setSize(new java.awt.Dimension(400, 400));
+        submit.setSize(new java.awt.Dimension(400, 300));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Your payment request has been submitted");
@@ -216,7 +217,6 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel11.setText("Make Payment");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel1.setText("x,xx,xx,xxx");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,7 +233,7 @@ public class MakePayment extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(91, 91, 91)
                         .addComponent(jLabel1)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +397,9 @@ public class MakePayment extends javax.swing.JFrame {
             {
                 am=Double.parseDouble(txtAmount.getText());
             }
+            
             String date=txtPayDueDate.getText().trim();
+            
             if(date.equals(""))
             {
                 MsgDate.setText("Cannot be empty");
@@ -412,16 +414,18 @@ public class MakePayment extends javax.swing.JFrame {
             {
                 flag &=true;
             }
+            
             if(flag)
             {
-                //lblMsg.setText("Processing");
-                submit.setVisible(true);
+                
+                //submit.setVisible(true);
                 Connection con=ConnectionClass.getConnected();
                 DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MMM/yyyy");
                 //String todate = String.valueOf(LocalDate.parse(date, f));
                 String paydate=String.valueOf(f.format(LocalDate.now()));
                 //System.out.println("date="+date+" paydate="+paydate);
                 addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);
+                JOptionPane.showMessageDialog(null,"Payment request submitted");
             }
             /*else
             {
@@ -431,13 +435,15 @@ public class MakePayment extends javax.swing.JFrame {
         catch(NumberFormatException e)
         {
             lblMsg.setText("Invalid input(s)");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException | SQLException ex) 
+        {
+           MsgDate.setText("Invalid date format");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 private void addPayment(Double amount,String dueDate,String date,String status,String acc,String billerId,Connection connect) throws SQLException
 {
-    String query="insert into make_payment values(?,?,?,?,billNo_seq.NEXTVAL,?,?)";
+    String query="insert into make_payment values(?,TO_DATE (?,'dd/MM/yyyy'),TO_DATE(?,'dd/MM/yyyy'),?,billNo_seq.NEXTVAL,?,?)";
     PreparedStatement stmt=connect.prepareStatement(query);
     stmt.setDouble(1,amount);
     stmt.setString(2,dueDate);

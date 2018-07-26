@@ -254,8 +254,6 @@ public class QueryResponse extends javax.swing.JFrame {
                     String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfQueries.queryNumber;
                     update=stmt1.executeUpdate(query1);
                     
-                    System.out.println(ListOfQueries.queryNumber);
-                    //System.out.println(update);
                     
                     if(success==1 && update==1 )
                     {
@@ -335,5 +333,5 @@ public class QueryResponse extends javax.swing.JFrame {
     private javax.swing.JLabel lbltxQueryRecvOnCsr7;
     private javax.swing.JScrollPane textareaResponseCsr7;
     private javax.swing.JTextArea txtareaResponseCsr7;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration//GEN-END:variable
 }

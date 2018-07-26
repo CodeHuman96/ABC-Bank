@@ -140,9 +140,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
 
-        {
-
-        }
+        
 
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
@@ -168,28 +166,55 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
 
 
+
         RewardCatalog obj1 = new RewardCatalog();
         obj1.setVisible(true);
+=======
+<<<<<<< HEAD
+ 
+          
+       /* try {
+            RewardCatalog obj1 = new RewardCatalog();
+               obj1.setVisible(true);
+>>>>>>> 9c4d15100281ef488e90d62e9abed02424de8f80
         this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+     
 
         if (accessFlag) {
             RewardCatalog obj1;
             try {
                 obj1 = new RewardCatalog();
                  obj1.setVisible(true);
+<<<<<<< HEAD
 
         try {
             RewardCatalog obj1 = new RewardCatalog();
             obj1.setVisible(true);
 
+=======
+        try {
+            RewardCatalog obj1 = new RewardCatalog();
+            obj1.setVisible(true);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
+>>>>>>> 9c4d15100281ef488e90d62e9abed02424de8f80
+>>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
             this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
