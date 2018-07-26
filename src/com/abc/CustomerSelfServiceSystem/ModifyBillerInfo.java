@@ -76,7 +76,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         lblMsg = new javax.swing.JLabel();
         MsgAcNo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lblStat = new javax.swing.JLabel();
+        MsgStat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +98,11 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
 
         lblAddress.setText("Address");
 
+        txtAddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAddressMouseClicked(evt);
+            }
+        });
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAddressActionPerformed(evt);
@@ -112,6 +117,11 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(249, 9, 6));
         jLabel8.setText("*");
 
+        txtCity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCityMouseClicked(evt);
+            }
+        });
         txtCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCityActionPerformed(evt);
@@ -122,6 +132,12 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
 
         jLabel9.setForeground(new java.awt.Color(249, 9, 6));
         jLabel9.setText("*");
+
+        txtPin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPinMouseClicked(evt);
+            }
+        });
 
         cbmCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item1", "item2", " ", " " }));
 
@@ -242,7 +258,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
                         .addComponent(MsgBiller, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(MsgAcNo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblStat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MsgStat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(MsgCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
                 .addGap(73, 73, 73))
         );
@@ -293,10 +309,11 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(MsgPin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MsgPin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,7 +329,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
                                 .addComponent(lblPayNow)
                                 .addComponent(radYes)
                                 .addComponent(radNo)
-                                .addComponent(lblStat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(MsgStat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -340,11 +357,17 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCityActionPerformed
 
     private void radYesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radYesMouseClicked
-        
+     if(!MsgStat.getText().trim().equals(""))
+        {
+            MsgStat.setText("");
+        }
     }//GEN-LAST:event_radYesMouseClicked
 
     private void radNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radNoMouseClicked
-       
+       if(!MsgStat.getText().trim().equals(""))
+        {
+            MsgStat.setText("");
+        }
     }//GEN-LAST:event_radNoMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -359,18 +382,23 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try
         {
-        ListOfBillers billers=new ListOfBillers();
+            //System.out.println("inside update");
+        //ListOfBillers billers=new ListOfBillers();
         //this.setVisible(false);
         //billers.setVisible(true);
         MatchFormats match = new MatchFormats();
         boolean flag = true;
         try {
-            lblMsg.setText("");
+            //System.out.println(flag+" first");
+            //System.out.println("inside update");
+            lblMsg.setText("first");
             String name = txtBillerName.getText().trim();
-            if (name.equals("")) 
+            System.out.println("name "+ name);
+            if (!name.equals("")) //&& match.matchName(name)) 
             {
-                MsgBiller.setText("Cannot be empty");
-                flag &= false;
+                //System.out.println("inside else in biller");
+                MsgBiller.setText("");
+                flag &= true;              
             } 
             else if(!match.matchName(name))
             {
@@ -379,8 +407,8 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             }
             else 
             {
-                MsgBiller.setText("");
-                flag &= true;
+                MsgBiller.setText("Cannot be empty");
+                flag &= false;
             }
             String ac_no = txtBillerAcNo.getText().trim();
             if(ac_no.equals("")) {
@@ -422,24 +450,27 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             {
                 MsgPin.setText("");
             }           
-            //String
+            String stat="";
+            if(radYes.isSelected())
+            {
+                stat="Active";
+            }
+            else if(radNo.isSelected())
+            {
+                stat="Inactive";
+            }
+            else
+            {
+                MsgStat.setText("Cannot be empty");
+            }
             Connection con = ConnectionClass.getConnected();
-            
+            System.out.println(flag+" before if");
             if (flag) 
             {
-                String id=BillPaymentLogin.cust_id;
+                lblMsg.setText("updating");
                 String cbm=String.valueOf(cbmCategory.getSelectedItem());
-                updateBiller(name,acc_no,add,cbm,id,stat,Connection con);
-                //System.out.println(res);
+                updateBiller(name,ac_no,address,cbm,stat,con);
             } 
-            /*else 
-            {
-                lblMsg.setText("Invalid Entry");
-            }*/
-        } 
-        catch (NumberFormatException e) 
-        {
-            lblMsg.setText("Invalid input(s)");
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -448,17 +479,60 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }//GEN-LAST:event_btnUpdateActionPerformed
-    private void updateBiller(String name,String acc_no,String add,String cbm,String id,String stat,Connection con) throws ClassNotFoundException,SQLException
+
+    private void txtAddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddressMouseClicked
+        if(!MsgAddress.getText().trim().equals(""))
+        {
+            MsgAddress.setText("");
+        }
+    }//GEN-LAST:event_txtAddressMouseClicked
+
+    private void txtCityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCityMouseClicked
+       if(!MsgCity.getText().trim().equals(""))
+        {
+            MsgCity.setText("");
+        }
+    }//GEN-LAST:event_txtCityMouseClicked
+
+    private void txtPinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPinMouseClicked
+        if(!MsgPin.getText().trim().equals(""))
+        {
+            MsgPin.setText("");
+        }
+    }//GEN-LAST:event_txtPinMouseClicked
+    private void updateBiller(String name,String acc_no,String add,String cbm,String stat,Connection con) throws ClassNotFoundException,SQLException
     {
-        String query="update biller set biller_name=?,biller_acc_no=?,biller_address=?,biller_category=?,customer_id=?,biller_status=?)";
+        //System.out.println("update biller");
+        String query="update biller set biller_name=?,biller_acc_no=?,biller_address=?,biller_category=?,customer_id=?,biller_status=? where biller_id=?";
         PreparedStatement ps=con.prepareStatement(query);
         ps.setString(1,name);
         ps.setString(2,acc_no);
         ps.setString(3,add);
         ps.setString(4,cbm);       
-        ps.setString(5,id);
+        ps.setInt(5,10000);//BillPaymentLogin.cust_id);
         ps.setString(6,stat);
+        ps.setInt(7,getBillerId(name,con));
         ps.executeUpdate();  
+        System.out.println("update biller");
+    }
+    private int getBillerId(String name,Connection connect) throws ClassNotFoundException, SQLException
+    {
+        System.out.println("biller");
+        //Connection connect = ConnectionClass.getConnected();
+        String customer_id=BillPaymentLogin.cust_id;
+        //System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
+        String statement = "select biller_id from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=? and b.biller_name=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        stmt.setString(2,name);
+        ResultSet rs = stmt.executeQuery();
+        System.out.println("biller");
+        int id=0;
+        while(rs.next())
+        {
+        id=rs.getInt(1);
+        }
+        return id;
     }
     /**
      * @param args the command line arguments
@@ -502,6 +576,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private javax.swing.JLabel MsgCategory;
     private javax.swing.JLabel MsgCity;
     private javax.swing.JLabel MsgPin;
+    private javax.swing.JLabel MsgStat;
     private javax.swing.JButton btnBack;
     private javax.swing.ButtonGroup btnGrpStat;
     private javax.swing.JButton btnUpdate;
@@ -522,7 +597,6 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private javax.swing.JLabel lblMsg;
     private javax.swing.JLabel lblPayNow;
     private javax.swing.JLabel lblPinCode;
-    private javax.swing.JLabel lblStat;
     private javax.swing.JRadioButton radNo;
     private javax.swing.JRadioButton radYes;
     private javax.swing.JTextField txtAddress;

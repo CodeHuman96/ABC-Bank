@@ -10,15 +10,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author shivasai
  */
+
 public class Accounts extends javax.swing.JFrame {
 
     static int accno;
+    
     /**
      * Creates new form Accounts
      */
@@ -29,28 +33,40 @@ public class Accounts extends javax.swing.JFrame {
         //int id=CustomerLogin.customerid;
         int id=CustomerLogin.customerid;
         
+        
+        
          try
         {
             
             Connection con=ConnectionClass.getConnected();
             String query="select account_number,acc_type,balance from account where customer_id="+id;
             PreparedStatement stmt=con.prepareStatement(query);
-           
+          
             ResultSet s=stmt.executeQuery();
             double avg;
-            
+            int count;
             while(s.next())
             {
-               if(s.getString(2).equals("Savings"))
-            {
-               avg=1000;
-               
-            } 
-               else
-               {
-                   avg=2000;
-                   
-               }
+                avg=0.0;
+                count=0;
+                String query1="select closing_balance from transaction_ where account_number="+s.getInt(1);
+                PreparedStatement stmt1=con.prepareStatement(query1);
+                ResultSet s1=stmt1.executeQuery();
+                while(s1.next())
+                {
+                    count++;
+                    avg+=s1.getDouble(1);
+                }
+                if(count>0)
+                {
+                    avg/=count;
+                }
+                else
+                {
+                    avg=s.getDouble(3);
+                }
+                
+            
             DefaultTableModel model=(DefaultTableModel)accountsTbl.getModel();
             model.addRow(new Object[]{s.getInt(1),s.getString(2),s.getDouble(3),avg});
             

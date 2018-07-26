@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -31,8 +32,8 @@ public class View_Campaigns extends javax.swing.JFrame {
         ResultSet rs = s.executeQuery(q);
         while (rs.next()) {
             String CTitle = rs.getString(2);
-            String From = rs.getString(4);
-            String To = rs.getString(5);
+            LocalDate From = rs.getDate(4).toLocalDate();
+            LocalDate To = rs.getDate(5).toLocalDate();
             DefaultTableModel model;
             model = (DefaultTableModel) tblCampaign.getModel();
             model.addRow(new Object[]{CTitle, From, To});
@@ -98,7 +99,7 @@ public class View_Campaigns extends javax.swing.JFrame {
                         .addComponent(lblTitle)
                         .addGap(145, 145, 145))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(190, 190, 190)
                 .addComponent(btnBack)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
