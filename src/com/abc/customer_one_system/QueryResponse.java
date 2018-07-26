@@ -254,8 +254,6 @@ public class QueryResponse extends javax.swing.JFrame {
                     String query1 = "update customer_query set response_time = CURRENT_TIMESTAMP where csr_id="+ListOfQueries.queryNumber;
                     update=stmt1.executeUpdate(query1);
                     
-                    System.out.println(ListOfQueries.queryNumber);
-                    //System.out.println(update);
                     
                     if(success==1 && update==1 )
                     {

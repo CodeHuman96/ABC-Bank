@@ -58,8 +58,13 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
         }
 <<<<<<< HEAD
+        
+
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
 
         
     

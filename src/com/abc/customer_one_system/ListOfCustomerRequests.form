@@ -108,7 +108,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Cheque Book"/>
             <StringItem index="1" value="Lost/Stolen Card"/>
-            <StringItem index="2" value="Redeem"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>
