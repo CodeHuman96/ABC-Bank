@@ -275,54 +275,15 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
         }
-        if (requestType.equals("Disputed Transaction")) {
-            requestTypeVal = 5;
-            this.setVisible(false);
-            DisputedTransaction dt = new DisputedTransaction();
-            dt.setVisible(true);
-        }
-        if (requestType.equals("Lost/Stolen Card")) {
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
-            }
-            if(requestType.equals("Disputed Transaction"))
-            {
-                requestTypeVal=5;
-                this.setVisible(false);
-                DisputedTransaction dt = new DisputedTransaction();
-                dt.setVisible(true);
-            }
-
+        
+        
             if(requestType.equals("Lost/Stolen Card"))
             {
 
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
-
-            else if(cmbRequestTypeListOfCustReq.getSelectedItem()=="Lost/stolen Card")
-            {   
-                this.setVisible(false);
-                LostOrStolenCard lst;
-<<<<<<< HEAD
-
-=======
->>>>>>> 2ba7aa1d45f2c15e1994610c13703d05283dee11
-
-
-
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
+           
             try {
                 requestTypeVal = 3;
                 this.setVisible(false);
