@@ -279,8 +279,10 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             Statement stmt=con.createStatement();
             rs=stmt.executeQuery(query);
         }
+        int flag=0;
         while(rs.next())
         {
+            flag++;
             String date=rs.getString(1);
             String acNo=rs.getString(2);
             String biller=rs.getString(3);
@@ -291,7 +293,9 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             model= (DefaultTableModel) tblHistory.getModel();
             model.addRow(new Object[]{date,acNo,biller,am,cat,stat});
             //System.out.println("inside while in getPayment method");
-        }        
+        }
+        if(flag==0)
+            lblMsg.setText("No data available");
     }
     private void txtToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToActionPerformed
     //    LocalDate todaydate = LocalDate.now();
