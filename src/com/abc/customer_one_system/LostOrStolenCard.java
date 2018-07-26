@@ -30,16 +30,9 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     {
         initComponents();
 <<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 =======
 
->>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
->>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
+>>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -65,29 +58,16 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-<<<<<<< HEAD
-        }
-        
-=======
 
         }
-        
-
-    }      
-    }
 <<<<<<< HEAD
-   
-
-   
-
-=======
+        
     }
-=======
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
-    }
->>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
 
    
+=======
+    }  
+>>>>>>> 0dea22bcf78a498fea6147b30758a75b1e600a6f
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

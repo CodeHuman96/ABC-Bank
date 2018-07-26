@@ -13,12 +13,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+/**
+ *
+ * @author shivasai
+ */
 
 
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
+    static String pacc;
 
     public static String wel;
     /**
@@ -27,18 +34,25 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
     public CustomerServiceMenu() {
         initComponents();
         int id=CustomerLogin.customerid;
+        Iterator itr=acc.iterator();
+        while(itr.hasNext())
+        {
+            itr.next();
+            itr.remove();
+        }
         
          try
         {
             
             Connection con=ConnectionClass.getConnected();
-            String query="select name from customer where customer_id="+id;
+            String query="select name,preferred_acc_1 from customer where customer_id="+id;
             Statement stmt=con.createStatement();
             
             ResultSet s=stmt.executeQuery(query);
             s.next();
             wellbl.setText("Welcome "+s.getString(1));
             wel=wellbl.getText();
+            pacc=s.getString(2);
            
     }
          catch(SQLException | ClassNotFoundException e)
