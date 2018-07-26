@@ -264,28 +264,25 @@ public class ListOfCustomerRequests extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }     
+        
+        if (requestType.equals("Lost/Stolen Card")) 
+        {
 
-        }
-
-        if (requestType.equals("Lost/Stolen Card")) {
-
-            try {
+            try 
+            {
                 requestTypeVal = 3;
                 this.setVisible(false);
                 LostOrStolenCard lst = new LostOrStolenCard(requestTypeVal, requestStatus);
                 lst.setVisible(true);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 Logger.getLogger(ListOfCustomerRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
 
-        if (requestType.equals("Redeem")) {
-            requestTypeVal = 6;
-            //this.setVisible(false);
-
-        }
-
+        
 
     }//GEN-LAST:event_tblListOfCustReqMouseClicked
 

@@ -140,9 +140,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
 
-        {
-
-        }
+        
 
    }//GEN-LAST:event_btnBackOfficeMainActionPerformed
 
@@ -167,10 +165,18 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
 <<<<<<< HEAD
-
-        RewardCatalog obj1 = new RewardCatalog();
-        obj1.setVisible(true);
+ 
+          
+       /* try {
+            RewardCatalog obj1 = new RewardCatalog();
+               obj1.setVisible(true);
         this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+     
 
         if (accessFlag) {
             RewardCatalog obj1;
@@ -181,18 +187,12 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         try {
             RewardCatalog obj1 = new RewardCatalog();
             obj1.setVisible(true);
->>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
+>>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
             this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-<<<<<<< HEAD
-=======
-        
->>>>>>> 15e0cb00138ddda6d1f5fd15fe310be3b7f79958
     }//GEN-LAST:event_btnRewardManagementActionPerformed
 
     /**
