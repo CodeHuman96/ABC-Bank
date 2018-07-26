@@ -29,14 +29,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
->>>>>>> c626444df48cd7b4de0b48f23c2fd7832c03b48c
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -44,7 +37,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         Connection con = ConnectionClass.getConnected();
         Statement stmt = con.createStatement();
         
-        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response from   customer_service_request cr  join stolen_lost_card s \n" +
+        String query = "select s.card_no,c.card_type, cr.csr_status, cr.csr_response,cr.csr_id from   customer_service_request cr  join stolen_lost_card s \n" +
                        "on s.csr_id=cr.csr_id join credit_card_detail c on  s.card_no= c.card_no where cr.csr_status='"+requestStatus+"' and  cr.csr_type="+requestTypeVal;
                 
         ResultSet rs = stmt.executeQuery(query);
@@ -55,32 +48,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             String card_Type = rs.getString(2);
             String lsc_Status = rs.getString(3);
             String lsc_Response = rs.getString(4);
+           ListOfCustomerRequests.csr_id = rs.getInt(5);
+           System.out.println(ListOfCustomerRequests.csr_id );
             
             lbltxtCardNoCsr3.setText(card_No);
             lbltxtCardTypeCsr3.setText(card_Type);
             cmbStatusCsr3.setSelectedItem(lsc_Status);
             txtResponseCsr3.setText(lsc_Response);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        
-        
-=======
-<<<<<<< HEAD
-=======
-        
->>>>>>> d4d54e41ef0f1e33b276ef4d564e9d64d0ac873d
->>>>>>> a7b0bfafca7f0a5b3c47470db1704226a4e0ddb2
+
         }
         
     }
->>>>>>> c626444df48cd7b4de0b48f23c2fd7832c03b48c
 
-       
-    }
-    }
    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,6 +83,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         txtResponseCsr3 = new javax.swing.JTextArea();
         btnSubmitCsr3 = new javax.swing.JButton();
         btnBackCsr3 = new javax.swing.JButton();
+        lblSubmit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,7 +99,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         lblAsterisk.setForeground(new java.awt.Color(229, 30, 30));
         lblAsterisk.setText("*");
 
-        cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processing" }));
+        cmbStatusCsr3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Rejected", "Processed" }));
         cmbStatusCsr3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbStatusCsr3ActionPerformed(evt);
@@ -161,14 +142,19 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addContainerGap(198, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblAsterisk, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblStatusCsr3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblResponseCsr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -208,7 +194,8 @@ public class LostOrStolenCard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmitCsr3)
-                    .addComponent(btnBackCsr3))
+                    .addComponent(btnBackCsr3)
+                    .addComponent(lblSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -227,7 +214,28 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         {if ( txtResponseCsr3.getText().equals("") )
         { JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");}
         }
+           
+         
+        try {
+            //ListOfCustomerRequests.csr_id=;
+            Connection connect=ConnectionClass.getConnected();
+            Statement st =connect.createStatement();
+            String query="update customer_service_request set csr_status='"+cmbStatusCsr3.getSelectedItem().toString()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
+            int result=st.executeUpdate(query);
+            String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
+            int result1=st.executeUpdate(query1);
             
+            lblSubmit.setText("Data submitted!");
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
+         
+         
     }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
 
     private void cmbStatusCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusCsr3ActionPerformed
@@ -286,6 +294,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     private javax.swing.JLabel lblCardTypeCsr3;
     private javax.swing.JLabel lblResponseCsr3;
     private javax.swing.JLabel lblStatusCsr3;
+    private javax.swing.JLabel lblSubmit;
     private javax.swing.JLabel lbltxtCardNoCsr3;
     private javax.swing.JLabel lbltxtCardTypeCsr3;
     private javax.swing.JTextArea txtResponseCsr3;
