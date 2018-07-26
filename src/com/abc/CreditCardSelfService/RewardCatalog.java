@@ -72,7 +72,7 @@ public class RewardCatalog extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product Desc", "Product Image", "Points needed", "Status"
+                "Product Desc", "Product Id", "Points needed", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -255,7 +255,7 @@ public class RewardCatalog extends javax.swing.JFrame {
         // TODO add your handling code here:
             DefaultTableModel model=(DefaultTableModel)tblProduct.getModel();
             prodDesc=(String) model.getValueAt(tblProduct.getSelectedRow(),0);
-            prodId=(int) model.getValueAt(tblProduct.getSelectedRow(),1);
+            prodId=Integer.parseInt((String) model.getValueAt(tblProduct.getSelectedRow(),1));
             ptsReq=(String) model.getValueAt(tblProduct.getSelectedRow(),2);
             status=(String) model.getValueAt(tblProduct.getSelectedRow(),3);
             
