@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 
 /**
  *
@@ -59,6 +61,7 @@ public class LostStolenCard extends javax.swing.JFrame {
         cmbCardNo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOST OR STOLEN CARD");
 
         lblReportStolenCard.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblReportStolenCard.setText("Report Lost/Stolen Debit Card");
@@ -88,6 +91,8 @@ public class LostStolenCard extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblMsg.setForeground(new java.awt.Color(231, 7, 7));
 
         spinDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
 
@@ -238,7 +243,7 @@ public class LostStolenCard extends javax.swing.JFrame {
                 PreparedStatement stmt2=connect.prepareStatement(query2);
                 int rs2=stmt2.executeUpdate();
                 if(rs2>0)
-                lblMsg.setText("Request Added Succesfully");
+                    JOptionPane.showMessageDialog(null,"Request Added Successfully");
                 String query3="insert into stolen_lost_card values(to_date('"+new SimpleDateFormat("yyyy/MM/dd").format(spinDate.getValue())+"','yyyy/MM/dd'),"+r+","+cmbCardNo.getSelectedItem()+")";
                 PreparedStatement stmt3=connect.prepareStatement(query3);
                 stmt3.executeUpdate();

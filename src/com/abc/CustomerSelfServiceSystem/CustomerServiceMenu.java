@@ -21,7 +21,6 @@ import java.util.List;
  * @author shivasai
  */
 
-
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();

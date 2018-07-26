@@ -35,18 +35,18 @@ public class MatchFormats {
         LocalDate birthDay = LocalDate.parse(date, f);
         return LocalDate.now().compareTo(birthDay) > 0;
     }
-    
+
     public boolean matchDate2(String date) {
         pattern = "^[0-3][0-9]/[01][0-9]/[12][0-9]{3}$";
         if (!date.matches(pattern)) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
-    
+
     public boolean matchToDate(String date) {
-       
+
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate toDate = LocalDate.parse(date, f);
         return toDate.compareTo(LocalDate.now()) > 0;
@@ -63,11 +63,16 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
+<<<<<<< HEAD
  
         pattern = "[a-z A-Z .'-]+";
         return name.matches(pattern);
 
  
+=======
+        pattern = "[a-zA-Z .'-]+";
+        return name.matches(pattern);
+>>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
     }
 
     public boolean matchAccountNumber(String accNo) {

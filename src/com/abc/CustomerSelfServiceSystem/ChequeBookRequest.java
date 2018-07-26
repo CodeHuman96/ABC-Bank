@@ -11,6 +11,7 @@ import java.util.Iterator;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +57,7 @@ public class ChequeBookRequest extends javax.swing.JFrame {
         lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CHEQUE BOOK REQUEST");
 
         lblChequeBookRequest.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblChequeBookRequest.setText("Cheque Book Request");
@@ -94,6 +96,8 @@ public class ChequeBookRequest extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblMsg.setForeground(new java.awt.Color(239, 37, 8));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,7 +213,7 @@ public class ChequeBookRequest extends javax.swing.JFrame {
                 PreparedStatement stmt2=connect.prepareStatement(query2);
                 int r=stmt2.executeUpdate(query2);
                 if(r>0)
-                    lblMsg.setText("Request Added Successfully");
+                    JOptionPane.showMessageDialog(null, "Request Added Successfully");
                
                 String query3="insert into cheque_book_request(no_of_leaves,csr_id) values("+str+","+r1+")";
                 PreparedStatement stmt3=connect.prepareStatement(query3);
