@@ -15,15 +15,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-<<<<<<< HEAD
 /**
  *
  * @author shivasai
  */
-=======
-
->>>>>>> e6bdaf3f10cb98b80d0ff2226124f009780be87f
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
