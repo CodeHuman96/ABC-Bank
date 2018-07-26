@@ -449,11 +449,11 @@ public class Create_New_Campaign extends javax.swing.JFrame {
         if (txtFrom.getText().equals("") || txtTo.getText().equals("")) {
             lblDateMsg.setText("Please Enter Both Dates");
             flag &= false;
-        } else if (!match.matchDate2(txtFrom.getText()) || !match.matchDate2(txtTo.getText())) {
+        } else if (!match.matchDate(txtFrom.getText()) || !match.matchDate(txtTo.getText())) {
             lblDateMsg.setText("Invalid date format");
             flag &= false;
         }
-        else if(!match.matchToDate(txtTo.getText()))
+        else if(match.matchDOB(txtTo.getText()))
         {
              lblDateMsg.setText("Invalid Valid To date"); 
              flag &= false;
