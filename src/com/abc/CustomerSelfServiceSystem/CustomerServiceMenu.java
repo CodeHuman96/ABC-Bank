@@ -40,21 +40,19 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
             itr.next();
             itr.remove();
         }
-        
+
+        wellbl.setText("Welcome "+ CustomerLogin.customername);//s.getString(1));
+        wel=wellbl.getText();
+
          try
-        {
-            
+         {
             Connection con=ConnectionClass.getConnected();
-            String query="select name,preferred_acc_1 from customer where customer_id="+id;
-            Statement stmt=con.createStatement();
-            
+            String query="select preferred_acc_1 from customer where customer_id="+id;
+            Statement stmt=con.createStatement();           
             ResultSet s=stmt.executeQuery(query);
-            s.next();
-            wellbl.setText("Welcome "+s.getString(1));
-            wel=wellbl.getText();
-            pacc=s.getString(2);
-           
-    }
+            while(s.next())
+                pacc=s.getString(1);
+         }
          catch(SQLException | ClassNotFoundException e)
          {
              e.printStackTrace();
