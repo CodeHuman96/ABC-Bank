@@ -81,6 +81,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         homeBt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MENU");
 
         header2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header2.setText("Customer Service Menu");
