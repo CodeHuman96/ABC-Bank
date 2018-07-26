@@ -4,6 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/DeDuplication.java</file>
+=======
+<<<<<<< HEAD
+>>>>>>> 985dd244434dcd17c568641d8171068db33cbf0d
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Average.java</file>
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/List_Of_Prospective_Customers.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
@@ -35,16 +56,22 @@
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
 =======
+>>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
+<<<<<<< HEAD
+=======
 >>>>>>> 2d5215e2f19475140dad041e3b5a7408b2019642
 >>>>>>> e9e0259cadebfd766cd1b2045ef65ee34dfe50b3
 >>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
 >>>>>>> e3575873e7ace20facdad2318434917b52d658f6
+>>>>>>> 2013e890bda34fd8af96cdbbfa6c644bdb45cd25
+>>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
+>>>>>>> 59400ab67396f27b4a64b28ab9083eb573fbcb65
+>>>>>>> 985dd244434dcd17c568641d8171068db33cbf0d
         </group>
     </open-files>
 </project-private>

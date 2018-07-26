@@ -360,18 +360,23 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try
         {
-        ListOfBillers billers=new ListOfBillers();
+            //System.out.println("inside update");
+        //ListOfBillers billers=new ListOfBillers();
         //this.setVisible(false);
         //billers.setVisible(true);
         MatchFormats match = new MatchFormats();
         boolean flag = true;
         try {
-            lblMsg.setText("");
+            //System.out.println(flag+" first");
+            //System.out.println("inside update");
+            lblMsg.setText("first");
             String name = txtBillerName.getText().trim();
-            if (name.equals("")) 
+            System.out.println("name "+ name);
+            if (!name.equals("")) //&& match.matchName(name)) 
             {
-                MsgBiller.setText("Cannot be empty");
-                flag &= false;
+                //System.out.println("inside else in biller");
+                MsgBiller.setText("");
+                flag &= true;              
             } 
             else if(!match.matchName(name))
             {
@@ -380,8 +385,8 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             }
             else 
             {
-                MsgBiller.setText("");
-                flag &= true;
+                MsgBiller.setText("Cannot be empty");
+                flag &= false;
             }
             String ac_no = txtBillerAcNo.getText().trim();
             if(ac_no.equals("")) {
@@ -423,24 +428,27 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             {
                 MsgPin.setText("");
             }           
-            //String
+            String stat="";
+            if(radYes.isSelected())
+            {
+                stat="Active";
+            }
+            else if(radNo.isSelected())
+            {
+                stat="Inactive";
+            }
+            else
+            {
+                lblStat.setText("Cannot be empty");
+            }
             Connection con = ConnectionClass.getConnected();
-            
+            System.out.println(flag+" before if");
             if (flag) 
             {
-                String id=BillPaymentLogin.cust_id;
+                lblMsg.setText("updating");
                 String cbm=String.valueOf(cbmCategory.getSelectedItem());
-                updateBiller(name,acc_no,add,cbm,id,stat,Connection con);
-                //System.out.println(res);
+                updateBiller(name,ac_no,address,cbm,stat,con);
             } 
-            /*else 
-            {
-                lblMsg.setText("Invalid Entry");
-            }*/
-        } 
-        catch (NumberFormatException e) 
-        {
-            lblMsg.setText("Invalid input(s)");
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -449,17 +457,39 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }//GEN-LAST:event_btnUpdateActionPerformed
-    private void updateBiller(String name,String acc_no,String add,String cbm,String id,String stat,Connection con) throws ClassNotFoundException,SQLException
+    private void updateBiller(String name,String acc_no,String add,String cbm,String stat,Connection con) throws ClassNotFoundException,SQLException
     {
-        String query="update biller set biller_name=?,biller_acc_no=?,biller_address=?,biller_category=?,customer_id=?,biller_status=?)";
+        //System.out.println("update biller");
+        String query="update biller set biller_name=?,biller_acc_no=?,biller_address=?,biller_category=?,customer_id=?,biller_status=? where biller_id=?";
         PreparedStatement ps=con.prepareStatement(query);
         ps.setString(1,name);
         ps.setString(2,acc_no);
         ps.setString(3,add);
         ps.setString(4,cbm);       
-        ps.setString(5,id);
+        ps.setInt(5,10000);//BillPaymentLogin.cust_id);
         ps.setString(6,stat);
+        ps.setInt(7,getBillerId(name,con));
         ps.executeUpdate();  
+        System.out.println("update biller");
+    }
+    private int getBillerId(String name,Connection connect) throws ClassNotFoundException, SQLException
+    {
+        System.out.println("biller");
+        //Connection connect = ConnectionClass.getConnected();
+        String customer_id=BillPaymentLogin.cust_id;
+        //System.out.println("cust_id"+customer_id+"cust_name"+BillPaymentLogin.cust_name);
+        String statement = "select biller_id from biller b join customer c on b.customer_id=c.customer_id where c.customer_id=? and b.biller_name=?";
+        PreparedStatement stmt = connect.prepareStatement(statement);
+        stmt.setString(1,customer_id);
+        stmt.setString(2,name);
+        ResultSet rs = stmt.executeQuery();
+        System.out.println("biller");
+        int id=0;
+        while(rs.next())
+        {
+        id=rs.getInt(1);
+        }
+        return id;
     }
     /**
      * @param args the command line arguments
