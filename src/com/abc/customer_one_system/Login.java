@@ -22,11 +22,13 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public static int EmpId=0;
+    public static int EmpId = 0;
+
     public Login() {
         initComponents();
         btnClear.setToolTipText("Clear fields");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,14 +176,13 @@ public class Login extends javax.swing.JFrame {
             String query = "select pass,emp_id from employee where username=?";
             PreparedStatement stmt = connect.prepareStatement(query);
             stmt.setString(1, usrName);
-            
-            ResultSet rs= stmt.executeQuery();
+
+            ResultSet rs = stmt.executeQuery();
             rs.next();
-            boolean result=rs.getString("pass").equals(pass);
-            EmpId=rs.getInt(2);
-            return  result; 
+            boolean result = rs.getString("pass").equals(pass);
+            EmpId = rs.getInt(2);
+            return result;
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -199,12 +200,14 @@ public class Login extends javax.swing.JFrame {
                         List_Of_Prospective_Customers obj1;
                         obj1 = new List_Of_Prospective_Customers();
                         obj1.setVisible(true);
+                        this.setVisible(false);
                     } else {
                         EmployeeMainMenu obj;
                         obj = new EmployeeMainMenu(usrName);
                         obj.setVisible(true);
+                        this.setVisible(false);
                     }
-                    this.setVisible(false);
+                    
 
                 } else {
                     lblMsg.setText("Incorrect user name or password");
@@ -239,12 +242,13 @@ public class Login extends javax.swing.JFrame {
                             List_Of_Prospective_Customers obj1;
                             obj1 = new List_Of_Prospective_Customers();
                             obj1.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             EmployeeMainMenu obj;
                             obj = new EmployeeMainMenu(usrName);
                             obj.setVisible(true);
+                            this.setVisible(false);
                         }
-                        this.setVisible(false);
                     } else {
                         lblMsg.setText("Incorrect user name or password");
                     }
