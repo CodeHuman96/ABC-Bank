@@ -180,11 +180,13 @@ public class ListOfBillers extends javax.swing.JFrame {
         int index=0;
         for(int i=0;i<model.getRowCount();i++)
         {
-            if((Boolean)model.getValueAt(i,0) )
-            { c++;}
             if((Boolean)model.getValueAt(i,0) && flag<1)
-            { flag++; index=tblBillers.getSelectedRow();}
+            { flag++; index=i;}//tblBillers.getSelectedRow();}
+            if((Boolean)model.getValueAt(i,0) )
+            { c++;}           
             //System.out.println(model.getValueAt(i,0));
+            //System.out.println(index);
+            //if(index!=0) index=index-1;
         }
         //System.out.println(flag);
         //System.out.println(index);

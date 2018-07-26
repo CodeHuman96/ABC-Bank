@@ -150,7 +150,7 @@
             <StringItem index="1" value="Pending"/>
             <StringItem index="2" value="Paid"/>
             <StringItem index="3" value="Force Pay"/>
-            <StringItem index="4" value="Reject"/>
+            <StringItem index="4" value="Rejected"/>
           </StringArray>
         </Property>
       </Properties>
