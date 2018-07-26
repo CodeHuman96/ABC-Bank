@@ -59,6 +59,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
         tblCustomers = new javax.swing.JTable();
         lblStatus = new javax.swing.JLabel();
         cbCampaign = new javax.swing.JComboBox<>();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,14 +108,28 @@ public class Assign_Prospects extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblCustomers);
 
         lblStatus.setText("Status");
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +149,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                         .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +163,10 @@ public class Assign_Prospects extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(40, 40, 40)))
-                                .addComponent(btnCancel)))))
+                                .addComponent(btnCancel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBack)
+                                .addGap(30, 30, 30)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,7 +189,8 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     .addComponent(txtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCancel)
-                        .addComponent(btnAssign)))
+                        .addComponent(btnAssign)
+                        .addComponent(btnBack)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -217,7 +236,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     String q3 = "insert into PROSPECTIVE_CUSTOMERS values(?,?,?,?)";
                     PreparedStatement s3 = con.prepareStatement(q3);
                     
-                    s3.setString(1,"nil");
+                    s3.setString(1,"Pending");
                     s3.setInt(2,(int)model.getValueAt(i, 2));
                     s3.setString(3,model.getValueAt(i, 0).toString());
                     s3.setInt(4,Integer.parseInt(txtEmployee.getText().toString()));
@@ -273,8 +292,19 @@ public class Assign_Prospects extends javax.swing.JFrame {
                 profession = rs.getString("PROFESSION");
                 Cid = rs.getString("CAMPAIGN_ID");
             }
-
-            String q2 = "Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='" + profession + "' and a.BALANCE>=" + balance;
+            
+            String q2="";
+            
+           
+            if(profession==null)
+            {
+                q2 = "Select * from CUSTOMER c inner join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where c.PREFERRED_ACC_1=a.ACCOUNT_NUMBER and a.BALANCE>=" + balance;
+            }
+        
+            else
+            {
+                q2 = "Select * from CUSTOMER c inner join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='" + profession + "' and c.PREFERRED_ACC_1=a.ACCOUNT_NUMBER and a.BALANCE>=" + balance;
+            }
             Statement s2 = con.createStatement();
             ResultSet rs2 = s2.executeQuery(q2);
 
@@ -302,6 +332,13 @@ public class Assign_Prospects extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        Campaign_Management ob=new Campaign_Management();
+        ob.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +382,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cbCampaign;

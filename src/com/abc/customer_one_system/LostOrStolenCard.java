@@ -29,10 +29,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     public LostOrStolenCard() throws ClassNotFoundException, SQLException
     {
         initComponents();
-<<<<<<< HEAD
-=======
 
->>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
     }
     public LostOrStolenCard(int requestTypeVal, String requestStatus)throws Exception
     {
@@ -61,14 +58,14 @@ public class LostOrStolenCard extends javax.swing.JFrame {
 
         }
         
-<<<<<<< HEAD
+
     }      
     }
     }
-=======
+
     }
 
->>>>>>> 665a14747af00109f9e8fb2ef7f789c48938f9ec
+
    
     /**
      * This method is called from within the constructor to initialize the form.
