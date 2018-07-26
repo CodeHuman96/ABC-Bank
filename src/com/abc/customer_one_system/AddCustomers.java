@@ -530,6 +530,7 @@ public class AddCustomers extends javax.swing.JFrame {
             String email = txtEmailID.getText().trim();
             if (email.equals("")) {
                 optionalDataFlag[0] = false;
+                lblEmailFormat.setText("");
             } else if (!match.matchEmail(email)) {
                 lblEmailFormat.setText("Invalid Email");
                 flag &= false;
@@ -559,6 +560,7 @@ public class AddCustomers extends javax.swing.JFrame {
             String occupation = txtOccupation.getText().trim();
             if (occupation.equals("")) {
                 optionalDataFlag[2] = false;
+                lblMsg.setText("");
             }
             Double monthlyIncome = null;
             if (txtMonIncome.getText().trim().equals("")) {
@@ -827,7 +829,7 @@ public class AddCustomers extends javax.swing.JFrame {
                 + "to_date(?,'yyyy-mm-dd'),?)";
         PreparedStatement prepStmt = connect.prepareStatement(q);
         for (int i = 0; i < accountNumbers.size(); i++) {
-            System.out.println("cvfgbhj");
+            //System.out.println("cvfgbhj");
             prepStmt.setLong(1, accountNumbers.get(i));
             prepStmt.setString(2, "savings");
             prepStmt.setString(3, "active");

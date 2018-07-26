@@ -63,11 +63,7 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-<<<<<<< HEAD
-        pattern = "[a-zA-Z .'-]+";
-=======
        pattern = "[a-zA-Z .'-]+";
->>>>>>> 55c9634e602235820ab6132f407beb6a0bbdd9f2
         return name.matches(pattern);
     }
 
