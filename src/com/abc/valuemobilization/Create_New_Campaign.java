@@ -381,7 +381,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             String fDate = txtFrom.getText();
             String tDate = txtTo.getText();
             int EmpId=Login.EmpId;
-            EmpId=11000000;
+            //EmpId=11000000;
             int age = Integer.parseInt(txtAgeRel.getText());
             double balance = Double.parseDouble(txtAvgBal.getText());
             String profession = txtProf.getText();
