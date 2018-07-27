@@ -21,11 +21,10 @@ import java.util.List;
  * @author shivasai
  */
 
-
 public class CustomerServiceMenu extends javax.swing.JFrame {
     static String name=new String();
     static List<String> acc=new ArrayList<>();
-    static String pacc;
+    public static String pacc;
 
     public static String wel;
     /**
@@ -40,21 +39,19 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
             itr.next();
             itr.remove();
         }
-        
+
+        wellbl.setText("Welcome "+ CustomerLogin.customername);//s.getString(1));
+        wel=wellbl.getText();
+
          try
-        {
-            
+         {
             Connection con=ConnectionClass.getConnected();
-            String query="select name,preferred_acc_1 from customer where customer_id="+id;
-            Statement stmt=con.createStatement();
-            
+            String query="select preferred_acc_1 from customer where customer_id="+id;
+            Statement stmt=con.createStatement();           
             ResultSet s=stmt.executeQuery(query);
-            s.next();
-            wellbl.setText("Welcome "+s.getString(1));
-            wel=wellbl.getText();
-            pacc=s.getString(2);
-           
-    }
+            while(s.next())
+                pacc=s.getString(1);
+         }
          catch(SQLException | ClassNotFoundException e)
          {
              e.printStackTrace();
@@ -86,7 +83,7 @@ public class CustomerServiceMenu extends javax.swing.JFrame {
         header2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         header2.setText("Customer Service Menu");
 
-        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        wellbl.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         wellbl.setText("Welcome");
 
         signOutBt.setText("Signout");

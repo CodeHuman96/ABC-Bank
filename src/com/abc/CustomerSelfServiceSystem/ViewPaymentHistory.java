@@ -22,10 +22,10 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     /**
      * Creates new form ViewPaymentHistory
      */
-
+DefaultTableModel model=null;
     public ViewPaymentHistory() {
         initComponents();
-
+        model = (DefaultTableModel) tblHistory.getModel();
     }
 
    
@@ -65,7 +65,7 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Pending", "Paid", "Force Pay", "Reject" }));
+        cbmStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Pending", "Paid", "Force Pay", "Rejected" }));
 
         lblFrom.setText("From");
 
@@ -200,6 +200,11 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        int rowCount = model.getRowCount();
+//Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
         String from=txtFrom.getText();
         String to=txtTo.getText();
         boolean flag=true;
@@ -239,11 +244,13 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             try
             {
                 Connection con=ConnectionClass.getConnected();
-                lblMsg.setText("entered values");
+                //lblMsg.setText("entered values");
                 getPayment(from,to,cat,stat,con);             
             }
             catch(ClassNotFoundException | SQLException e)
-            { }
+            { 
+                lblMsg.setText("Invalid date format");
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -289,8 +296,8 @@ public class ViewPaymentHistory extends javax.swing.JFrame {
             double am=rs.getDouble(4);
             String cat=rs.getString(5);
             String stat=rs.getString(6);
-            DefaultTableModel model;
-            model= (DefaultTableModel) tblHistory.getModel();
+           // DefaultTableModel model;
+           // model= (DefaultTableModel) tblHistory.getModel();
             model.addRow(new Object[]{date,acNo,biller,am,cat,stat});
             //System.out.println("inside while in getPayment method");
         }

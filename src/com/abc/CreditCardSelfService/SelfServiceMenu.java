@@ -7,6 +7,7 @@ package com.abc.CreditCardSelfService;
 
 import com.abc.CustomerSelfServiceSystem.CreditCardLogin;
 import com.abc.CustomerSelfServiceSystem.CustomerLogin;
+import com.abc.CustomerSelfServiceSystem.CustomerLoginTo;
 import com.abc.JDBCConnection.ConnectionClass;
 import com.abc.customer_one_system.Login;
 import java.sql.Connection;
@@ -64,6 +65,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
         btnSignOut = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
         btnCardAccounts = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +102,13 @@ public class SelfServiceMenu extends javax.swing.JFrame {
             }
         });
 
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,41 +117,42 @@ public class SelfServiceMenu extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRedeem)
-                            .addComponent(btnCardAccounts))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSignOut))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnViewStatus)
-                        .addGap(0, 211, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblWelcome)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitle2)
-                        .addGap(56, 56, 56))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitle2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnHome)
+                                    .addComponent(lblWelcome))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSignOut))
+                            .addComponent(btnCardAccounts)
+                            .addComponent(btnRedeem))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitle2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSignOut)
-                .addGap(5, 5, 5)
-                .addComponent(btnRedeem)
-                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnRedeem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblWelcome)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnHome)
+                            .addComponent(btnSignOut))))
+                .addGap(26, 26, 26)
                 .addComponent(btnCardAccounts)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btnViewStatus)
-                .addGap(36, 36, 36))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,6 +203,12 @@ public class SelfServiceMenu extends javax.swing.JFrame {
          this.setVisible(false);
     }//GEN-LAST:event_btnCardAccountsActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+       CustomerLoginTo menu=new CustomerLoginTo();
+       menu.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,6 +254,7 @@ public class SelfServiceMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCardAccounts;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnRedeem;
     private javax.swing.JButton btnSignOut;
     private javax.swing.JButton btnViewStatus;

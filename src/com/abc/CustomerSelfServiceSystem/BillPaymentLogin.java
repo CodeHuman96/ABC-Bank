@@ -162,7 +162,7 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                 ResultSet rs=stmt.executeQuery();
                 while(rs.next())
                 {
-                    System.out.println(rs.getString(1));
+                    //System.out.println(rs.getString(1));
                     if(rs.getString(1).equals(pass))
                     {
                         flag=true;
@@ -195,7 +195,12 @@ public class BillPaymentLogin extends javax.swing.JFrame {
         while(rs.next()){
             cust_id=rs.getString(1);
             cust_name=rs.getString(2);
+            CustomerLogin.customerid=rs.getInt(1);
+            CustomerLogin.customername=rs.getString(1);
+            CreditCardLogin.cid=rs.getInt(1);
+            CreditCardLogin.topName=rs.getString(2);
         }
+        
     }
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:

@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 public class CustomerLogin extends javax.swing.JFrame {
 
     public static  int customerid;
-    
+    public static String customername;
 
     /**
      * Creates new form Login
@@ -26,6 +27,7 @@ public class CustomerLogin extends javax.swing.JFrame {
     public CustomerLogin() {
         initComponents();
         clearBtn.setToolTipText("Clear fields");
+        errlbl.setForeground(Color.red);
     }
 
     /**
@@ -191,9 +193,14 @@ public class CustomerLogin extends javax.swing.JFrame {
         } else {
             try {
                 if (validation(usrName, password)) {
+                    CustomerLoginTo.login=1;
                     CustomerServiceMenu obj;
                     customerid=getCustomerid(usrName);
-                    
+                    BillPaymentLogin.cust_id=String.valueOf(getCustomerid(usrName));
+                    CreditCardLogin.cid=getCustomerid(usrName);
+                    customername=getCustomerName(usrName);
+                    BillPaymentLogin.cust_name=String.valueOf(getCustomerName(usrName));
+                    CreditCardLogin.topName=getCustomerName(usrName);
                     obj = new CustomerServiceMenu();
                     obj.setVisible(true);
                     this.setVisible(false);
@@ -218,6 +225,26 @@ public class CustomerLogin extends javax.swing.JFrame {
             ResultSet res=stmt.executeQuery();
             res.next();
             r=res.getInt(1);
+            
+        }
+        catch(ClassNotFoundException | SQLException e)
+                {
+                    e.printStackTrace();
+                }
+        return r;
+    }
+    private String getCustomerName(String userName)throws SQLException,ClassNotFoundException
+    {
+        String r="";
+        try
+        {
+            Connection con=ConnectionClass.getConnected();
+            String query="select name from customer where cust_user_name=?";
+            PreparedStatement stmt=con.prepareStatement(query);
+            stmt.setString(1,userName);
+            ResultSet res=stmt.executeQuery();
+            res.next();
+            r=res.getString(1);
             
         }
         catch(ClassNotFoundException | SQLException e)

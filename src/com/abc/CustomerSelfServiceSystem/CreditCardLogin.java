@@ -33,7 +33,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
      */
     public CreditCardLogin() {
         initComponents();
-        
+
     }
 
     /**
@@ -209,10 +209,10 @@ public class CreditCardLogin extends javax.swing.JFrame {
         else {
             try {
                 if (verification(Uname, Pswrd)) {
-                  
+                    CustomerLoginTo.login = 1;
                     Connection con = ConnectionClass.getConnected();
                     Statement st1 = con.createStatement();
-                    
+
                     //lname+="hai";
                     // obj.setWel("welcome " +topName);
                     Connection connect = ConnectionClass.getConnected();
@@ -221,6 +221,8 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     ResultSet rs = st.executeQuery(sql);
                     while (rs.next()) {
                         cid = rs.getInt(1);
+                        BillPaymentLogin.cust_id = rs.getString(1);
+                        CustomerLogin.customerid = rs.getInt(1);
                     }
 
                     String s = "select name from customer where customer_id=" + CreditCardLogin.cid;
@@ -228,8 +230,14 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
                     while (rs1.next()) {
                         topName = rs1.getString(1);
+
+                        BillPaymentLogin.cust_name = rs1.getString(1);
+                        CustomerLogin.customername = rs1.getString(1);
+
+                        BillPaymentLogin.cust_name=rs1.getString(1);
+                        CustomerLogin.customername=rs1.getString(1);
                     }
-                     
+
                     SelfServiceMenu obj = new SelfServiceMenu(topName);
                     obj.setVisible(true);
                     this.setVisible(false);
@@ -238,6 +246,7 @@ public class CreditCardLogin extends javax.swing.JFrame {
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 lblmsg.setText("DataBase Not Connected");
+                ex.printStackTrace();
             }
 
 

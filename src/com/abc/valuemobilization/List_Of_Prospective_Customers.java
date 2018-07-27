@@ -27,22 +27,23 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     public List_Of_Prospective_Customers()throws SQLException, ClassNotFoundException {
         initComponents();
         int EmpId=Login.EmpId;
-         
+         EmpId=11000000;
         String Name="";
         String Mobile="";
         
         Connection con = ConnectionClass.getConnected();
         Statement s = con.createStatement();
-        String q="Select * from PROSPECTIVE_CUSTOMERS p join CAMPAIGN c on p.CAMPAIGN_ID=c.CAMPAIGN_ID where p.EMPLOYEE_ID=11000000"/*+EmpId*/;
-        String q2="Select * from PROSPECTIVE_CUSTOMERS p join CUSTOMER c on p.CUSTOMER_ID=c.CUSTOMER_ID where p.EMPLOYEE_ID=11000000"/*+EmpId*/;
+        String q="Select * from PROSPECTIVE_CUSTOMERS p join CAMPAIGN c on p.CAMPAIGN_ID=c.CAMPAIGN_ID where p.EMPLOYEE_ID="+EmpId;
+        String q2="Select * from PROSPECTIVE_CUSTOMERS p join CUSTOMER c on p.CUSTOMER_ID=c.CUSTOMER_ID where p.EMPLOYEE_ID="+EmpId;
         ResultSet rs= s.executeQuery(q);
         while(rs.next())
         {
+            
         String CTitle=rs.getString(6);
         
         String Status=rs.getString(1);
         int Cust_Id=rs.getInt(2);
-        
+        String c_id=Integer.toString(Cust_Id);
         DefaultTableModel model;
         model = (DefaultTableModel) tblProspects.getModel();
         Statement s2 = con.createStatement();
@@ -53,6 +54,18 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
             Mobile=rs2.getString(8);
              
         }
+        int c=0;
+        for(int i=0; i<model.getRowCount(); i++)
+        {
+           
+            if(tblProspects.getValueAt(i,0).toString().equals(CTitle) && tblProspects.getValueAt(i,1).toString().equals(c_id))
+            {
+                c++;
+               
+            }
+        }
+       
+        if(c==0)
         model.addRow(new Object[]{CTitle,Cust_Id,Name,Mobile,Status });
         }
        

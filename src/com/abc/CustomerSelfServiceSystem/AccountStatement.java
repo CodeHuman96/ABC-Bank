@@ -6,6 +6,7 @@
 package com.abc.CustomerSelfServiceSystem;
 
 import com.abc.JDBCConnection.ConnectionClass;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ public class AccountStatement extends javax.swing.JFrame {
     
      public AccountStatement() {
         initComponents();
+        errlbl.setForeground(Color.red);
         int count_transactions=0;
         
         String accno=Integer.toString(Accounts.accno);
