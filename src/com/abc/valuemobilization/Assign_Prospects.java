@@ -235,9 +235,13 @@ public class Assign_Prospects extends javax.swing.JFrame {
                     //String q3 = "insert into PROSPECTIVE_CUSTOMERS values('nil'," + model.getValueAt(i, 2).toString() + ",'" + model.getValueAt(i, 0).toString() + "'," + txtEmployee.getText() + ")";
                     String q3 = "insert into PROSPECTIVE_CUSTOMERS values(?,?,?,?)";
                     PreparedStatement s3 = con.prepareStatement(q3);
+                    /*String cid=tblCustomers.getValueAt(i, 2).toString();
+                    String c=(String)tblCustomers.getValueAt(i,0);
+                    cid=c.concat(cid);
+                    int id=Integer.parseInt(cid);*/
                     
                     s3.setString(1,"Pending");
-                    s3.setInt(2,(int)model.getValueAt(i, 2));
+                    s3.setInt(2,(int)tblCustomers.getValueAt(i, 2));
                     s3.setString(3,model.getValueAt(i, 0).toString());
                     s3.setInt(4,Integer.parseInt(txtEmployee.getText().toString()));
                     
@@ -274,6 +278,10 @@ public class Assign_Prospects extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String CTitle = cbCampaign.getSelectedItem().toString();
+        DefaultTableModel model;
+        model = (DefaultTableModel) tblCustomers.getModel();
+        model.setRowCount(0);
+        
 
         try {
             int age = 0;
@@ -308,9 +316,11 @@ public class Assign_Prospects extends javax.swing.JFrame {
             Statement s2 = con.createStatement();
             ResultSet rs2 = s2.executeQuery(q2);
 
-            DefaultTableModel model;
+            
             model = (DefaultTableModel) tblCustomers.getModel();
-            while (rs2.next()) {
+            while (rs2.next()) 
+            {
+                System.out.println(rs2.getDate("OPENING_DATE"));
                 LocalDate date = rs2.getDate("OPENING_DATE").toLocalDate();
                 int age_rel = Period.between(date, ldate).getYears();
 
