@@ -162,7 +162,7 @@ public class BillPaymentLogin extends javax.swing.JFrame {
                 ResultSet rs=stmt.executeQuery();
                 while(rs.next())
                 {
-                    System.out.println(rs.getString(1));
+                    //System.out.println(rs.getString(1));
                     if(rs.getString(1).equals(pass))
                     {
                         flag=true;

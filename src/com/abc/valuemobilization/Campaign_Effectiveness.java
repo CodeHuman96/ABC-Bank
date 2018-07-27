@@ -183,6 +183,9 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
         
             String campaign = cbCampaign.getSelectedItem().toString();
             int assigned=0, total=0;
+            DefaultTableModel model;
+        model = (DefaultTableModel) tblMonitor.getModel();
+        model.setRowCount(0);
         try 
         {
             Connection con = ConnectionClass.getConnected();
@@ -194,7 +197,7 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
 
             while (rs.next()) 
             {
-                assigned++;
+                
                 String agent = rs.getString("Employee_id");
                 String customer = rs.getString("Customer_id");
                 String status = rs.getString("Status");
@@ -232,11 +235,24 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 }
                 
 
-                DefaultTableModel model;
+                //DefaultTableModel model;
                 model = (DefaultTableModel) tblMonitor.getModel();
-                model.addRow(new Object[]{agent_name, customer_name, status, ni, c});
-                
-                
+                int count=0;
+                for(int i=0; i<model.getRowCount(); i++)
+                {
+           
+                    if(tblMonitor.getValueAt(i,1).toString().equals(customer_name) )
+                    {
+                        count++;
+               
+                    }
+                }
+       
+        if(count==0)
+        {
+            model.addRow(new Object[]{agent_name, customer_name, status, ni, c});
+             assigned++;   
+        }    
                 
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -267,7 +283,17 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 Cid=rs.getString("CAMPAIGN_ID");
             }
             
-            String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
+            String q2="";
+            if(profession==null)
+            {
+                q2 = "Select * from CUSTOMER c inner join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where c.PREFERRED_ACC_1=a.ACCOUNT_NUMBER and a.BALANCE>=" + balance;
+            }
+        
+            else
+            {
+                q2 = "Select * from CUSTOMER c inner join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='" + profession + "' and c.PREFERRED_ACC_1=a.ACCOUNT_NUMBER and a.BALANCE>=" + balance;
+            }
+            //String q2="Select * from CUSTOMER c join ACCOUNT a on c.CUSTOMER_ID = a.CUSTOMER_ID  where C.OCCUPATION='"+profession+"' and a.BALANCE>="+balance;
             Statement s2 = con.createStatement();
             ResultSet rs2= s2.executeQuery(q2);
             
