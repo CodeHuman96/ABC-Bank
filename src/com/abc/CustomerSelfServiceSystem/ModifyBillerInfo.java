@@ -452,6 +452,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             else
             {
                 MsgStat.setText("Cannot be empty");
+                flag&= false;
             }
             Connection con = ConnectionClass.getConnected();
             //System.out.println(flag+" before if");
