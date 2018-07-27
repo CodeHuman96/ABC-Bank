@@ -304,7 +304,13 @@ public class AddNewBiller extends javax.swing.JFrame {
             if(ac_no.equals("")) {
                 MsgAcNo.setText("Cannot be empty");
                 flag &= false;
-            } else 
+            } 
+            else if(!match.matchAccountNumber(ac_no))
+            {
+                MsgAcNo.setText("Invalid account number");
+                flag &= false;
+            }
+            else 
             {
                 MsgAcNo.setText("");
                 flag &= true;
