@@ -165,6 +165,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
 <<<<<<< HEAD
+ 
+=======
+<<<<<<< HEAD
          
 =======
 
@@ -174,6 +177,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         obj1.setVisible(true);
 =======
 <<<<<<< HEAD
+>>>>>>> 7fe0b6dff669cab9b2c03e72f6a9870a937a1acb
  
           
 >>>>>>> 0c91439f5b513e3a915568a80dc150f92fa6691c
@@ -190,6 +194,14 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      
 
         if (accessFlag) {
+<<<<<<< HEAD
+            //RewardCatalog obj1;
+           
+        try {
+            RewardCatalog obj1 = new RewardCatalog();
+            obj1.setVisible(true);
+ 
+=======
             RewardCatalog obj1;
             try {
                 obj1 = new RewardCatalog();
@@ -217,6 +229,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
 >>>>>>> 9c4d15100281ef488e90d62e9abed02424de8f80
 >>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
 >>>>>>> 0c91439f5b513e3a915568a80dc150f92fa6691c
+>>>>>>> 7fe0b6dff669cab9b2c03e72f6a9870a937a1acb
             this.setVisible(false);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,7 +240,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
 =======
 >>>>>>> c533d22b6e5db0d31b862655956df12f7a3986f2
     }//GEN-LAST:event_btnRewardManagementActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
