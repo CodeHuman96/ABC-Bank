@@ -5,7 +5,6 @@
         <group>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/ListBillPaymentRequests.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>

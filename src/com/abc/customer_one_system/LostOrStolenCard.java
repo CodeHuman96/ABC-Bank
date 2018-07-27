@@ -21,7 +21,7 @@ import java.lang.String;
  * @author test
  */
 public class LostOrStolenCard extends javax.swing.JFrame {
-
+    String card_No;
     /**
      * Creates new form LostOrStolenCard
      * @param 
@@ -44,7 +44,7 @@ public class LostOrStolenCard extends javax.swing.JFrame {
         while (rs.next())
         {
         
-            String card_No = String.valueOf(rs.getLong(1));
+            card_No = String.valueOf(rs.getLong(1));
             String card_Type = rs.getString(2);
             String lsc_Status = rs.getString(3);
             String lsc_Response = rs.getString(4);
@@ -216,20 +216,41 @@ public class LostOrStolenCard extends javax.swing.JFrame {
     private void btnSubmitCsr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitCsr3ActionPerformed
         // TODO add your handling code here:
         int flag=1;
+        //Connection connect;
+        try {
+          Connection  connect = ConnectionClass.getConnected();
+        
+        Statement st = connect.createStatement();
          if (cmbStatusCsr3.getSelectedItem()=="Rejected" )
         {if ( txtResponseCsr3.getText().equals("") )
-        {   lblSubmit.setText("Enter reason!");
+        {   lblSubmit.setText(" ");
             JOptionPane.showMessageDialog(null,"Enter a reason for rejection!");
             flag=0;
         }
         }
            
+         if (cmbStatusCsr3.getSelectedItem()=="Processed" )
+         {  
+             
+            try {
+             System.out.println(card_No);   
+             String q1 = "update credit_card_detail set status='Blocked' where card_no = " + card_No;
+              System.out.println(card_No);
+                int result=st.executeUpdate(q1);
+                System.out.println(result);
+            } catch (SQLException ex) {
+                Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+         
+         
+         
+         }
          
         try {
             //ListOfCustomerRequests.csr_id=;
             if (flag==1){
-            Connection connect=ConnectionClass.getConnected();
-            Statement st =connect.createStatement();
+            
+           
             String query="update customer_service_request set csr_status='"+cmbStatusCsr3.getSelectedItem().toString()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
             int result=st.executeUpdate(query);
             String query1="update customer_service_request set csr_response='"+txtResponseCsr3.getText()+"' where csr_id="+ListOfCustomerRequests.csr_id ;
@@ -237,13 +258,15 @@ public class LostOrStolenCard extends javax.swing.JFrame {
             
             lblSubmit.setText("Data submitted!");}
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
         }
          
-         
+        }catch (ClassNotFoundException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LostOrStolenCard.class.getName()).log(Level.SEVERE, null, ex);
+        } 
          
          
     }//GEN-LAST:event_btnSubmitCsr3ActionPerformed
