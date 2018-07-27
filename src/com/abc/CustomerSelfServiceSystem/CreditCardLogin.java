@@ -229,15 +229,22 @@ public class CreditCardLogin extends javax.swing.JFrame {
                     ResultSet rs1 = st1.executeQuery(s);
 
                     while (rs1.next()) {
-                        topName = rs1.getString(1);
 <<<<<<< HEAD
-                        BillPaymentLogin.cust_name = rs1.getString(1);
-                        CustomerLogin.customername = rs1.getString(1);
-
+                       /* topName = rs1.getString(1);
 =======
+                        topName = rs1.getString(1);
+
+>>>>>>> 7fe0b6dff669cab9b2c03e72f6a9870a937a1acb
+                        BillPaymentLogin.cust_name = rs1.getString(1);
+                        CustomerLogin.customername = rs1.getString(1);*/
+
+
                         BillPaymentLogin.cust_name=rs1.getString(1);
                         CustomerLogin.customername=rs1.getString(1);
->>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> 7fe0b6dff669cab9b2c03e72f6a9870a937a1acb
                     }
 
                     SelfServiceMenu obj = new SelfServiceMenu(topName);

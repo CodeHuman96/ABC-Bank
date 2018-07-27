@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -174,12 +175,13 @@ public class AddNewBiller extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPinCode)
-                            .addComponent(txtAddress)
-                            .addComponent(txtBillerName)
-                            .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(txtBillerAcNo))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPinCode, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                .addComponent(txtAddress)
+                                .addComponent(txtBillerName)
+                                .addComponent(txtBillerAcNo))
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -225,8 +227,8 @@ public class AddNewBiller extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblAddress)
-                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(22, 22, 22))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(MsgAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,8 +241,8 @@ public class AddNewBiller extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCity)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)))
+                                .addComponent(jLabel8)
+                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -302,7 +304,13 @@ public class AddNewBiller extends javax.swing.JFrame {
             if(ac_no.equals("")) {
                 MsgAcNo.setText("Cannot be empty");
                 flag &= false;
-            } else 
+            } 
+            else if(!match.matchAccountNumber(ac_no))
+            {
+                MsgAcNo.setText("Invalid account number");
+                flag &= false;
+            }
+            else 
             {
                 MsgAcNo.setText("");
                 flag &= true;
@@ -341,25 +349,28 @@ public class AddNewBiller extends javax.swing.JFrame {
             //String
              System.out.println(flag);
             Connection connect = ConnectionClass.getConnected();
-            lblMsg.setText("submit");
+            //lblMsg.setText("submit");
            
             if (flag) 
             {
-                lblMsg.setText("Adding..");
+                //lblMsg.setText("Adding..");
                 
                 //billers.setVisible(true);
                 BillPaymentMenu menu=new BillPaymentMenu();
                 
                 String id=BillPaymentLogin.cust_id;
                 String cbm=String.valueOf(cbmCategory.getSelectedItem());
-                System.out.println("Inside the flag");
+                //System.out.println("Inside the flag");
                 if(!existingBiller(ac_no,id,connect))
                 {
-                    this.setVisible(false);
-                    menu.setVisible(true);
-                    System.out.println("Inside the flag and inside if ");
-                    int res=addBiller(name,ac_no,address,city, pin,cbm,id,connect);
-                    System.out.println(res);
+                    //this.setVisible(false);
+                    //menu.setVisible(true);
+                    //System.out.println("Inside the flag and inside if ");
+                    int res=addBiller(name,ac_no,address,cbm,id,connect);
+                    if(res==1)
+                         JOptionPane.showMessageDialog(null,"Biller added successfully");
+                    else
+                        JOptionPane.showMessageDialog(null,"Adding biller failed");
                 }
                 else
                 {
@@ -389,7 +400,7 @@ public class AddNewBiller extends javax.swing.JFrame {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
-    private int addBiller(String name,String acc_no,String add,String city,String pin,String cbm,String id,Connection con) throws SQLException
+    private int addBiller(String name,String acc_no,String add,String cbm,String id,Connection con) throws SQLException
     {
         int res=0;
         String query="insert into biller values(billlerId_Seq.NEXTVAL,?,?,?,?,?,?)";
