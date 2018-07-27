@@ -201,7 +201,7 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 String agent = rs.getString("Employee_id");
                 String customer = rs.getString("Customer_id");
                 String status = rs.getString("Status");
-                System.out.println(agent);
+                
                 
                 String agent_name="", customer_name="";
                 String q2="Select NAME from CUSTOMER where CUSTOMER_ID="+customer;
@@ -219,7 +219,7 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                 while(rs3.next())
                 {
                     agent_name=rs3.getString("Name");
-                    System.out.println("Agent is "+agent_name);
+                    
                 }
                 
                 String ni="", c="";
@@ -308,7 +308,7 @@ public class Campaign_Effectiveness extends javax.swing.JFrame {
                     
                     total++;
                 }
-                    
+                total++;    
             }
         }catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();

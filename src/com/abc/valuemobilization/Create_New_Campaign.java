@@ -478,7 +478,7 @@ public class Create_New_Campaign extends javax.swing.JFrame {
             int age=0;
             double balance=0;
             int EmpId=Login.EmpId;
-            EmpId=11000000;
+            //EmpId=11000000;
             if(!txtAgeRel.getText().equals(""))
             age = Integer.parseInt(txtAgeRel.getText());
             
