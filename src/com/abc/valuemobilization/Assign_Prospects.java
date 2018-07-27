@@ -68,7 +68,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
 
         lblCampaign.setText("Campaign Title :");
 
-        lblEName.setText("Employee's name");
+        lblEName.setText("Employee Id");
 
         btnAssign.setText("Assign");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +216,6 @@ public class Assign_Prospects extends javax.swing.JFrame {
         for (int i = 0; i < tblCustomers.getRowCount(); i++) {
             // lblStatus.setText("Assigning...");
             //boolean b=model.getValueAt(i,5).toString().equals("true");
-            System.out.println(model.getValueAt(i, 5));
             //System.out.println(tblCustomers.getModel().getValueAt(i, 5));
             //System.out.println((Boolean) tblCustomers.getModel().getValueAt(i, 5));
             //System.out.println(Boolean.valueOf(tblCustomers.getValueAt(i, 5).toString()));
@@ -320,7 +319,7 @@ public class Assign_Prospects extends javax.swing.JFrame {
             model = (DefaultTableModel) tblCustomers.getModel();
             while (rs2.next()) 
             {
-                System.out.println(rs2.getDate("OPENING_DATE"));
+                
                 LocalDate date = rs2.getDate("OPENING_DATE").toLocalDate();
                 int age_rel = Period.between(date, ldate).getYears();
 

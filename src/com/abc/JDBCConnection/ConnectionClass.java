@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b9114c93791fc8e883336e2c2841bba48075fe4
 import java.sql.*;
 
 /**
@@ -16,8 +20,15 @@ import java.sql.*;
  * @author test
 */ 
 
+<<<<<<< HEAD
  
 import java.sql.*;
+=======
+
+ 
+import java.sql.*;
+ 
+>>>>>>> 8b9114c93791fc8e883336e2c2841bba48075fe4
 
 =======
 <<<<<<< HEAD
@@ -31,6 +42,11 @@ public class ConnectionClass {
  
 
     public static Connection getConnected() throws ClassNotFoundException, SQLException{
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> c1853145b443a7e88355c8f6b396b193815fa3f2
  
 <<<<<<< HEAD
 =======
@@ -58,6 +74,19 @@ public class ConnectionClass {
     //public static Connection getConnected() throws ClassNotFoundException, SQLException{
 >>>>>>> c1853145b443a7e88355c8f6b396b193815fa3f2
  
+<<<<<<< HEAD
+ 
+        //Class.forName("oracle.jdbc.driver.OracleDriver");
+ 
+ 
+
+    
+  
+
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+=======
   
         Class.forName("oracle.jdbc.driver.OracleDriver");
 <<<<<<< HEAD

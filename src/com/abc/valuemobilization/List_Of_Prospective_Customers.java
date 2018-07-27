@@ -27,7 +27,7 @@ public class List_Of_Prospective_Customers extends javax.swing.JFrame {
     public List_Of_Prospective_Customers()throws SQLException, ClassNotFoundException {
         initComponents();
         int EmpId=Login.EmpId;
-         EmpId=11000000;
+         //EmpId=21000000;
         String Name="";
         String Mobile="";
         

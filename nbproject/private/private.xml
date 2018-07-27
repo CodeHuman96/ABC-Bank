@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/com/abc/valuemobilization/Campaign_Effectiveness.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>231</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
 <<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewRequestStatus.java</file>
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
+=======
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/List_Of_Prospective_Customers.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MatchFormats.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Assign_Prospects.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/View_Campaigns.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Create_New_Campaign.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/JDBCConnection/ConnectionClass.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Management.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Update_Campaign.java</file>
+            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/valuemobilization/Campaign_Effectiveness.java</file>
+>>>>>>> 8b9114c93791fc8e883336e2c2841bba48075fe4
 =======
 <<<<<<< HEAD
             <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CreditCardLogin.java</file>
