@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -456,9 +457,10 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
             //System.out.println(flag+" before if");
             if (flag) 
             {
-                lblMsg.setText("updated");
+                //lblMsg.setText("updated");
                 String cbm=String.valueOf(cbmCategory.getSelectedItem());
                 updateBiller(name,ac_no,address,cbm,stat,con);
+                JOptionPane.showMessageDialog(null,"Biller modified successfully");
             } 
         } 
         catch (ClassNotFoundException | SQLException ex) 
@@ -509,7 +511,7 @@ public class ModifyBillerInfo extends javax.swing.JFrame {
         ps.setInt(5,acc_no);
         ps.setString(6,BillPaymentLogin.cust_id);
         ps.executeUpdate();  
-        System.out.println("update biller");
+        //System.out.println("update biller");
     }
     /**
      * @param args the command line arguments
