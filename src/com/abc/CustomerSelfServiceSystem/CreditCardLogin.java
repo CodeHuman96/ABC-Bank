@@ -230,14 +230,12 @@ public class CreditCardLogin extends javax.swing.JFrame {
 
                     while (rs1.next()) {
                         topName = rs1.getString(1);
-<<<<<<< HEAD
+
                         BillPaymentLogin.cust_name = rs1.getString(1);
                         CustomerLogin.customername = rs1.getString(1);
 
-=======
                         BillPaymentLogin.cust_name=rs1.getString(1);
                         CustomerLogin.customername=rs1.getString(1);
->>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
                     }
 
                     SelfServiceMenu obj = new SelfServiceMenu(topName);

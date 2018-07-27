@@ -2,41 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/Query.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/customer_one_system/MainBank.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ChequeBookRequest.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/JDBCConnection/ConnectionClass.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/ListCustomers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AddCustomers.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/AccountSetup.java</file>
-            <file>file:/home/test/NetBeansProjects/ABC_CustonerOneSystem/src/com/abc/customer_one_system/CustomerSearch.java</file>
-=======
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CustomerServiceMenu.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/AccountStatement.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/customer_one_system/LostOrStolenCard.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/MyProfile.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/ChangePassword.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/Accounts.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/CreditCardLogin.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/CustomerSelfServiceSystem/LostStolenCard.java</file>
-            <file>file:/home/shivasai/Desktop/git/remote-repo/Project/src/com/abc/JDBCConnection/ConnectionClass.java</file>
->>>>>>> b38e18fe0c6b6134d88487b8b60fd9ab8556b626
->>>>>>> 6dab311465cbd6a549cd4d9046d91db58fbb4b06
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/AddNewBiller.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/CustomerLoginTo.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/BillPaymentLogin.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ListOfBillers.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ViewPaymentHistory.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/ModifyBillerInfo.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/CustomerSelfServiceSystem/MakePayment.java</file>
+            <file>file:/home/test/ABC-Bank/src/com/abc/customer_one_system/ListOfCustomerRequests.java</file>
         </group>
->>>>>>> 37c3de7cdb0b653d3d3b91ed43a9cc5f35b7336b
     </open-files>
 </project-private>

@@ -164,9 +164,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustOneMainActionPerformed
 
     private void btnRewardManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardManagementActionPerformed
-<<<<<<< HEAD
- 
-          
+         
        /* try {
             RewardCatalog obj1 = new RewardCatalog();
                obj1.setVisible(true);
@@ -183,11 +181,10 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             try {
                 obj1 = new RewardCatalog();
                  obj1.setVisible(true);
-=======
         try {
             RewardCatalog obj1 = new RewardCatalog();
             obj1.setVisible(true);
->>>>>>> 5d0a572303d4837852c9f23f49469dc632baf48e
+
             this.setVisible(false);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmployeeMainMenu.class.getName()).log(Level.SEVERE, null, ex);
