@@ -63,8 +63,9 @@ public class MatchFormats {
     }
 
     public boolean matchName(String name) {
-        pattern = "[a-zA-Z .'-]+";
+       pattern = "[a-zA-Z .'-]+";
         return name.matches(pattern);
+
     }
 
     public boolean matchAccountNumber(String accNo) {

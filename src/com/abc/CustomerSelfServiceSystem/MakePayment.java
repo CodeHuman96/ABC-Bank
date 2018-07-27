@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -216,7 +217,6 @@ public class MakePayment extends javax.swing.JFrame {
         jLabel11.setText("Make Payment");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel1.setText("x,xx,xx,xxx");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,7 +233,7 @@ public class MakePayment extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(91, 91, 91)
                         .addComponent(jLabel1)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +424,8 @@ public class MakePayment extends javax.swing.JFrame {
                 //String todate = String.valueOf(LocalDate.parse(date, f));
                 String paydate=String.valueOf(f.format(LocalDate.now()));
                 //System.out.println("date="+date+" paydate="+paydate);
-                addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);lblMsg.setText("Processing");
+                addPayment(am,date,paydate,"Pending",acNo,getBiller(name,acNo,con),con);
+                JOptionPane.showMessageDialog(null,"Payment request submitted");
             }
             /*else
             {
